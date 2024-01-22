@@ -3,11 +3,13 @@ const postContentTopTpl = ({
   readingTime,
   coverImage
 }) => {
-    return `
+  const coverImagePart = coverImage ? `
 <p class="image-caption">
   <a href="${coverImage.URL}">${coverImage.title}</a> by <a href="${coverImage.authorURL}">${coverImage.author}</a>
-</p>
+</p>` : ''
 
+  return `
+${coverImagePart}
 <p><em>
   ${publishedFormattedDate} • 📚 ${readingTime} read
 </em></p>

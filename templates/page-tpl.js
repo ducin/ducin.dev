@@ -70,9 +70,9 @@ const pageTpl = ({
 				</header>
 				<section class="wrapper style5">
 					<div class="inner">
-					${content}
+            ${content}
+            ${bottomContent ? `<hr />` + bottomContent : ''}
 					</div>
-					${bottomContent ? `<hr />` + bottomContent : ''}
 				</section>
 			</article>
 		${footerTpl()}

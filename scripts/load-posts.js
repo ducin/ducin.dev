@@ -12,7 +12,7 @@ const Post = z.object({
     title: z.string(),
     authorURL: z.string(),
     author: z.string(),
-  }),
+  }).optional(),
   coverImageFilename: z.string(),
 });
 

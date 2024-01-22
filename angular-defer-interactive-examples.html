@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Angular @defer Interactive Examples - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Angular, Defer, Examples, Lazy Loading, Bundling" />
+    <meta name="description" content="One of the Angular 17 awesome features shipped is the defer block which allows to lazy load components, directives and pipes, while configuring it on the template level via defer." />
+    <meta name="thumbnail" content="https://ducin.dev/images/cover-angular-defer.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="One of the Angular 17 awesome features shipped is the defer block which allows to lazy load components, directives and pipes, while configuring it on the template level via defer." />
+    <meta name="twitter:image" content="https://ducin.dev/images//Users/tomaszducin/Development/website-ducin.it/ducin.dev/images/cover-angular-defer.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Angular @defer Interactive Examples - Tomasz Ducin - blog" />
+    <meta property="og:description" content="One of the Angular 17 awesome features shipped is the defer block which allows to lazy load components, directives and pipes, while configuring it on the template level via defer." />
+    <meta property="og:image" content="https://ducin.dev/images//Users/tomaszducin/Development/website-ducin.it/ducin.dev/images/cover-angular-defer.png" />
+    <link rel="canonical" href="https://ducin.dev/angular-defer-interactive-examples" />
+    <link rel="shortcut icon" href="images/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/extended.css" />
+    <style>
+      #main > header {
+        background: url("images/cover-angular-defer.png") !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WBQ2PN" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WBQ2PN");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/archive">Talks Archive</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2>Angular @defer Interactive Examples</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p><em> Thursday, 4 January 2024 • 📚 2 min read </em></p>
+            <p>One of the Angular 17 awesome features shipped is the <strong>defer block</strong> which allows to <strong>lazy load components, directives and pipes</strong>, while configuring it on the <strong>template level</strong> via <code>@defer</code>.</p>
+            <p>If you already know the theory and want to <strong>get your hands dirty</strong> with <code>@defer</code>, here&#39;s an app you can see various usecases and combinations:</p>
+            <h1 id="ducingithubioangular-defer"><a href="https://ducin.github.io/angular-defer">ducin.github.io/angular-defer</a></h1>
+            <iframe type="text/html" class="youtube" src="https://www.youtube.com/embed/NPcpXuaZe30?autoplay=1&origin=https://ducin.dev" frameborder="0"></iframe>
+
+            <p>See how does application runtime and user interaction trigger <code>@defer</code> and what certain bundles get loaded into the browser.</p>
+            <p>It includes:</p>
+            <ul>
+              <li>⚡️ components, directives, pipes</li>
+              <li>⚡️ multiple triggers and their combinations</li>
+              <li>⚡️ practical usecases (🪗 accordion, 📦 npm package and many more)</li>
+              <li>⚡️ analyze with devtools</li>
+              <li>⚡️ explanations included</li>
+            </ul>
+            <iframe type="text/html" class="youtube" src="https://www.youtube.com/embed/Kj4IxRa5duI?autoplay=1&origin=https://ducin.dev" frameborder="0"></iframe>
+
+            <p>Usecases implemented:</p>
+            <ul>
+              <li>⚡️ when condition: <code>@defer (when isVisible) {...}</code></li>
+              <li>⚡️ on idle: <code>@defer (on idle) {...}</code></li>
+              <li>⚡️ on viewport: <code>@defer (on viewport) {...}</code></li>
+              <li>⚡️ on interaction: <code>@defer (on interaction) {...}</code></li>
+              <li>⚡️ on hover: <code>@defer (on hover) {...}</code></li>
+              <li>⚡️ on immediate: <code>@defer (on immediate) {...}</code></li>
+              <li>⚡️ on timer: <code>@defer (on timer(2000ms)) {...}</code></li>
+              <li>🪗 accordion: <code>@defer (on hover(accordion); on timer(5s)) {...}</code> (<strong>before</strong> accordion section gets clicked)</li>
+              <li>👫 multiple deferrable</li>
+              <li>📦 npm package: <code>&lt;link rel=&quot;modulepreload&quot; href=&quot;chunk-BYHJVGJ4.js&quot;&gt;</code></li>
+              <li>🗃️ nested defer: <code>@defer (on timer(2s)) { @defer (on interaction) {...} }</code></li>
+              <li>⏱️ prefetch: <code>@defer (on interaction; prefetch on idle) {...}</code></li>
+              <li>🚚 loading vs placeholder: <code>placeholder (minimum 500ms) {...}</code> &amp; <code>@loading (minimum 1s; after 10ms) {...}</code></li>
+              <li>💥 defer error: <code>@error {...}</code></li>
+            </ul>
+            <p>So open your browser devtools <code>Network</code> tab and have a play with the interactive examples 💪</p>
+            <p><a href="https://twitter.com/tomasz_ducin">Follow me on twitter</a> for more frontend (js, ts, react, angular etc.) deep dives!</p>
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves &trade; working with people. Ex-theatre actor. 4
+                espressos a day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                  <span class="label">Twitter</span>
+                  Follow me on X/twitter for tech-related updates.
+                </a>
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

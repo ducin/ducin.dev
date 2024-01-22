@@ -35,7 +35,12 @@
 </url>
 <url>
   <loc>https://ducin.dev/typescript-type-inference-guide</loc>
-  <changefreq>daily</changefreq>
+  <changefreq>monthly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ducin.dev/typescript-type-inference-guide</loc>
+  <changefreq>monthly</changefreq>
   <priority>0.80</priority>
 </url>
 </urlset>

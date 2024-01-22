@@ -13,6 +13,14 @@
   },
   "coverImageFilename": "cover-metal-construction.jpg"
 }, {
+  "sourceFile": "angular-defer-interactive-examples",
+  "title": "Angular @defer Interactive Examples",
+  "keywords": ["Angular", "Defer", "Examples", "Lazy Loading", "Bundling"],
+  "description": "One of the Angular 17 awesome features shipped is the defer block which allows to lazy load components, directives and pipes, while configuring it on the template level via defer.",
+  "publishedDate": "2024-01-04",
+  "readingTime": "2 min",
+  "coverImageFilename": "cover-angular-defer.jpg"
+}, {
   "sourceFile": "angular-signals-are-values-not-events",
   "title": "Angular Signals are VALUES, not EVENTS",
   "keywords": ["Angular", "Signals", "Architecture", "Software Design"],

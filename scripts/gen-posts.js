@@ -81,7 +81,7 @@ const generatePostHTML = async (post) => {
       ],
     },
     body: {
-      topLink: 'ducin.dev',
+      topLink: 'Ducin.dev',
       topTitle: title,
       content: output,
       bottomContent: blogFooterTpl() + commentsTpl(),
