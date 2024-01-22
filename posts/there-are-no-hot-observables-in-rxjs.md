@@ -146,7 +146,7 @@ Remember, of the producer is live, it will keep on emitting items according to i
 
 Now comes my favorite part 😁 - source code: let's dive into RxJS `ShareReplay` sources. This one is especially good to look at, add it specifies config parameters exposed by the `share` operator:
 
-![RxJS source code of shareReplay](https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vmfc85hkv6361kof4zyv.png)
+![RxJS source code of shareReplay](https://ducin.dev/images/blog-screenshot-shareReplay.png)
 
 `shareReplay` is just a specialized version of `share`. Apart from accepting config (as input parameters) and preparing the new config (to be passed to `share`) - apart from that, `shareReplay()` just calls `share()`.
 

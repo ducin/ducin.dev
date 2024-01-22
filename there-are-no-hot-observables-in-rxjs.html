@@ -222,7 +222,7 @@
             <p>Remember, of the producer is live, it will keep on emitting items according to its nature (e.g. interval will keep on doing its job).</p>
             <h2 id="where-did-you-get-these-from">Where did you get these from?</h2>
             <p>Now comes my favorite part 😁 - source code: let&#39;s dive into RxJS <code>ShareReplay</code> sources. This one is especially good to look at, add it specifies config parameters exposed by the <code>share</code> operator:</p>
-            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vmfc85hkv6361kof4zyv.png" alt="RxJS source code of shareReplay" /></p>
+            <p><img src="https://ducin.dev/images/blog-screenshot-shareReplay.png" alt="RxJS source code of shareReplay" /></p>
             <p><code>shareReplay</code> is just a specialized version of <code>share</code>. Apart from accepting config (as input parameters) and preparing the new config (to be passed to <code>share</code>) - apart from that, <code>shareReplay()</code> just calls <code>share()</code>.</p>
             <p><code>connector</code> is a function that returns a subject - with whatever type, potentially even having some subscribers already (not common, though possible).</p>
             <p>And the <code>resetOnError</code>, <code>resetOnComplete</code> and <code>resetOnCountZero</code> are things we&#39;ve already gone through 🙃All in all, we can determine all these.</p>
