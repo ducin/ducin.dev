@@ -37,17 +37,16 @@ const pageTpl = ({
 		<meta name="keywords" content="${keywords}">
 		<meta name="description" content="${description}">
 		<meta name="thumbnail" content="${thumbnailURL}" />
+		${Object.entries(twitter).map(([name, content]) => `<meta name="${name}" content="${content}" />`).join('\n')}
+		${Object.entries(og).map(([name, content]) => `<meta property="${name}" content="${content}" />`).join('\n')}
 		<link rel="canonical" href="${canonicalURL}">
 		<link rel="shortcut icon" href="${shortcutIconURL}">
-		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		${[...cssFiles].map((file) => `<link rel="stylesheet" href="${file}" />`).join('\n')}
 		<style>
 		  #main > header {
 			background: url("${thumbnailURL}") !important
 		  }
 		</style>
-		${Object.entries(twitter).map(([name, content]) => `<meta name="${name}" content="${content}" />`).join('\n')}
-		${Object.entries(og).map(([name, content]) => `<meta property="${name}" content="${content}" />`).join('\n')}
 	</head>
 	<body>
 	${gtmTpl()}
