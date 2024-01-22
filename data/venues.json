@@ -1,0 +1,278 @@
+{
+  "online": {
+    "name": "online"
+  },
+  "nobelberget-stockholm": {
+    "city": "Stockholm",
+    "countryCode": "SE",
+    "name": "Nobelberget",
+    "latitude": 59.30465099999999,
+    "longitude": 18.11780909999993
+  },
+  "codenode-london": {
+    "city": "London",
+    "countryCode": "UK",
+    "name": "CodeNode",
+    "latitude": 51.5186424,
+    "longitude": -0.08601169999997182
+  },
+  "darmstadtium-darmstadt": {
+    "city": "Darmstadt",
+    "countryCode": "DE",
+    "name": "Darmstadtium",
+    "latitude": 49.8743208,
+    "longitude": 8.657712500000002
+  },
+  "ballerup-sdc": {
+    "city": "Ballerup",
+    "countryCode": "DK",
+    "name": "Skandinavisk Data Center",
+    "latitude": 55.73181640000001,
+    "longitude": 12.386703399999988
+  },
+  "ice-krakow": {
+    "city": "Cracow",
+    "countryCode": "PL",
+    "name": "ICE Krakow Congress Centre",
+    "latitude": 50.04787119999999,
+    "longitude": 19.931288199999926
+  },
+  "golden-terraces-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Golden Terraces Multikino",
+    "latitude": 52.23010840000001,
+    "longitude": 21.002687100000003
+  },
+  "miejsce-chwila-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Miejsce Chwila",
+    "latitude": 52.23858749999999,
+    "longitude": 20.98857499999997
+  },
+  "national-stadium-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "National Stadium",
+    "latitude": 52.246948,
+    "longitude": 21.043015100000048
+  },
+  "hotel-sangate-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Hotel Sangate Airport",
+    "latitude": 52.180108,
+    "longitude": 20.979448000000048
+  },
+  "microsoft-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Microsoft Office",
+    "latitude": 52.2004562,
+    "longitude": 20.936113999999975
+  },
+  "mimuw-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Faculty of Mathematics, Informatics, and Mechanics, University of Warsaw",
+    "latitude": 52.21187339999999,
+    "longitude": 20.982137800000032
+  },
+  "scc-wroclaw": {
+    "city": "Wrocław",
+    "countryCode": "PL",
+    "name": "Silver Conference Center",
+    "latitude": 51.0993749,
+    "longitude": 17.040139100000033
+  },
+  "lucerna-praha": {
+    "city": "Praha",
+    "countryCode": "CZ",
+    "name": "Kino Lucerna",
+    "latitude": 50.0813695,
+    "longitude": 14.425402599999984
+  },
+  "hilton-krakow": {
+    "city": "Kraków",
+    "countryCode": "PL",
+    "name": "Krakow Hotel & Convention Center",
+    "latitude": 50.06465069999999,
+    "longitude": 19.98209529999997
+  },
+  "multikino-krakow": {
+    "city": "Kraków",
+    "countryCode": "PL",
+    "name": "Multikino Kraków",
+    "latitude": 50.088805,
+    "longitude": 19.984418000000005
+  },
+  "techuni-szczecin": {
+    "city": "Szczecin",
+    "countryCode": "PL",
+    "name": "West Pomeranian University of Technology",
+    "latitude": 53.4470204,
+    "longitude": 14.492422600000054
+  },
+  "panstwomiasto-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Państwomiasto",
+    "latitude": 52.2519797,
+    "longitude": 20.997717599999987
+  },
+  "theplace-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "The Place / Warsaw Spire",
+    "latitude": 52.2321118,
+    "longitude": 20.9842432
+  },
+  "cent3-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "CENT III",
+    "latitude": 52.21359580000001,
+    "longitude": 20.98689079999997
+  },
+  "zz-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Znajomi Znajomych",
+    "latitude": 52.2238245,
+    "longitude": 21.01018720000002
+  },
+  "crux-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Crux",
+    "latitude": 52.225168,
+    "longitude": 21.00970200000006
+  },
+  "padbar-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Padbar",
+    "latitude": 52.241402,
+    "longitude": 21.00343799999996
+  },
+  "techincubator-lublin": {
+    "city": "Lublin",
+    "countryCode": "PL",
+    "name": "Technical Incubator",
+    "latitude": 51.245695,
+    "longitude": 22.60846200000003
+  },
+  "congress-ossa": {
+    "city": "Ossa / Rawa Mazowiecka",
+    "countryCode": "PL",
+    "name": "Hotel Ossa Congress & Spa",
+    "latitude": 51.8042099,
+    "longitude": 20.381580600000007
+  },
+  "aviva-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Aviva Office",
+    "latitude": 52.1834722,
+    "longitude": 20.999381800000037
+  },
+  "concept13-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Concept 13",
+    "latitude": 52.23063750000001,
+    "longitude": 21.01881179999998
+  },
+  "agora-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Agora Office",
+    "latitude": 52.2036488,
+    "longitude": 21.046885999999972
+  },
+  "laboratoriumee-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Laboratorium EE",
+    "latitude": 52.235214,
+    "longitude": 21.035090099999934
+  },
+  "techuni-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Technical University of Warsaw",
+    "latitude": 52.220491,
+    "longitude": 21.00771
+  },
+  "dk-lodz": {
+    "city": "Łódź",
+    "countryCode": "PL",
+    "name": "Łódź House of Culture",
+    "latitude": 51.7693554,
+    "longitude": 19.46215129999996
+  },
+  "koszyki-warsaw": {
+    "city": "Warsaw",
+    "countryCode": "PL",
+    "name": "Mindspace, Hala Koszyki",
+    "latitude": 52.2221036,
+    "longitude": 21.0118366
+  },
+  "spawn-point-wroclaw": {
+    "city": "Wrocław",
+    "countryCode": "PL",
+    "name": "Spawn Point",
+    "latitude": 51.112453,
+    "longitude": 17.024282
+  },
+  "amberexpo-gdansk": {
+    "city": "Gdańsk",
+    "countryCode": "PL",
+    "name": "Amberexpo",
+    "latitude": 54.3871758,
+    "longitude": 18.6358423
+  },
+  "rai-amsterdam": {
+    "city": "Amsterdam",
+    "countryCode": "NL",
+    "name": "RAI Amsterdam",
+    "latitude": 52.3370349,
+    "longitude": 4.8902289
+  },
+  "hotel-galaxy-krakow": {
+    "city": "Kraków",
+    "countryCode": "PL",
+    "name": "Hotel Galaxy Kraków",
+    "latitude": 50.0535949,
+    "longitude": 19.9585604
+  },
+  "sii-kopcinskiego-lodz": {
+    "city": "Łódź",
+    "countryCode": "PL",
+    "name": "biuro Sii Łódź",
+    "latitude": 51.76369330805464,
+    "longitude": 19.484124183654785
+  },
+  "hotel-ibis-styles-wroclaw": {
+    "city": "Wrocław",
+    "countryCode": "PL",
+    "name": "Hotel Ibis Styles Wrocław",
+    "latitude": 51.0996663,
+    "longitude": 17.0396111
+  },
+  "hotel-novotel-katowice-centrum": {
+    "city": "Katowice",
+    "countryCode": "PL",
+    "name": "Hotel Novotel Katowice Centrum",
+    "latitude": 50.260988,
+    "longitude": 19.0334094
+  },
+  "future-processing-gliwice": {
+    "city": "Gliwice",
+    "countryCode": "PL",
+    "name": "Future Processing",
+    "latitude": 50.2778391,
+    "longitude": 18.6851543
+  }
+}

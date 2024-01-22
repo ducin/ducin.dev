@@ -1,0 +1,43 @@
+[{
+  "sourceFile": "typescript-type-inference-guide",
+  "title": "TypeScript Type Inference Guide",
+  "keywords": ["TypeScript", "Type Inference", "Type Safety", "Architecture", "Software Design"],
+  "description": "Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit.",
+  "publishedDate": "2019-01-01",
+  "readingTime": "18 min",
+  "coverImage": {
+    "URL": "https://unsplash.com/photos/P_qvsF7Yodw",
+    "title": "Tokyo Tower Construction Frame",
+    "authorURL": "https://unsplash.com/@alain_pham",
+    "author": "Alain Pham"
+  },
+  "coverImageFilename": "cover-metal-construction.jpg"
+}, {
+  "sourceFile": "angular-signals-are-values-not-events",
+  "title": "Angular Signals are VALUES, not EVENTS",
+  "keywords": ["Angular", "Signals", "Architecture", "Software Design"],
+  "description": "Recent release of Angular 17.1 (yesterday, 18th January 2024), introduces Signal Inputs. It's a good opportunity to rethink migrating from RxJS to Signals, as more and more APIs are signal-based: the framework (signals, computeds, effects and the rxjs-interop) and ecosystem (NGRX signal store), as well as tons of experiments (such as this one).",
+  "publishedDate": "2024-01-18",
+  "readingTime": "9 min",
+  "coverImage": {
+    "URL": "https://unsplash.com/photos/low-angle-photography-of-metal-structure-ZiQkhI7417A",
+    "title": "Low-angle photography of metal structure",
+    "authorURL": "https://unsplash.com/@alinnnaaaa",
+    "author": "Alina Grubnyak"
+  },
+  "coverImageFilename": ""
+}, {
+  "sourceFile": "there-are-no-hot-observables-in-rxjs",
+  "title": "There are no &quot;hot&quot; Observables in RxJS",
+  "keywords": ["Angular", "RxJS", "Observables", "Hot Observables", "Subscriptions", "Subjects", "Multicasting"],
+  "description": "The &quot;hot and cold&quot; observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the &quot;hot and cold&quot; concept is... harmful.",
+  "publishedDate": "2024-01-26",
+  "readingTime": "8 min",
+  "coverImage": {
+    "URL": "https://unsplash.com/photos/red-and-blue-wallpaper-6lQDFGOB1iw",
+    "title": "Red and Blue",
+    "authorURL": "https://unsplash.com/@pawel_czerwinski",
+    "author": "Pawel Czerwinski"
+  },
+  "coverImageFilename": "cover-red-and-blue.png"
+}]

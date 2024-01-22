@@ -1,0 +1,30 @@
+[
+  {
+    "author": "Dagna",
+    "role": "junior software developer",
+    "city": "Warszawa",
+    "date": "2016.03.18",
+    "content": {
+      "pl": "Wspaniałe szkolenie. Zawsze sadziłam, że nie da się poprowadzić szkolenia, które byłoby przyjazne dla osób niemających z danym zagadnieniem wcześniej kontaktu oraz tych, co w danej tematyce są obeznani i chcą się nauczyć czegoś nowego. Muszę przyznać, że Tomkowi się to udało. Szkoda, że czas szkolenia był ograniczony do dwóch dni, gdyby było trzy to byłoby więcej czasu na ćwiczenia, których zaplanowanych było bardzo dużo. Tak czy inaczej, bardzo wiele z niego wyniosłam. Brawo!",
+      "en": "Great training. I always thought that it's impossible to do a training, which is friendly to both people who had no prior contact with a given subject and need an introduction and to those who are familiar with the topic and want to learn something new. I have to admit that Tomek achieved it. It is a pity that the it was only two days, if there were three, we'd have more time for more exercises. Anyway, I got a lot out of it. Bravo!"
+    }
+  }, {
+    "author": "Piotr",
+    "role": "software developer",
+    "city": "Wrocław",
+    "date": "2017.04.18",
+    "content": {
+      "pl": "Przez weekend ugruntowała mi się trochę wiedza ze szkolenia, zacząłem też czytać książkę „JavaScript Patterns” która tez dotyka wielu tematów ze szkolenia (choć ma kilka lat).\r\nGeneralnie też dziękuję za samo szkolenie i sposób w jaki je prowadziłeś, który w moim odczuciu był mistrzowski. Naprawdę świetnie się Ciebie słuchało. Pisząc prostą mała apkę w weekend (nodejs/mongodb/vuejs) sam byłem zdumiony ile rzeczy mogłem zastosować w kodzie tylko z tego co pamiętałem ze słuchu i ćwiczeń z tego szkolenia, choć zazwyczaj nie mam takiej pamięci aby od razu po szkoleniu/wykładzie, bez ponownego ćwiczenia samemu, zastosować rzeczy od ręki.\r\nTakże jeszcze raz chylę czoło przed Twoją wiedzą i sposobem w jaki ja przekazujesz.\r\nŻyczę Ci powodzenia ze wszystkim w przyszłości :)",
+      "en": "During the weekend, all the knowledge got established. I also started reading the „JavaScript Patterns” book, which also touches many topics from the training (although it is several years old).\r\nIn general, I thank you for both the training and the way you conducted it, which I felt was masterful. It was really great to listen to you. During the weekend I was writing a small app (nodejs / mongodb / vuejs) and I was amazed at myself at how much I could apply in the code straight away, just from what I remembered from hearing and exercises. And usually I don't have such good memory (to do things immediately after a training/lecture).\r\nAgain, I bow down to your knowledge and the way you convey it.\r\nI wish you all success in the future :)"
+    }
+  }, {
+    "author": "Adrian",
+    "role": "senior software developer",
+    "city": "Lublin",
+    "date": "2017.10.25",
+    "content": {
+      "pl": "Tak tylko chciałem Ci powiedzieć, że jak używam JS od czasu szkolenia, to bardzo dużo rzeczy o tym jak to działa w środku dowiedziałem się właśnie na twoim szkoleniu. Pisząc coś w JS dużo lepiej rozumiem co tam się dzieje pod spodem więc mój kod jest bardziej „świadomy” :)\r\nDzięki za szkolenie jeszcze raz :)",
+      "en": "I just wanted to tell you that, as I'm using JS since the training, there are lots of things about how all this works internally, that I learned exactly during your training. While writing something in JS, my understanding of what's going on underneath is much better, so that I'm a lot more „aware” of the code I write :)\r\nThanks for the training again :)"
+    }
+  }
+]

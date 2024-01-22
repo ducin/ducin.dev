@@ -1,0 +1,20 @@
+{
+  "scripts": {
+    "bundle": "browserify pages/page-archive.js -o assets/js/page-archive.js",
+    "gen:feed": "node scripts/gen-feed.js",
+    "gen:sitemap": "node scripts/gen-sitemap.js",
+    "gen:posts": "node scripts/gen-posts.js",
+    "gen": "npm run gen:feed && npm run gen:sitemap && npm run gen:posts"
+  },
+  "devDependencies": {
+    "browserify": "^17.0.0"
+  },
+  "dependencies": {
+    "feed": "^2.0.2",
+    "markdown-toc": "^1.2.0",
+    "marked": "^0.6.0",
+    "prettier": "^3.2.4",
+    "sitemap": "^2.1.0",
+    "zod": "^3.22.4"
+  }
+}

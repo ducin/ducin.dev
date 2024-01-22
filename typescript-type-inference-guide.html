@@ -1,0 +1,499 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>TypeScript Type Inference Guide - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="TypeScript, Type Inference, Type Safety, Architecture, Software Design" />
+    <meta name="description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
+    <meta name="thumbnail" content="https://ducin.dev/images/cover-metal-construction.jpg" />
+    <link rel="canonical" href="https://ducin.dev/typescript-type-inference-guide" />
+    <link rel="shortcut icon" href="images/td-logo-zolte-80.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/extended.css" />
+    <style>
+      #main > header {
+        background: url("https://ducin.dev/images/cover-metal-construction.jpg") !important;
+      }
+    </style>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
+    <meta name="twitter:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/cover-metal-construction.jpg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="TypeScript Type Inference Guide - Tomasz Ducin - blog" />
+    <meta property="og:description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
+    <meta property="og:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/cover-metal-construction.jpg" />
+  </head>
+  <body>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WBQ2PN" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WBQ2PN");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/archive">Talks Archive</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2>TypeScript Type Inference Guide</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p class="image-caption"><a href="https://unsplash.com/photos/P_qvsF7Yodw">Tokyo Tower Construction Frame</a> by <a href="https://unsplash.com/@alain_pham">Alain Pham</a></p>
+
+            <p><em> Tuesday, 1 January 2019 • 📚 18 min read </em></p>
+            <h1 id="typescript-type-inference-guide">TypeScript Type Inference Guide</h1>
+            <p>New Year is a good opportunity to start a new initiative - and here I go with the first post of a whole serie, where I explain mechanics of TypeScript and my experience of using it since late 2014 in big commercial projects (including sectors: finance, web analytics, ITIL, OSS).</p>
+            <p>After reading this post, you&#39;ll learn:</p>
+            <ul>
+              <li>what is type inference</li>
+              <li>how to use it effectively</li>
+              <li>what are key strengths and limitations of type inference</li>
+              <li>good practices in real world projects</li>
+            </ul>
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ul>
+              <li>
+                <a href="#typescript-type-inference-guide">TypeScript Type Inference Guide</a>
+                <ul>
+                  <li><a href="#motivation">Motivation</a></li>
+                  <li><a href="#implicit-vs-explicit">Implicit vs Explicit</a></li>
+                  <li>
+                    <a href="#inference-basics">Inference basics</a>
+                    <ul>
+                      <li><a href="#variable-type-inference">Variable type inference</a></li>
+                      <li><a href="#expression-type-inference">Expression type inference</a></li>
+                      <li><a href="#runction-return-type-inference">Runction return type inference</a></li>
+                      <li><a href="#compiler-flags">Compiler Flags</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#limitations">Limitations</a>
+                    <ul>
+                      <li><a href="#function-parameters-are-not-inferred">Function parameters are not inferred</a></li>
+                      <li><a href="#external-data-sources-are-not-inferred">External data sources are not inferred</a></li>
+                      <li><a href="#functional-composition-is-not-inferred">Functional composition is not inferred</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#example-data-structure">Example data structure</a></li>
+                  <li><a href="#prototype-based-chaining">Prototype-based chaining</a></li>
+                  <li><a href="#arrayreduce-and-the-accumulator-type-problem">`array.reduce`` and the accumulator type problem</a></li>
+                  <li><a href="#flexibility">Flexibility</a></li>
+                  <li><a href="#type-inference---best-practices">Type inference - Best Practices</a></li>
+                  <li><a href="#summary">Summary</a></li>
+                </ul>
+              </li>
+            </ul>
+            <h2 id="motivation">Motivation</h2>
+            <p><strong>Type Inference is one of the most important features we should master, as we progress with using TypeScript</strong>. TS is not only about the different types we can declare - and the problems they address. It&#39;s also about the style of our code - and how much will TS codebase differ from its direct JS output.</p>
+            <p>
+              One of the most useful resources when getting started with TypeScript is the <a href="https://www.typescriptlang.org/docs">official handbook</a>. However, it doesn&#39;t go too deep into <a href="https://www.typescriptlang.org/docs/handbook/type-inference.html">type inference</a> and doesn&#39;t provide practical tips on how to leverage it, and so I decided to cover the topic.
+              Anyway, you should definitely check out the handbook.
+            </p>
+            <h2 id="implicit-vs-explicit">Implicit vs Explicit</h2>
+            <p>
+              Whenever we design a system or an API, there are lots of questions we should consider upfront. Some of the questions relate to the domain (the mechanics of the business we&#39;re working on), other ones just characterize our system and often can be represented by pairs of extremes. These include whether a service should be <em>centralized</em> or <em>distributed</em> (e.g. redux vs
+              flux), whether the API should be <em>sync</em> or <em>async</em> (native Array methods vs <a href="https://github.com/caolan/async">caolan/async</a>) and many, many more. In case of TypeScript, <strong>we choose whether type definitions used throughout our codebase should be rather <em>implicit</em> or <em>explicit</em></strong
+              >:
+            </p>
+            <ul>
+              <li><em>implicit</em> - is what we read from the context, hidden between the lines. The code is more concise, but sometimes takes more time to reason about</li>
+              <li><em>explicit</em> - is plainly written down. The code is more verbose, but leaves less place for doubts</li>
+            </ul>
+            <p>In TypeScript, <strong>explicit typing</strong> is just declaring what is the type of a variable, such as:</p>
+            <pre><code class="language-ts">const number: number = 3 // explicit number
+const numbers: number[] = [1,2,3] // explicit number[]</code></pre>
+            <p><strong>Implicit typing</strong>, however, is removing the responsibility of writing the types down from us and letting TypeScript reason about the types of variables and expressions:</p>
+            <pre><code class="language-ts">const number = 3 // inferred as number (implicit)
+const numbers = [1,2,3] // inferred as number[] (implicit)</code></pre>
+            <h2 id="inference-basics">Inference basics</h2>
+            <p>
+              As I wrote, type inference is a powerful feature. If you&#39;re familiar with <a href="https://docs.microsoft.com/en-us/dotnet/csharp/language-reference/keywords/var">C#, it&#39;s the <code>var</code> keyword</a>. The idea is, basically, that <strong>we keep the type safety of our codebase, but we declare types less. Less investment cost, same profit</strong>.
+            </p>
+            <p>TypeScript applies type inference in following scenarios:</p>
+            <h4 id="variable-type-inference">Variable type inference</h4>
+            <p>We declare a value and immediately assign a value to it:</p>
+            <pre><code class="language-ts">const bandName = &#39;Pink Floyd&#39; // inferred as string</code></pre>
+            <p>Look out if you declare a variable that you don&#39;t assign any value to <strong>within the same line</strong>:</p>
+            <pre><code class="language-ts">let myString // inferred as any
+myString = 123 // not what you expected, huh?</code></pre>
+            <p>
+              <strong>When inferring variable types, TypeScript takes into account only the line where the variable is declared</strong>. Other lines, where you might assign some attributes are ignored. Only the first line, no exceptions. We&#39;ll get back to so called <em>implicit <code>any</code></em> and the TS compiler flags.
+            </p>
+            <p>One important thing to note here is the object literal, specifically, empty object literal:</p>
+            <pre><code class="language-ts">const obj = {}</code></pre>
+            <p>
+              The inferred type is <code>{}</code>. On one hand, JavaScript&#39;s native object is a <a href="https://en.wikipedia.org/wiki/Associative_array"><em>dictionary</em></a> (string -&gt; VALUE_TYPE) which allows to assign any string key to it. On the other hand, there are no &quot;predefined&quot; attributes (known upfront), as we have in OOP class fields. As a result, with above
+              declaration we can access a field with an array notation, but cannot access an arbitrary key:
+            </p>
+            <pre><code class="language-ts">const obj = {} // inferred as {}
+obj[&#39;hello&#39;] = &quot;value&quot; // OK
+obj.hello = &quot;value&quot; // FAIL! hello doesn&#39;t exist on {}</code></pre>
+            <p>If we want to extend the type definition, we need to type it explicitly (unless we can declare all fields upfront like <code>{ hello: &quot;value&quot; }</code>). Explicit type might look like:</p>
+            <pre><code class="language-ts">type ObjWithFields = { hello?: string }
+const obj: ObjWithFields = {}</code></pre>
+            <p>
+              The optional field (<code>?</code>) is required in above snippet, since there is a point in time when the object <em>doesn&#39;t have the field defined</em> and it&#39;s logically ok in your application. If it&#39;s logically not ok, you should remove the <code>?</code> and update your codebase so that there&#39;s no such situation when the value is missing (and TS will help you find
+              all of these). Basically, it&#39;s about <a href="https://en.wikipedia.org/wiki/Predicate_(grammar)#In_modern_theories_of_syntax_and_grammar">satisfying the predicates within your code</a>.
+            </p>
+            <p>This will be important when be define the return type of <code>Array.prototype.reduce</code> later on.</p>
+            <h4 id="expression-type-inference">Expression type inference</h4>
+            <p>Using any expression we&#39;ve got in our program, other expressions and variables will calculate their type upon it:</p>
+            <pre><code class="language-ts">const bandNameDraft = bandName // inferred as typeof bandName
+                               // string in this case</code></pre>
+            <p>This can be applied multiple times within our codebase, thus creating a directed of expressions within our codebase. Cool and easy to use.</p>
+            <h4 id="runction-return-type-inference">Runction return type inference</h4>
+            <p>Let&#39;s take a look at this tiny function:</p>
+            <pre><code class="language-ts">const hello = (firstName, lastName) =&gt;
+  `Hi there, ${firstName} ${lastName}!`
+
+// no need to define return type:
+// const hello = (firstName, lastName): string =&gt; ...</code></pre>
+            <p>TS infers that the return type of the function is a string, since ES6 template string literal is used (would be the same, if we used <code>firstName + &quot; &quot;</code> etc, since it casts the expression down to a string). So <code>hello</code> is of type:</p>
+            <pre><code class="language-ts">(firstName: any, lastName: any) =&gt; string</code></pre>
+            <h4 id="compiler-flags">Compiler Flags</h4>
+            <p>
+              One of the bad practices TypeScript developers follow is ignoring the <a href="https://www.typescriptlang.org/docs/handbook/compiler-options.html"><code>--noImplicitAny</code> and <code>--noImplicitThis</code> compiler flags</a> for TypeScript compiler:
+            </p>
+            <ul>
+              <li><code>--noImplicitAny</code> will complain about each line where TS cannot infer anything better than <code>any</code>. Usually that&#39;s either lines like <code>var x;</code> or function parameters left alone.</li>
+              <li>similarly, <code>--noImplicitThis</code> will complain about each line where we use the <code>this</code> reference within a function and TypeScript has no way to infer what it is precisely, leaving it as <code>any</code>, which open our codebase to nasty bugs.</li>
+            </ul>
+            <p>In both cases we open our codebase for bugs. Always remember to set these flags in <code>tsconfig.json</code>. It won&#39;t take you much time to declare the types (or help type inference work), but it&#39;ll surely save you from many painful moments!</p>
+            <h2 id="limitations">Limitations</h2>
+            <p>It&#39;s important to highlight that there are limitations to this language feature. The three most significant ones are:</p>
+            <h4 id="function-parameters-are-not-inferred">Function parameters are not inferred</h4>
+            <p>
+              As we&#39;ve seen in the last snippet above, <strong>function parameters are never inferred. Never. Again, no exceptions. <code>any</code> is attached, if no explicit declaration.</strong> This surely is a limitation, but if we wanted TS to infer what is the function parameter type, we&#39;d have to go through all the places where the function is called and analyze the invocations.
+              That&#39;s doable, of course, and we would get a list of types of all expressions passed as arguments to the function. But actually, the philosophy behind TypeScript is slightly different, more kind of <em>bottom-up</em> approach. When we declare a function, we restrict how it can be used, so that all invocations are strictly checked if they&#39;re correct. We could say that when we
+              type function parameters, we introduce a checkpoint.
+            </p>
+            <p>
+              So on one hand, no inference over function params is a different approach to solve the static typing problem, compared to analyzing all invocations and treating them as the base for determining function params. And on the other hand, it would introduce lots of complexity and potentially slow down the compilation. As for now, TypeScript team decided not to introduce inferring function
+              parameters inference (contrary to <a href="http://flowtype.org">Flowtype (BTW, hence the name <em>flow</em> LOL)</a>).
+            </p>
+            <p><strong>If we want to have strict types defined for function parameters, there&#39;s no way around it, we simply have to declare them explicitly</strong>, no inference here:</p>
+            <pre><code class="language-ts">(firstName: string, lastName: string) =&gt; string</code></pre>
+            <p>Not a big effort, as you can see.</p>
+            <h4 id="external-data-sources-are-not-inferred">External data sources are not inferred</h4>
+            <p>... because there&#39;s no way to do it! <strong>External data sources include both asynchronous operations (websocket events, promises, async await, observables) and synchronous operations (e.g. reading JSON from a file)</strong>. TypeScript controls all declarations and expresions within our codebase, but all external data is out of reach.</p>
+            <p>TypeScript capabilities are used only in compile-time, but once compiled, we&#39;ve got JavaScript output - and it&#39;s JS that gets executed in runtime. So whether some external data would get fetched synchronously or asynchronously, there&#39;s no TypeScript in runtime anymore. And if there&#39;s no TS, there are also no TS types and no TS type checks.</p>
+            <p>Can you think of any way TypeScript could infer what is the shape of the JSONs we&#39;re about to receive from a remote system, as below?</p>
+            <pre><code class="language-ts">http.get(&#39;https://my.api.com/users&#39;) // return a promise
+  .then(result =&gt; consume(result))</code></pre>
+            <p>What we can do is to arbitrarily and explicitly declare what we expect there:</p>
+            <pre><code class="language-ts">type User = {
+  firstName: string
+  lastName: string
+}
+
+http.get(&#39;https://my.api.com/users&#39;) // return a promise
+  .then((result: User[]) =&gt; consume(result))</code></pre>
+            <p>or, preferably, wrap it in a function just to solve the problem once for all invocations:</p>
+            <pre><code class="language-ts">// specialized promise-returning function
+const getUsers = (): Promise&lt;User[]&gt; =&gt;
+  http.get(&#39;https://my.api.com/users&#39;)
+
+// and usage:
+getUsers().then((result: User[]) =&gt; consume(result))</code></pre>
+            <p>TypeScript will take care about how do we use the <code>result</code> value within our code, for instance, following line would fail:</p>
+            <pre><code class="language-ts">promise
+  .then((result: User[]) =&gt; result.map(u =&gt; u.name)) // FAIL! name doesn&#39;t exist on User
+  .then((result: string[]) =&gt; consume(result))</code></pre>
+            <p>Additionally, an interesting question is if TypeScript is going to type check the result in the runtime, by injecting additional code into JavaScript output (raising an Error if the response shape is not as expected). This would be perfectly doable, just a couple of JS <code>typeof</code> statements. In order to answer it, the TS team had to answer another two questions:</p>
+            <ul>
+              <li>should a client application (the one sending the request) be <strong>also</strong> a tester for the server that it connects to? Shouldn&#39;t the server be responsible for testing itself?</li>
+              <li>
+                TS defines fundamental rules: <em>&quot;valid JavaScript code is valid TypeScript code&quot;</em> and the other way round: <em>&quot;TypeScript is just JavaScript + type definitions&quot;</em>. The consequence of the latter is that TS output is just removing types and here you go your JavaScript. <strong>No additional output</strong> (except for transpilation such as ES6 -&gt; ES5,
+                which has to be done anyway, same with Babel). Thanks to it, getting started with TS (not becoming an expert) is very easy, since the difference between JS and TS is only types. Going back to webservices type checking - if async responses type checking would be transpiled into the JS output, this rule would be violated, i.e. JS output would be <em>something more than</em> just TS
+                without types. And that (the simplicity) was the point.
+              </li>
+            </ul>
+            <p>And so the TypeScript team decided not to do that.</p>
+            <h4 id="functional-composition-is-not-inferred">Functional composition is not inferred</h4>
+            <p>Finally, the limitation tht hits many FP-based implementations is that utility functions such as <code>compose</code> and <code>pipe</code> are not correctly typed out of the box. It&#39;s doable, however, it requires a hacky workaround.</p>
+            <p>
+              In short, the <code>compose</code> operator (or <code>pipe</code>, the logic is the same, but the direction might be reverse according to some naming conventions) works the same as Unix-style pipe. That is, output of fn1 becomes the input of fn2, output of fn2 becomes input of fn3, etc. So there&#39;s <em>a value</em> that travels through a <em>pipe</em> of functions, each altering
+              the result (each of the functions might be stateful or stateless). The result of the final function is the result of the whole composition invocation. The code looks pretty much like this:
+            </p>
+            <pre><code class="language-js">import { compose } from &#39;my-favourite-lib&#39;
+
+const process = compose(
+  filter(x =&gt; x &gt; 0),
+  map(x =&gt; x**2),
+  distinct()
+)
+const result = process([-2, -1, 0, 1, 2, 2])
+// returns [1, 4] if each step processes arrays</code></pre>
+            <p>
+              So the bottomline is: TypeScript doesn&#39;t currently provide a neat way to type the <code>compose</code> (<code>pipe</code>) itself. The workaround is to provide <a href="https://www.typescriptlang.org/docs/handbook/functions.html">function signature overloads</a>. And these have to support each cases separately (1 function composed, 2 functions composed, 3 functions composed...
+              and define as many as you can since <a href="https://en.wikipedia.org/wiki/Mathematical_induction">there&#39;s no induction included</a> LOL). These declarations grow to really big size.
+            </p>
+            <p>Take a look at these typedefs:</p>
+            <ul>
+              <li>
+                <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/b470489bc1825274193db2734b59b95e7add857a/types/ramda/index.d.ts#L344-L382">Ramda <code>compose</code> utility</a>
+              </li>
+              <li>
+                <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0d851ec6994d2077ab06b79d4877a195396f4ef8/types/lodash/fp.d.ts#L4454">lodash <code>compose</code> utility</a>, which links to internal <a href="https://github.com/DefinitelyTyped/DefinitelyTyped/blob/0d851ec6994d2077ab06b79d4877a195396f4ef8/types/lodash/fp.d.ts#L309-L347"><code>LodashFlowRight</code></a>
+              </li>
+              <li>
+                <a href="https://github.com/ReactiveX/rxjs/blob/bd0b6ca0db5ff9f6050efe842a80e156f5272977/src/internal/util/pipe.ts#L5-L15">RxJS <code>pipe</code> operator</a>
+              </li>
+            </ul>
+            <p>For the lazy folks (or mobile readers) here you go what it looks like:</p>
+            <pre><code class="language-ts">export function pipe&lt;T&gt;(): UnaryFunction&lt;T, T&gt;;
+export function pipe&lt;T, A&gt;(fn1: UnaryFunction&lt;T, A&gt;): UnaryFunction&lt;T, A&gt;;
+export function pipe&lt;T, A, B&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;): UnaryFunction&lt;T, B&gt;;
+export function pipe&lt;T, A, B, C&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;): UnaryFunction&lt;T, C&gt;;
+export function pipe&lt;T, A, B, C, D&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;, fn4: UnaryFunction&lt;C, D&gt;): UnaryFunction&lt;T, D&gt;;
+export function pipe&lt;T, A, B, C, D, E&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;, fn4: UnaryFunction&lt;C, D&gt;, fn5: UnaryFunction&lt;D, E&gt;): UnaryFunction&lt;T, E&gt;;
+export function pipe&lt;T, A, B, C, D, E, F&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;, fn4: UnaryFunction&lt;C, D&gt;, fn5: UnaryFunction&lt;D, E&gt;, fn6: UnaryFunction&lt;E, F&gt;): UnaryFunction&lt;T, F&gt;;
+export function pipe&lt;T, A, B, C, D, E, F, G&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;, fn4: UnaryFunction&lt;C, D&gt;, fn5: UnaryFunction&lt;D, E&gt;, fn6: UnaryFunction&lt;E, F&gt;, fn7: UnaryFunction&lt;F, G&gt;): UnaryFunction&lt;T, G&gt;;
+export function pipe&lt;T, A, B, C, D, E, F, G, H&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;, fn4: UnaryFunction&lt;C, D&gt;, fn5: UnaryFunction&lt;D, E&gt;, fn6: UnaryFunction&lt;E, F&gt;, fn7: UnaryFunction&lt;F, G&gt;, fn8: UnaryFunction&lt;G, H&gt;): UnaryFunction&lt;T, H&gt;;
+export function pipe&lt;T, A, B, C, D, E, F, G, H, I&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;, fn4: UnaryFunction&lt;C, D&gt;, fn5: UnaryFunction&lt;D, E&gt;, fn6: UnaryFunction&lt;E, F&gt;, fn7: UnaryFunction&lt;F, G&gt;, fn8: UnaryFunction&lt;G, H&gt;, fn9: UnaryFunction&lt;H, I&gt;): UnaryFunction&lt;T, I&gt;;
+export function pipe&lt;T, A, B, C, D, E, F, G, H, I&gt;(fn1: UnaryFunction&lt;T, A&gt;, fn2: UnaryFunction&lt;A, B&gt;, fn3: UnaryFunction&lt;B, C&gt;, fn4: UnaryFunction&lt;C, D&gt;, fn5: UnaryFunction&lt;D, E&gt;, fn6: UnaryFunction&lt;E, F&gt;, fn7: UnaryFunction&lt;F, G&gt;, fn8: UnaryFunction&lt;G, H&gt;, fn9: UnaryFunction&lt;H, I&gt;, ...fns: UnaryFunction&lt;any, any&gt;[]): UnaryFunction&lt;T, {}&gt;;</code></pre>
+            <p>As said, it is a limitation, but <strong>TypeScript libraries users don&#39;t suffer from it. Rather, TypeScript libraries/typedefs authors have to write it down. So the probability you&#39;d fall into such situation is super small.</strong></p>
+            <h2 id="example-data-structure">Example data structure</h2>
+            <p>In the following sections we&#39;ll use the following data. We&#39;ve got a collection of music bands with their names and genres assigned:</p>
+            <pre><code class="language-ts">type Genre = &#39;psychedelic&#39; | &#39;progressive rock&#39; | &#39;rock n\&#39;roll&#39; | &#39;classic rock&#39;
+
+type Band = {
+  id: string
+  name: string
+  genres: Genre[]
+}
+
+const bands: Band[] = [{
+  id: &#39;4cb87850-14e7-495d-99d6-50a2b09dfa2f&#39;,
+  name: &#39;Pink Floyd&#39;,
+  genres: [&#39;psychedelic&#39;, &#39;progressive rock&#39;]
+}, {
+  id: &#39;dbdbb15a-b129-41c0-a9ce-df52bba6bcae&#39;,
+  name: &#39;The Beatles&#39;,
+  genres: [&#39;rock n\&#39;roll&#39;, &#39;psychedelic&#39;]
+}, {
+  id: &#39;befb6abb-8012-46de-a639-ebbc82c3fc8d&#39;,
+  name: &#39;King Crimson&#39;,
+  genres: [&#39;progressive rock&#39;, &#39;classic rock&#39;]
+}, {
+  id: &#39;ffedad2c-c5ed-42fa-ba2e-a6091a4d7ad8&#39;,
+  name: &#39;The Rolling Stones&#39;,
+  genres: [&#39;psychedelic&#39;, &#39;classic rock&#39;]
+}, {
+  id: &#39;e22ce329-f925-4020-9b61-f405e750fbf5&#39;,
+  name: &#39;The Doors&#39;,
+  genres: [&#39;psychedelic&#39;, &#39;classic rock&#39;]
+}]</code></pre>
+            <p>We&#39;ll see them in action in a while.</p>
+            <h2 id="prototype-based-chaining">Prototype-based chaining</h2>
+            <p>
+              One of the super-useful features of TypeScript is the ability to apply the correct types in chained operations such as native <code>Array</code> methods or RxJS operators (until v5, where FP-based piping becomes the standard). The mechanics is pretty simple - given a well-defined structure and an operation which we know what it returns, we can perfectly determine what is the input of
+              the next step.
+            </p>
+            <p>Let&#39;s start with something simple:</p>
+            <pre><code class="language-ts">const ids = bands.map(b =&gt; b.id)</code></pre>
+            <p>
+              We know that <code>bands</code> is of type <code>Band[]</code>. We also know, that <code>Array.prototype.map(cb)</code> will transform <code>T[] -&gt; U[]</code> given a callback that can do: <code>T -&gt; U</code>. In above case, <code>T</code> is <code>Band</code> and <code>U</code> is <code>Band[&quot;id&quot;]</code>, that is, a string. So we&#39;re mapping an array of objects
+              into array of strings. The <code>ids</code> variable is automatically assigned (inferred) to be <code>string</code> (or <code>Band[&quot;id&quot;][]</code>, if we prefer it).
+            </p>
+            <p>Let&#39;s query all genres that we&#39;ve got accessible now:</p>
+            <pre><code class="language-ts">const genres = bands.map(b =&gt; b.genres) // string[][]</code></pre>
+            <p>After the first line we&#39;ve got a list of genres of all bands, which is a list of list of genres. Let&#39;s chain the operations:</p>
+            <pre><code class="language-ts">const genres = bands.map(b =&gt; b.genres) // string[][]
+  .flat() // string[]</code></pre>
+            <p>Now, the result is just flattened, so we have repetition. Which we now want to remove using ES6:</p>
+            <pre><code class="language-ts">const unique = (genres: string[]) =&gt; Array.from(new Set(genres))</code></pre>
+            <p>The <code>unique</code> function removs repetition according to the semantics of how do <code>Set</code> elements are stored (we&#39;ll ignore the <code>identity</code> function for now). But we can do better, using <strong>generics</strong>:</p>
+            <pre><code class="language-ts">const unique = &lt;T&gt;(items: T[]) =&gt; Array.from(new Set(items))</code></pre>
+            <p>And we&#39;ve got a more generic function that will remove our genres repetition:</p>
+            <pre><code class="language-ts">const genres = unique(
+    bands.map(b =&gt; b.genres) // string[][]
+    .flat() // string[]
+  ) // string[]</code></pre>
+            <p>The power of TypeScript is that above code doesn&#39;t have any explicit type definitions at all (no <code>: string</code>), but everything is type-safe.</p>
+            <h2 id="arrayreduce-and-the-accumulator-type-problem">`array.reduce`` and the accumulator type problem</h2>
+            <p>
+              Let&#39;s carry on with Array methods, this time: <code>reduce</code>. Array reduce is special in a way that all other Higher-order functions can be implemented using it. In other words, reduce is the most general out of all HOFs on arrays. Reduce defines an iteration over a collection, where an accumulator (aggregate, whatever we call it) is passed between all steps. A single step
+              of the loop is performing an operation of the item of the collection being iterated over, the aggregate is updated and returned to the next step. So the aggregate is passed through all the steps.
+            </p>
+            <p>In following example we want to create a map of genres (map is a <code>key: value</code> data structure), where values will be a list of bands that play that genre:</p>
+            <pre><code class="language-ts">const genreMap = bands.reduce((aggr, band: Band) =&gt; {
+  band.genres.forEach(g =&gt; {
+    if (!aggr[g]) {
+      aggr[g] = []
+    }
+    aggr[g].push(band)
+  })
+  return aggr
+}, {})</code></pre>
+            <p>Above code has <code>band: Band</code> set and, deliberately, the <code>aggr</code> is left for implicit typing. In a single step we apply that certain genres do include the band we&#39;ve got in this step.</p>
+            <p>The important part here is we&#39;ve got the aggregate in a couple of places:</p>
+            <ul>
+              <li><code>aggr</code> in the top line (left for inference)</li>
+              <li>the initial value at the bottom line, <code>{}</code></li>
+              <li>used i few places internally</li>
+            </ul>
+            <p>Using the TS typedef of the native <code>Array.prototype.reduce</code>, all these are the same thing (as a result, if we provide multiple explicit type declarations, they have to <a href="https://www.typescriptlang.org/docs/handbook/type-compatibility.html">be compatible</a>).</p>
+            <p>As we previously said, when we define an empty object, it&#39;s inferred just as an empty object: <code>{}</code>. We can access its keys using the array notation, but we can&#39;t access it with an arbitrary field:</p>
+            <pre><code class="language-ts">genreMap[&#39;psychedelic&#39;] // OK
+genreMap.psychedelic // FAIL! psychedelic doesn&#39;t exist on {}</code></pre>
+            <p>
+              <strong>In case you&#39;ve ever solved that issue using <code>any</code>: don&#39;t do that! Ever.</strong>
+            </p>
+            <p>Another issue we&#39;ve got is that <code>genreMap[&#39;psychedelic&#39;]</code> is inferred as <code>any</code>, since <code>{}</code> carries no information about the value type.</p>
+            <p>What we can do in this situation is to define an <a href="https://www.typescriptlang.org/docs/handbook/interfaces.html">index signature</a>:</p>
+            <pre><code class="language-ts">type GenreMap = {
+  [genre: string]: Band[]
+}</code></pre>
+            <p>
+              Now <code>genreMap[&#39;psychedelic&#39;]</code> infers to <code>Band[]</code>. This is already better. Moreover, <code>genreMap.psychedelic</code> is correct. But sometimes we can go even further, if we know that <strong>not all strings are allowed within the keys</strong>, just as our genres are limited to distinct 4 values. An index signature based on string literal looks like the
+              following:
+            </p>
+            <pre><code class="language-ts">type GenreMap = {
+  [genre in Genre]: Band[]
+}</code></pre>
+            <p>Finally, we apply it to our reducer snippet:</p>
+            <pre><code class="language-ts">const genreMap = bands.reduce((aggr: GenreMap, band: Band): GenreMap =&gt; {
+  band.genres.forEach(g =&gt; {
+    if (!aggr[g]) {
+      aggr[g] = []
+    }
+    aggr[g].push(band)
+  })
+  return aggr
+}, {} as GenreMap)</code></pre>
+            <p>As you can see, I&#39;ve placed the type in three places, but that&#39;s not necessary (the bottom line would be enough). At the end of the article we&#39;ll cover how man places shall we <em>hammer</em> with explicit types and which ones are good to left inferred automatically.</p>
+            <h2 id="flexibility">Flexibility</h2>
+            <p>
+              One of the strongest points against TypeScript, stated by JavaScript developers, is that <em>&quot;writing types down take time&quot;</em>. Well, sure it does, JavaScript doesn&#39;t support static typing so that this <strong>is</strong> some extra cost. Whenever we choose to use TypeScript or not, we have to take into account that
+              <strong>software changes over time and the code that we just wrote will be different after few months or few years. And the benefits of TypeScript is not necessarily for today me, but for all the people who would work on my code</strong>, including me after six months ;) (<a href="https://www.improgrammer.net/wp-content/uploads/2017/09/Who-wrote-this-crap-code.png"
+                >who wrote this crap?</a
+              >). So TypeScript is an investment in easier reasoning about the code in future.
+            </p>
+            <p>Anyway, <strong>when making good use of type inference we can singnificantly limit the cost and also gain flexibility</strong>. We leave less critical expressions and variables for type inference (implicit types), usually somewhere deep inside a function implementation. For these non-critical places:</p>
+            <ul>
+              <li>we don&#39;t have to type <em>that</em> much and our code is not <em>that</em> verbose</li>
+              <li>as code changes, we have less places ot update, when extending or refactoring</li>
+            </ul>
+            <p>
+              Basically, we reduce the cost. But we should also track these critical places, which we type explicitly. That&#39;s because, if anything important changes in our project (like a domain object structure change), we should also manually update any places we use it. TypeScript will find all the errors for us, but that&#39;s something we shouldn&#39;t necessarily leave for type
+              inference. <strong>Too much type inference makes too much types change, potentially, leaving us unaware of that.</strong> If a compilation error appears, we&#39;d have a longer path to follow until we find what should get updated.
+            </p>
+            <h2 id="type-inference---best-practices">Type inference - Best Practices</h2>
+            <p>Good candidates for explicit typing are:</p>
+            <ul>
+              <li><strong>All external operations (both sync and async)</strong>. TypeScript won&#39;t check them in runtime, but we can make it check whether we consume them further correctly.</li>
+              <li><strong>Data structures</strong>. We are supposed to declare as many <code>type</code>s and <code>interface</code>s as our domain requires. Often, this can be automated in a <em>Contract-First Design approach</em>. Functions and objects that rely on the data structures should be full of data structures typedefs.</li>
+              <li>
+                <strong>Function parameters and, initially, function return types</strong>. Function parameter types has to be typed explicitly (since TS doesn&#39;t do that). <strong>Function return explicit types are a mean to check if my implementation matches my intention</strong>. Depending on the complexity of a function, you can leave the return type or remove it (e.g. if it&#39;s an
+                obvious one-liner).
+              </li>
+            </ul>
+            <h2 id="summary">Summary</h2>
+            <p>The key points you should remember are:</p>
+            <ul>
+              <li>Type inference is one of the fundamental concepts one has to master, if TypeScript is to be used effectively.</li>
+              <li>Type inference reduces the <em>cost of typing</em> and at the same time type safety remains the same.</li>
+              <li>We should keep a good balance between what we type explicitly and implicitly. Thanks to it, refactors are cheaper and more predictable.</li>
+              <li>Too much type inference makes too much types changes, potentially, leaving us unaware of how far changes go.</li>
+              <li>Finally, set at least the <code>--noImplicitAny</code> and <code>--noImplicitThis</code> compiler flags.</li>
+            </ul>
+          </div>
+          <hr />
+          <div class="blog-footer">
+            <p>
+              I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves &trade; working with people. Ex-theatre actor. 4
+              espressos a day.
+            </p>
+            <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+            <p>
+              <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                <span class="label">Twitter</span>
+                Follow me on X/twitter for tech-related updates.
+              </a>
+            </p>
+          </div>
+          <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

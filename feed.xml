@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Tomasz Ducin</title>
+        <link>https://ducin.dev</link>
+        <description>Tomasz Ducin Blog - Independent Consultant, Architect &amp; Trainer. JavaScript, TypeScript, Angular, React, Redux, RxJS, Architecture, Design Patterns.</description>
+        <lastBuildDate>Sat, 05 Jan 2019 12:38:07 GMT</lastBuildDate>
+        <docs>http://blogs.law.harvard.edu/tech/rss</docs>
+        <generator>feed3r</generator>
+        <image>
+            <title>Tomasz Ducin</title>
+            <url>https://ducin.dev/images/tomasz-ducin-logo-zolte-300.png</url>
+            <link>https://ducin.dev</link>
+        </image>
+        <copyright>All rights reserved 2017-2019, Tomasz Ducin</copyright>
+        <category>JavaScript</category>
+        <category>TypeScript</category>
+        <category>React</category>
+        <category>Angular</category>
+        <category>Architecture</category>
+        <atom:link href="https://ducin.dev/feed.xml" rel="self" type="application/rss+xml"/>
+        <item>
+            <title><![CDATA[TypeScript Type Inference Guide]]></title>
+            <link>https://ducin.dev/typescript-type-inference-guide</link>
+            <guid>https://ducin.dev/typescript-type-inference-guide</guid>
+            <pubDate>Tue, 01 Jan 2019 00:00:00 GMT</pubDate>
+            <description><![CDATA[Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit.]]></description>
+            <author>tomasz@ducin.dev (Tomasz Ducin)</author>
+            <enclosure url="https://ducin.dev/images/cover-metal-construction.jpg">
+            </enclosure>
+        </item>
+    </channel>
+</rss>

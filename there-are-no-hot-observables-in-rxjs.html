@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>There are no &quot;hot&quot; Observables in RxJS - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Angular, RxJS, Observables, Hot Observables, Subscriptions, Subjects, Multicasting" />
+    <meta name="description" content='The "hot and cold" observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the "hot and cold" concept is... harmful.' />
+    <meta name="thumbnail" content="https://ducin.dev/images/cover-red-and-blue.png" />
+    <link rel="canonical" href="https://ducin.dev/there-are-no-hot-observables-in-rxjs" />
+    <link rel="shortcut icon" href="images/td-logo-zolte-80.png" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <link rel="stylesheet" href="assets/css/extended.css" />
+    <style>
+      #main > header {
+        background: url("https://ducin.dev/images/cover-red-and-blue.png") !important;
+      }
+    </style>
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content='The "hot and cold" observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the "hot and cold" concept is... harmful.' />
+    <meta name="twitter:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/cover-red-and-blue.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content='There are no "hot" Observables in RxJS - Tomasz Ducin - blog' />
+    <meta property="og:description" content='The "hot and cold" observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the "hot and cold" concept is... harmful.' />
+    <meta property="og:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/cover-red-and-blue.png" />
+  </head>
+  <body>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WBQ2PN" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WBQ2PN");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/archive">Talks Archive</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2>There are no &quot;hot&quot; Observables in RxJS</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p class="image-caption"><a href="https://unsplash.com/photos/red-and-blue-wallpaper-6lQDFGOB1iw">Red and Blue</a> by <a href="https://unsplash.com/@pawel_czerwinski">Pawel Czerwinski</a></p>
+
+            <p><em> Friday, 26 January 2024 • 📚 8 min read </em></p>
+            <h1 id="there-are-no-hot-observables-in-rxjs">There are no &quot;hot&quot; Observables in RxJS</h1>
+            <p>
+              <small
+                ><i>Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Pawel Czerwinski</a> on <a href="https://unsplash.com/photos/red-and-blue-wallpaper-6lQDFGOB1iw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></i></small
+              >
+            </p>
+            <p>So I caught your attention? Good! Because I want you to look at the <em>&quot;HOT and COLD&quot; Observables</em> concept from a different perspective... it&#39;s one of the <strong>most confusing oversimplifications</strong> I&#39;ve had to deconstruct over and over again since quite a long time.</p>
+            <p>
+              Okay, to be fair... it is quite useful when we introduce RxJS to a <strong>complete beginner</strong>. But as soon as they dive into real project usecases, e.g. <strong>late subscription</strong> of a <strong>newly rendered</strong> component that <strong>subscribes</strong> to a (behavior? replay?) <strong>subject</strong> which had <strong>already emitted something</strong> - then
+              the &quot;<em>hot and cold</em>&quot; concept is... harmful.
+            </p>
+            <p>The <a href="https://en.wikipedia.org/wiki/All_models_are_wrong">following aphorism</a> illustrates it quite well:</p>
+            <blockquote>
+              <p><em>All models are wrong, but some are useful.</em></p>
+            </blockquote>
+            <p>
+              However, I would add: <em>useful, but <strong>until a certain point!</strong></em>
+            </p>
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ul>
+              <li>
+                <a href="#there-are-no-hot-observables-in-rxjs">There are no &quot;hot&quot; Observables in RxJS</a>
+                <ul>
+                  <li><a href="#false-dichotomy">False dichotomy</a></li>
+                  <li><a href="#32-hot-observable-types-%F0%9F%98%B2">32 hot Observable types? 😲</a></li>
+                  <li><a href="#sht-what-are-all-those-things-%F0%9F%98%90">Sh*t, what are all those things?! 😐</a></li>
+                  <li><a href="#what-please-stop-%F0%9F%98%A5">What? Please, stop 😥</a></li>
+                  <li>
+                    <a href="#first-things-first">First things first</a>
+                    <ul>
+                      <li><a href="#fact-1-notification-types">Fact 1: Notification Types</a></li>
+                      <li><a href="#fact-2-unicasting-and-multicasting">Fact 2: Unicasting and Multicasting</a></li>
+                      <li><a href="#fact-3-observables-are-lazy-by-default">Fact 3: observables are lazy by default</a></li>
+                      <li><a href="#fact-4-producer-consumer-pattern">Fact 4: producer-consumer pattern</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#fact-summary">Fact Summary</a></li>
+                  <li>
+                    <a href="#back-to-%F0%9F%94%A5-hot-32-%F0%9F%94%A5">Back to 🔥 hot 32 🔥</a>
+                    <ul>
+                      <li><a href="#reset-on-error">reset on error</a></li>
+                      <li><a href="#reset-on-complete">reset on complete</a></li>
+                      <li><a href="#reset-on-ref-count-zero">reset on ref count zero</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#where-did-you-get-these-from">Where did you get these from?</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#how-important-is-reading-the-source-code">How important is reading the source code?</a>
+                <ul>
+                  <li><a href="#how-hot-%F0%9F%94%A5-are-your-streams">How hot 🔥 are your streams?</a></li>
+                  <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+              </li>
+            </ul>
+            <h2 id="false-dichotomy">False dichotomy</h2>
+            <p>
+              The &quot;problem&quot; with the &quot;<em>hot and cold</em>&quot; concept is that it implicitly suggests that there are <strong>two types</strong> of Observables. Only two. And yes, when you read the explanations (<a href="https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html">like this legendary one by Thoughtram</a>), you know that
+              <strong>reality is more complex</strong> 🙂 but when I join a team in order to do some <a href="https://ducin.dev">frontend consultancy services</a> (or run a <a href="https://ducin.dev/trainings">Angular/Rx training</a>), <strong>developers most often think in either-or</strong>. Either hot or cold.
+            </p>
+            <p>I hope you are one of those truly passionate devs who dig into things, dive really deep, seek for understanding. You might already know that there are dozens of completely different types of &quot;hot&quot;. But the majority of the industry isn&#39;t like this. <strong>We&#39;re all responsible for the concepts and metaphors we introduce</strong>.</p>
+            <p>So it depends on how we count these things... but as much as we dive into Rx internals, we&#39;d find out there are <strong>at least 32 different types of hot streams</strong>.</p>
+            <h2 id="32-hot-observable-types-😲">32 hot Observable types? 😲</h2>
+            <p>Yep, you heard it right. In very short, 32 is a <a href="https://en.wikipedia.org/wiki/Cartesian_product">Cartesian product</a> of:</p>
+            <ul>
+              <li>4 types of subjects (4)</li>
+              <li>reset on error, boolean (2)</li>
+              <li>reset on complete, boolean (2)</li>
+              <li>reset on ref count 0, boolean (2)</li>
+            </ul>
+            <p><code>4*2*2*2 = 32</code></p>
+            <p>
+              If we&#39;d also take <strong>connectable streams</strong> into account (<a href="https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html">as in <em>Understanding publish, refCount and connect</em></a
+              >), there&#39;d be even more 😈.
+            </p>
+            <h2 id="sht-what-are-all-those-things-😐">Sh*t, what are all those things?! 😐</h2>
+            <p>
+              These are separate characteristics of Subjects that have existed for a very long time already - and most probably you experienced them in some rather unclear circumstances, and haven&#39;t become aware of what&#39;s going on. For example, you might have noticed that, even though the <strong>reference counter</strong> (number of active subscribers) have
+              <strong>dropped to zero</strong>, <code>share()</code> used to recreate the underlying stream (e.g. a new HTTP request) whenever a new active subscription happened. <strong>But after replacing the <code>share()</code> operator with <code>shareReplay()</code>, it didn&#39;t</strong>!. Even though the circumstances were the same... And this is NOT a specificity of either Subject or
+              ReplaySubject. This is what so called &quot;hot&quot; is underneath. One term is just so wrong, if you want to get your head around it!
+            </p>
+            <h2 id="what-please-stop-😥">What? Please, stop 😥</h2>
+            <p>No worries, by the end you&#39;d <strong>understand all of that</strong>. Stay with me. And I hope you&#39;d see that, indeed, &quot;hot and cold&quot; is a seriously harmful oversimplification.</p>
+            <h2 id="first-things-first">First things first</h2>
+            <p>We need to remind a couple of facts.</p>
+            <h3 id="fact-1-notification-types">Fact 1: Notification Types</h3>
+            <p>Observable streams don&#39;t just emit values. Strictly speaking, there are 3 types of notifications:</p>
+            <ul>
+              <li>next(value)</li>
+              <li>error(error)</li>
+              <li>complete() and all operators, subjects, etc - everything in Rx processes all of them. Sometimes they just pass the notification through down to the downstream, sometimes they do more interesting things - but all 3 notifications are always involved.</li>
+            </ul>
+            <p><img src="https://ducin.dev/images/blog-rxjs-3-types-of-notifications.svg" alt="3 types of notifications in RxJS" /></p>
+            <h3 id="fact-2-unicasting-and-multicasting">Fact 2: Unicasting and Multicasting</h3>
+            <p>All streams can typically serve only one consumer - all operators, higher-order streams, etc. Being able to emit notifications only to one target is called <strong>Unicasting</strong>.</p>
+            <p><img src="https://ducin.dev/images/blog-rxjs-unicasting.svg" alt="RxJS Unicasting" /></p>
+            <p>... all, except for Subjects - these are the only ones which can serve multiple consumers (and it&#39;s actually the main point why they exist...). This &quot;ability&quot; is called <strong>Multicasting</strong>.</p>
+            <p><img src="https://ducin.dev/images/blog-rxjs-multicasting.svg" alt="RxJS Multicasting" /></p>
+            <h3 id="fact-3-observables-are-lazy-by-default">Fact 3: observables are lazy by default</h3>
+            <p>It&#39;s a quite well known fact that, until an observable gets subscribed to, it doesn&#39;t emit a value. That&#39;s fair, since why producing items, if there&#39;d be no one to consume them? Only when they&#39;re is some subscriber interested in the data, it makes sense to produce and emit the notifications.</p>
+            <p><img src="https://ducin.dev/images/blog-rxjs-no-subscriber-no-producer.svg" alt="RxJS Multicasting" /></p>
+            <p>Yep, <strong>produce</strong>...</p>
+            <h3 id="fact-4-producer-consumer-pattern">Fact 4: producer-consumer pattern</h3>
+            <p>Let&#39;s take a look at the following stream:</p>
+            <pre><code class="language-ts">second$ = interval(1000).pipe(
+  map(x =&gt; x+1)
+);</code></pre>
+            <p>With no subscribers, the observable emits no events. But once the first subscriber arrives, a new interval (native <code>setInterval</code>) gets created. However, when another subscriber arrives, there&#39;d be <strong>a separate, competing</strong> interval.</p>
+            <p>Certainly, observables are clearly lazy in this case. But what I also want to highlight is that a stream like this one:</p>
+            <pre><code class="language-ts">second$ = interval(1000).pipe(
+  map(x =&gt; x+1)
+);</code></pre>
+            <p>isn&#39;t actually something which is capable of emitting anything. <strong>NOT YET</strong>...</p>
+            <p>Now, be cautious. The difference is not only with <strong>naming</strong>, but also with <strong>semantics</strong>.</p>
+            <p>An <strong>observable</strong> - is something we can observe (subscribe to). Clear.</p>
+            <p>However, a stream is something that emits values. Now let&#39;s get back to the point in time when we had no subscribers: any interval hasn&#39;t been created <strong>YET</strong>. So we&#39;ve got composition, we&#39;ve got a stream - but it&#39;s <strong>dead</strong>. There&#39;s <strong>nothing live that could actually turn the stream on</strong>.</p>
+            <p>
+              <strong>Streams do implement the producer-consumer model</strong>. Depending on the scenario, there might be either 1 producer per 1 subscriber (cold), or 1 producer per multiple subscribers (at least 32 types of hot). There could be even more complex, though very rare scenarios, where multiple producers use a common subject (sink, proxy) which then passed all notifications through
+              to all subscribers (many-to-many).
+            </p>
+            <p>A <strong>producer</strong> could be anything that is the source that start emitting anything: or could be an <strong>interval or a timer</strong>, but also <strong>HTTP request, event listener, or a websocket connection</strong>.</p>
+            <h2 id="fact-summary">Fact Summary</h2>
+            <p>So a subject is <strong>multicasting</strong> events down to <strong>multiple subscribers</strong>. In a typical scenario there&#39;s <strong>one shared producer underneath</strong> (could be more, but that&#39;s rare).</p>
+            <p><strong>Without any subject, the stream will unicast</strong>. For each subscriber, a new producer would be created instantly.</p>
+            <h2 id="back-to-🔥-hot-32-🔥">Back to 🔥 hot 32 🔥</h2>
+            <p>So far so good, we&#39;ve got the knowledge to champion all the possibilities.</p>
+            <p>All these apply to situations where we do have a subject (&quot;hot&quot;, after all).</p>
+            <h3 id="reset-on-error">reset on error</h3>
+            <p><img src="https://ducin.dev/images/blog-rxjs-subject-receiving-error.svg" alt="RxJS Subject receiving error notification" /></p>
+            <p>
+              If <strong>any of the producers emits an <code>ERROR</code> notification</strong> down to the subject - <strong>should it reset</strong>? Reconnect? Or - in our terminology - should a new producer be recreated?
+            </p>
+            <h3 id="reset-on-complete">reset on complete</h3>
+            <p><img src="https://ducin.dev/images/blog-rxjs-subject-receiving-complete.svg" alt="RxJS Subject receiving complete notification" /></p>
+            <p>Similar as above, but applies to <code>COMPLETE</code> notification.</p>
+            <h3 id="reset-on-ref-count-zero">reset on ref count zero</h3>
+            <p>Imagine the subject initially had no subscribers. Then first subscriber came, then the second one. The subject counts all active subscribers all the time. Now, the subscribers go away, and as they unsubscribe, the counter (<strong>ref count</strong>) goes down.</p>
+            <p><img src="https://ducin.dev/images/blog-rxjs-subject-reaching-refcount-zero.svg" alt="RxJS Subject with refcount zero" /></p>
+            <p>
+              And the question arises: <strong>if the <code>refCount</code> drops to zero</strong> (no active subscribers), <strong>should we keep the connection to the producer active</strong>? In other words - shall we keep the producer live?
+            </p>
+            <p>Remember, of the producer is live, it will keep on emitting items according to its nature (e.g. interval will keep on doing its job).</p>
+            <h2 id="where-did-you-get-these-from">Where did you get these from?</h2>
+            <p>Now comes my favorite part 😁 - source code: let&#39;s dive into RxJS <code>ShareReplay</code> sources. This one is especially good to look at, add it specifies config parameters exposed by the <code>share</code> operator:</p>
+            <p><img src="https://dev-to-uploads.s3.amazonaws.com/uploads/articles/vmfc85hkv6361kof4zyv.png" alt="RxJS source code of shareReplay" /></p>
+            <p><code>shareReplay</code> is just a specialized version of <code>share</code>. Apart from accepting config (as input parameters) and preparing the new config (to be passed to <code>share</code>) - apart from that, <code>shareReplay()</code> just calls <code>share()</code>.</p>
+            <p><code>connector</code> is a function that returns a subject - with whatever type, potentially even having some subscribers already (not common, though possible).</p>
+            <p>And the <code>resetOnError</code>, <code>resetOnComplete</code> and <code>resetOnCountZero</code> are things we&#39;ve already gone through 🙃All in all, we can determine all these.</p>
+            <h1 id="how-important-is-reading-the-source-code">How important is reading the source code?</h1>
+            <p>
+              Sometimes not that much. But this time - extremely important! Imagine all these situations where you use <code>share()</code>/<code>shareReplay()</code> and you hope <em>it should be ok</em>. NO! Think about all these usecases, such as switching routes (navigation), potentially causing <code>refCount</code> zero for a short while. Or receiving <code>complete</code> which
+              <em>might</em> unintentionally break your app logic.
+            </p>
+            <h2 id="how-hot-🔥-are-your-streams">How hot 🔥 are your streams?</h2>
+            <p>Being hot is about <strong>multicasting</strong> (sharing the connection with the producer or, in practice, <strong>sharing the producer</strong>). But I hope your agree with me that the following scenarios:</p>
+            <ul>
+              <li>sharing the same producer no matter what</li>
+              <li>and/or sharing the producer unless <code>RESET</code> emitted</li>
+              <li>and/or sharing the producer unless <code>COMPLETE</code> emitted</li>
+              <li>and/or sharing unless all subscribers are gone</li>
+            </ul>
+            <p>... all have <strong>completely different runtime behavior</strong>. Failing to acknowledge the difference might lead to serious bugs and/or unintentional behavior.</p>
+            <h2 id="conclusion">Conclusion</h2>
+            <p>The terms <strong>unicasting</strong>/<strong>multicasting</strong> precisely define whether a subject is being used or not. Only this is way more precise than &quot;<em>cold and hot</em>&quot; distinction.</p>
+            <p>A <strong>cold stream is a lazy, unicasted stream</strong> which <strong>creates a new producer per each subscriber.</strong></p>
+            <p>
+              But when it comes to hot streams, they <strong>could be lazy</strong> or not (remember <em>Connectable</em>), they <strong>could share the producer</strong> unless some circumstances happen. Last but not least, <strong>different subject types</strong> apply completely different emission strategies. It&#39;s all so damn different that it&#39;s pure madness to throw it all into one
+              bag. One bag that discourages many people from diving deeper.
+            </p>
+            <p>So now, whenever you need to introduce a Subject, don&#39;t just choose between <code>share()</code> and <code>shareReplay</code> (also trying to figure out why is there no <code>shareBehavior()</code> one?!). Think about all 32 conditions - one of those is the one you&#39;re looking for, e.g</p>
+            <pre><code class="language-ts">stream$.pipe(
+  share({
+    connector: new BehaviorSubject(&quot;INITIAL&quot;),
+    resetOnError: true,
+    resetOnComplete: false,
+    resetOnRefCountZero: false,
+  })
+)</code></pre>
+            <p>
+              <strong>My strong recommendation</strong>: as soon as one has grasped the idea of Observables, <strong>stop using the <em>&quot;hot&quot; (and cold) streams</em> metaphor</strong>. It introduces false dichotomy and pretend that <strong>things are simple</strong>.
+            </p>
+            <p><strong>The more we know, the more we understand they aren&#39;t.</strong></p>
+            <hr />
+            <p><a href="https://twitter.com/tomasz_ducin">Follow me on twitter</a> for more frontend (js, ts, react, angular etc.) deep dives!</p>
+          </div>
+          <hr />
+          <div class="blog-footer">
+            <p>
+              I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves &trade; working with people. Ex-theatre actor. 4
+              espressos a day.
+            </p>
+            <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+            <p>
+              <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                <span class="label">Twitter</span>
+                Follow me on X/twitter for tech-related updates.
+              </a>
+            </p>
+          </div>
+          <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>
