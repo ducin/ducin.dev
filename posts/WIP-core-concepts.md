@@ -2,6 +2,8 @@
 
 In order to correctly understand Angular Query, let's build a **proper mental model**. The main and most fundamental concept is - no sh#t Sherlock! - **the Query** 😉.
 
+<% TOC %>
+
 ## Query
 
 First things first: **queries are declarative**. In other words, with Angular Query **you** are **not fetching the data**. Instead, you **declare a dependency**:

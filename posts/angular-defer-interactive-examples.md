@@ -39,5 +39,3 @@ Usecases implemented:
 - 💥 defer error: `@error {...}`
 
 So open your browser devtools `Network` tab and have a play with the interactive examples 💪
-
-[Follow me on twitter](https://twitter.com/tomasz_ducin) for more frontend (js, ts, react, angular etc.) deep dives!

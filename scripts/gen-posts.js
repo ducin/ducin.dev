@@ -18,17 +18,18 @@ const TOCPlaceholder = '<% TOC %>'
 const postSourceMarkdownFilepath = (name) => path.join(__dirname, `../posts/${name}.md`)
 const postTargetHTMLFilepath = (name) => (`./${name}.html`)
 
-const imageURL = (filepath) => absoluteUrl(`images/${filepath}`)
+const imageURL = (filepath, { absolute = true } = {}) =>
+  absolute ? absoluteUrl(`images/blog/${filepath}`) : `images/blog/${filepath}`
 
 const generatePostHTML = async (post) => {
   const { title, keywords, description, readingTime, publishedDate, coverImage,
-    sourceFile, coverImageFilename } = post
+    sourceFile, coverImageFilename, githubURL } = post
   const origMD = '' + fs.readFileSync(postSourceMarkdownFilepath(sourceFile))
   const TOCContent = '## Table of Contents\n\n' + toc(origMD).content
   const MDWithTOC = origMD.replace(TOCPlaceholder, TOCContent)
   let output = myMarked(MDWithTOC)
 
-  const coverImageFilepath = path.join(__dirname, '..', 'images', coverImageFilename);
+  const coverImageFilepath = path.join(__dirname, '..', 'images/blog', coverImageFilename);
   if (!fs.existsSync(coverImageFilepath)) {
     throw new Error(`File ${coverImageFilepath} does not exist`)
   }
@@ -41,7 +42,8 @@ const generatePostHTML = async (post) => {
       day: 'numeric',
     }),
     readingTime,
-    coverImage
+    coverImage,
+    githubURL
   })
   output = postTop + output
 
@@ -51,9 +53,10 @@ const generatePostHTML = async (post) => {
       author: 'Tomasz Ducin',
       keywords: keywords.join(', '),
       description: description,
-      thumbnailURL: `${imageURL(coverImageFilename)}`,
+      thumbnailURL: imageURL(coverImageFilename),
+      backgroundImageURL: imageURL(coverImageFilename, { absolute: false }),
       canonicalURL: absoluteUrl(`${sourceFile}`),
-      shortcutIconURL: 'images/td-logo-zolte-80.png',
+      shortcutIconURL: absoluteUrl('images/td-logo-zolte-80.png'),
     },
     tags: {
       twitter: {
@@ -61,19 +64,17 @@ const generatePostHTML = async (post) => {
         'twitter:site': '@tomasz_ducin',
         'twitter:creator': '@tomasz_ducin',
         'twitter:description': description,
-        'twitter:image': `${imageURL(coverImageFilepath)}`,
+        'twitter:image': `${imageURL(coverImageFilename)}`,
       },
       og: {
         'og:type': 'article',
         'og:title': `${title} - Tomasz Ducin - blog`,
         'og:description': description,
-        'og:image': `${imageURL(coverImageFilepath)}`,
+        'og:image': `${imageURL(coverImageFilename)}`,
       },
     },
     files: {
-      css: [
-        'assets/css/extended.css'
-      ],
+      css: [],
       js: [
         "assets/js/page-blog.js",
         "https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js",
@@ -84,7 +85,7 @@ const generatePostHTML = async (post) => {
       topLink: 'Ducin.dev',
       topTitle: title,
       content: output,
-      bottomContent: blogFooterTpl() + commentsTpl(),
+      bottomContent: blogFooterTpl() + commentsTpl()
     }
   })
 

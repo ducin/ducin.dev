@@ -4,8 +4,8 @@ const fs = require('fs')
 const { loadPosts } = require('./load-posts')
 
 const { absoluteUrl } = require('./urls')
-const pages = loadPosts()
-const posts = require('../data/posts.json')
+const pages = require('../data/pages.json')
+const posts = loadPosts()
 
 const sitemapItem = (data) => `<url>\n${Object.entries(data)
   .map(([key, value]) => `  <${key}>${value}</${key}>`)
@@ -26,16 +26,19 @@ const priority = (name) => {
   return name === 'Home' ? '1.00' : '0.80'
 }
 
-const pageItems = Object.entries(pages)
-  .map(([url, name]) => ({
+const pageItems = pages
+  .filter(({ sitemap }) => sitemap)
+  .map(({ url, name }) => ({
     loc: absoluteUrl(url),
     changefreq: 'weekly',
     priority: priority(name)
   }))
 
-const postItems = posts.map(({ url }) => ({
-  loc: url,
-  changefreq: 'daily',
+const postItems = posts
+.filter(({ workInProgress }) => !workInProgress)
+.map(({ sourceFile }) => ({
+  loc: absoluteUrl(sourceFile),
+  changefreq: 'weekly',
   priority: '0.80'
 }))
 

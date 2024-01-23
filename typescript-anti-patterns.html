@@ -1,31 +1,30 @@
 <!DOCTYPE HTML>
 <html lang="en">
-	<head>
-		<title>TypeScript anti-patterns - Tomasz Ducin - blog</title>
-		<meta charset="utf-8">
-		<meta http-equiv="X-UA-Compatible" content="IE=edge">
-		<meta name="viewport" content="width=device-width, initial-scale=1">
-		<meta name="author" content="Tomasz Ducin">
-		<meta name="keywords" content="Tomasz Ducin, TypeScript Anti-patterns">
-		<meta name="description" content="Tomasz Ducin, TypeScript Anti-patterns">
-		<meta name="thumbnail" content="https://ducin.dev/images/banner-s.jpg" />
+  <head>
+    <title>TypeScript anti-patterns - Tomasz Ducin - blog</title>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="author" content="Tomasz Ducin">
+    <meta name="keywords" content="Tomasz Ducin, TypeScript Anti-patterns">
+    <meta name="description" content="Tomasz Ducin, TypeScript Anti-patterns">
+    <meta name="thumbnail" content="https://ducin.dev/images/banner-s.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@tomasz_ducin" />
     <meta name="twitter:creator" content="@tomasz_ducin" />
     <meta name="twitter:description" content='Independent Software Consultant / Interface Architect / Trainer working in Warsaw, Poland. IT Community Activist.' />
-    <meta name="twitter:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/cover-red-and-blue.png" />
+    <meta name="twitter:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/blog/cover-red-and-blue.png" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content='TypeScript anti-patterns - Tomasz Ducin - blog' />
     <meta property="og:description" content='Independent Software Consultant / Interface Architect / Trainer working in Warsaw, Poland. IT Community Activist.' />
-    <meta property="og:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/cover-red-and-blue.png" />
-		<link rel="canonical" href="https://ducin.dev/typescript-anti-patterns">
-		<link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png">
-		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/extended.css" />
-		<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/solarized-light.min.css">
-	</head>
-	<body>
-		<script></script>
+    <meta property="og:image" content="https://ducin.dev/images//Users/tomaszku/Development/website-ducin.dev/ducin.dev/images/blog/cover-red-and-blue.png" />
+    <link rel="canonical" href="https://ducin.dev/typescript-anti-patterns">
+    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png">
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/styles/solarized-light.min.css">
+  </head>
+  <body>
+    <script></script>
     <!-- Google Tag Manager -->
     <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WBQ2PN"
     height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
@@ -35,81 +34,81 @@
     '//www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
     })(window,document,'script','dataLayer','GTM-WBQ2PN');</script>
     <!-- End Google Tag Manager -->
-			<div id="page-wrapper">
-					<header id="header">
-						<h1><a href="/">Ducin.dev</a></h1>
-						<nav id="nav">
-							<ul>
-								<li class="special">
-									<a href="#menu" class="menuToggle"><span>Menu</span></a>
-									<div id="menu">
-										<ul>
-											<li><a href="/">Home</a></li>
-											<li><a href="trainings">Trainings</a></li>
-											<li><a href="blog">Blog</a></li>
-											<li><a href="talks">Talks</a></li>
-											<li><a href="videos">Videos</a></li>
-											<!-- <li><a href="archive">Talks Archive</a></li> -->
-											<li><a href="https://architekturanafroncie.pl/">ANF</a></li>
-										</ul>
-									</div>
-								</li>
-							</ul>
-						</nav>
-					</header>
-					<article id="main">
-						<header class="post-antipatterns">
-							<h2>TypeScript anti-patterns</h2>
-						</header>
-						<section class="wrapper style5">
-							<div class="inner">
+      <div id="page-wrapper">
+          <header id="header">
+            <h1><a href="/">Ducin.dev</a></h1>
+            <nav id="nav">
+              <ul>
+                <li class="special">
+                  <a href="#menu" class="menuToggle"><span>Menu</span></a>
+                  <div id="menu">
+                    <ul>
+                      <li><a href="/">Home</a></li>
+                      <li><a href="trainings">Trainings</a></li>
+                      <li><a href="blog">Blog</a></li>
+                      <li><a href="talks">Talks</a></li>
+                      <li><a href="videos">Videos</a></li>
+                      <!-- <li><a href="archive">Talks Archive</a></li> -->
+                      <li><a href="https://architekturanafroncie.pl/">ANF</a></li>
+                    </ul>
+                  </div>
+                </li>
+              </ul>
+            </nav>
+          </header>
+          <article id="main">
+            <header class="post-antipatterns">
+              <h2>TypeScript anti-patterns</h2>
+            </header>
+            <section class="wrapper style5">
+              <div class="inner">
 
 <p><em>
-	December 30, 2018 • 11 min read
+  December 30, 2018 • 11 min read
 </em></p>
 
 
 <p><strong>The purpose of this article is to avoid common mistakes while using TypeScript</strong>. I&#39;ve been using
-	TS in several <em>big-to-very-big</em> commercial projects since early 2015. Throughout that time I&#39;ve encountered
-	some misconceptions and mistakes about declaring types, as well as I was asked questions during my TypeScript
-	trainings. Some of them reappear pretty often, so I made my best to extract the common roots of the misconceptions and
-	explained them below.</p>
+  TS in several <em>big-to-very-big</em> commercial projects since early 2015. Throughout that time I&#39;ve encountered
+  some misconceptions and mistakes about declaring types, as well as I was asked questions during my TypeScript
+  trainings. Some of them reappear pretty often, so I made my best to extract the common roots of the misconceptions and
+  explained them below.</p>
 <h2 id="overview">Overview</h2>
 <ul>
-	<li><a href="#-1-overusing-the-any-type">#1 Overusing the <code>any</code> Type</a></li>
-	<li><a href="#-2-overusing-classes">#2 Overusing Classes</a></li>
-	<li><a href="#-3-using-the-function-type">#3 Using the <code>Function</code> Type</a></li>
-	<li><a href="#-4-messing-up-with-type-inference">#4 Messing up with Type Inference</a></li>
-	<li><a href="#-5-copy-pasting-partial-type-definitions">#5 Copy-Pasting partial Type Definitions</a></li>
+  <li><a href="#-1-overusing-the-any-type">#1 Overusing the <code>any</code> Type</a></li>
+  <li><a href="#-2-overusing-classes">#2 Overusing Classes</a></li>
+  <li><a href="#-3-using-the-function-type">#3 Using the <code>Function</code> Type</a></li>
+  <li><a href="#-4-messing-up-with-type-inference">#4 Messing up with Type Inference</a></li>
+  <li><a href="#-5-copy-pasting-partial-type-definitions">#5 Copy-Pasting partial Type Definitions</a></li>
 </ul>
 <p>TypeScript is all about restricting the types of expressions and variables we use. It&#39;s about reducing what we
-	can do with our own (or extenal) code. So expect that all the following topics will relate to making our type
-	definitions more strict :).</p>
+  can do with our own (or extenal) code. So expect that all the following topics will relate to making our type
+  definitions more strict :).</p>
 <h2 id="-1-overusing-the-any-type">#1 Overusing the <code>any</code> Type</h2>
 <p>Yes, this has to be point no. 1 since it&#39;s the most often. Unfortunately, it happens too often that developers
-	believe the promise of better code quality with static typing, but they don&#39;t will to spend this little bit more
-	time on precisely defining the types they use. And it needs repeating over and over again: <strong>you shall (almost)
-		never use <code>any</code></strong>.</p>
+  believe the promise of better code quality with static typing, but they don&#39;t will to spend this little bit more
+  time on precisely defining the types they use. And it needs repeating over and over again: <strong>you shall (almost)
+    never use <code>any</code></strong>.</p>
 <h2 id="-2-overusing-classes">#2 Overusing Classes</h2>
 <p>Many developers who come from class-based languages such as Java, C#, PHP, etc. feel a relief when finally finding
-	out that we can have (statically) typed JavaScript. That&#39;s refreshing and I felt the same some time ago :) And -
-	as long as TypeScript allows to write both Object-Oriented (OOP) and Functional Programming (FP) - many of us take OOP
-	as the default choice and keep on introducing classes throughout the TypeScript code. If we need to have multiple
-	instances - that&#39;s expected. But <strong>if we need only a single instance - wrapping the logic with a class is
-		just not needed</strong>.</p>
+  out that we can have (statically) typed JavaScript. That&#39;s refreshing and I felt the same some time ago :) And -
+  as long as TypeScript allows to write both Object-Oriented (OOP) and Functional Programming (FP) - many of us take OOP
+  as the default choice and keep on introducing classes throughout the TypeScript code. If we need to have multiple
+  instances - that&#39;s expected. But <strong>if we need only a single instance - wrapping the logic with a class is
+    just not needed</strong>.</p>
 <p>Keep in mind I&#39;m <strong>not</strong> favouring one over the other (OOP vs FP), each has its strengths and
-	weaknesses.</p>
+  weaknesses.</p>
 <p>When using TypeScript, we should consider two concepts:</p>
 <h3 id="instantiating-a-class-introduces-complexity">instantiating a class introduces complexity</h3>
 <p>Before we can use the logic of a class, first we have to call the constructor to get the instance. We need to decide
-	who creates the instance (responsibility, ownership) and when to do it. Although it&#39;s not a <em>huge</em>
-	complexity (are there any means to measure it?), still, it&#39;s <a href="https://en.wikipedia.org/wiki/No_Silver_Bullet">some
-		complexity which doesn&#39;t have to be there (see <em>accidental complexity</em>)</a>. The <em>essential complexity</em>
-	lies in the methods themselves. Also, passing arguments through a class constructor is not always needed, e.g. if the
-	value is available via <code>import</code> statement.</p>
+  who creates the instance (responsibility, ownership) and when to do it. Although it&#39;s not a <em>huge</em>
+  complexity (are there any means to measure it?), still, it&#39;s <a href="https://en.wikipedia.org/wiki/No_Silver_Bullet">some
+    complexity which doesn&#39;t have to be there (see <em>accidental complexity</em>)</a>. The <em>essential complexity</em>
+  lies in the methods themselves. Also, passing arguments through a class constructor is not always needed, e.g. if the
+  value is available via <code>import</code> statement.</p>
 <p>Instead, if we need only a single instance, we can define an object literal, thereby removing the need for calling
-	the constructor. We can have the instance straight away. Using object literals is idiomatic JavaScript. And TypeScript
-	is just JavaScript + static typing.</p>
+  the constructor. We can have the instance straight away. Using object literals is idiomatic JavaScript. And TypeScript
+  is just JavaScript + static typing.</p>
 <h3 id="type-inference-works-very-well-for-object-literals">type inference works very well for object literals</h3>
 <p>Type safety for classes is great:</p>
 <pre><code class="language-ts">class MyValidator {
@@ -121,7 +120,7 @@
 const validator = new MyValidator()
 validator.validateEmail() // throws</code></pre>
 <p>but <strong>type safety for object literals - thanks to type inference - is just as well</strong>. We don&#39;t lose
-	anything:</p>
+  anything:</p>
 <pre><code class="language-ts">const myValidator = {
     validateEmail(email: string): boolean { 
         return true; // :P
@@ -130,15 +129,15 @@ validator.validateEmail() // throws</code></pre>
 
 validator.validateEmail() // throws</code></pre>
 <p>Basically, let&#39;s not overcomplicate our code. You might not need a class, if an object literal - or even a set
-	of functions (if the object was meant to be stateless) - would do the job.</p>
+  of functions (if the object was meant to be stateless) - would do the job.</p>
 <h2 id="-3-using-the-function-type">#3 Using the <code>Function</code> Type</h2>
 <p>This one is important whenever our APIs accept callbacks and we want to restrict that certain parameters of
-	functions/methods are themselves functions. So what should be the type of the callback function?</p>
+  functions/methods are themselves functions. So what should be the type of the callback function?</p>
 <p>Although TypeScript allows to use the <code>Function</code> type, it&#39;s very rarely a good idea, since it&#39;s
-	very rare just <em>any</em> function. And <code>Function</code> is like the <code>any</code> type applied to
-	functions. It tells us only that an expression of this type is invokable/callable (we can invoke/call the function
-	with given arguments). But most often we do know <strong>what parameters such function supports</strong> and we can
-	improve type safety. With <code>Function</code> we lose not only the input parameters types, but also the result type.</p>
+  very rare just <em>any</em> function. And <code>Function</code> is like the <code>any</code> type applied to
+  functions. It tells us only that an expression of this type is invokable/callable (we can invoke/call the function
+  with given arguments). But most often we do know <strong>what parameters such function supports</strong> and we can
+  improve type safety. With <code>Function</code> we lose not only the input parameters types, but also the result type.</p>
 <p>Instead of:</p>
 <pre><code class="language-ts">type aThing = {
   doSomeLogic(cb: Function)
@@ -150,8 +149,8 @@ type aThing = {
 }</code></pre>
 <h2 id="-4-messing-up-with-type-inference">#4 Messing up with Type Inference</h2>
 <p>Let&#39;s take a snippet from <a href="http://www.youtube.com/watch?v=qklnVKgxMIY&amp;t=6m23s">this angular video
-		tutorial</a>. This small snippet is basically about creating an immutable copy of a <code>course</code> object with a
-	modified <code>description</code> field:</p>
+    tutorial</a>. This small snippet is basically about creating an immutable copy of a <code>course</code> object with a
+  modified <code>description</code> field:</p>
 <pre><code class="language-ts">// original item to be changed in an immutable manner
 const course = this.courses[0];
 
@@ -159,23 +158,23 @@ const newCourse: any = {...course};
 newCourse.description = &#39;New Value!&#39;;
 this.courses[0] = newCourse;</code></pre>
 <p>Whether we want the code to be a one-liner or not (preferences, conventions, whatever...) we should use <em>idiomatic</em>
-	JavaScript and let the type inference do everything for us:</p>
+  JavaScript and let the type inference do everything for us:</p>
 <pre><code class="language-ts">const course = this.courses[0];
 const newCourse = {...course, description: &#39;New Value!&#39;};
 this.courses[0] = newCourse;</code></pre>
 <p>In this case, the object destructuring with overriding a certain field is really enough for TypeScript to infer the
-	<code>newCourse</code> variable precisely. And to find out that <code>newCourse</code> is type compatible with <code>course</code>
-	both ways :) The general rule of thumb is that sometimes removing <code>any</code> will allow type inference to do all
-	the job (occurence of <code>any</code> is redundant and actually harmful).</p>
+  <code>newCourse</code> variable precisely. And to find out that <code>newCourse</code> is type compatible with <code>course</code>
+  both ways :) The general rule of thumb is that sometimes removing <code>any</code> will allow type inference to do all
+  the job (occurence of <code>any</code> is redundant and actually harmful).</p>
 <p>Just want to emphasize, that <a href="https://angular-university.io">Angular University</a> (who created above
-	video) provides really great content and I don&#39;t mean to criticize it, just nobody is perfect and this mistake is
-	worth analyzing.</p>
+  video) provides really great content and I don&#39;t mean to criticize it, just nobody is perfect and this mistake is
+  worth analyzing.</p>
 <h2 id="-5-copy-pasting-partial-type-definitions">#5 Copy-Pasting partial Type Definitions</h2>
 <p>There are lots of neat tricks we can use in order to avoid creating types manually or copy-pasting parts of types
-	with or without applying changes. Here are some of them.</p>
+  with or without applying changes. Here are some of them.</p>
 <h3 id="extracting-the-type-of-an-existing-literal-object">Extracting the type of an existing Literal Object</h3>
 <p>Example usecase: we&#39;re diving into a big legacy JS application. We find that there&#39;s a global config object
-	defined like this one:</p>
+  defined like this one:</p>
 <pre><code class="language-js">var Configuration = {
   API: &quot;http://host/path/to/api&quot;,
   token: &quot;jw3t-4w4j-5t04-5jt0-445t-fe98&quot;,
@@ -185,13 +184,13 @@ this.courses[0] = newCourse;</code></pre>
   modules: [&quot;admin&quot;, &quot;orders&quot;, &quot;stock&quot;]
 }</code></pre>
 <p>And it&#39;s passed as an argument to many functions throughout the codebase. What type should we provide for this
-	config?</p>
+  config?</p>
 <p>We can define the whole type from scratch, but we don&#39;t have to. Simply, use <code>typeof</code>:</p>
 <pre><code class="language-ts">type AppConfig = typeof Configuration</code></pre>
 <p>to get the type (<code>type AppConfig = { API: string; token: string; locale: string; lang: string; currency: string; modules: string[]; }</code>)</p>
 <h4 id="example-entity">example entity</h4>
 <p>For the rest of examples, let&#39;s use a pretty big <code>Employee</code> entity from my IT Corpo mock API which I
-	use during my trainings:</p>
+  use during my trainings:</p>
 <pre><code class="language-ts">type Employee = {
   &quot;id&quot;: number;
   &quot;nationality&quot;: Nationality,
@@ -226,78 +225,78 @@ this.courses[0] = newCourse;</code></pre>
 <p>Although the following should work:</p>
 <pre><code class="language-ts">const getEmployeesByDepartmentId = (departmentId: number): Response { ... }</code></pre>
 <p>it&#39;s not a good idea to do it, because it will work <em>now</em>. That&#39;s not easy to spot, but in the code
-	above we&#39;re losing the <em>single source of truth</em> about the <code>Employee</code> entity shape, when
-	introducing a loose <code>number</code>.</p>
+  above we&#39;re losing the <em>single source of truth</em> about the <code>Employee</code> entity shape, when
+  introducing a loose <code>number</code>.</p>
 <p>The <code>departmentId</code> should be a derivative of the <code>Employee</code> entity, in TypeScript we call it a
-	<em>lookup type</em> (we could optionally create a separate typedef for this field&#39;s type):</p>
+  <em>lookup type</em> (we could optionally create a separate typedef for this field&#39;s type):</p>
 <pre><code class="language-ts">const getEmployeesByDepartmentId = (departmentId: Employee[&quot;departmentId&quot;]): Response { ... }</code></pre>
 <p>Thanks to it, whenever the <code>Employee</code> entity gets updated, all places that depend on its derivatives get
-	updated and potentially our components/redux/ngrx/whatever code will throw errors, since <code>number</code> is now
-	expected to be a <code>string</code> (guid). If we leave just <code>departmentId: number</code>, we get a silent fail.
-	o_O</p>
+  updated and potentially our components/redux/ngrx/whatever code will throw errors, since <code>number</code> is now
+  expected to be a <code>string</code> (guid). If we leave just <code>departmentId: number</code>, we get a silent fail.
+  o_O</p>
 <p>That&#39;s a good strategy especially for long-living, big applications that are likely to evolve over time. Just
-	keep the <em>single source of truth</em>.</p>
+  keep the <em>single source of truth</em>.</p>
 <h3 id="mapped-types-and-conditional-types">Mapped Types and Conditional Types</h3>
 <p>Need to use the type, but in a slightly modified version?</p>
 <p>Example usecase: let&#39;s say, our app has to support <a href="https://en.wikipedia.org/wiki/Patch_verb">HTTP PATCH
-		requests</a>, that is, modify an existing resource, but instead of replacing existing one with <em>the whole</em> new
-	value (<code>HTTP PUT</code>), we pass only the part that changed. For instance, our interface supports changing the
-	<code>firstName</code> and <code>lastName</code> values via input in a <em>profile</em> form, changing the <code>contractType</code>
-	(enumeration) via a dropdown in a <em>contracts</em> form and <code>skills</code> list in a <em>résumé</em> form. Oh,
-	and changing <code>personalInfo</code> is possible via another form. All changes should be possible independently.</p>
+    requests</a>, that is, modify an existing resource, but instead of replacing existing one with <em>the whole</em> new
+  value (<code>HTTP PUT</code>), we pass only the part that changed. For instance, our interface supports changing the
+  <code>firstName</code> and <code>lastName</code> values via input in a <em>profile</em> form, changing the <code>contractType</code>
+  (enumeration) via a dropdown in a <em>contracts</em> form and <code>skills</code> list in a <em>résumé</em> form. Oh,
+  and changing <code>personalInfo</code> is possible via another form. All changes should be possible independently.</p>
 <p>Using <code>HTTP PUT</code> we&#39;d have to load existing entity, apply the changes and resend the whole object. In
-	some situations this loading + applying is not necessary, thus <code>HTTP PATCH</code>, which sends just <em>the diff</em>.
-	What we&#39;re aiming at is providing a type that will allow to define any part of the entity - and will be used to
-	update only the pieces that our form supports.</p>
+  some situations this loading + applying is not necessary, thus <code>HTTP PATCH</code>, which sends just <em>the diff</em>.
+  What we&#39;re aiming at is providing a type that will allow to define any part of the entity - and will be used to
+  update only the pieces that our form supports.</p>
 <p>In TypeScript that&#39;s super simple:</p>
 <pre><code class="language-ts">type PartialFieldsEmployee = Partial&lt;Employee&gt;;</code></pre>
 <p><code>Partial</code> is an example of so called <em>Mapped Types</em>. The idea behind these is to basically map
-	over all fields of an object&#39;s type apply a chang and return the new type. So it works similarly to Array.map in
-	JavaScript. The internals of <code>Partial</code>, which BTW works as well, are:</p>
+  over all fields of an object&#39;s type apply a chang and return the new type. So it works similarly to Array.map in
+  JavaScript. The internals of <code>Partial</code>, which BTW works as well, are:</p>
 <pre><code class="language-ts">type Partial&lt;T&gt; = {
     [P in keyof T]?: T[P];
 };</code></pre>
 <p>TypeScript is just applying the <code>?</code> to <strong>make all fields optional on the top level</strong>. You
-	can do the opposite (make all fields required) by applying <code>Required</code>:</p>
+  can do the opposite (make all fields required) by applying <code>Required</code>:</p>
 <pre><code class="language-ts">type RequiredFieldsEmployee = Required&lt;PartialFieldsEmployee&gt;;</code></pre>
 <p>it&#39;s internals are analogical:</p>
 <pre><code class="language-ts">type Required&lt;T&gt; = { [P in keyof T]-?: T[P] };</code></pre>
 <h3 id="accessing-internal-types-of-an-external-library">Accessing Internal types of an External Library</h3>
 <p>I&#39;ve had experience with <a href="https://js.devexpress.com/">devextreme</a>. First thing that comes to my mind
-	about this library is that its support for TypeScript could be way better. Bottom-line for us, developers: sometimes
-	you encounter a great, full-featured JS library which has pretty limited TS support and gotta deal with it.</p>
+  about this library is that its support for TypeScript could be way better. Bottom-line for us, developers: sometimes
+  you encounter a great, full-featured JS library which has pretty limited TS support and gotta deal with it.</p>
 <p>I&#39;m using the <a href="https://github.com/DevExpress/DevExtreme/blob/a59d62732b3d38fb03cd48de3e492a6a0b0440d4/ts/dx.all.d.ts">github
-		snapshot (browsing code from the latest commit at the time of writing this article, December 30, 2018)</a>.</p>
+    snapshot (browsing code from the latest commit at the time of writing this article, December 30, 2018)</a>.</p>
 <h4 id="example-usecase-you-need-to-access-the-return-type-of-a-grid-method">Example usecase: you need to access the
-	return type of a grid method</h4>
+  return type of a grid method</h4>
 <p>This is <a href="https://github.com/DevExpress/DevExtreme/blob/a59d62732b3d38fb03cd48de3e492a6a0b0440d4/ts/dx.all.d.ts#L2482">the
-		line of our interest</a>:</p>
+    line of our interest</a>:</p>
 <pre><code class="language-ts">export class dxDataGrid extends GridBase {
   ...
   getSelectedRowKeys(): Array&lt;any&gt; &amp; Promise&lt;any&gt; &amp; JQueryPromise&lt;any&gt;;
 }</code></pre>
 <p>Same as above, we don&#39;t want to copy-paste it, since it would desync us from the original type definition (new
-	releases of the library that introduce any change to the type would make our code break). Instead of copying the
-	datatype, let&#39;s access it with <code>ReturnType</code>:</p>
+  releases of the library that introduce any change to the type would make our code break). Instead of copying the
+  datatype, let&#39;s access it with <code>ReturnType</code>:</p>
 <pre><code class="language-ts">type GridSelectedRowKeys = ReturnType&lt;dxDataGrid[&quot;getSelectedRowKeys&quot;]&gt;</code></pre>
 <p>As you can see, above is a combination of the <code>ReturnType</code> conditional type and a type lookup. This works
-	since <code>dxDataGrid</code> is a type definition. If we&#39;ve had an implementation (instead of an interface), like
-	the following:</p>
+  since <code>dxDataGrid</code> is a type definition. If we&#39;ve had an implementation (instead of an interface), like
+  the following:</p>
 <pre><code class="language-ts">function myFn(): ABC {
   return someData;
 }</code></pre>
 <p>then <code>ReturnType&lt;myFn&gt;</code> <strong>would not work</strong>, because we&#39;re mixing the type context
-	with implementation context. We need to <em>dump</em> the implementation of <code>myFn</code> down to it&#39;s type
-	with <code>typeof myFn</code> and access it further with <code>ReturnType&lt;...&gt;</code> same as above. That makes:
-	<code>ReturnType&lt;typeof myFn&gt;</code>. It works correctly, since <code>ReturnType</code> expects the generic
-	passed to be a type, and what it gets is indeed a type definition (not an implementation).</p>
+  with implementation context. We need to <em>dump</em> the implementation of <code>myFn</code> down to it&#39;s type
+  with <code>typeof myFn</code> and access it further with <code>ReturnType&lt;...&gt;</code> same as above. That makes:
+  <code>ReturnType&lt;typeof myFn&gt;</code>. It works correctly, since <code>ReturnType</code> expects the generic
+  passed to be a type, and what it gets is indeed a type definition (not an implementation).</p>
 <h4 id="another-example-usecase-we-need-to-access-a-grid-s-method-parameter-type">Another example usecase: we need to
-	access a grid&#39;s method parameter type</h4>
+  access a grid&#39;s method parameter type</h4>
 <p>In ideal world, it would just be exported as a type. But apparently, it&#39;s not. Funfact, the method accepts only
-	1 parameter, <em>the event_, which has _lots</em> of fields and we need to use this event somewhere else in our
-	application. And no copy-pasting.</p>
+  1 parameter, <em>the event_, which has _lots</em> of fields and we need to use this event somewhere else in our
+  application. And no copy-pasting.</p>
 <p>This is <a href="https://github.com/DevExpress/DevExtreme/blob/a59d62732b3d38fb03cd48de3e492a6a0b0440d4/ts/dx.all.d.ts#L2392">the
-		line of our interest</a>:</p>
+    line of our interest</a>:</p>
 <pre><code class="language-ts">export class dxDataGrid extends GridBase {
   ...
   onCellHoverChanged?: ((e: {
@@ -319,52 +318,52 @@ this.courses[0] = newCourse;</code></pre>
   }) =&gt; any);
 }</code></pre>
 <p>Originally, that&#39;s a single line for the library&#39;s internal convention consistency, here broken down for
-	readability. We need to access what is the type of <code>e</code> above. The following code does the job:</p>
+  readability. We need to access what is the type of <code>e</code> above. The following code does the job:</p>
 <pre><code class="language-ts">type FirstParameterType&lt;T&gt; = T extends (e: infer R) =&gt; any ? R : any;
 type OnCellHoverChangedEvent = FirstParameterType&lt;dxDataGrid[&quot;onCellHoverChanged&quot;]&gt;</code></pre>
 <p>It&#39;s probably one of the most complex pieces in this post, so it requires additional explanation. The <code>FirstParameterType</code>
-	is a <em>conditional type</em> which allows us to intercept the function signature (note: not a function
-	body/implementation!) and extract it&#39;s first parameter. The syntax basically requires us to put <code>infer R</code>
-	in the spot we want to infer and <code>? R : any</code> as the <em>resulting type</em> (<code>R</code> - the inferred
-	one, if matched, otherwise <code>any</code>). So the <code>FirstParameterType</code>, given a function signature as
-	its generic type, will return the type of the first parameter.</p>
+  is a <em>conditional type</em> which allows us to intercept the function signature (note: not a function
+  body/implementation!) and extract it&#39;s first parameter. The syntax basically requires us to put <code>infer R</code>
+  in the spot we want to infer and <code>? R : any</code> as the <em>resulting type</em> (<code>R</code> - the inferred
+  one, if matched, otherwise <code>any</code>). So the <code>FirstParameterType</code>, given a function signature as
+  its generic type, will return the type of the first parameter.</p>
 <p>We access the method signature via <code>dxDataGrid[&quot;onCellHoverChanged&quot;]</code>. So all in all, our
-	solution is: <code>FirstParameterType&lt;dxDataGrid[&quot;onCellHoverChanged&quot;]&gt;</code>.</p>
+  solution is: <code>FirstParameterType&lt;dxDataGrid[&quot;onCellHoverChanged&quot;]&gt;</code>.</p>
 <h2 id="summary">Summary</h2>
 <p>Pay attention not to make your types to broad, especially, don&#39;t make them allow <em>anything</em>. And try to
-	keep as many single sources of truth for your type definitions as possible - and anywhere you need to reuse it - make
-	it a derivative type instead of a modified copied typedef.</p>
+  keep as many single sources of truth for your type definitions as possible - and anywhere you need to reuse it - make
+  it a derivative type instead of a modified copied typedef.</p>
 
 
 
-						</section>
-					</article>
-					<footer id="footer">
-						<ul class="icons">
-							<li><a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a></li>
-							<li><a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
-							<li><a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a></li>
-							<li><a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a></li>
-							<li><a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a></li>
-							<li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li>
-							<li><a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
-							<li><a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
-						</ul>
-						<ul class="copyright">
-							<li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
-							<li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
-						</ul>
-					</footer>
-			</div>
-			<script src="assets/js/jquery.min.js"></script>
-			<script src="assets/js/jquery.scrollex.min.js"></script>
-			<script src="assets/js/jquery.scrolly.min.js"></script>
-			<script src="assets/js/jquery.translate.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<script src="assets/js/main.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
-			<script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/typescript.min.js"></script>
-			<script src="assets/js/page-blog.js"></script>
-	</body>
+            </section>
+          </article>
+          <footer id="footer">
+            <ul class="icons">
+              <li><a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a></li>
+              <li><a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+              <li><a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a></li>
+              <li><a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a></li>
+              <li><a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a></li>
+              <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li>
+              <li><a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a></li>
+              <li><a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a></li>
+            </ul>
+            <ul class="copyright">
+              <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+              <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+            </ul>
+          </footer>
+      </div>
+      <script src="assets/js/jquery.min.js"></script>
+      <script src="assets/js/jquery.scrollex.min.js"></script>
+      <script src="assets/js/jquery.scrolly.min.js"></script>
+      <script src="assets/js/jquery.translate.js"></script>
+      <script src="assets/js/skel.min.js"></script>
+      <script src="assets/js/util.js"></script>
+      <script src="assets/js/main.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/highlight.min.js"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.13.1/languages/typescript.min.js"></script>
+      <script src="assets/js/page-blog.js"></script>
+  </body>
 </html>

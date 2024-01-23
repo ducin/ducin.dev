@@ -1,7 +1,8 @@
 const postContentTopTpl = ({
   publishedFormattedDate,
   readingTime,
-  coverImage
+  coverImage,
+  githubURL
 }) => {
   const coverImagePart = coverImage ? `
 <p class="image-caption">
@@ -11,7 +12,10 @@ const postContentTopTpl = ({
   return `
 ${coverImagePart}
 <p><em>
-  ${publishedFormattedDate} • 📚 ${readingTime} read
+  ${publishedFormattedDate}
+  • 📚 ${readingTime}
+  • <a href="/blog">back to Blog</a>
+  • <a href="${githubURL}">edit on Github</a>
 </em></p>
 `
 }

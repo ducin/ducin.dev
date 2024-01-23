@@ -56,23 +56,23 @@ Observable streams don't just emit values. Strictly speaking, there are 3 types 
 - complete()
 and all operators, subjects, etc - everything in Rx processes all of them. Sometimes they just pass the notification through down to the downstream, sometimes they do more interesting things - but all 3 notifications are always involved.
 
-![3 types of notifications in RxJS](https://ducin.dev/images/blog-rxjs-3-types-of-notifications.svg)
+![3 types of notifications in RxJS](https://ducin.dev/images/blog/blog-rxjs-3-types-of-notifications.svg)
 
 ### Fact 2: Unicasting and Multicasting
 
 All streams can typically serve only one consumer - all operators, higher-order streams, etc. Being able to emit notifications only to one target is called **Unicasting**.
 
-![RxJS Unicasting](https://ducin.dev/images/blog-rxjs-unicasting.svg)
+![RxJS Unicasting](https://ducin.dev/images/blog/blog-rxjs-unicasting.svg)
 
 ... all, except for Subjects - these are the only ones which can serve multiple consumers (and it's actually the main point why they exist...). This "ability" is called **Multicasting**.
 
-![RxJS Multicasting](https://ducin.dev/images/blog-rxjs-multicasting.svg)
+![RxJS Multicasting](https://ducin.dev/images/blog/blog-rxjs-multicasting.svg)
 
 ### Fact 3: observables are lazy by default
 
 It's a quite well known fact that, until an observable gets subscribed to, it doesn't emit a value. That's fair, since why producing items, if there'd be no one to consume them? Only when they're is some subscriber interested in the data, it makes sense to produce and emit the notifications.
 
-![RxJS Multicasting](https://ducin.dev/images/blog-rxjs-no-subscriber-no-producer.svg)
+![RxJS Multicasting](https://ducin.dev/images/blog/blog-rxjs-no-subscriber-no-producer.svg)
 
 Yep, **produce**...
 
@@ -122,13 +122,13 @@ All these apply to situations where we do have a subject ("hot", after all).
 
 ### reset on error
 
-![RxJS Subject receiving error notification](https://ducin.dev/images/blog-rxjs-subject-receiving-error.svg)
+![RxJS Subject receiving error notification](https://ducin.dev/images/blog/blog-rxjs-subject-receiving-error.svg)
 
 If **any of the producers emits an `ERROR` notification** down to the subject - **should it reset**? Reconnect? Or - in our terminology - should a new producer be recreated?
 
 ### reset on complete
 
-![RxJS Subject receiving complete notification](https://ducin.dev/images/blog-rxjs-subject-receiving-complete.svg)
+![RxJS Subject receiving complete notification](https://ducin.dev/images/blog/blog-rxjs-subject-receiving-complete.svg)
 
 Similar as above, but applies to `COMPLETE` notification.
 
@@ -136,7 +136,7 @@ Similar as above, but applies to `COMPLETE` notification.
 
 Imagine the subject initially had no subscribers. Then first subscriber came, then the second one. The subject counts all active subscribers all the time. Now, the subscribers go away, and as they unsubscribe, the counter (**ref count**) goes down.
 
-![RxJS Subject with refcount zero](https://ducin.dev/images/blog-rxjs-subject-reaching-refcount-zero.svg)
+![RxJS Subject with refcount zero](https://ducin.dev/images/blog/blog-rxjs-subject-reaching-refcount-zero.svg)
 
 And the question arises: **if the `refCount` drops to zero** (no active subscribers), **should we keep the connection to the producer active**? In other words - shall we keep the producer live?
 
@@ -146,7 +146,7 @@ Remember, of the producer is live, it will keep on emitting items according to i
 
 Now comes my favorite part 😁 - source code: let's dive into RxJS `ShareReplay` sources. This one is especially good to look at, add it specifies config parameters exposed by the `share` operator:
 
-![RxJS source code of shareReplay](https://ducin.dev/images/blog-screenshot-shareReplay.png)
+![RxJS source code of shareReplay](https://ducin.dev/images/blog/blog-screenshot-shareReplay.png)
 
 `shareReplay` is just a specialized version of `share`. Apart from accepting config (as input parameters) and preparing the new config (to be passed to `share`) - apart from that, `shareReplay()` just calls `share()`.
 
@@ -195,4 +195,4 @@ stream$.pipe(
 
 ----
 
-[Follow me on twitter](https://twitter.com/tomasz_ducin) for more frontend (js, ts, react, angular etc.) deep dives!
+I'd like to thank [Jan-Niklas Wortmann](https://twitter.com/niklas_wortmann) for proof reading this article.

@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Angular Signals are VALUES, not EVENTS - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Angular, Signals, Architecture, Software Design" />
+    <meta name="description" content="Recent release of Angular 17.1 (18th January 2024), introduces Signal Inputs. It's a good opportunity to rethink migrating from RxJS to Signals, as more and more APIs are signal-based: the framework (signals, computeds, effects and the rxjs-interop) and ecosystem (NGRX signal store), as well as tons of experiments." />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-low-angle-metal-structure.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="Recent release of Angular 17.1 (18th January 2024), introduces Signal Inputs. It's a good opportunity to rethink migrating from RxJS to Signals, as more and more APIs are signal-based: the framework (signals, computeds, effects and the rxjs-interop) and ecosystem (NGRX signal store), as well as tons of experiments." />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-low-angle-metal-structure.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Angular Signals are VALUES, not EVENTS - Tomasz Ducin - blog" />
+    <meta property="og:description" content="Recent release of Angular 17.1 (18th January 2024), introduces Signal Inputs. It's a good opportunity to rethink migrating from RxJS to Signals, as more and more APIs are signal-based: the framework (signals, computeds, effects and the rxjs-interop) and ecosystem (NGRX signal store), as well as tons of experiments." />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-low-angle-metal-structure.png" />
+    <link rel="canonical" href="https://ducin.dev/angular-signals-are-values-not-events" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-low-angle-metal-structure.png") !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google Tag Manager -->
+    <noscript><iframe src="//www.googletagmanager.com/ns.html?id=GTM-WBQ2PN" height="0" width="0" style="display: none; visibility: hidden"></iframe></noscript>
+    <script>
+      (function (w, d, s, l, i) {
+        w[l] = w[l] || [];
+        w[l].push({ "gtm.start": new Date().getTime(), event: "gtm.js" });
+        var f = d.getElementsByTagName(s)[0],
+          j = d.createElement(s),
+          dl = l != "dataLayer" ? "&l=" + l : "";
+        j.async = true;
+        j.src = "//www.googletagmanager.com/gtm.js?id=" + i + dl;
+        f.parentNode.insertBefore(j, f);
+      })(window, document, "script", "dataLayer", "GTM-WBQ2PN");
+    </script>
+    <!-- End Google Tag Manager -->
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2 class="cover-title-alt">Angular Signals are VALUES, not EVENTS</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p class="image-caption"><a href="https://unsplash.com/photos/low-angle-photography-of-metal-structure-ZiQkhI7417A">Low-angle photography of metal structure</a> by <a href="https://unsplash.com/@alinnnaaaa">Alina Grubnyak</a></p>
+            <p>
+              <em> Friday, 19 January 2024 • 📚 8 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/angular-signals-are-values-not-events.md">edit on Github</a> </em>
+            </p>
+            <h1 id="signals-are-values-not-events">Signals are VALUES, not EVENTS</h1>
+            <p>Recent release of <a href="https://github.com/angular/angular/releases/tag/17.1.0">Angular 17.1</a> (yesterday, 18th January 2024), introduces <strong>Signal Inputs</strong> (<a href="https://dev.to/this-is-angular/diving-into-type-system-behind-angular-signal-inputs-2b88">read more about Angular Signal Input API here</a>):</p>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">Signal Inputs coming soon to <a href="https://twitter.com/hashtag/angular?src=hash&amp;ref_src=twsrc%5Etfw">#angular</a> !!!!!1 <a href="https://t.co/aBuzH9lnaP">pic.twitter.com/aBuzH9lnaP</a></p>
+              &mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1740305588280574153?ref_src=twsrc%5Etfw">December 28, 2023</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <p>
+              It&#39;s a good opportunity to rethink <strong>migrating from RxJS to Signals,</strong> as more and more APIs are signal-based: the framework (<a href="https://angular.io/guide/signals">signals, computeds, effects</a> and the <a href="https://angular.io/guide/rxjs-interop">rxjs-interop</a>) and ecosystem (<a href="https://ngrx.io/guide/signals/signal-store">NGRX signal store</a>), as
+              well as tons of experiments (<a href="https://github.com/nartc/ngxtension-platform/pull/229">such as this one</a>).
+            </p>
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ul>
+              <li>
+                <a href="#signals-are-values-not-events">Signals are VALUES, not EVENTS</a>
+                <ul>
+                  <li><a href="#micro-disclaimer">Micro disclaimer</a></li>
+                  <li><a href="#facts">Facts</a></li>
+                  <li><a href="#readability">Readability</a></li>
+                  <li><a href="#missing-piece-of-understanding">Missing piece of understanding</a></li>
+                  <li><a href="#values-are-some-details-characteristics-that-a-thing-can-have">Values are some DETAILS, characteristics that a thing can have</a></li>
+                  <li><a href="#events-describe-what-has-already-happened-or-what-will-happen">Events describe what has already HAPPENED or what will happen</a></li>
+                  <li><a href="#couldnt-events-be-values-or-vice-versa">Couldn&#39;t events be values or vice versa?</a></li>
+                  <li><a href="#community-driven-signals-apis">Community-driven signals APIs</a></li>
+                  <li>
+                    <a href="#example-interval">Example: interval</a>
+                    <ul>
+                      <li><a href="#missing-support">Missing support</a></li>
+                      <li><a href="#fixes-fixes-everywhere">Fixes. Fixes everywhere.</a></li>
+                      <li><a href="#signal-interval-is-pretending-to-be-time-aware">Signal Interval is pretending to be time-aware</a></li>
+                      <li><a href="#api-design">API design</a></li>
+                      <li><a href="#wrong-abstractions-again">Wrong Abstractions, AGAIN</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#conclusion">Conclusion</a></li>
+                </ul>
+              </li>
+            </ul>
+            <hr />
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr"><a href="https://twitter.com/hashtag/Angular?src=hash&amp;ref_src=twsrc%5Etfw">#Angular</a> Signals are VALUES, not EVENTS.<br />Don&#39;t replace all <a href="https://twitter.com/hashtag/rxjs?src=hash&amp;ref_src=twsrc%5Etfw">#rxjs</a> with signals.</p>
+              &mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1747952979326423309?ref_src=twsrc%5Etfw">January 18, 2024</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <p>The amount of positive reception of above tweet made me realize this topic <strong>needs more attention among the Angular community</strong>.</p>
+            <p>
+              On one hand, we&#39;ve all heard that <strong>signals won&#39;t <em>entirely</em> replace RxJS</strong> (especially that Angular is on the road to make RxJS optional in the future). On the other hand, the <strong>new reactive primitive</strong> is taking the ecosystem by storm and, no wonder, it&#39;s easy to lose touch with the design principles and start
+              <strong>overusing</strong> signals everywhere. Just like redux used to be <strong>abused</strong> at some point. Or like Observable Streams used to be <strong>abused</strong>. Are we gonna share Georg Hegel&#39;s view, that:
+            </p>
+            <blockquote>
+              <p>&quot;<em>We learn from history that we don&#39;t learn from history.</em>&quot;</p>
+            </blockquote>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">&quot;we learn from history that we don&#39;t learn from history&quot; <a href="https://t.co/mhDcXuyA9z">pic.twitter.com/mhDcXuyA9z</a></p>
+              &mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1748083824238485544?ref_src=twsrc%5Etfw">January 18, 2024</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <p><small>okay no more my tweets 😇</small></p>
+            <h2 id="micro-disclaimer">Micro disclaimer</h2>
+            <p>
+              I enjoy using signals, I enjoy using rxjs observables - so I&#39;m no pro/against in any way. Also I enjoy using <a href="https://mobx.js.org">MobX</a> (doesn&#39;t <a href="https://mobx.js.org/api.html">MobX API</a> look familiar to you? 🙃), I enjoy <a href="https://baconjs.github.io/">bacon</a>... I enjoy pretty much all the tools that help me get my job done. My intention in this
+              post to emphasize, again, that <strong>every tool has it&#39;s certain usecases</strong>. And that <strong>excitement is the worst factor that could drive decision making in software development</strong>. Cool down 🥶
+            </p>
+            <h2 id="facts">Facts</h2>
+            <p>Let&#39;s start with revisiting the fundamental characteristics of signals and observable streams (they&#39;re mostly well known, so I&#39;ll just list them down):</p>
+            <ul>
+              <li>
+                sync/async
+                <ul>
+                  <li>observables can do both <strong>sync and async</strong> processing</li>
+                  <li>current signals implementation is capable of <strong>sync processing only</strong></li>
+                  <li>as a consequence, signals are <strong>unaware of the passage of time</strong></li>
+                </ul>
+              </li>
+              <li>
+                <strong>some APIs will always be async</strong> no matter what we prefer or believe in <code>¯\_(ツ)_/¯</code>, such as HTTP or browser events
+                <ul>
+                  <li>replacing decorated <code>@Output()</code> with signal-based <code>output()</code> (not yet in v17.1) will be purely syntactic sugar, as events will be emitted underneath nevertheless</li>
+                  <li>squashing async processing into sync signals generates <a href="https://twitter.com/tomasz_ducin/status/1746996356210684129">some non-trivial questions</a></li>
+                </ul>
+              </li>
+              <li>
+                subscriptions
+                <ul>
+                  <li>RxJS requires manual (un)subscription handling</li>
+                  <li>signals handle (un)subscription 100% automatically</li>
+                </ul>
+              </li>
+              <li>
+                late subscriptions
+                <ul>
+                  <li>both APIs handle late subscriptions</li>
+                </ul>
+              </li>
+              <li>
+                values/emissions
+                <ul>
+                  <li>signal <strong>always has a value</strong> (like in <code>BehaviorSubject</code>)</li>
+                  <li>observable streams <strong>might have values</strong>, but streams with no emissions whatsoever are absolutely valid(<code>-------&gt;</code> - no <code>next</code>, no <code>error</code>, no <code>complete</code>, nothing)</li>
+                </ul>
+              </li>
+              <li><strong>re-implementing</strong> RxJS features as signals one by one (like operators, subjects etc.) <strong>makes barely any sense</strong></li>
+              <li>
+                API
+                <ul>
+                  <li>RxJS has ~100 operators, 4 subject types, 32 types of hot observables (expect a blogpost soon! 🔥), all unicasting/multicasting concepts, etc.</li>
+                  <li>signals have barely ~10 functions (signal, set, update, computed, effect, untracked, asReadonly, toSignal, toObservable, perhaps something more). Order of magnitude difference...</li>
+                </ul>
+              </li>
+            </ul>
+            <h2 id="readability">Readability</h2>
+            <p>
+              I&#39;ll be honest - when people say they find something readable or not... or easy... or simple... I tell you: I don&#39;t care much 😉 people often forget that we have different background and experience. That readability has no way to be measured, and is purely 100% subjective. Like, my mother tongue is Polish and, surprise surprise, I can understand quite a lot from other Slavic
+              languages. So what? So nothing. It would be strange if I didn&#39;t 🤷.
+            </p>
+            <p>
+              And same here. I love signals from the first day. But that&#39;s mainly because I have commercial experience in MobX which is, conceptually, 1:1. For every person, a thing being readable or not is ultimately subjective and - my tiny recommendation here: don&#39;t pay too much attention to <em>readability</em>. Unless you like
+              <a href="https://en.wikipedia.org/wiki/Law_of_triviality">bikeshedding</a>.
+            </p>
+            <h2 id="missing-piece-of-understanding">Missing piece of understanding</h2>
+            <p><a href="https://twitter.com/synalx">Alex</a> has once described signals the following way:</p>
+            <blockquote>
+              <p><em>A signal is a source of value.</em></p>
+            </blockquote>
+            <p>That makes perfect sense. However, if I asked you the following question:</p>
+            <blockquote>
+              <p>
+                <em>What a signal is <strong>NOT</strong>? What shall <strong>NOT</strong> be represented as a signal?</em>
+              </p>
+            </blockquote>
+            <p>What would be your answer?</p>
+            <p>
+              <a href="https://twitter.com/tomasz_ducin/status/1747610779065421843">Coding itself is rather simple, but software design is not</a>. If we pick a <a href="https://twitter.com/tomasz_ducin/status/1747676969343373539">wrong abstraction</a> and keep on implementing things on top of it, then despite that our code might work as expected, we&#39;d see things are unnecessarily harder than
+              they should be. Within time we&#39;d start fighting our code and design, more and more, and feel the need to refactor/rewrite some piece of an app.
+            </p>
+            <p><strong>So what a signal is NOT</strong>? I suggest one of the following:</p>
+            <ul>
+              <li>something that <strong>doesn&#39;t have a current value</strong>, e.g. user events, browser events</li>
+              <li>something that <strong>has a current value, but it&#39;s completely irrelevant</strong>, an action that a user wants to reload a data-table</li>
+            </ul>
+            <p>So I want to draw a boundary between <strong>VALUES</strong> and <strong>EVENTS</strong>.</p>
+            <p>All in all, I would rephrase the definition to:</p>
+            <blockquote>
+              <p><em>A signal is a source of value, but NOT a source of events.</em></p>
+            </blockquote>
+            <h2 id="values-are-some-details-characteristics-that-a-thing-can-have">Values are some DETAILS, characteristics that a thing can have</h2>
+            <p>We can always ask (<em>pull-based</em>) what the value is. We can also be notified about a value which has changed (<em>push-based</em>). That&#39;s why RxJS is a valid abstraction around pretty much everything that exists 😉. But still, <strong>if something has a value, you can always ask for it</strong>.</p>
+            <h2 id="events-describe-what-has-already-happened-or-what-will-happen">Events describe what has already HAPPENED or what will happen</h2>
+            <p>
+              The events, on the other hand, are meant to notify (<em>push-based</em>) others about something that happened. There is an important distinction between <a href="https://en.wikipedia.org/wiki/Event_(computing)"><strong>events</strong></a> (something has happened already) and <a href="https://en.wikipedia.org/wiki/Command_pattern"><strong>commands</strong></a> (something will happen
+              and we pass a command to be executed) but it&#39;s a topic for another post.
+            </p>
+            <p>The distinction between <strong>VALUES</strong> and <strong>EVENTS</strong> is very clearly expressed in the <em>original</em> <code>redux</code> store API:</p>
+            <pre><code class="language-js">store.getState(): STATE // pull-based value accessor
+store.subscribe(FN): void // push-based value accessor
+store.dispatch(ACTION): void // push-based event notification</code></pre>
+            <h2 id="couldnt-events-be-values-or-vice-versa">Couldn&#39;t events be values or vice versa?</h2>
+            <p>Someone might deny:</p>
+            <blockquote>
+              <p>
+                <em>Hey, but <strong>events</strong> are objects, they might have payloads, and what is a payload if not a <strong>value</strong>?! (object, primitive, whatever)</em>
+              </p>
+            </blockquote>
+            <p>
+              Sure. Technically - yes, absolutely. But, taken to extreme, everything is a value. Even your mouse cursor&#39;s coordinate is a value. But when we do <strong>design</strong>, we want to create mental models that are <strong>pragmatic</strong>, help us <strong>put things in order</strong>, and <strong>make other devs comfortable</strong> within the design that we leave. Taking things
+              to extreme doesn&#39;t help.
+            </p>
+            <p>It all depends on the <strong>terminology</strong> we use and the <strong>context</strong> of our <strong>reasoning</strong>, so - <em>could events be values</em> - both yes and both no.</p>
+            <p>My strong recommendation is to focus on what is the <strong>intention</strong> of how are we going to use a thing:</p>
+            <ul>
+              <li>are we going to access details of something (value)? or</li>
+              <li>do we get notified that something has happened (or will happen)?</li>
+            </ul>
+            <h2 id="community-driven-signals-apis">Community-driven signals APIs</h2>
+            <p>There would certainly be more and more signal-based APIs. It&#39;s worthwhile to consider which of the make sense and which don&#39;t. <a href="https://twitter.com/mfpears">Mike</a> sums it up perfectly:</p>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">If you can come up with a good, accurate name for the thing, then go ahead. But if the name hides details you actually have to know about and you constantly have to renegotiate how you use that abstraction, you&#39;d be better typing the extra lines of code until you figure it out.</p>
+              &mdash; Mike F. Pearson (@mfpears) <a href="https://twitter.com/mfpears/status/1748076923631059433?ref_src=twsrc%5Etfw">January 18, 2024</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <h2 id="example-interval">Example: interval</h2>
+            <p>
+              I want to focus on just ONE example, but do it very deep. In the react world (where I come from 😜) one of the mindshifting blogposts is <a href="https://twitter.com/dan_abramov2">Dan Abramov</a>&#39;s <a href="https://overreacted.io/making-setinterval-declarative-with-react-hooks/"><em>Making setInterval Declarative with React Hooks</em></a
+              >. I decided to pick <code>setInterval</code> as well.
+            </p>
+            <p>So, could you make an async interval signal? Technically, yes, of course:</p>
+            <pre><code class="language-ts">function intervalSignal(interval){
+  const idx = signal(0)
+  const id = setInterval(() =&gt; {
+    idx.update(value =&gt; value + 1)
+  }, interval)
+  return idx
+}</code></pre>
+            <p>But should you? No. <strong>Totally No</strong>.</p>
+            <p><strong>Why?</strong> Because, although technically we could easily make things work, we&#39;re mixing abstractions badly. <strong>Mixing abstractions will always have some shortcomings</strong>. What are these?</p>
+            <h3 id="missing-support">Missing support</h3>
+            <p>We&#39;re also missing support for potentially important aspects. I hope many of you already thought: <em>why aren&#39;t you cleaning up the signal?!</em> Great, so here we go:</p>
+            <pre><code class="language-ts">function intervalSignal(interval){
+  const idx = signal(0)
+  const id = setInterval(() =&gt; {
+    idx.update(value =&gt; value + 1)
+  }, interval)
+  return {
+    cleanup(){ clearInterval(id) },
+    signal: idx
+  }
+}</code></pre>
+            <p>but hey, our implementation more complex and, as a consequence, longer.</p>
+            <h3 id="fixes-fixes-everywhere">Fixes. Fixes everywhere.</h3>
+            <p>Have you noticed, that if we expose a <code>WritableSignal</code> (signal still includes the <code>.set</code>) method, then we&#39;re leaking encapsulation - probably overwriting the current <em>tick</em> shouldn&#39;t be possible from outside of the signal. So, instead, it should be:</p>
+            <pre><code class="language-ts">  ...
+  return {
+    cleanup(){ clearInterval(id) },
+    signal: idx.asReadonly()
+  }</code></pre>
+            <p>But, trust me, we haven&#39;t exhausted all edge cases yet 😈</p>
+            <h3 id="signal-interval-is-pretending-to-be-time-aware">Signal Interval is pretending to be time-aware</h3>
+            <p>In the last version of the signal (interval + cleanup + asReadonly) there&#39;s still no simple API that allows us to modify the interval (time) length. In RxJS we could simply use a <code>switchMap</code> which consumes the interval upstream:</p>
+            <pre><code class="language-ts">intervalLength$.pipe(
+  switchMap(timeLength =&gt; interval(timeLength))
+)</code></pre>
+            <p>Again, could we achieve the similar API with signals? Of course! (but I&#39;m not falling down the rabbit hole 😏). Anyway, as the signal code gets more complex:</p>
+            <ul>
+              <li>we should take potential edge cases into account, right? And most probably we&#39;re bikeshedding and it&#39;s far away from the business solutions we&#39;re expected to work on...</li>
+            </ul>
+            <h3 id="api-design">API design</h3>
+            <p>We also need to <a href="https://twitter.com/tomasz_ducin/status/1747610779065421843">carefully design APIs (again)</a>. Potential breaking changes come into play. Also, how much of your application code should re responsible for platform-related things, like intervals, events, HTTP, etc?</p>
+            <p>In case of changing the interval length, should we go one more setter callback?</p>
+            <pre><code class="language-ts">function intervalSignal(interval): {
+  signal: Signal&lt;number&gt;
+  cleanup: () =&gt; void,
+  setIntervalTime: (time: number) =&gt; void
+}</code></pre>
+            <p>This seems simple, but the signal API has become rather callback-based. Perhaps wrapping interval with a signal would look better to use signals more:</p>
+            <pre><code class="language-ts">function intervalSignal(interval): {
+  valueSignal: Signal&lt;number&gt;
+  cleanup: () =&gt; void,
+  intervalTimeSignal: Signal&lt;number&gt;
+}</code></pre>
+            <p>which one is better?</p>
+            <h3 id="wrong-abstractions-again">Wrong Abstractions, AGAIN</h3>
+            <p>
+              There&#39;s one important thing we will consider 😄 there might be situations, where we need to process values of the signals and a <code>signal</code>/<code>computed</code> fits here, since it can notify computeds further. But other times, it&#39;s fairly enough to make it an <code>effect</code>, as the consumption would be placed within the effect function and there would be no
+              further dependencies (nobody would have to react to the effect taking place. Potentially that could have been a better choice from the beginning...
+            </p>
+            <p>However, we can&#39;t guarantee that <code>effect</code>s would be better than <code>signal</code>s in all cases.</p>
+            <h2 id="conclusion">Conclusion</h2>
+            <p>Can you see, how many problems we&#39;re solving, which don&#39;t relate to our commercial project? 😐</p>
+            <p>I hope we all clearly see that: <strong>if the problem-solution abstractions don&#39;t fit well, better not to implement the solution at all</strong>.</p>
+            <p>What&#39;s the conclusion? If a concept is beyond signals (doesn&#39;t fit there), like time, or events - <strong>don&#39;t make signals wrap it</strong>.</p>
+            <p>
+              So, to sum it all up - what is the most important factor that differentiates <strong>VALUES</strong> from <strong>EVENTS</strong>? It&#39;s <strong><em>TIME</em></strong
+              >. <strong>VALUES</strong> don&#39;t care about time. <strong>EVENTS</strong> do.
+            </p>
+            <p>Pay attention to time. As time is running out. ☠️</p>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves &trade; working with people. Ex-theatre actor. 4
+                espressos a day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                  <span class="label">Twitter</span>
+                  Follow me on X/twitter for tech-related updates.
+                </a>
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

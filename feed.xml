@@ -26,7 +26,7 @@
             <pubDate>Tue, 01 Jan 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit.]]></description>
             <author>tomasz@ducin.dev (Tomasz Ducin)</author>
-            <enclosure url="https://ducin.dev/images/cover-metal-construction.jpg">
+            <enclosure url="https://ducin.dev/images/blog/cover-metal-construction.jpg">
             </enclosure>
         </item>
     </channel>

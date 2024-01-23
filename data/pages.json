@@ -1,8 +1,31 @@
-{
-  "/": "Home",
-  "/trainings": "Trainings",
-  "/blog": "Blog",
-  "/talks": "Talks",
-  "/videos": "Videos",
-  "https://architekturanafroncie.pl": "ANF"
-}
+[
+  {
+    "name": "Home",
+    "url": "/",
+    "sitemap": true
+  },
+  {
+    "name": "Trainings",
+    "url": "/trainings",
+    "sitemap": true
+  },
+  {
+    "name": "Blog",
+    "url": "/blog",
+    "sitemap": true
+  },
+  {
+    "name": "Talks",
+    "url": "/talks",
+    "sitemap": true
+  },
+  {
+    "name": "Videos",
+    "url": "/videos",
+    "sitemap": true
+  },
+  {
+    "name": "ANF",
+    "url": "https://architekturanafroncie.pl"
+  }
+]

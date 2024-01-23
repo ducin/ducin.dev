@@ -8,26 +8,25 @@
     <meta name="author" content="Tomasz Ducin" />
     <meta name="keywords" content="TypeScript, Type Inference, Type Safety, Architecture, Software Design" />
     <meta name="description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
-    <meta name="thumbnail" content="https://ducin.dev/images/cover-metal-construction.jpg" />
-    <link rel="canonical" href="https://ducin.dev/typescript-type-inference-guide" />
-    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
-    <link rel="stylesheet" href="assets/css/main.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
-    <link rel="stylesheet" href="assets/css/extended.css" />
-    <style>
-      #main > header {
-        background: url("https://ducin.dev/images/cover-metal-construction.jpg") !important;
-      }
-    </style>
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-metal-construction.jpg" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@tomasz_ducin" />
     <meta name="twitter:creator" content="@tomasz_ducin" />
     <meta name="twitter:description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
-    <meta name="twitter:image" content="https://ducin.dev/images/cover-metal-construction.jpg" />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-metal-construction.jpg" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="TypeScript Type Inference Guide - Tomasz Ducin - blog" />
     <meta property="og:description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
-    <meta property="og:image" content="https://ducin.dev/images/cover-metal-construction.jpg" />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-metal-construction.jpg" />
+    <link rel="canonical" href="https://ducin.dev/typescript-type-inference-guide" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-metal-construction.jpg") !important;
+      }
+    </style>
   </head>
   <body>
     <!-- Google Tag Manager -->
@@ -60,7 +59,6 @@
                   <li><a href="/blog">Blog</a></li>
                   <li><a href="/talks">Talks</a></li>
                   <li><a href="/videos">Videos</a></li>
-                  <!-- <li><a href="/archive">Talks Archive</a></li> -->
                   <li><a href="https://architekturanafroncie.pl">ANF</a></li>
                 </ul>
               </div>
@@ -70,13 +68,14 @@
       </header>
       <article id="main">
         <header>
-          <h2>TypeScript Type Inference Guide</h2>
+          <h2 class="cover-title-alt">TypeScript Type Inference Guide</h2>
         </header>
         <section class="wrapper style5">
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/P_qvsF7Yodw">Tokyo Tower Construction Frame</a> by <a href="https://unsplash.com/@alain_pham">Alain Pham</a></p>
-
-            <p><em> Tuesday, 1 January 2019 • 📚 18 min read </em></p>
+            <p>
+              <em> Tuesday, 1 January 2019 • 📚 18 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/typescript-type-inference-guide.md">edit on Github</a> </em>
+            </p>
             <h1 id="typescript-type-inference-guide">TypeScript Type Inference Guide</h1>
             <p>New Year is a good opportunity to start a new initiative - and here I go with the first post of a whole serie, where I explain mechanics of TypeScript and my experience of using it since late 2014 in big commercial projects (including sectors: finance, web analytics, ITIL, OSS).</p>
             <p>After reading this post, you&#39;ll learn:</p>
@@ -434,6 +433,7 @@ genreMap.psychedelic // FAIL! psychedelic doesn&#39;t exist on {}</code></pre>
               <li>Too much type inference makes too much types changes, potentially, leaving us unaware of how far changes go.</li>
               <li>Finally, set at least the <code>--noImplicitAny</code> and <code>--noImplicitThis</code> compiler flags.</li>
             </ul>
+
             <hr />
             <div class="blog-footer">
               <p>

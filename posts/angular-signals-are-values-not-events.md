@@ -1,5 +1,3 @@
-<small><i>Photo by <a href="https://unsplash.com/@alinnnaaaa?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Alina Grubnyak</a> on <a href="https://unsplash.com/photos/low-angle-photography-of-metal-structure-ZiQkhI7417A?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></i></small>
-
 # Signals are VALUES, not EVENTS
 
 Recent release of [Angular 17.1](https://github.com/angular/angular/releases/tag/17.1.0) (yesterday, 18th January 2024), introduces **Signal Inputs** ([read more about Angular Signal Input API here](https://dev.to/this-is-angular/diving-into-type-system-behind-angular-signal-inputs-2b88)):
@@ -225,7 +223,3 @@ What's the conclusion? If a concept is beyond signals (doesn't fit there), like 
 So, to sum it all up - what is the most important factor that differentiates **VALUES** from **EVENTS**? It's **_TIME_**. **VALUES** don't care about time. **EVENTS** do.
 
 Pay attention to time. As time is running out. ☠️
-
-----
-
-[Follow me on twitter](https://twitter.com/tomasz_ducin) for more frontend (js, ts, react, angular etc.) deep dives!
