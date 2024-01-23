@@ -46,7 +46,7 @@
 											<li><a href="blog">Blog</a></li>
 											<li><a href="talks">Talks</a></li>
 											<li><a href="videos">Videos</a></li>
-											<li><a href="archive">Talks Archive</a></li>
+											<!-- <li><a href="archive">Talks Archive</a></li> -->
 											<li><a href="https://architekturanafroncie.pl/">ANF</a></li>
 										</ul>
 									</div>
@@ -58,6 +58,7 @@
 						<header>
 							<h2>I will speak at your event</h2>
 						</header>
+						<div id="map-canvas"></div>
 						<section class="wrapper style5">
 							<div class="inner">
 								<blockquote>The success of your presentation will be judged not by the knowledge you send but by what the listeners receive.
@@ -192,6 +193,29 @@
 			<script src="assets/js/util.js"></script>
 			<script src="assets/js/main.js"></script>
 
+			<script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyC_Vorb53QytOaNXykC5zsatgk-oz1I1gk"></script>
+			<!-- <script src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNHvxFUVnY3__RrEb6CdUnDNq2etQMHEg"></script> -->
+			<script src="assets/js/page-archive.js"></script>
+			<!-- <script async defer src="http://maps.googleapis.com/maps/api/js?key=AIzaSyDNHvxFUVnY3__RrEb6CdUnDNq2etQMHEg&callback=initMap"></script> -->
 			<script src="assets/js/page-talks.js"></script>
-	</body>
+			<style>
+				body, html {
+				  height: 100%;
+				  width: 100%;
+				}
+				
+				#map-canvas {
+				  height: 500px;
+				  width: 100%;
+				}
+				
+				.marker h1, .marker h2, .marker h3, .marker h4, .marker h5, .marker h6, body .marker {
+				  color: black;
+				}
+				
+				.marker .video, .marker .slides {
+					/* font-size: 200%; */
+				}
+				</style>
+		</body>
 </html>
