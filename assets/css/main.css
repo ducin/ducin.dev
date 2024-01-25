@@ -1420,7 +1420,6 @@
 		font-family: "Open Sans", Helvetica, sans-serif;
 		font-size: 16pt;
 		font-weight: 400;
-		/* letter-spacing: 0.025em; */
 		line-height: 1.65em;
 	}
 
@@ -1444,7 +1443,6 @@
 
 			body, input, select, textarea {
 				font-size: 12pt;
-				letter-spacing: 0.0375em;
 			}
 
 		}
@@ -1482,8 +1480,6 @@
 		font-size: 1.65em;
 		line-height: 1em;
 		margin: 0 0 1em 0;
-		/* letter-spacing: 0.1em; */
-		/* text-transform: capitalize; */
 	}
 
 		h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
@@ -3663,7 +3659,6 @@
 
 		#main > header p {
 			color: inherit;
-			letter-spacing: 0.225em;
 			text-transform: uppercase;
 			top: 0;
 		}
@@ -3736,7 +3731,6 @@
 		#footer .copyright {
 			color: rgba(255, 255, 255, 0.5);
 			font-size: 0.8em;
-			letter-spacing: 0.225em;
 			list-style: none;
 			padding: 0;
 			text-transform: uppercase;
@@ -3888,7 +3882,6 @@
   
 .blogposts .blogpost-title {
 	font-weight: 700;
-	letter-spacing: 0.03em;
 	line-height: 1.5em;
 	margin: 0 0 1em 0;
 	text-decoration: underline;
@@ -3957,8 +3950,8 @@ ul.toc ul {
 .email-subscribe .subscribe-header {
 	font-size: 1.5em;
 }
-.email-subscribe sender-form-field {
-	/* color: rgb(87, 87, 44) !important; */
+.email-subscribe .sender-form-field {
+	text-align: center;
 }
 
 .email-subscribe iframe {
