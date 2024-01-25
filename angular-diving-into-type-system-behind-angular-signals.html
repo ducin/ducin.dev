@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Diving into Type System behind Angular Signals - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Angular, Signals, TypeScript, Type Safety" />
+    <meta name="description" content="In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage." />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-a-pile-of-screws-and-nuts-on-a-table.jpg" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage." />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-a-pile-of-screws-and-nuts-on-a-table.jpg" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Diving into Type System behind Angular Signals - Tomasz Ducin - blog" />
+    <meta property="og:description" content="In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage." />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-a-pile-of-screws-and-nuts-on-a-table.jpg" />
+    <link rel="canonical" href="https://ducin.dev/angular-diving-into-type-system-behind-angular-signals" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-a-pile-of-screws-and-nuts-on-a-table.jpg") !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMG3MMTWGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MMG3MMTWGW");
+    </script>
+
+    <script>
+      (function (s, e, n, d, er) {
+        s["Sender"] = er;
+        (s[er] =
+          s[er] ||
+          function () {
+            (s[er].q = s[er].q || []).push(arguments);
+          }),
+          (s[er].l = 1 * new Date());
+        var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://cdn.sender.net/accounts_resources/universal.js", "sender");
+      sender("758ace613a8369");
+    </script>
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2 class="cover-title-alt">Diving into Type System behind Angular Signals</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p class="image-caption"><a href="https://unsplash.com/photos/a-pile-of-screws-and-nuts-on-a-table-LjnP00C93Co">A pile of screws and nuts on a table</a> by <a href="https://unsplash.com/@surya1213">Surya Prakash</a></p>
+            <p>
+              <em> Thursday, 28 December 2023 • 📚 6 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/angular-diving-into-type-system-behind-angular-signals.md">edit on Github</a> </em>
+            </p>
+            <p>
+              <em>Original version of this writing has been published as a <a href="https://twitter.com/tomasz_ducin/status/1740150999770378592">twitter thread</a>. However, I was convinced by @eneajaho to convert it into a blogpost</em> 😎. <em>I decided to leave the original form: quick, easy-going and concise.</em>
+            </p>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">
+                🔥💪 dive into type system behind <a href="https://twitter.com/hashtag/angular?src=hash&amp;ref_src=twsrc%5Etfw">#angular</a> Signal Inputs 💪🔥<br /><br />🛠️ first - examples<br />🥩 then - internals<br /><br />🔨 TRY IT YOURSELF: <a href="https://t.co/JysdC74dE7">https://t.co/JysdC74dE7</a><br /><br />🪄 the trick:<br />import { ɵinput as input } from &#39;@angular/core&#39;;<br /><br />a
+                🧵 with explanation below 👇 <a href="https://t.co/PcBAdWe5Ip">pic.twitter.com/PcBAdWe5Ip</a>
+              </p>
+              &mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1740150999770378592?ref_src=twsrc%5Etfw">December 27, 2023</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <hr />
+            <p>As you may know, <strong>Signal Inputs</strong> are coming to Angular in mid January 2024 in version 17.1. But we can actually play with them already, or at least, take a look at their <em>almost public</em> API. In this post we&#39;ll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage.</p>
+            <h2 id="demo-code">Demo code</h2>
+            <p>Just to make it more entertaining for people who want to see how things work under the hood, I&#39;m going to keep using <code>ɵinput</code> even though the <code>input</code> is publicly available since the <code>v17.1</code> release. Perhaps you might want to do a similar play one day?</p>
+            <p>So we&#39;re gonna expose what the Angular Team has been hiding from us...</p>
+            <p>🪄 <strong>the trick is</strong>:</p>
+            <pre><code class="language-ts">import { ɵinput as input } from &#39;@angular/core&#39;;</code></pre>
+            <p><strong>don&#39;t do this at home 😈!</strong></p>
+            <p>Following stackblitz allows you to see Signal Input declarations. Note that there&#39;s no Signal Input implementation within angular as of now (<code>v17.1.0-next.5</code>), so we&#39;ll focus on declarations/public API only.</p>
+            <iframe width="100%" height="500" src="https://stackblitz.com/edit/angular-signal-inputs?embed=1&file=src%2Fmain.ts&view=editor"></iframe>
+
+            <h2 id="toc">ToC</h2>
+            <p>🛠️ first - examples 🥩 then - internals</p>
+            <p>We&#39;ll analyze the examples from above stackblitz one by one, and later we&#39;ll analyze the internals &amp; types underneath.</p>
+            <h2 id="examples">Examples</h2>
+            <p>We&#39;ll start with lots of examples. Take a look at the first one:</p>
+            <p>🔍 initial value is used to infer the input&#39;s type, same as with ordinary signals:</p>
+            <p><img src="images/blog/blog-screenshot-signals-1.png" alt="signal usage screen" /></p>
+            <p>⚠️ Input Signals are <strong>READONLY</strong>, which makes sense, since it&#39;s the parent component who can put new values (via templates) into the input signal, not us 😉</p>
+            <p><img src="images/blog/blog-screenshot-signals-2.png" alt="signal usage screen" /></p>
+            <p>One of my favorite design decisions: 💪 taking advantage of (1) #typescript&#39;s possibilities and (2) applying best solutions from other frameworks. In this case: from React</p>
+            <p>💜🩷💜 love it 🩷💜🩷</p>
+            <p><img src="images/blog/blog-screenshot-signals-3.png" alt="signal usage screen" /></p>
+            <p>
+              Less exciting - and <strong>IMHO</strong> it should be <strong><em>avoided as much as possible</em></strong> (since it decreases readability and the understanding of how components exchange data) - <strong>aliasing</strong> is allowed:
+            </p>
+            <p>📡 aliased name is used by parent to pass the data 🔐 the prop name is used internally (obviously)</p>
+            <p><img src="images/blog/blog-screenshot-signals-4.png" alt="signal usage screen" /></p>
+            <p>Another logical design decision: 💪 since an input is <strong>REQUIRED</strong>, passing initial value makes no sense 😉 so it&#39;s removed from the signature</p>
+            <p><img src="images/blog/blog-screenshot-signals-5.png" alt="signal usage screen" /></p>
+            <p>Here the <code>initialValue</code> parameter is removed from the function (overload) signature. Or to be more precise - it&#39;s never added (never allowed) to be there 😉</p>
+            <p>So, technically speaking, TypeScript would try to pass your initial as options object which obviously fails.</p>
+            <p><img src="images/blog/blog-screenshot-signals-6.png" alt="signal internals code" /></p>
+            <p>And one more example - <code>transform</code> is allowed only when passing both <code>ReadT</code> and <code>WriteT</code> type parameters. More on this later...</p>
+            <p><img src="images/blog/blog-screenshot-signals-7.png" alt="signal usage screen" /></p>
+            <div class="email-subscribe">
+              <h4 class="subscribe-header">Get notified about blog posts, recordings and workshops!</h4>
+              <p>Subscribe to Ducin.dev and you'll get notified when new content is published. Expect in-depth posts, recordings and online workshops. The topics include: JS/TS, Angular, React and related tech.</p>
+              <div class="sender-form-field" data-sender-form-id="lrt2rokxero62a36uep"></div>
+            </div>
+
+            <h1 id="internals">Internals</h1>
+            <p>Now let&#39;s see 🍖 some internals 🥩</p>
+            <p><img src="images/blog/blog-animation-meat.gif" alt="signal internals code" /></p>
+            <p>
+              To get a broad overview of the direction, you might be interested in taking a look at the ➡️ <a href="https://github.com/angular/angular/discussions/49682">Angular Team&#39;s <em>Sub-RFC 3: Signal-based Components</em></a> which deals with, more or less, how to make use of signals in Angular Components. Also, you can ➡️
+              <a href="https://github.com/angular/angular/tree/main/packages/core/src/authoring">take a look at the code itself</a>. Anyway, let&#39;s dive into the internals!
+            </p>
+            <p>We&#39;ve got 2 new signal symbols:</p>
+            <p><img src="images/blog/blog-screenshot-signals-8.png" alt="signal internals code" /></p>
+            <p>it&#39;s the same usecase, as with the former unique Signal symbol - it allows to restrict compatibility across different (input) signals.</p>
+            <p>For instance: ✅ one can assign the <code>InputSignal&lt;number, number&gt;</code> to an ordinary <code>Signal&lt;number&gt;</code></p>
+            <p><img src="images/blog/blog-screenshot-signals-9.png" alt="signal internals code" /></p>
+            <p>Proof:</p>
+            <ol>
+              <li>
+                <p>need to make ordinary signal <strong>READONLY</strong> so that TS compares 2 readonly signals (input signals are <strong>READONLY</strong>)</p>
+              </li>
+              <li><p>where a string signal is expected, a string input signal is acceptable, since it has all required (needed) properties.</p></li>
+              <li><p>❌ but the other way round it fails, since an ordinary string signal doesn&#39;t have the brand read/write signals.</p></li>
+            </ol>
+            <p><img src="images/blog/blog-screenshot-signals-10.png" alt="signal compatibility proof code" /></p>
+            <p>Reassigning signals, however, is not going to be anyhow common 😉. But the Angular compiler also makes use of the symbols internally.</p>
+            <p>Now, this is where we get the signals API from. There&#39;s a completely <strong>separate implementation</strong> for optional and required inputs. It&#39;s just exposed as a convenient API:</p>
+            <pre><code class="language-ts">s1 = input()
+s2 = input.required()</code></pre>
+            <p><img src="images/blog/blog-screenshot-signals-11.png" alt="signal internals code" /></p>
+            <p>The sad thing, however, is that currently we cannot see its runtime.</p>
+            <p>
+              (<em>disclaimer: as mentioned above, ng v17.1 is expected very soon, this analysis uses <code>v17.0.1-next.5</code></em
+              >).
+            </p>
+            <p><img src="images/blog/blog-screenshot-signals-12.png" alt="signal internals code" /></p>
+            <p>Now let&#39;s take a look back at input transform:</p>
+            <p><img src="images/blog/blog-screenshot-signals-13.png" alt="signal usage code" /></p>
+            <p>However, you might be wondering what the heck is going on with this function overload and the strange declaration at the bottom:</p>
+            <p><img src="images/blog/blog-screenshot-signals-14.png" alt="Image description" /></p>
+            <p>First of all, if we pass <code>&lt;ReadT&gt;</code> only, we <strong>can&#39;t</strong> pass the input transform (that&#39;s the same as with current</p>
+            <pre><code class="language-ts">@Input
+({ transform: ... })</code></pre>
+            <p><img src="images/blog/blog-screenshot-signals-15.png" alt="signal internals code" /></p>
+            <p>However, if we pass <strong>both</strong> <code>&lt;ReadT, WriteT&gt;</code>, we can additionally pass the transform. Note that:</p>
+            <ul>
+              <li><code>ReadT</code> is the expression type you want to use inside your component</li>
+              <li><code>WriteT</code> is the expression type that is passed from outside</li>
+            </ul>
+            <p><img src="images/blog/blog-screenshot-signals-16.png" alt="signal internals code" /></p>
+            <p>Another example:</p>
+            <p><img src="images/blog/blog-screenshot-signals-17.png" alt="signal usage code" /></p>
+            <p>Going back to our nice declaration 🥴 let&#39;s focus on <code>inputFunction</code> first:</p>
+            <p><img src="images/blog/blog-screenshot-signals-18.png" alt="signal internals code" /></p>
+            <p>It has 3 overloads on its own:</p>
+            <ul>
+              <li>take no initial value and extend inner value with undefined</li>
+              <li>take the initial value with <code>ReadT</code> type param only (opts WITHOUT transform)</li>
+              <li>take the initial value with both <code>ReadT, WriteT</code> type params (opts WITH transform)</li>
+            </ul>
+            <p>All usecases seen before 😎💪</p>
+            <p><img src="images/blog/blog-screenshot-signals-19.png" alt="signal internals code" /></p>
+            <p>All in all we&#39;ve got 3 overloads for the <code>prop = input()</code> (optional) ... and 2 overloads for the <code>prop = input.required()</code> (required)</p>
+            <p><img src="images/blog/blog-screenshot-signals-20.png" alt="signal internals code" /></p>
+            <p>Phew 😅 that was quite a lot. Hope you enjoyed that.</p>
+            <h1 id="conclusion">Conclusion</h1>
+            <p>We&#39;ve seen quite a few examples on how certain usage of input signals affect underlying TypeScript types. Each usage depends on your specific needs in a specific situation. However, you should always pay attention to what types get declared/inferred in each case, as type-safety is one of the most important factors that form overall code quality.</p>
+            <p>Underlying Signal Input types are very well defined, but it&#39;s always your responsibility to verify, whether a given input should be optional or required in the long run. <strong>Types should only reflect your design</strong>.</p>
+            <p>Remember you can play with it <a href="https://stackblitz.com/edit/angular-signal-inputs?file=src%2Fmain.ts">on this stackblitz</a>. It includes the code of all examples.</p>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves &trade; working with people. Ex-theatre actor. 4
+                espressos a day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                  <span class="label">Twitter</span>
+                  Follow me on X/twitter for tech-related updates.
+                </a>
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

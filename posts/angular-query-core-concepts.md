@@ -12,7 +12,6 @@ This is the start of an entire series on Angular Query. Expect more articles abo
 
 If your application includes lots of datatables, grids, listings and other "_widgets_" which fetch and display server data - you must give Angular Query a try.
 
-<!-- {% embed https://stackblitz.com/edit/tanstack-angular-query?file=src%2Fapp.ts %} -->
 <iframe width="100%" height="500" src="https://stackblitz.com/edit/tanstack-angular-query?embed=1&file=src%2Fapp.ts"></iframe>
 
 ----

@@ -39,6 +39,11 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://ducin.dev/angular-diving-into-type-system-behind-angular-signals</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://ducin.dev/angular-signals-are-values-not-events</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>

@@ -30,6 +30,21 @@
     "coverImageFilename": "cover-angular-defer.png"
   },
   {
+    "title": "Diving into Type System behind Angular Signals",
+    "sourceFile": "angular-diving-into-type-system-behind-angular-signals",
+    "keywords": ["Angular", "Signals", "TypeScript", "Type Safety"],
+    "description": "In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage.",
+    "publishedDate": "2023-12-28",
+    "readingTime": "6 min read",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/a-pile-of-screws-and-nuts-on-a-table-LjnP00C93Co",
+      "title": "A pile of screws and nuts on a table",
+      "authorURL": "https://unsplash.com/@surya1213",
+      "author": "Surya Prakash"
+    },
+    "coverImageFilename": "cover-a-pile-of-screws-and-nuts-on-a-table.jpg"
+  },
+  {
     "title": "Angular Signals are VALUES, not EVENTS",
     "sourceFile": "angular-signals-are-values-not-events",
     "keywords": ["Angular", "Signals", "Architecture", "Software Design"],
@@ -60,20 +75,6 @@
     "coverImageFilename": "cover-eclipse.png"
   },
   {
-    "title": "Test",
-    "sourceFile": "test",
-    "keywords": [
-      "Lorem",
-      "Ipsum",
-      "Dolor"
-    ],
-    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
-    "publishedDate": "1970-01-01",
-    "readingTime": "1 min read",
-    "coverImageFilename": "cover-red-and-blue.png",
-    "workInProgress": true
-  },
-  {
     "title": "There are no &quot;hot&quot; Observables in RxJS",
     "sourceFile": "there-are-no-hot-observables-in-rxjs",
     "keywords": [
@@ -94,6 +95,20 @@
       "authorURL": "https://unsplash.com/@pawel_czerwinski",
       "author": "Pawel Czerwinski"
     },
+    "coverImageFilename": "cover-red-and-blue.png",
+    "workInProgress": true
+  },
+  {
+    "title": "Test",
+    "sourceFile": "test",
+    "keywords": [
+      "Lorem",
+      "Ipsum",
+      "Dolor"
+    ],
+    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
+    "publishedDate": "1970-01-01",
+    "readingTime": "1 min read",
     "coverImageFilename": "cover-red-and-blue.png",
     "workInProgress": true
   }
