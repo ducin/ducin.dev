@@ -12,13 +12,21 @@ If your application includes lots of datatables, grids, listings and other "_wid
 
 This post introduces **Angular Query** to Angular Developers: **why you should care**, what is the **mental model**, **how it works** and how your applications can **benefit** from it.
 
-## Disclaimer
+## Disclaimer 1: experimental
 
 Angular Query is [in experimental phase](https://tanstack.com/query/v5/docs/angular/overview) ([npm](https://www.npmjs.com/package/@tanstack/angular-query-experimental)), though it's expected to land a stable release very soon. The current improvements (which I'm a small part of 😍) include providing the most convenient Angular-specific APIs to Angular developers.
 
 However, all the concepts behind Query (core), React Query, Angular Query (and other adapters as well) **remain exactly the same**. The differences lie only in framework-specific adapters (such as React hooks, Angular signals, etc).
 
 This post is just the first part of a long series I'm working on 🙃. Once the stable version is released, the content will get updated accordingly.
+
+## Disclaimer 2: `@ngneat/query`
+
+Oh, wait, but there already is [`@ngneat/query`](https://github.com/ngneat/query). Why would anybody create yet another library?
+
+The answer is simple: the libraries are very similar to each other, serve the same purpose etc. But `@ngneat/query` creators decided, by design, to **diverge** from the core Tanstack Query codebase. Angular Query, on the other hand, is part of the Query monorepo and will get all (core) updates instantly. On one hand it's super cool (get all updates immediately), however on the other hand it introduces limitations (cannot move away from core too much). **A classical example of an architectural tradeoff**. Ngneat team chose more freedom at the cost of moving away, we chose being in-sync (at the cost of adjusting to the core API).
+
+More detailed reasoning has been brought by [Dominik here](https://twitter.com/TkDodo/status/1738111152121393623).
 
 ## Why would you even care
 

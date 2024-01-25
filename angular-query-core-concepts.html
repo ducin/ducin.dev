@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Angular Query Core Concepts - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Angular, Query, Signals, Data Loading, Data Refetching, Tanstack" />
+    <meta name="description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-eclipse.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-eclipse.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Angular Query Core Concepts - Tomasz Ducin - blog" />
+    <meta property="og:description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-eclipse.png" />
+    <link rel="canonical" href="https://ducin.dev/angular-query-core-concepts" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-eclipse.png") !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMG3MMTWGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MMG3MMTWGW");
+    </script>
+
+    <script>
+      (function (s, e, n, d, er) {
+        s["Sender"] = er;
+        (s[er] =
+          s[er] ||
+          function () {
+            (s[er].q = s[er].q || []).push(arguments);
+          }),
+          (s[er].l = 1 * new Date());
+        var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://cdn.sender.net/accounts_resources/universal.js", "sender");
+      sender("758ace613a8369");
+    </script>
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2 class="cover-title-alt">Angular Query Core Concepts</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p class="image-caption"><a href="https://unsplash.com/photos/moon-eclipse-F-pSZO_jeE8">Moon Eclipse</a> by <a href="https://unsplash.com/@sarahleejs">Jongsun Lee</a></p>
+            <p>
+              <em> Thursday, 25 January 2024 • 📚 11 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/angular-query-core-concepts.md">edit on Github</a> </em>
+            </p>
+            <h1 id="angular-query-core-concepts">Angular Query Core Concepts</h1>
+            <p>This post introduces <strong>Angular Query</strong> to Angular Developers: <strong>why you should care</strong>, what is the <strong>mental model</strong>, <strong>how it works</strong> and how your applications can <strong>benefit</strong> from it.</p>
+            <p>This is the start of an entire series on Angular Query. Expect more articles about it 💪</p>
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ul>
+              <li>
+                <a href="#angular-query-core-concepts">Angular Query Core Concepts</a>
+                <ul>
+                  <li><a href="#tldr---introduction-to-angular-query">TL;DR; - Introduction to Angular Query</a></li>
+                  <li><a href="#disclaimer-1-experimental">Disclaimer 1: experimental</a></li>
+                  <li>
+                    <a href="#disclaimer-2-ngneatquery">Disclaimer 2: <code>@ngneat/query</code></a>
+                  </li>
+                  <li><a href="#why-would-you-even-care">Why would you even care</a></li>
+                  <li><a href="#what-is-reactangular-query-good-at">What is React/Angular/... Query good at?</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#core-concepts">Core Concepts</a>
+                <ul>
+                  <li>
+                    <a href="#query">Query</a>
+                    <ul>
+                      <li><a href="#query-vs-manual-fetch-vs-redux">Query vs manual fetch vs redux</a></li>
+                      <li><a href="#query-client--query-cache">Query Client &amp; Query Cache</a></li>
+                      <li><a href="#query-keys">Query Keys</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#cleanups">Cleanups</a>
+                    <ul>
+                      <li><a href="#query-states">Query States</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#revalidation">Revalidation</a>
+                    <ul>
+                      <li><a href="#stale-while-revalidate">Stale While Revalidate</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#mutations">Mutations</a></li>
+                  <li><a href="#summary">Summary</a></li>
+                </ul>
+              </li>
+            </ul>
+            <h2 id="tldr---introduction-to-angular-query">TL;DR; - Introduction to Angular Query</h2>
+            <p><strong>Angular Query is a state management library highly specialized in synchronizing the server data with client applications. It does this one thing - but does it very well. It removes all concepts and abstractions that are not necessary to accomplish this job. As a consequence, developers become more productive</strong></p>
+            <p>If your application includes lots of datatables, grids, listings and other &quot;<em>widgets</em>&quot; which fetch and display server data - you must give Angular Query a try.</p>
+            <!-- {% embed https://stackblitz.com/edit/tanstack-angular-query?file=src%2Fapp.ts %} -->
+            <iframe width="100%" height="500" src="https://stackblitz.com/edit/tanstack-angular-query?embed=1&file=src%2Fapp.ts"></iframe>
+
+            <hr />
+            <h2 id="disclaimer-1-experimental">Disclaimer 1: experimental</h2>
+            <p>
+              Angular Query is <a href="https://tanstack.com/query/v5/docs/angular/overview">in experimental phase</a> (<a href="https://www.npmjs.com/package/@tanstack/angular-query-experimental">npm</a>), though it&#39;s expected to land a stable release very soon. The current improvements (which I&#39;m a small part of 😍) include providing the most convenient Angular-specific APIs to Angular
+              developers.
+            </p>
+            <p>However, all the concepts behind Query (core), React Query, Angular Query (and other adapters as well) <strong>remain exactly the same</strong>. The differences lie only in framework-specific adapters (such as React hooks, Angular signals, etc).</p>
+            <p>This post is just the first part of a long series I&#39;m working on 🙃. Once the stable version is released, the content will get updated accordingly.</p>
+            <h2 id="disclaimer-2-ngneatquery">Disclaimer 2: <code>@ngneat/query</code></h2>
+            <p>
+              Oh, wait, but there already is <a href="https://github.com/ngneat/query"><code>@ngneat/query</code></a
+              >. Why would anybody create yet another library?
+            </p>
+            <p>
+              The answer is simple: the libraries are very similar to each other, serve the same purpose etc. But <code>@ngneat/query</code> creators decided, by design, to <strong>diverge</strong> from the core Tanstack Query codebase. Angular Query, on the other hand, is part of the Query monorepo and will get all (core) updates instantly. On one hand it&#39;s super cool (get all updates
+              immediately), however on the other hand it introduces limitations (cannot move away from core too much). <strong>A classical example of an architectural tradeoff</strong>. Ngneat team chose more freedom at the cost of moving away, we chose being in-sync (at the cost of adjusting to the core API).
+            </p>
+            <p>More detailed reasoning has been brought by <a href="https://twitter.com/TkDodo/status/1738111152121393623">Dominik here</a>.</p>
+            <h2 id="why-would-you-even-care">Why would you even care</h2>
+            <p>I&#39;m convincing you that <strong>you should invest your time in learning Angular Query</strong>, as it will become one of the <strong>most important state management solutions</strong> within the ecosystem. If not <strong>the</strong> most important.</p>
+            <p><strong>So WHY?</strong></p>
+            <p>
+              Because it did in React ecosystem ⚡️. And since the concept is framework-agnostic and hugely simplifies development and improves DX, no matter what the framework is, same will happen with Angular 🤓. Once you get a grasp of how it works, you will ask yourself &quot;<em>where have we all been all these years?!</em>&quot; 🫢. And probably - for the state management of server&#39;s
+              data - you will <strong>not</strong> want to go back to what you used before 😎.
+            </p>
+            <h2 id="what-is-reactangular-query-good-at">What is React/Angular/... Query good at?</h2>
+            <p>
+              <strong>It&#39;s synchronizing the server data with the client app</strong>. All query-family libraries are highly specialized in doing this one thing - but doing it right. And abstracted in a way that delivers magnificent DX. It&#39;s not (and will never be) a universal, multi-purpose Swiss knife. It&#39;s also not trying to be the only state solution within your architecture, e.g.
+              if you need specialized local state solution - go for it! Let the best ones do their job!
+            </p>
+            <p>So, in other words, React/Angular/... Query is:</p>
+            <ul>
+              <li>🔥 <strong>automatically fetching the server data</strong></li>
+              <li>🔥 <strong>your currently existing components</strong></li>
+              <li>🔥 <strong>need</strong> (but not earlier)</li>
+              <li>🔥 and if the data could become hypothetically outdated (i.e. <strong>stale</strong>), it&#39;ll get <strong>refetched automatically</strong></li>
+              <li>🔥 and, of course, <strong>shared across all components</strong> which need this data</li>
+            </ul>
+            <hr />
+            <h1 id="core-concepts">Core Concepts</h1>
+            <p>In order to correctly understand Angular Query, let&#39;s build a <strong>proper mental model</strong>. The main and most fundamental concept is - no sh#t Sherlock! - <strong>the Query</strong> 😉.</p>
+            <h2 id="query">Query</h2>
+            <p>First things first: <strong>queries are declarative</strong>. In other words, with Angular Query <strong>you</strong> are <strong>not fetching the data</strong>. Instead, you <strong>declare a dependency</strong>:</p>
+            <blockquote>
+              <p><em>A component needs (depends on) some external data.</em></p>
+            </blockquote>
+            <p>Angular Query will fetch it for you, <strong>when it decides to</strong>. It&#39;s basically yet another form of <a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>.</p>
+            <p>
+              You can think of a query as if <strong>an engine will supply your component with some server data</strong>. The engine will <strong>store</strong> it, will <strong>cache</strong> it, will <strong>maintain timers</strong> to determine whether the data should be <strong>refetched</strong> or not. All this is engine&#39;s responsibility. Developers only declare the
+              <strong><code>component -&gt; data</code> dependency</strong>.
+            </p>
+            <h3 id="query-vs-manual-fetch-vs-redux">Query vs manual fetch vs redux</h3>
+            <p>Now, how is that <strong>different</strong> from manual data fetching or redux-based architecture?</p>
+            <ul>
+              <li>with <strong>manual fetching</strong>, you&#39;re responsible for running the actual data fetch. You&#39;re responsible for <strong>when</strong> you do it, <strong>how</strong> you do it, also <strong>whether</strong> you do it (or not). That&#39;s purely <strong>imperative</strong>.</li>
+              <li>
+                with <strong>redux architecture</strong> (including NgRx; <em>of course it depends on certain setup and/or middlewares or metareducers applied</em>) - most often <strong>an action has to be dispatched</strong>, so that data fetching could start. This is <strong>declarative</strong>. But you&#39;re additionally responsible for <strong>creating and binding the action</strong> to
+                whatever <strong>reason</strong> might cause data loading. All in all that&#39;s an improvement indeed, it found its place in the ecosystem and can be used to build complex applications which should do way more than just data loading. But if a certain part of your application <strong>only needs to fetch and display the data</strong>, the model can be
+                <strong>significantly simplified</strong> (for the good and the bad). And that&#39;s actually the main usecase for Angular Query...
+              </li>
+            </ul>
+            <p>Angular Query is specialized in a very typical and common scenario: <strong>a component needs to immediately load and display the data</strong>. And the aim is to simplify this task as much as possible. For this reason:</p>
+            <ul>
+              <li>there&#39;s <strong>no explicit unsubscribe</strong>. Cleanup is done automatically when the component gets destroyed.</li>
+              <li>
+                <strong>all low-level decisions</strong> (when, how, whether, etc.) <strong>are made and executed by <em>the engine</em></strong
+                >.
+              </li>
+            </ul>
+            <p>Technically, a component will include an <code>injectQuery</code> call for each query:</p>
+            <pre><code class="language-ts">@Injectable(...)
+export class PostsHTTPService {
+  // just an HTTP method
+  getPost = (postId: number) =&gt; {
+    return this.httpClient.get&lt;Post&gt;(
+      `https://jsonplaceholder.typicode.com/posts/${postId}`,
+    )
+  }
+}
+
+@Component(...)
+export class PostComponent {
+  // HTTP service
+  #postsHTTP = inject(PostsHTTPService)
+
+  // query
+  postQuery = injectQuery(() =&gt; ({
+    queryKey: [&#39;post&#39;, this.postId()],
+    queryFn: async (): Promise&lt;Post&gt; =&gt; {
+      return lastValueFrom(#postsHTTP.getPost(this.postId()))
+    },
+  }))
+  //...
+}</code></pre>
+            <p><em>The engine</em> I mentioned above is the <code>QueryClient</code> which will store the data within the <code>QueryCache</code>. The Query Key will be discussed later.</p>
+
+            <div class="email-subscribe">
+              <p class="subscribe-header">Get notified about blog posts, recordings and workshops!</h4>
+              <p>Subscribe to Ducin.dev in and you'll get notified when new content is published. Expect in-depth posts, recordings and online workshops. The topics include: JS/TS, Angular, React and related tech.</p>
+              <div style="text-align: left" class="sender-form-field" data-sender-form-id="lrt2rokxero62a36uep"></div>
+            </div>
+
+            <h3 id="query-client--query-cache">Query Client &amp; Query Cache</h3>
+            <p>
+              First of all, in order to effectively use Angular Query <strong>it&#39;s ok to have no idea</strong> what <code>QueryClient</code> and <code>QueryCache</code> is 😉. Vast majority of applications will never need to interact with <code>QueryCache</code> directly (it&#39;s handled by <code>QueryClient</code>). The only thing required is to provide the <code>QueryClient</code> (usually,
+              donce once per entire application). <strong>This section is intended only to explain the underlying concepts.</strong>
+            </p>
+            <p>Angular Query stores the data in <strong>a cache</strong> that is later exposed to components via <code>injectQuery</code>. Most often one cache per application is enough. The cache keys are, so called, Query Keys.</p>
+            <p><img src="images/blog/blog-angular-query-client-and-cache-hierarchy.png" alt="Angular Query Client and Cache Hierarchy" /></p>
+            <h3 id="query-keys">Query Keys</h3>
+            <p>A <strong>Query Key</strong> plays the role of an <strong>identifier</strong> of a <strong>query</strong>. Multiple components which require the same data from the same external data source will use <strong>a query with the same query key</strong>. Query Keys strictly correlate to resources exposed by the server.</p>
+            <p>Technically, Query Keys are <em>usually</em> arrays containing strings and objects. A couple of examples where REST resources are <em>mapped</em> to Query Keys:</p>
+            <ul>
+              <li><code>GET /posts</code> - <code>[&quot;posts&quot;]</code></li>
+              <li><code>GET /posts/&lt;id&gt;</code> - <code>[&quot;posts&quot;, ID]</code></li>
+              <li><code>GET /comments</code> - <code>[&quot;comments&quot;, { filters: {} }]</code></li>
+              <li><code>GET /comments?reviewed</code> - <code>[&quot;comments&quot;, { filters: { status: &quot;REVIEWED&quot; } }]</code></li>
+            </ul>
+            <p>It&#39;s up to <strong>your design</strong> how precisely Query Keys will look. <a href="https://tkdodo.eu/blog/effective-react-query-keys#structure">A (better) alternative to the above</a> might look like the following:</p>
+            <ul>
+              <li><code>GET /posts</code> - <code>[&quot;posts&quot;, &quot;list&quot;]</code></li>
+              <li><code>GET /posts/&lt;id&gt;</code> - <code>[&quot;posts&quot;, &quot;detail&quot;, ID]</code></li>
+              <li><code>GET /comments</code> - <code>[&quot;comments&quot;, &quot;list&quot;, { filters: {} }]</code></li>
+              <li><code>GET /comments?reviewed</code> - <code>[&quot;comments&quot;, &quot;list&quot;, { filters: { status: &quot;REVIEWED&quot; } }]</code></li>
+            </ul>
+            <p><strong>Query keys are hierarchical</strong>. This means, you can invalidate queries (just as you invalidate a cache entry) either individually or a whole group. When invalidating <em>post lists</em>:</p>
+            <pre><code class="language-ts">queryClient.invalidateQueries({
+  queryKey: [&#39;posts&#39;, &#39;list&#39;]
+})</code></pre>
+            <p>only the <em>list</em> entries will be affacted. However, when invalidating posts:</p>
+            <pre><code class="language-ts">queryClient.invalidateQueries({
+  queryKey: [&#39;posts&#39;]
+})</code></pre>
+            <p>both <em>lists</em> and <em>details</em> will be affected (and everything with the key starting with <code>posts</code>).</p>
+            <p><img src="images/blog/blog-angular-query-key-invalidation.png" alt="Angular Query Key Invalidation" /></p>
+            <p>That&#39;s also what I meant in the very beginning, that Angular Query is highly <strong>declarative</strong>.</p>
+            <p>Whenever you inject a query (probably, to a component), you explicitly state the <strong>query key</strong>. This way <strong>your data hierarchy and relations are well-organized</strong>:</p>
+            <p><img src="images/blog/blog-angular-query-client-cache-queryfn.png" alt="Angular Query Client, Cache and QueryFn" /></p>
+            <p>Query Keys design, their good practices etc. is yet a different topic - but you should have a solid understanding of the concept by now.</p>
+            <h2 id="cleanups">Cleanups</h2>
+            <p>
+              All items within Angular Query make use of <code>DestroyRef</code> in order to clean up or unmount the resources. So it depends on <a href="https://angular.io/guide/hierarchical-dependency-injection#types-of-injector-hierarchies">which injector does a certain <code>DestroyRef</code> come from</a>.
+            </p>
+            <p>In case of <code>QueryClient</code>, the <code>DestroyRef</code> used belongs to <strong>Environment Hierarchy&#39;s Root Injector</strong>. In practice this means that Query Client would get destroyed (precisely: unmounted) when... when the entire application gets destroyed 😉.</p>
+            <p><img src="images/blog/blog-screenshot-angular-query-injector-inside-angular-devtools.png" alt="Angular Query Injector inside Angular Devtools" /></p>
+            <p>In case of each query, injected <code>DestroyRef</code> comes from <strong>Element Injectors</strong>. When the component gets destroyed, so is the query (precisely: unsubscribed).</p>
+            <p>But what happens to a Query Key, along with is data, if there are no components which need that data (no active subscribers)?</p>
+            <h3 id="query-states">Query States</h3>
+            <p>As you can simply imagine, each query can be in one of the following states:</p>
+            <ul>
+              <li><code>isPending</code>, when query&#39;s <code>status === &#39;pending&#39;</code></li>
+              <li><code>isError</code>, <code>status === &#39;error&#39;</code></li>
+              <li><code>isSuccess</code>, <code>status === &#39;success&#39;</code></li>
+            </ul>
+            <p>As expected, all the statuses are updated underneath. All you do, is make use of those within your components and/or templates.</p>
+            <h2 id="revalidation">Revalidation</h2>
+            <p>Before we mentioned that <em>the engine</em> decides when, how and whether to refetch the data. Let&#39;s focus on when should the cached data get re-fetched.</p>
+            <p>In an <strong>imperative</strong> approach, the developer would just make the call, that&#39;s it. However, since Angular Query claims to be <strong>declarative</strong> (<a href="https://en.wikipedia.org/wiki/Inversion_of_control">IoC</a>), this is:</p>
+            <ol>
+              <li>handled by <em>the engine</em>, and</li>
+              <li>done under certain circumstances</li>
+            </ol>
+            <p>So what would be the <strong>reason to refetch the data</strong>? Two main reasons are:</p>
+            <ul>
+              <li><strong>stale time</strong> passed</li>
+              <li>data has been changed (<strong>mutations</strong>)</li>
+            </ul>
+            <p>Angular Query introduces:</p>
+            <ul>
+              <li><strong>Stale Time</strong>: time after the cached data should be re-fetched (pessimistically, once we&#39;ve loaded the data, it could have already changed on the server; we assume data to be &quot;<em>fresh</em>&quot; for some short time)</li>
+              <li><strong>Cache Time</strong>: time after the cached data <strong>gets entirely removed</strong> (it&#39;s so old that it&#39;s better to have it removed)</li>
+            </ul>
+            <h3 id="stale-while-revalidate">Stale While Revalidate</h3>
+            <p>
+              What is super important here, Angular Query implements the <a href="https://web.dev/articles/stale-while-revalidate?hl=en">Stale While Revalidate</a> technique. It addresses <strong>the common problem</strong>: when the client app fetches some data, it <strong>could have become already outdated by the time user can even see it</strong>. Of course, it depends on the the nature of your
+              application and data and, first and foremost, the frequency of changes made to your data - this can vary significantly across different apps. But as a rule of thumb we should take this aspect into account, when designing our app architecture.
+            </p>
+            <p>All in all, the client device (in our case: the user&#39;s browser) has loaded some data that is either already outdated or would become outdated within some time. What to do with that data?</p>
+            <p><strong>SWR</strong> technique uses the potentially <strong>STALE</strong> data to be displayed, <strong>WHILE</strong> the new data gets <strong>REVALIDATED</strong> (reloaded). In other words, show the user the potentially outdated content, but also display the fact (spinner, loader, etc.) that the data is being reloaded.</p>
+            <p>And what&#39;s useful, implementing SWR means that it is the <strong>library</strong> what is responsible for it - not the developer. You just make use of the technique, as it&#39;s already implemented.</p>
+            <p>
+              It&#39;s worth noting that, due to the <a href="https://web.dev/articles/stale-while-revalidate?hl=en">Stale-While-Revalidate</a> nature of Angular Query, the <code>isFetching</code> flag is also available <strong>in all states</strong>. That&#39;s because, no matter if you&#39;re fetching the data initially, refreshing it, coming back to a component that has fetched some data
+              previously or errored etc (so many edge-cases covered here!) Angular Query might decide to revalidate your potentially stale data. So the action of (re)fetching could take place at any of the states.
+            </p>
+            <h2 id="mutations">Mutations</h2>
+            <p>If we bring all query-related concepts altogether and treat it as one big query concept, then Angular Query will has only one more new concept: a <strong>Mutation</strong>.</p>
+            <p>When considering typical CRUD operations, following is a proper match:</p>
+            <ul>
+              <li>READ - <strong>queries</strong></li>
+              <li>CREATE, UPDATE and DELETE - <strong>mutations</strong></li>
+            </ul>
+            <p>A Mutation, an <strong>imperative</strong> concept, is a wrapper over modifying server data. Apart from sending the request to the server, it provides functionalities for UI state management, handling optimistic updates, and retrying failed mutations. But first and foremost, <strong>a mutation is often bound to certain query keys in order to invalidate them</strong>.</p>
+            <p>Let&#39;s revisit our Query Keys hierarchy:</p>
+            <ul>
+              <li><code>GET /posts</code> - <code>[&quot;posts&quot;, &quot;list&quot;]</code></li>
+              <li><code>GET /posts?page=1</code> - <code>[&quot;posts&quot;, &quot;list&quot;, { page: 1 }]</code></li>
+              <li><code>GET /posts/123</code> - <code>[&quot;posts&quot;, &quot;detail&quot;, 123]</code></li>
+              <li><code>GET /posts/456</code> - <code>[&quot;posts&quot;, &quot;detail&quot;, 456]</code></li>
+            </ul>
+            <p>If the user removes Post id:123 (<code>HTTP DELETE /posts/123</code>), then following keys will be affected:</p>
+            <ul>
+              <li><code>[&quot;posts&quot;, &quot;detail&quot;, 123]</code> - obviously</li>
+              <li><code>[&quot;posts&quot;, &quot;list&quot;]</code>, <code>[&quot;posts&quot;, &quot;list&quot;, { page: 1 }]</code> (potentially) - as they might include the deleted item (note: whether we invalidate optimistically, pessimistically, or we make a check - that&#39;s a story for another post)</li>
+            </ul>
+            <p>Following code illustrates usage of mutations:</p>
+            <pre><code class="language-ts">export class PostComponent {
+  #queryClient = injectQueryClient()
+  mutation = injectMutation(() =&gt; ({
+    mutationFn: () =&gt;
+      lastValueFrom(
+        this.http.delete&lt;Response&gt;(`https://jsonplaceholder.typicode.com/posts/${id}`),
+      ),
+      onSuccess: () =&gt; {
+        this.#queryClient.invalidateQueries({
+          queryKey: [&#39;posts&#39;, id, &#39;comments&#39;]
+        })
+      },
+  }))
+
+  //...
+}</code></pre>
+            <p>The flow within Angular Query&#39;s Mutations is to make a set of query keys to be invalidated. Whenever any of those queries become active again (or they are already active) they&#39;d be revalidated. Along with <strong>SWR</strong> applied.</p>
+            <p>Let&#39;s consider an example mutation where we <strong>update</strong> a Post entity with <code>id:2</code>. The question is: <strong>what resources could be affected</strong>? That&#39;s a great example of why <strong>queries are declarative</strong>. Let&#39;s consider following keys:</p>
+            <ul>
+              <li><code>[&quot;posts&quot;, &quot;detail&quot;, 2]</code> - this key definitely has to be invalidated since it is THE Post entity changed</li>
+              <li><code>[&quot;posts&quot;, &quot;list&quot;, {page: 1}]</code> - maybe our <em>Post(id:2)</em> is included in the first page</li>
+              <li><code>[&quot;posts&quot;, &quot;list&quot;]</code> - maybe it&#39;s also included within the <em>default</em> Post collection or <em>entire</em> Posts collection (whatever <code>[&quot;posts&quot;, &quot;list&quot;]</code> is in our app - <strong>it&#39;s our responsibility to design query keys carefully</strong>)</li>
+            </ul>
+            <p><img src="images/blog/blog-angular-query-invalidating-queries-by-keys.png" alt="Angular Query Invalidating queries by keys" /></p>
+            <h2 id="summary">Summary</h2>
+            <p>We&#39;ve learned the concepts of Queries and Mutations, their responsibilities, and how one affects the lifecycle of another.</p>
+            <p>
+              The biggest strength of Angular Query (and <a href="https://tanstack.com/query/latest">other Query-family adapters of Tanstack Query</a>) is the little amount of code required to implement synchronization of server state with client applications. Of course, including lots of features most applications need anyway, as well as handling various edge cases. There&#39;s still a lot to
+              discuss about the features, the edge cases, and good practices.
+            </p>
+            <p>Let me know if you appreciated this post either in comments or on <a href="https://twitter.com/tomasz_ducin">twitter/X</a>.</p>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves &trade; working with people. Ex-theatre actor. 4
+                espressos a day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                  <span class="label">Twitter</span>
+                  Follow me on X/twitter for tech-related updates.
+                </a>
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/watch?v=IYikhsDVvic&list=PLr2xHVWDKMvywT9iZRtATXh_e9E9XbIl4" class="icon fa-youtube-play"><span class="label">Videos</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="http://slides.com/ducin" class="icon fa-slideshare"><span class="label">Slides</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

@@ -45,6 +45,21 @@
     "coverImageFilename": "cover-low-angle-metal-structure.png"
   },
   {
+    "title": "Angular Query Core Concepts",
+    "sourceFile": "angular-query-core-concepts",
+    "keywords": ["Angular", "Query", "Signals", "Data Loading", "Data Refetching", "Tanstack"],
+    "description": "This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it.",
+    "publishedDate": "2024-01-25",
+    "readingTime": "11 min read",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/moon-eclipse-F-pSZO_jeE8",
+      "title": "Moon Eclipse",
+      "authorURL": "https://unsplash.com/@sarahleejs",
+      "author": "Jongsun Lee"
+    },
+    "coverImageFilename": "cover-eclipse.png"
+  },
+  {
     "title": "There are no &quot;hot&quot; Observables in RxJS",
     "sourceFile": "there-are-no-hot-observables-in-rxjs",
     "keywords": [
