@@ -1,4 +1,5 @@
 const { gtmTpl } = require('./gtm-tpl')
+const { senderTpl } = require('./sender-tpl')
 const { footerTpl } = require('./footer-tpl')
 const { menuTpl } = require('./menu-tpl')
 
@@ -50,6 +51,7 @@ const pageTpl = ({
   </head>
   <body>
   ${gtmTpl()}
+  ${senderTpl()}
     <div id="page-wrapper">
       <header id="header">
         <h1><a href="/">${topLink}</a></h1>

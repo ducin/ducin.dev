@@ -3947,3 +3947,19 @@ ul.toc ul {
 	display: block;
 	border-style: none;
 }
+
+.email-subscribe h4, .email-subscribe p {
+	/* color: rgb(147, 112, 22) !important; */
+}
+
+.email-subscribe .subscribe-header {
+	font-size: 2em;
+}
+.email-subscribe sender-form-field {
+	/* color: rgb(87, 87, 44) !important; */
+}
+
+.email-subscribe iframe {
+    /* width: 100% !important; */
+    margin: 0 auto;
+}

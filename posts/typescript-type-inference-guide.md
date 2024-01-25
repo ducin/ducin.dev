@@ -237,6 +237,8 @@ export function pipe<T, A, B, C, D, E, F, G, H, I>(fn1: UnaryFunction<T, A>, fn2
 
 As said, it is a limitation, but **TypeScript libraries users don't suffer from it. Rather, TypeScript libraries/typedefs authors have to write it down. So the probability you'd fall into such situation is super small.**
 
+<% SUBSCRIBE %>
+
 ## Example data structure
 
 In the following sections we'll use the following data. We've got a collection of music bands with their names and genres assigned:
