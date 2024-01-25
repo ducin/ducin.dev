@@ -66,7 +66,7 @@ First things first: **queries are declarative**. In other words, with Angular Qu
 
 Angular Query will fetch it for you, **when it decides to**. It's basically yet another form of [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control).
 
-You can think of a query as if **an engine will supply your component with some server data**. The engine will **store** it, will **cache** it, will **maintain timers** to determine whether the data should be **refetched** or not. All this is engine's responsibility. Developers only declare the **`component -> data` dependency**.
+You can think of a query as if **an engine supplied your component with some server data**. The engine will **store** it, will **cache** it, will **maintain timers** to determine whether the data should be **refetched** or not. All this is engine's responsibility. Developers only declare the **`component -> data` dependency**.
 
 ### Query vs manual fetch vs redux
 
@@ -210,13 +210,13 @@ It's worth noting that, due to the [Stale-While-Revalidate](https://web.dev/arti
 
 ## Mutations
 
-If we bring all query-related concepts altogether and treat it as one big query concept, then Angular Query will has only one more new concept: a **Mutation**.
+If we bring all query-related concepts altogether and treat it as one big query concept, then Angular Query brings only one more new concept: a **Mutation**.
 
 When considering typical CRUD operations, following is a proper match:
 - READ - **queries**
 - CREATE, UPDATE and DELETE - **mutations**
 
-A Mutation, an **imperative** concept, is a wrapper over modifying server data. Apart from sending the request to the server, it provides functionalities for UI state management, handling optimistic updates, and retrying failed mutations. But first and foremost, **a mutation is often bound to certain query keys in order to invalidate them**.
+The Mutation, an **imperative** concept, is a wrapper over modifying server data. Apart from sending the request to the server, it provides functionalities for UI state management, handling optimistic updates, and retrying failed mutations. But first and foremost, **a mutation is often bound to certain query keys in order to invalidate them**.
 
 Let's revisit our Query Keys hierarchy:
 - `GET /posts` - `["posts", "list"]`

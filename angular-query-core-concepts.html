@@ -188,7 +188,7 @@
             </blockquote>
             <p>Angular Query will fetch it for you, <strong>when it decides to</strong>. It&#39;s basically yet another form of <a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>.</p>
             <p>
-              You can think of a query as if <strong>an engine will supply your component with some server data</strong>. The engine will <strong>store</strong> it, will <strong>cache</strong> it, will <strong>maintain timers</strong> to determine whether the data should be <strong>refetched</strong> or not. All this is engine&#39;s responsibility. Developers only declare the
+              You can think of a query as if <strong>an engine supplies your component with some server data</strong>. The engine will <strong>store</strong> it, will <strong>cache</strong> it, will <strong>maintain timers</strong> to determine whether the data should be <strong>refetched</strong> or not. All this is engine&#39;s responsibility. Developers only declare the
               <strong><code>component -&gt; data</code> dependency</strong>.
             </p>
             <h3 id="query-vs-manual-fetch-vs-redux">Query vs manual fetch vs redux</h3>
@@ -238,7 +238,7 @@ export class PostComponent {
 
             <div class="email-subscribe">
               <p class="subscribe-header">Get notified about blog posts, recordings and workshops!</h4>
-              <p>Subscribe to Ducin.dev in and you'll get notified when new content is published. Expect in-depth posts, recordings and online workshops. The topics include: JS/TS, Angular, React and related tech.</p>
+              <p>Subscribe to Ducin.dev and you'll get notified when new content is published. Expect in-depth posts, recordings and online workshops. The topics include: JS/TS, Angular, React and related tech.</p>
               <div style="text-align: left" class="sender-form-field" data-sender-form-id="lrt2rokxero62a36uep"></div>
             </div>
 
@@ -325,13 +325,13 @@ export class PostComponent {
               previously or errored etc (so many edge-cases covered here!) Angular Query might decide to revalidate your potentially stale data. So the action of (re)fetching could take place at any of the states.
             </p>
             <h2 id="mutations">Mutations</h2>
-            <p>If we bring all query-related concepts altogether and treat it as one big query concept, then Angular Query will has only one more new concept: a <strong>Mutation</strong>.</p>
+            <p>If we bring all query-related concepts altogether and treat it as one big query concept, then Angular Query brings only one more new concept: a <strong>Mutation</strong>.</p>
             <p>When considering typical CRUD operations, following is a proper match:</p>
             <ul>
               <li>READ - <strong>queries</strong></li>
               <li>CREATE, UPDATE and DELETE - <strong>mutations</strong></li>
             </ul>
-            <p>A Mutation, an <strong>imperative</strong> concept, is a wrapper over modifying server data. Apart from sending the request to the server, it provides functionalities for UI state management, handling optimistic updates, and retrying failed mutations. But first and foremost, <strong>a mutation is often bound to certain query keys in order to invalidate them</strong>.</p>
+            <p>The Mutation, an <strong>imperative</strong> concept, is a wrapper over modifying server data. Apart from sending the request to the server, it provides functionalities for UI state management, handling optimistic updates, and retrying failed mutations. But first and foremost, <strong>a mutation is often bound to certain query keys in order to invalidate them</strong>.</p>
             <p>Let&#39;s revisit our Query Keys hierarchy:</p>
             <ul>
               <li><code>GET /posts</code> - <code>[&quot;posts&quot;, &quot;list&quot;]</code></li>
