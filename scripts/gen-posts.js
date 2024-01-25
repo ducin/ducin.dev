@@ -5,6 +5,7 @@ const path = require('path')
 const toc = require('markdown-toc')
 const myMarked = require('marked')
 const prettier = require("prettier")
+const { subscribeTpl } = require('../templates/subscribe-tpl')
 
 const { absoluteUrl } = require('./urls')
 const { loadPosts } = require('./load-posts')
@@ -14,6 +15,7 @@ const { blogFooterTpl } = require('../templates/blog-footer-tpl')
 const { commentsTpl } = require('../templates/comments-tpl')
 
 const TOCPlaceholder = '<% TOC %>'
+const SubscribePlaceholder = '<% SUBSCRIBE %>'
 
 const postSourceMarkdownFilepath = (name) => path.join(__dirname, `../posts/${name}.md`)
 const postTargetHTMLFilepath = (name) => (`./${name}.html`)
@@ -26,7 +28,9 @@ const generatePostHTML = async (post) => {
     sourceFile, coverImageFilename, githubURL } = post
   const origMD = '' + fs.readFileSync(postSourceMarkdownFilepath(sourceFile))
   const TOCContent = '## Table of Contents\n\n' + toc(origMD).content
-  const MDWithTOC = origMD.replace(TOCPlaceholder, TOCContent)
+  const MDWithTOC = origMD
+    .replace(TOCPlaceholder, TOCContent)
+    .replace(SubscribePlaceholder, subscribeTpl())
   let output = myMarked(MDWithTOC)
 
   const coverImageFilepath = path.join(__dirname, '..', 'images/blog', coverImageFilename);

@@ -188,7 +188,7 @@
             </blockquote>
             <p>Angular Query will fetch it for you, <strong>when it decides to</strong>. It&#39;s basically yet another form of <a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>.</p>
             <p>
-              You can think of a query as if <strong>an engine supplies your component with some server data</strong>. The engine will <strong>store</strong> it, will <strong>cache</strong> it, will <strong>maintain timers</strong> to determine whether the data should be <strong>refetched</strong> or not. All this is engine&#39;s responsibility. Developers only declare the
+              You can think of a query as if <strong>an engine supplied your component with some server data</strong>. The engine will <strong>store</strong> it, will <strong>cache</strong> it, will <strong>maintain timers</strong> to determine whether the data should be <strong>refetched</strong> or not. All this is engine&#39;s responsibility. Developers only declare the
               <strong><code>component -&gt; data</code> dependency</strong>.
             </p>
             <h3 id="query-vs-manual-fetch-vs-redux">Query vs manual fetch vs redux</h3>
@@ -235,9 +235,8 @@ export class PostComponent {
   //...
 }</code></pre>
             <p><em>The engine</em> I mentioned above is the <code>QueryClient</code> which will store the data within the <code>QueryCache</code>. The Query Key will be discussed later.</p>
-
             <div class="email-subscribe">
-              <p class="subscribe-header">Get notified about blog posts, recordings and workshops!</h4>
+              <h4 class="subscribe-header">Get notified about blog posts, recordings and workshops!</h4>
               <p>Subscribe to Ducin.dev and you'll get notified when new content is published. Expect in-depth posts, recordings and online workshops. The topics include: JS/TS, Angular, React and related tech.</p>
               <div style="text-align: left" class="sender-form-field" data-sender-form-id="lrt2rokxero62a36uep"></div>
             </div>
