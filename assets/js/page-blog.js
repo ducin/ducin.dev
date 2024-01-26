@@ -1,3 +1,3 @@
 jQuery(function() {
-	hljs.initHighlightingOnLoad();
+	hljs.highlightAll();
 });
