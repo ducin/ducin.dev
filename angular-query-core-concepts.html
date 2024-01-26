@@ -136,7 +136,7 @@
             </ul>
             <h2 id="tldr---introduction-to-angular-query">TL;DR; - Introduction to Angular Query</h2>
             <p><strong>Angular Query is a state management library highly specialized in synchronizing the server data with client applications. It does this one thing - but does it very well. It removes all concepts and abstractions that are not necessary to accomplish this job. As a consequence, developers become more productive</strong></p>
-            <p>If your application includes lots of datatables, grids, listings and other &quot;<em>widgets</em>&quot; which fetch and display server data - you must give Angular Query a try.</p>
+            <p>If your application includes lots of data-tables, grids, listings and other &quot;<em>widgets</em>&quot; which fetch and display server data - you must give Angular Query a try.</p>
             <iframe width="100%" height="500" src="https://stackblitz.com/edit/tanstack-angular-query?embed=1&file=src%2Fapp.ts"></iframe>
 
             <hr />
@@ -174,7 +174,7 @@
               <li>🔥 <strong>automatically fetching the server data</strong></li>
               <li>🔥 <strong>your currently existing components</strong></li>
               <li>🔥 <strong>need</strong> (but not earlier)</li>
-              <li>🔥 and if the data could become hypothetically outdated (i.e. <strong>stale</strong>), it&#39;ll get <strong>refetched automatically</strong></li>
+              <li>🔥 and if the data could become hypothetically outdated (i.e. <strong>stale</strong>), it&#39;ll get <strong>re-fetched automatically</strong></li>
               <li>🔥 and, of course, <strong>shared across all components</strong> which need this data</li>
             </ul>
             <hr />
@@ -187,7 +187,7 @@
             </blockquote>
             <p>Angular Query will fetch it for you, <strong>when it decides to</strong>. It&#39;s basically yet another form of <a href="https://en.wikipedia.org/wiki/Inversion_of_control">Inversion of Control</a>.</p>
             <p>
-              You can think of a query as if <strong>an engine supplied your component with some server data</strong>. The engine will <strong>store</strong> it, will <strong>cache</strong> it, will <strong>maintain timers</strong> to determine whether the data should be <strong>refetched</strong> or not. All this is engine&#39;s responsibility. Developers only declare the
+              You can think of a query as if <strong>an engine supplied your component with some server data</strong>. The engine will <strong>store</strong> it, will <strong>cache</strong> it, will <strong>maintain timers</strong> to determine whether the data should be <strong>re-fetched</strong> or not. All this is engine&#39;s responsibility. Developers only declare the
               <strong><code>component -&gt; data</code> dependency</strong>.
             </p>
             <h3 id="query-vs-manual-fetch-vs-redux">Query vs manual fetch vs redux</h3>
@@ -243,7 +243,7 @@ export class PostComponent {
             <h3 id="query-client--query-cache">Query Client &amp; Query Cache</h3>
             <p>
               First of all, in order to effectively use Angular Query <strong>it&#39;s ok to have no idea</strong> what <code>QueryClient</code> and <code>QueryCache</code> is 😉. Vast majority of applications will never need to interact with <code>QueryCache</code> directly (it&#39;s handled by <code>QueryClient</code>). The only thing required is to provide the <code>QueryClient</code> (usually,
-              donce once per entire application). <strong>This section is intended only to explain the underlying concepts.</strong>
+              done once per entire application). <strong>This section is intended only to explain the underlying concepts.</strong>
             </p>
             <p>Angular Query stores the data in <strong>a cache</strong> that is later exposed to components via <code>injectQuery</code>. Most often one cache per application is enough. The cache keys are, so called, Query Keys.</p>
             <p><img src="images/blog/blog-angular-query-client-and-cache-hierarchy.png" alt="Angular Query Client and Cache Hierarchy" /></p>
@@ -267,7 +267,7 @@ export class PostComponent {
             <pre><code class="language-ts">queryClient.invalidateQueries({
   queryKey: [&#39;posts&#39;, &#39;list&#39;]
 })</code></pre>
-            <p>only the <em>list</em> entries will be affacted. However, when invalidating posts:</p>
+            <p>only the <em>list</em> entries will be affected. However, when invalidating posts:</p>
             <pre><code class="language-ts">queryClient.invalidateQueries({
   queryKey: [&#39;posts&#39;]
 })</code></pre>

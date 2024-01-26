@@ -10,7 +10,7 @@ This is the start of an entire series on Angular Query. Expect more articles abo
 
 **Angular Query is a state management library highly specialized in synchronizing the server data with client applications. It does this one thing - but does it very well. It removes all concepts and abstractions that are not necessary to accomplish this job. As a consequence, developers become more productive**
 
-If your application includes lots of datatables, grids, listings and other "_widgets_" which fetch and display server data - you must give Angular Query a try.
+If your application includes lots of data-tables, grids, listings and other "_widgets_" which fetch and display server data - you must give Angular Query a try.
 
 <iframe width="100%" height="500" src="https://stackblitz.com/edit/tanstack-angular-query?embed=1&file=src%2Fapp.ts"></iframe>
 
@@ -48,7 +48,7 @@ So, in other words, React/Angular/... Query is:
 - 🔥 **automatically fetching the server data**
 - 🔥 **your currently existing components**
 - 🔥 **need** (but not earlier)
-- 🔥 and if the data could become hypothetically outdated (i.e. **stale**), it'll get **refetched automatically**
+- 🔥 and if the data could become hypothetically outdated (i.e. **stale**), it'll get **re-fetched automatically**
 - 🔥 and, of course, **shared across all components** which need this data
 
 ----
@@ -65,7 +65,7 @@ First things first: **queries are declarative**. In other words, with Angular Qu
 
 Angular Query will fetch it for you, **when it decides to**. It's basically yet another form of [Inversion of Control](https://en.wikipedia.org/wiki/Inversion_of_control).
 
-You can think of a query as if **an engine supplied your component with some server data**. The engine will **store** it, will **cache** it, will **maintain timers** to determine whether the data should be **refetched** or not. All this is engine's responsibility. Developers only declare the **`component -> data` dependency**.
+You can think of a query as if **an engine supplied your component with some server data**. The engine will **store** it, will **cache** it, will **maintain timers** to determine whether the data should be **re-fetched** or not. All this is engine's responsibility. Developers only declare the **`component -> data` dependency**.
 
 ### Query vs manual fetch vs redux
 
@@ -112,7 +112,7 @@ export class PostComponent {
 
 ### Query Client & Query Cache
 
-First of all, in order to effectively use Angular Query **it's ok to have no idea** what `QueryClient` and `QueryCache` is 😉. Vast majority of applications will never need to interact with `QueryCache` directly (it's handled by `QueryClient`). The only thing required is to provide the `QueryClient` (usually, donce once per entire application). **This section is intended only to explain the underlying concepts.**
+First of all, in order to effectively use Angular Query **it's ok to have no idea** what `QueryClient` and `QueryCache` is 😉. Vast majority of applications will never need to interact with `QueryCache` directly (it's handled by `QueryClient`). The only thing required is to provide the `QueryClient` (usually, done once per entire application). **This section is intended only to explain the underlying concepts.**
 
 Angular Query stores the data in **a cache** that is later exposed to components via `injectQuery`. Most often one cache per application is enough. The cache keys are, so called, Query Keys.
 
@@ -140,7 +140,7 @@ queryClient.invalidateQueries({
   queryKey: ['posts', 'list']
 })
 ```
-only the *list* entries will be affacted. However, when invalidating posts:
+only the *list* entries will be affected. However, when invalidating posts:
 ```ts
 queryClient.invalidateQueries({
   queryKey: ['posts']
