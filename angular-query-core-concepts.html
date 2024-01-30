@@ -89,50 +89,44 @@
             <p>
               <em> Thursday, 25 January 2024 • 📚 11 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/angular-query-core-concepts.md">edit on Github</a> </em>
             </p>
-            <h1 id="angular-query-core-concepts">Angular Query Core Concepts</h1>
             <p>This post introduces <strong>Angular Query</strong> to Angular Developers: <strong>why you should care</strong>, what is the <strong>mental model</strong>, <strong>how it works</strong> and how your applications can <strong>benefit</strong> from it.</p>
             <p>This is the start of an entire series on Angular Query. Expect more articles about it 💪</p>
             <h2 id="table-of-contents">Table of Contents</h2>
             <ul>
+              <li><a href="#tldr---introduction-to-angular-query">TL;DR; - Introduction to Angular Query</a></li>
+              <li><a href="#disclaimer-1-experimental">Disclaimer 1: experimental</a></li>
               <li>
-                <a href="#angular-query-core-concepts">Angular Query Core Concepts</a>
+                <a href="#disclaimer-2-ngneatquery">Disclaimer 2: <code>@ngneat/query</code></a>
+              </li>
+              <li><a href="#why-would-you-even-care">Why would you even care</a></li>
+              <li>
+                <a href="#what-is-reactangular-query-good-at">What is React/Angular/... Query good at?</a>
                 <ul>
-                  <li><a href="#tldr---introduction-to-angular-query">TL;DR; - Introduction to Angular Query</a></li>
-                  <li><a href="#disclaimer-1-experimental">Disclaimer 1: experimental</a></li>
-                  <li>
-                    <a href="#disclaimer-2-ngneatquery">Disclaimer 2: <code>@ngneat/query</code></a>
-                  </li>
-                  <li><a href="#why-would-you-even-care">Why would you even care</a></li>
-                  <li><a href="#what-is-reactangular-query-good-at">What is React/Angular/... Query good at?</a></li>
+                  <li><a href="#core-concepts">Core Concepts</a></li>
                 </ul>
               </li>
               <li>
-                <a href="#core-concepts">Core Concepts</a>
+                <a href="#query">Query</a>
                 <ul>
-                  <li>
-                    <a href="#query">Query</a>
-                    <ul>
-                      <li><a href="#query-vs-manual-fetch-vs-redux">Query vs manual fetch vs redux</a></li>
-                      <li><a href="#query-client--query-cache">Query Client &amp; Query Cache</a></li>
-                      <li><a href="#query-keys">Query Keys</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="#cleanups">Cleanups</a>
-                    <ul>
-                      <li><a href="#query-states">Query States</a></li>
-                    </ul>
-                  </li>
-                  <li>
-                    <a href="#revalidation">Revalidation</a>
-                    <ul>
-                      <li><a href="#stale-while-revalidate">Stale While Revalidate</a></li>
-                    </ul>
-                  </li>
-                  <li><a href="#mutations">Mutations</a></li>
-                  <li><a href="#summary">Summary</a></li>
+                  <li><a href="#query-vs-manual-fetch-vs-redux">Query vs manual fetch vs redux</a></li>
+                  <li><a href="#query-client--query-cache">Query Client &amp; Query Cache</a></li>
+                  <li><a href="#query-keys">Query Keys</a></li>
                 </ul>
               </li>
+              <li>
+                <a href="#cleanups">Cleanups</a>
+                <ul>
+                  <li><a href="#query-states">Query States</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#revalidation">Revalidation</a>
+                <ul>
+                  <li><a href="#stale-while-revalidate">Stale While Revalidate</a></li>
+                </ul>
+              </li>
+              <li><a href="#mutations">Mutations</a></li>
+              <li><a href="#summary">Summary</a></li>
             </ul>
             <h2 id="tldr---introduction-to-angular-query">TL;DR; - Introduction to Angular Query</h2>
             <p><strong>Angular Query is a state management library highly specialized in synchronizing the server data with client applications. It does this one thing - but does it very well. It removes all concepts and abstractions that are not necessary to accomplish this job. As a consequence, developers become more productive</strong></p>
@@ -378,8 +372,8 @@ export class PostComponent {
             <hr />
             <div class="blog-footer">
               <p>
-                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves &trade; working with people. Ex-theatre actor. 4
-                espressos a day.
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves working with people. Ex-theatre actor. 4 espressos a
+                day.
               </p>
               <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
               <p>

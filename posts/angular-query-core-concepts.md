@@ -1,5 +1,3 @@
-# Angular Query Core Concepts
-
 This post introduces **Angular Query** to Angular Developers: **why you should care**, what is the **mental model**, **how it works** and how your applications can **benefit** from it.
 
 This is the start of an entire series on Angular Query. Expect more articles about it 💪

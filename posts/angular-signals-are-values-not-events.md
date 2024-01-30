@@ -1,5 +1,3 @@
-# Signals are VALUES, not EVENTS
-
 Recent release of [Angular 17.1](https://github.com/angular/angular/releases/tag/17.1.0) (yesterday, 18th January 2024), introduces **Signal Inputs** ([read more about Angular Signal Input API here](https://ducin.dev/angular-diving-into-type-system-behind-angular-signals)):
 
 <blockquote class="twitter-tweet"><p lang="en" dir="ltr">Signal Inputs coming soon to <a href="https://twitter.com/hashtag/angular?src=hash&amp;ref_src=twsrc%5Etfw">#angular</a> !!!!!1 <a href="https://t.co/aBuzH9lnaP">pic.twitter.com/aBuzH9lnaP</a></p>&mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1740305588280574153?ref_src=twsrc%5Etfw">December 28, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>

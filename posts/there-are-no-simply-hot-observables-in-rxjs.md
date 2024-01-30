@@ -1,8 +1,6 @@
-# There are no "hot" Observables in RxJS
-
 <small><i>Photo by <a href="https://unsplash.com/@pawel_czerwinski?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Pawel Czerwinski</a> on <a href="https://unsplash.com/photos/red-and-blue-wallpaper-6lQDFGOB1iw?utm_content=creditCopyText&utm_medium=referral&utm_source=unsplash">Unsplash</a></i></small>
 
-So I caught your attention? Good! Because I want you to look at the _"HOT and COLD" Observables_ concept from a different perspective... it's one of the **most confusing oversimplifications** I've had to deconstruct over and over again since quite a long time.
+So I caught your attention? 😈 Good! Because I want you to look at the _"HOT and COLD" Observables_ concept from a different perspective... it's one of the **most confusing oversimplifications** I've had to deconstruct over and over again since quite a long time.
 
 Okay, to be fair... it is quite useful when we introduce RxJS to a **complete beginner**. But as soon as they dive into real project usecases, e.g. **late subscription** of a **newly rendered** component that **subscribes** to a (behavior? replay?) **subject** which had **already emitted something** - then the "_hot and cold_" concept is... harmful.
 
@@ -14,6 +12,16 @@ However, I would add: _useful, but **until a certain point!**_
 
 <% TOC %>
 
+## Common ground
+
+Before we move on let's make sure we're all on the same page. What is a *hot observable*? The [Rxjs.dev official docs](https://rxjs.dev/guide/glossary-and-semantics#hot) define it the following way:
+
+> *An observable is "hot", when its producer was created outside of the context of the subscribe action. [...]*
+
+Some people 
+
+⚠️ BTW there seems to be some *belief* 😏 as if hot Observables are those Observables which "emit infinite amount of values". That's pure nonsense.
+
 ## False dichotomy
 
 The "problem" with the "_hot and cold_" concept is that it implicitly suggests that there are **two types** of Observables. Only two. And yes, when you read the explanations ([like this legendary one by Thoughtram](https://blog.thoughtram.io/angular/2016/06/16/cold-vs-hot-observables.html)), you know that **reality is more complex** 🙂 but when I join a team in order to do some [frontend consultancy services](https://ducin.dev) (or run a [Angular/Rx training](https://ducin.dev/trainings)), **developers most often think in either-or**. Either hot or cold.
@@ -22,7 +30,7 @@ I hope you are one of those truly passionate devs who dig into things, dive real
 
 So it depends on how we count these things... but as much as we dive into Rx internals, we'd find out there are **at least 32 different types of hot streams**.
 
-## 32 hot Observable types? 😲
+## at least 32 different types of hot Observables? 😲
 
 Yep, you heard it right. In very short, 32 is a [Cartesian product](https://en.wikipedia.org/wiki/Cartesian_product) of:
 - 4 types of subjects (4)
@@ -56,25 +64,27 @@ Observable streams don't just emit values. Strictly speaking, there are 3 types 
 - complete()
 and all operators, subjects, etc - everything in Rx processes all of them. Sometimes they just pass the notification through down to the downstream, sometimes they do more interesting things - but all 3 notifications are always involved.
 
-![3 types of notifications in RxJS](https://ducin.dev/images/blog/blog-rxjs-3-types-of-notifications.svg)
+![3 types of notifications in RxJS](/images/blog/blog-rxjs-3-types-of-notifications.png)
 
 ### Fact 2: Unicasting and Multicasting
 
 All streams can typically serve only one consumer - all operators, higher-order streams, etc. Being able to emit notifications only to one target is called **Unicasting**.
 
-![RxJS Unicasting](https://ducin.dev/images/blog/blog-rxjs-unicasting.svg)
+![RxJS Unicasting](/images/blog/blog-rxjs-unicasting.png)
 
 ... all, except for Subjects - these are the only ones which can serve multiple consumers (and it's actually the main point why they exist...). This "ability" is called **Multicasting**.
 
-![RxJS Multicasting](https://ducin.dev/images/blog/blog-rxjs-multicasting.svg)
+![RxJS Multicasting](/images/blog/blog-rxjs-multicasting.png)
 
 ### Fact 3: observables are lazy by default
 
 It's a quite well known fact that, until an observable gets subscribed to, it doesn't emit a value. That's fair, since why producing items, if there'd be no one to consume them? Only when they're is some subscriber interested in the data, it makes sense to produce and emit the notifications.
 
-![RxJS Multicasting](https://ducin.dev/images/blog/blog-rxjs-no-subscriber-no-producer.svg)
+![RxJS Multicasting](/images/blog/blog-rxjs-no-subscriber-no-producer.png)
 
 Yep, **produce**...
+
+<% SUBSCRIBE %>
 
 ### Fact 4: producer-consumer pattern
 
@@ -122,13 +132,13 @@ All these apply to situations where we do have a subject ("hot", after all).
 
 ### reset on error
 
-![RxJS Subject receiving error notification](https://ducin.dev/images/blog/blog-rxjs-subject-receiving-error.svg)
+![RxJS Subject receiving error notification](/images/blog/blog-rxjs-subject-receiving-error.png)
 
 If **any of the producers emits an `ERROR` notification** down to the subject - **should it reset**? Reconnect? Or - in our terminology - should a new producer be recreated?
 
 ### reset on complete
 
-![RxJS Subject receiving complete notification](https://ducin.dev/images/blog/blog-rxjs-subject-receiving-complete.svg)
+![RxJS Subject receiving complete notification](/images/blog/blog-rxjs-subject-receiving-complete.png)
 
 Similar as above, but applies to `COMPLETE` notification.
 
@@ -136,7 +146,7 @@ Similar as above, but applies to `COMPLETE` notification.
 
 Imagine the subject initially had no subscribers. Then first subscriber came, then the second one. The subject counts all active subscribers all the time. Now, the subscribers go away, and as they unsubscribe, the counter (**ref count**) goes down.
 
-![RxJS Subject with refcount zero](https://ducin.dev/images/blog/blog-rxjs-subject-reaching-refcount-zero.svg)
+![RxJS Subject with refcount zero](/images/blog/blog-rxjs-subject-reaching-refcount-zero.png)
 
 And the question arises: **if the `refCount` drops to zero** (no active subscribers), **should we keep the connection to the producer active**? In other words - shall we keep the producer live?
 
@@ -146,7 +156,7 @@ Remember, of the producer is live, it will keep on emitting items according to i
 
 Now comes my favorite part 😁 - source code: let's dive into RxJS `ShareReplay` sources. This one is especially good to look at, add it specifies config parameters exposed by the `share` operator:
 
-![RxJS source code of shareReplay](https://ducin.dev/images/blog/blog-screenshot-shareReplay.png)
+![RxJS source code of shareReplay](/images/blog/blog-screenshot-shareReplay.png)
 
 `shareReplay` is just a specialized version of `share`. Apart from accepting config (as input parameters) and preparing the new config (to be passed to `share`) - apart from that, `shareReplay()` just calls `share()`.
 
@@ -168,9 +178,15 @@ Being hot is about **multicasting** (sharing the connection with the producer or
 
 ... all have **completely different runtime behavior**. Failing to acknowledge the difference might lead to serious bugs and/or unintentional behavior.
 
+## One more case
+
+As previously said, there are more than 32 different types of "hotness". How come? We already mentioned [connectable observables](https://rxjs.dev/api/index/function/connectable). But there's one more, **slightly exotic, though technically doable**. And that is: an observable that gets the values from a producer who has been created totally outside of the context of any observables whatsoever. Imagine just a producer which, whenever creating a new thing, it calls a function - it will keep on doing that no matter if any observables and/or subscribers are there or not. If a new subscriber arrives, the void function just gets replaced (or added, depending on the implementation) to feed the subscriber. Anyway, the lifespan of the producer doesn't depend on subscribers and, especially, _producer is not created within the subscription context_.
+
+That's just an exotic example, but all in all, don't stick to the `32` number. Remember that **there are dozens of different flavors of "*hotness*"**.
+
 ## Conclusion
 
-The terms **unicasting**/**multicasting** precisely define whether a subject is being used or not. Only this is way more precise than "_cold and hot_" distinction.
+The terms **unicasting**/**multicasting** precisely define whether a subject is being used or not. Only this is already way more precise than "_cold and hot_" distinction.
 
 A **cold stream is a lazy, unicasted stream** which **creates a new producer per each subscriber.**
 
@@ -189,10 +205,16 @@ stream$.pipe(
 )
 ```
 
-**My strong recommendation**: as soon as one has grasped the idea of Observables, **stop using the _"hot" (and cold) streams_ metaphor**. It introduces false dichotomy and pretend that **things are simple**.
+And when we revisit the official definition of a "*hot observable*":
+
+> *An observable is "hot", when its producer was created outside of the context of the subscribe action. [...]*
+
+the definition determines **neither the behavior nor the lifespan** of the producer, which make a **huge difference**.
+
+**My strong recommendation**: as soon as one has grasped the idea of Observables, use more precise terms and **stop using the ambiguous _"hot" (and cold) streams_ metaphor**. It introduces false dichotomy and pretends that **things are simple**.
 
 **The more we know, the more we understand they aren't.**
 
 ----
 
-I'd like to thank [Jan-Niklas Wortmann](https://twitter.com/niklas_wortmann) for proof reading this article.
+I want to give special thanks to [Jan-Niklas Wortmann](https://twitter.com/niklas_wortmann) and [Bartosz Cytrowski](https://twitter.com/cytrowski) for proof reading this article 💪

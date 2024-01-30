@@ -1,5 +1,3 @@
-# TypeScript Type Inference Guide
-
 New Year is a good opportunity to start a new initiative - and here I go with the first post of a whole serie, where I explain mechanics of TypeScript and my experience of using it since late 2014 in big commercial projects (including sectors: finance, web analytics, ITIL, OSS).
 
 After reading this post, you'll learn:

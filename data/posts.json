@@ -75,8 +75,8 @@
     "coverImageFilename": "cover-eclipse.png"
   },
   {
-    "title": "There are no &quot;hot&quot; Observables in RxJS",
-    "sourceFile": "there-are-no-hot-observables-in-rxjs",
+    "title": "There are no simply &quot;hot&quot; Observables in RxJS",
+    "sourceFile": "there-are-no-simply-hot-observables-in-rxjs",
     "keywords": [
       "Angular",
       "RxJS",
@@ -87,16 +87,15 @@
       "Multicasting"
     ],
     "description": "The &quot;hot and cold&quot; observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the &quot;hot and cold&quot; concept is... harmful.",
-    "publishedDate": "2024-01-26",
-    "readingTime": "8 min read",
+    "publishedDate": "2024-01-31",
+    "readingTime": "9 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/red-and-blue-wallpaper-6lQDFGOB1iw",
       "title": "Red and Blue",
       "authorURL": "https://unsplash.com/@pawel_czerwinski",
       "author": "Pawel Czerwinski"
     },
-    "coverImageFilename": "cover-red-and-blue.png",
-    "workInProgress": true
+    "coverImageFilename": "cover-red-and-blue.png"
   },
   {
     "title": "Test",
