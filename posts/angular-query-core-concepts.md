@@ -2,6 +2,8 @@ This post introduces **Angular Query** to Angular Developers: **why you should c
 
 This is the start of an entire series on Angular Query. Expect more articles about it 💪
 
+Follow [Angular Query on twitter](https://twitter.com/angularquery).
+
 <% TOC %>
 
 ## TL;DR; - Introduction to Angular Query
