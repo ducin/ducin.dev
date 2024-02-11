@@ -36,40 +36,40 @@ We'll start with lots of examples. Take a look at the first one:
 
 🔍 initial value is used to infer the input's type, same as with ordinary signals:
 
-![signal usage screen](images/blog/blog-screenshot-signals-1.png)
+![signal usage screen](images/blog/min/blog-screenshot-signals-1.png)
 
 ⚠️ Input Signals are **READONLY**, which makes sense, since it's the parent component who can put new values (via templates) into the input signal, not us 😉
 
-![signal usage screen](images/blog/blog-screenshot-signals-2.png)
+![signal usage screen](images/blog/min/blog-screenshot-signals-2.png)
 
 One of my favorite design decisions:
 💪 taking advantage of (1) #typescript's possibilities and (2) applying best solutions from other frameworks. In this case: from React
 
 💜🩷💜 love it 🩷💜🩷
 
-![signal usage screen](images/blog/blog-screenshot-signals-3.png)
+![signal usage screen](images/blog/min/blog-screenshot-signals-3.png)
 
 Less exciting - and **IMHO** it should be **_avoided as much as possible_** (since it decreases readability and the understanding of how components exchange data) - **aliasing** is allowed:
 
 📡 aliased name is used by parent to pass the data
 🔐 the prop name is used internally (obviously)
 
-![signal usage screen](images/blog/blog-screenshot-signals-4.png)
+![signal usage screen](images/blog/min/blog-screenshot-signals-4.png)
 
 Another logical design decision:
 💪 since an input is **REQUIRED**, passing initial value makes no sense 😉 so it's removed from the signature
 
-![signal usage screen](images/blog/blog-screenshot-signals-5.png)
+![signal usage screen](images/blog/min/blog-screenshot-signals-5.png)
 
 Here the `initialValue` parameter is removed from the function (overload) signature. Or to be more precise - it's never added (never allowed) to be there 😉
 
 So, technically speaking, TypeScript would try to pass your initial as options object which obviously fails.
 
-![signal internals code](images/blog/blog-screenshot-signals-6.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-6.png)
 
 And one more example - `transform` is allowed only when passing both `ReadT` and `WriteT` type parameters. More on this later...
 
-![signal usage screen](images/blog/blog-screenshot-signals-7.png)
+![signal usage screen](images/blog/min/blog-screenshot-signals-7.png)
 
 <% SUBSCRIBE %>
 
@@ -77,20 +77,20 @@ And one more example - `transform` is allowed only when passing both `ReadT` and
 
 Now let's see 🍖 some internals 🥩
 
-![signal internals code](images/blog/blog-animation-meat.gif)
+![signal internals code](images/blog/min/blog-animation-meat.gif)
 
 To get a broad overview of the direction, you might be interested in taking a look at the ➡️ [Angular Team's _Sub-RFC 3: Signal-based Components_](https://github.com/angular/angular/discussions/49682) which deals with, more or less, how to make use of signals in Angular Components. Also, you can ➡️ [take a look at the code itself](https://github.com/angular/angular/tree/main/packages/core/src/authoring). Anyway, let's dive into the internals!
 
 We've got 2 new signal symbols:
 
-![signal internals code](images/blog/blog-screenshot-signals-8.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-8.png)
 
 it's the same usecase, as with the former unique Signal symbol - it allows to restrict compatibility across different (input) signals.
 
 For instance:
 ✅ one can assign the `InputSignal<number, number>` to an ordinary `Signal<number>`
 
-![signal internals code](images/blog/blog-screenshot-signals-9.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-9.png)
 
 Proof:
 
@@ -100,7 +100,7 @@ Proof:
 
 3. ❌ but the other way round it fails, since an ordinary string signal doesn't have the brand read/write signals.
 
-![signal compatibility proof code](images/blog/blog-screenshot-signals-10.png)
+![signal compatibility proof code](images/blog/min/blog-screenshot-signals-10.png)
 
 Reassigning signals, however, is not going to be anyhow common 😉. But the Angular compiler also makes use of the symbols internally.
 
@@ -111,21 +111,21 @@ s1 = input()
 s2 = input.required()
 ```
 
-![signal internals code](images/blog/blog-screenshot-signals-11.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-11.png)
 
 The sad thing, however, is that currently we cannot see its runtime.
 
 (_disclaimer: as mentioned above, ng v17.1 is expected very soon, this analysis uses `v17.0.1-next.5`_).
 
-![signal internals code](images/blog/blog-screenshot-signals-12.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-12.png)
 
 Now let's take a look back at input transform:
 
-![signal usage code](images/blog/blog-screenshot-signals-13.png)
+![signal usage code](images/blog/min/blog-screenshot-signals-13.png)
 
 However, you might be wondering what the heck is going on with this function overload and the strange declaration at the bottom:
 
-![Image description](images/blog/blog-screenshot-signals-14.png)
+![Image description](images/blog/min/blog-screenshot-signals-14.png)
 
 First of all, if we pass `<ReadT>` only, we **can't** pass the input transform (that's the same as with current 
 
@@ -134,21 +134,21 @@ First of all, if we pass `<ReadT>` only, we **can't** pass the input transform (
 ({ transform: ... })
 ```
 
-![signal internals code](images/blog/blog-screenshot-signals-15.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-15.png)
 
 However, if we pass **both** `<ReadT, WriteT>`, we can additionally pass the transform. Note that:
 - `ReadT` is the expression type you want to use inside your component
 - `WriteT` is the expression type that is passed from outside
 
-![signal internals code](images/blog/blog-screenshot-signals-16.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-16.png)
 
 Another example:
 
-![signal usage code](images/blog/blog-screenshot-signals-17.png)
+![signal usage code](images/blog/min/blog-screenshot-signals-17.png)
 
 Going back to our nice declaration 🥴 let's focus on `inputFunction` first:
 
-![signal internals code](images/blog/blog-screenshot-signals-18.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-18.png)
 
 It has 3 overloads on its own:
 - take no initial value and extend inner value with undefined
@@ -157,12 +157,12 @@ It has 3 overloads on its own:
 
 All usecases seen before 😎💪
 
-![signal internals code](images/blog/blog-screenshot-signals-19.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-19.png)
 
 All in all we've got 3 overloads for the `prop = input()` (optional)
 ... and 2 overloads for the `prop = input.required()` (required)
 
-![signal internals code](images/blog/blog-screenshot-signals-20.png)
+![signal internals code](images/blog/min/blog-screenshot-signals-20.png)
 
 Phew 😅 that was quite a lot. Hope you enjoyed that.
 

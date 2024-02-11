@@ -8,7 +8,7 @@ fs.writeFileSync('./videos.htm', pageTpl({
     author: 'Tomasz Ducin',
     keywords: 'Tomasz Ducin, Software Consultant, Interface Architect, Trainer, JavaScript, Trainings, Commercial Trainings, Presentations, Community, Professional',
     description: 'Independent Software Consultant / Interface Architect / Trainer working in Warsaw, Poland. IT Community Activist',
-    thumbnail: '/images/banner-s.jpg',
+    thumbnail: '/images/min/banner-s.jpg',
   },
   body: {
     topLink: 'ducin.dev',

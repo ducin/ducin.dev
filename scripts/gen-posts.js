@@ -5,6 +5,7 @@ const path = require('path')
 const toc = require('markdown-toc')
 const myMarked = require('marked')
 const prettier = require("prettier")
+const chalk = require('chalk')
 const { subscribeTpl } = require('../templates/subscribe-tpl')
 
 const { absoluteUrl } = require('./urls')
@@ -21,9 +22,10 @@ const postSourceMarkdownFilepath = (name) => path.join(__dirname, `../posts/${na
 const postTargetHTMLFilepath = (name) => (`./${name}.html`)
 
 const imageURL = (filepath, { absolute = true } = {}) =>
-  absolute ? absoluteUrl(`images/blog/${filepath}`) : `images/blog/${filepath}`
+  absolute ? absoluteUrl(`images/blog/min/${filepath}`) : `images/blog/min/${filepath}`
 
 const generatePostHTML = async (post) => {
+  console.log(chalk.green(`processing: ${post.sourceFile}...`))
   const { title, keywords, description, readingTime, publishedDate, coverImage,
     sourceFile, coverImageFilename, githubURL } = post
   const origMD = '' + fs.readFileSync(postSourceMarkdownFilepath(sourceFile))
@@ -33,9 +35,11 @@ const generatePostHTML = async (post) => {
     .replace(SubscribePlaceholder, subscribeTpl())
   let output = myMarked(MDWithTOC)
 
-  const coverImageFilepath = path.join(__dirname, '..', 'images/blog', coverImageFilename);
+  const coverImageFilepath = path.join(__dirname, '..', 'images/blog/min', coverImageFilename);
   if (!fs.existsSync(coverImageFilepath)) {
-    throw new Error(`File ${coverImageFilepath} does not exist`)
+    const message = `File ${coverImageFilepath} does not exist`
+    console.error(chalk.red(message))
+    throw new Error(message)
   }
 
   postTop = postContentTopTpl({
@@ -60,7 +64,7 @@ const generatePostHTML = async (post) => {
       thumbnailURL: imageURL(coverImageFilename),
       backgroundImageURL: imageURL(coverImageFilename, { absolute: false }),
       canonicalURL: absoluteUrl(`${sourceFile}`),
-      shortcutIconURL: absoluteUrl('images/td-logo-zolte-80.png'),
+      shortcutIconURL: absoluteUrl('images/min/td-logo-zolte-80.png'),
     },
     tags: {
       twitter: {
@@ -95,7 +99,14 @@ const generatePostHTML = async (post) => {
 
   output = await prettier.format(output, { parser: "html", printWidth: 400 });
 
-  fs.writeFileSync(postTargetHTMLFilepath(sourceFile), output)
+  try {
+    const targetFile = postTargetHTMLFilepath(sourceFile)
+    fs.writeFileSync(targetFile, output)
+    console.log(chalk.green(`...done: ${targetFile}`))
+  } catch (e) {
+    console.error(chalk.red(e))
+    throw e
+  }
 }
 
 for (const post of loadPosts()){

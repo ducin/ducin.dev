@@ -116,7 +116,7 @@ First of all, in order to effectively use Angular Query **it's ok to have no ide
 
 Angular Query stores the data in **a cache** that is later exposed to components via `injectQuery`. Most often one cache per application is enough. The cache keys are, so called, Query Keys.
 
-![Angular Query Client and Cache Hierarchy](images/blog/blog-angular-query-client-and-cache-hierarchy.png)
+![Angular Query Client and Cache Hierarchy](images/blog/min/blog-angular-query-client-and-cache-hierarchy.png)
 
 ### Query Keys
 
@@ -148,13 +148,13 @@ queryClient.invalidateQueries({
 ```
 both *lists* and *details* will be affected (and everything with the key starting with `posts`).
 
-![Angular Query Key Invalidation](images/blog/blog-angular-query-key-invalidation.png)
+![Angular Query Key Invalidation](images/blog/min/blog-angular-query-key-invalidation.png)
 
 That's also what I meant in the very beginning, that Angular Query is highly **declarative**.
 
 Whenever you inject a query (probably, to a component), you explicitly state the **query key**. This way **your data hierarchy and relations are well-organized**:
 
-![Angular Query Client, Cache and QueryFn](images/blog/blog-angular-query-client-cache-queryfn.png)
+![Angular Query Client, Cache and QueryFn](images/blog/min/blog-angular-query-client-cache-queryfn.png)
 
 Query Keys design, their good practices etc. is yet a different topic - but you should have a solid understanding of the concept by now.
 
@@ -164,7 +164,7 @@ All items within Angular Query make use of `DestroyRef` in order to clean up or 
 
 In case of `QueryClient`, the `DestroyRef` used belongs to **Environment Hierarchy's Root Injector**. In practice this means that Query Client would get destroyed (precisely: unmounted) when... when the entire application gets destroyed 😉.
 
-![Angular Query Injector inside Angular Devtools](images/blog/blog-screenshot-angular-query-injector-inside-angular-devtools.png)
+![Angular Query Injector inside Angular Devtools](images/blog/min/blog-screenshot-angular-query-injector-inside-angular-devtools.png)
 
 In case of each query, injected `DestroyRef` comes from **Element Injectors**. When the component gets destroyed, so is the query (precisely: unsubscribed).
 
@@ -255,7 +255,7 @@ Let's consider an example mutation where we **update** a Post entity with `id:2`
 - `["posts", "list", {page: 1}]` - maybe our *Post(id:2)* is included in the first page
 - `["posts", "list"]` - maybe it's also included within the *default* Post collection or *entire* Posts collection (whatever `["posts", "list"]` is in our app - **it's our responsibility to design query keys carefully**)
 
-![Angular Query Invalidating queries by keys](images/blog/blog-angular-query-invalidating-queries-by-keys.png)
+![Angular Query Invalidating queries by keys](images/blog/min/blog-angular-query-invalidating-queries-by-keys.png)
 
 ## Summary
 

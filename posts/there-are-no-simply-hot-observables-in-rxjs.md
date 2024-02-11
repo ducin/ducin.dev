@@ -64,23 +64,23 @@ Observable streams don't just emit values. Strictly speaking, there are 3 types 
 - complete()
 and all operators, subjects, etc - everything in Rx processes all of them. Sometimes they just pass the notification through down to the downstream, sometimes they do more interesting things - but all 3 notifications are always involved.
 
-![3 types of notifications in RxJS](/images/blog/blog-rxjs-3-types-of-notifications.png)
+![3 types of notifications in RxJS](/images/blog/min/blog-rxjs-3-types-of-notifications.png)
 
 ### Fact 2: Unicasting and Multicasting
 
 All streams can typically serve only one consumer - all operators, higher-order streams, etc. Being able to emit notifications only to one target is called **Unicasting**.
 
-![RxJS Unicasting](/images/blog/blog-rxjs-unicasting.png)
+![RxJS Unicasting](/images/blog/min/blog-rxjs-unicasting.png)
 
 ... all, except for Subjects - these are the only ones which can serve multiple consumers (and it's actually the main point why they exist...). This "ability" is called **Multicasting**.
 
-![RxJS Multicasting](/images/blog/blog-rxjs-multicasting.png)
+![RxJS Multicasting](/images/blog/min/blog-rxjs-multicasting.png)
 
 ### Fact 3: observables are lazy by default
 
 It's a quite well known fact that, until an observable gets subscribed to, it doesn't emit a value. That's fair, since why producing items, if there'd be no one to consume them? Only when they're is some subscriber interested in the data, it makes sense to produce and emit the notifications.
 
-![RxJS Multicasting](/images/blog/blog-rxjs-no-subscriber-no-producer.png)
+![RxJS Multicasting](/images/blog/min/blog-rxjs-no-subscriber-no-producer.png)
 
 Yep, **produce**...
 
@@ -132,13 +132,13 @@ All these apply to situations where we do have a subject ("hot", after all).
 
 ### reset on error
 
-![RxJS Subject receiving error notification](/images/blog/blog-rxjs-subject-receiving-error.png)
+![RxJS Subject receiving error notification](/images/blog/min/blog-rxjs-subject-receiving-error.png)
 
 If **any of the producers emits an `ERROR` notification** down to the subject - **should it reset**? Reconnect? Or - in our terminology - should a new producer be recreated?
 
 ### reset on complete
 
-![RxJS Subject receiving complete notification](/images/blog/blog-rxjs-subject-receiving-complete.png)
+![RxJS Subject receiving complete notification](/images/blog/min/blog-rxjs-subject-receiving-complete.png)
 
 Similar as above, but applies to `COMPLETE` notification.
 
@@ -146,7 +146,7 @@ Similar as above, but applies to `COMPLETE` notification.
 
 Imagine the subject initially had no subscribers. Then first subscriber came, then the second one. The subject counts all active subscribers all the time. Now, the subscribers go away, and as they unsubscribe, the counter (**ref count**) goes down.
 
-![RxJS Subject with refcount zero](/images/blog/blog-rxjs-subject-reaching-refcount-zero.png)
+![RxJS Subject with refcount zero](/images/blog/min/blog-rxjs-subject-reaching-refcount-zero.png)
 
 And the question arises: **if the `refCount` drops to zero** (no active subscribers), **should we keep the connection to the producer active**? In other words - shall we keep the producer live?
 
@@ -156,7 +156,7 @@ Remember, of the producer is live, it will keep on emitting items according to i
 
 Now comes my favorite part 😁 - source code: let's dive into RxJS `ShareReplay` sources. This one is especially good to look at, add it specifies config parameters exposed by the `share` operator:
 
-![RxJS source code of shareReplay](/images/blog/blog-screenshot-shareReplay.png)
+![RxJS source code of shareReplay](/images/blog/min/blog-screenshot-shareReplay.png)
 
 `shareReplay` is just a specialized version of `share`. Apart from accepting config (as input parameters) and preparing the new config (to be passed to `share`) - apart from that, `shareReplay()` just calls `share()`.
 

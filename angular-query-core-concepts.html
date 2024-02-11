@@ -8,23 +8,23 @@
     <meta name="author" content="Tomasz Ducin" />
     <meta name="keywords" content="Angular, Query, Signals, Data Loading, Data Refetching, Tanstack" />
     <meta name="description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
-    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-eclipse.png" />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/min/cover-eclipse.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@tomasz_ducin" />
     <meta name="twitter:creator" content="@tomasz_ducin" />
     <meta name="twitter:description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
-    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-eclipse.png" />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/min/cover-eclipse.png" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Angular Query Core Concepts - Tomasz Ducin - blog" />
     <meta property="og:description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
-    <meta property="og:image" content="https://ducin.dev/images/blog/cover-eclipse.png" />
+    <meta property="og:image" content="https://ducin.dev/images/blog/min/cover-eclipse.png" />
     <link rel="canonical" href="https://ducin.dev/angular-query-core-concepts" />
     <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
     <style>
       #main > header {
-        background: url("images/blog/cover-eclipse.png") !important;
+        background: url("images/blog/min/cover-eclipse.png") !important;
       }
     </style>
   </head>
@@ -241,7 +241,7 @@ export class PostComponent {
               done once per entire application). <strong>This section is intended only to explain the underlying concepts.</strong>
             </p>
             <p>Angular Query stores the data in <strong>a cache</strong> that is later exposed to components via <code>injectQuery</code>. Most often one cache per application is enough. The cache keys are, so called, Query Keys.</p>
-            <p><img src="images/blog/blog-angular-query-client-and-cache-hierarchy.png" alt="Angular Query Client and Cache Hierarchy" /></p>
+            <p><img src="images/blog/min/blog-angular-query-client-and-cache-hierarchy.png" alt="Angular Query Client and Cache Hierarchy" /></p>
             <h3 id="query-keys">Query Keys</h3>
             <p>A <strong>Query Key</strong> plays the role of an <strong>identifier</strong> of a <strong>query</strong>. Multiple components which require the same data from the same external data source will use <strong>a query with the same query key</strong>. Query Keys strictly correlate to resources exposed by the server.</p>
             <p>Technically, Query Keys are <em>usually</em> arrays containing strings and objects. A couple of examples where REST resources are <em>mapped</em> to Query Keys:</p>
@@ -267,17 +267,17 @@ export class PostComponent {
   queryKey: [&#39;posts&#39;]
 })</code></pre>
             <p>both <em>lists</em> and <em>details</em> will be affected (and everything with the key starting with <code>posts</code>).</p>
-            <p><img src="images/blog/blog-angular-query-key-invalidation.png" alt="Angular Query Key Invalidation" /></p>
+            <p><img src="images/blog/min/blog-angular-query-key-invalidation.png" alt="Angular Query Key Invalidation" /></p>
             <p>That&#39;s also what I meant in the very beginning, that Angular Query is highly <strong>declarative</strong>.</p>
             <p>Whenever you inject a query (probably, to a component), you explicitly state the <strong>query key</strong>. This way <strong>your data hierarchy and relations are well-organized</strong>:</p>
-            <p><img src="images/blog/blog-angular-query-client-cache-queryfn.png" alt="Angular Query Client, Cache and QueryFn" /></p>
+            <p><img src="images/blog/min/blog-angular-query-client-cache-queryfn.png" alt="Angular Query Client, Cache and QueryFn" /></p>
             <p>Query Keys design, their good practices etc. is yet a different topic - but you should have a solid understanding of the concept by now.</p>
             <h2 id="cleanups">Cleanups</h2>
             <p>
               All items within Angular Query make use of <code>DestroyRef</code> in order to clean up or unmount the resources. So it depends on <a href="https://angular.io/guide/hierarchical-dependency-injection#types-of-injector-hierarchies">which injector does a certain <code>DestroyRef</code> come from</a>.
             </p>
             <p>In case of <code>QueryClient</code>, the <code>DestroyRef</code> used belongs to <strong>Environment Hierarchy&#39;s Root Injector</strong>. In practice this means that Query Client would get destroyed (precisely: unmounted) when... when the entire application gets destroyed 😉.</p>
-            <p><img src="images/blog/blog-screenshot-angular-query-injector-inside-angular-devtools.png" alt="Angular Query Injector inside Angular Devtools" /></p>
+            <p><img src="images/blog/min/blog-screenshot-angular-query-injector-inside-angular-devtools.png" alt="Angular Query Injector inside Angular Devtools" /></p>
             <p>In case of each query, injected <code>DestroyRef</code> comes from <strong>Element Injectors</strong>. When the component gets destroyed, so is the query (precisely: unsubscribed).</p>
             <p>But what happens to a Query Key, along with is data, if there are no components which need that data (no active subscribers)?</p>
             <h3 id="query-states">Query States</h3>
@@ -361,7 +361,7 @@ export class PostComponent {
               <li><code>[&quot;posts&quot;, &quot;list&quot;, {page: 1}]</code> - maybe our <em>Post(id:2)</em> is included in the first page</li>
               <li><code>[&quot;posts&quot;, &quot;list&quot;]</code> - maybe it&#39;s also included within the <em>default</em> Post collection or <em>entire</em> Posts collection (whatever <code>[&quot;posts&quot;, &quot;list&quot;]</code> is in our app - <strong>it&#39;s our responsibility to design query keys carefully</strong>)</li>
             </ul>
-            <p><img src="images/blog/blog-angular-query-invalidating-queries-by-keys.png" alt="Angular Query Invalidating queries by keys" /></p>
+            <p><img src="images/blog/min/blog-angular-query-invalidating-queries-by-keys.png" alt="Angular Query Invalidating queries by keys" /></p>
             <h2 id="summary">Summary</h2>
             <p>We&#39;ve learned the concepts of Queries and Mutations, their responsibilities, and how one affects the lifecycle of another.</p>
             <p>

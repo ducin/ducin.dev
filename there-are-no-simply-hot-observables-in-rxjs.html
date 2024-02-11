@@ -8,23 +8,23 @@
     <meta name="author" content="Tomasz Ducin" />
     <meta name="keywords" content="Angular, RxJS, Observables, Hot Observables, Subscriptions, Subjects, Multicasting" />
     <meta name="description" content='The "hot and cold" observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the "hot and cold" concept is... harmful.' />
-    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-red-and-blue.png" />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/min/cover-red-and-blue.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@tomasz_ducin" />
     <meta name="twitter:creator" content="@tomasz_ducin" />
     <meta name="twitter:description" content='The "hot and cold" observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the "hot and cold" concept is... harmful.' />
-    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-red-and-blue.png" />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/min/cover-red-and-blue.png" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content='There are no simply "hot" Observables in RxJS - Tomasz Ducin - blog' />
     <meta property="og:description" content='The "hot and cold" observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the "hot and cold" concept is... harmful.' />
-    <meta property="og:image" content="https://ducin.dev/images/blog/cover-red-and-blue.png" />
+    <meta property="og:image" content="https://ducin.dev/images/blog/min/cover-red-and-blue.png" />
     <link rel="canonical" href="https://ducin.dev/there-are-no-simply-hot-observables-in-rxjs" />
     <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
     <style>
       #main > header {
-        background: url("images/blog/cover-red-and-blue.png") !important;
+        background: url("images/blog/min/cover-red-and-blue.png") !important;
       }
     </style>
   </head>
@@ -185,15 +185,15 @@
               <li>error(error)</li>
               <li>complete() and all operators, subjects, etc - everything in Rx processes all of them. Sometimes they just pass the notification through down to the downstream, sometimes they do more interesting things - but all 3 notifications are always involved.</li>
             </ul>
-            <p><img src="/images/blog/blog-rxjs-3-types-of-notifications.png" alt="3 types of notifications in RxJS" /></p>
+            <p><img src="/images/blog/min/blog-rxjs-3-types-of-notifications.png" alt="3 types of notifications in RxJS" /></p>
             <h3 id="fact-2-unicasting-and-multicasting">Fact 2: Unicasting and Multicasting</h3>
             <p>All streams can typically serve only one consumer - all operators, higher-order streams, etc. Being able to emit notifications only to one target is called <strong>Unicasting</strong>.</p>
-            <p><img src="/images/blog/blog-rxjs-unicasting.png" alt="RxJS Unicasting" /></p>
+            <p><img src="/images/blog/min/blog-rxjs-unicasting.png" alt="RxJS Unicasting" /></p>
             <p>... all, except for Subjects - these are the only ones which can serve multiple consumers (and it&#39;s actually the main point why they exist...). This &quot;ability&quot; is called <strong>Multicasting</strong>.</p>
-            <p><img src="/images/blog/blog-rxjs-multicasting.png" alt="RxJS Multicasting" /></p>
+            <p><img src="/images/blog/min/blog-rxjs-multicasting.png" alt="RxJS Multicasting" /></p>
             <h3 id="fact-3-observables-are-lazy-by-default">Fact 3: observables are lazy by default</h3>
             <p>It&#39;s a quite well known fact that, until an observable gets subscribed to, it doesn&#39;t emit a value. That&#39;s fair, since why producing items, if there&#39;d be no one to consume them? Only when they&#39;re is some subscriber interested in the data, it makes sense to produce and emit the notifications.</p>
-            <p><img src="/images/blog/blog-rxjs-no-subscriber-no-producer.png" alt="RxJS Multicasting" /></p>
+            <p><img src="/images/blog/min/blog-rxjs-no-subscriber-no-producer.png" alt="RxJS Multicasting" /></p>
             <p>Yep, <strong>produce</strong>...</p>
             <div class="email-subscribe">
               <h4 class="subscribe-header">Get notified about blog posts, recordings and workshops!</h4>
@@ -227,23 +227,23 @@
             <p>So far so good, we&#39;ve got the knowledge to champion all the possibilities.</p>
             <p>All these apply to situations where we do have a subject (&quot;hot&quot;, after all).</p>
             <h3 id="reset-on-error">reset on error</h3>
-            <p><img src="/images/blog/blog-rxjs-subject-receiving-error.png" alt="RxJS Subject receiving error notification" /></p>
+            <p><img src="/images/blog/min/blog-rxjs-subject-receiving-error.png" alt="RxJS Subject receiving error notification" /></p>
             <p>
               If <strong>any of the producers emits an <code>ERROR</code> notification</strong> down to the subject - <strong>should it reset</strong>? Reconnect? Or - in our terminology - should a new producer be recreated?
             </p>
             <h3 id="reset-on-complete">reset on complete</h3>
-            <p><img src="/images/blog/blog-rxjs-subject-receiving-complete.png" alt="RxJS Subject receiving complete notification" /></p>
+            <p><img src="/images/blog/min/blog-rxjs-subject-receiving-complete.png" alt="RxJS Subject receiving complete notification" /></p>
             <p>Similar as above, but applies to <code>COMPLETE</code> notification.</p>
             <h3 id="reset-on-ref-count-zero">reset on ref count zero</h3>
             <p>Imagine the subject initially had no subscribers. Then first subscriber came, then the second one. The subject counts all active subscribers all the time. Now, the subscribers go away, and as they unsubscribe, the counter (<strong>ref count</strong>) goes down.</p>
-            <p><img src="/images/blog/blog-rxjs-subject-reaching-refcount-zero.png" alt="RxJS Subject with refcount zero" /></p>
+            <p><img src="/images/blog/min/blog-rxjs-subject-reaching-refcount-zero.png" alt="RxJS Subject with refcount zero" /></p>
             <p>
               And the question arises: <strong>if the <code>refCount</code> drops to zero</strong> (no active subscribers), <strong>should we keep the connection to the producer active</strong>? In other words - shall we keep the producer live?
             </p>
             <p>Remember, of the producer is live, it will keep on emitting items according to its nature (e.g. interval will keep on doing its job).</p>
             <h2 id="where-did-you-get-these-from">Where did you get these from?</h2>
             <p>Now comes my favorite part 😁 - source code: let&#39;s dive into RxJS <code>ShareReplay</code> sources. This one is especially good to look at, add it specifies config parameters exposed by the <code>share</code> operator:</p>
-            <p><img src="/images/blog/blog-screenshot-shareReplay.png" alt="RxJS source code of shareReplay" /></p>
+            <p><img src="/images/blog/min/blog-screenshot-shareReplay.png" alt="RxJS source code of shareReplay" /></p>
             <p><code>shareReplay</code> is just a specialized version of <code>share</code>. Apart from accepting config (as input parameters) and preparing the new config (to be passed to <code>share</code>) - apart from that, <code>shareReplay()</code> just calls <code>share()</code>.</p>
             <p><code>connector</code> is a function that returns a subject - with whatever type, potentially even having some subscribers already (not common, though possible).</p>
             <p>And the <code>resetOnError</code>, <code>resetOnComplete</code> and <code>resetOnCountZero</code> are things we&#39;ve already gone through 🙃All in all, we can determine all these.</p>
