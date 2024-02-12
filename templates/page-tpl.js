@@ -58,7 +58,7 @@ const pageTpl = ({
         <nav id="nav">
           <ul>
             <li class="special">
-              <a href="#menu" class="menuToggle"><span>Menu</span></a>
+              <a href="#menu" class="menuToggle" aria-label="Toggle site menu"><span>Menu</span></a>
               <div id="menu">
                 ${menuTpl()}
               </div>
