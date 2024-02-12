@@ -4,7 +4,8 @@
     "gen:feed": "node scripts/gen-feed.js",
     "gen:sitemap": "node scripts/gen-sitemap.js",
     "gen:posts": "node scripts/gen-posts.js",
-    "gen": "npm run gen:feed && npm run gen:sitemap && npm run gen:posts"
+    "minify:css": "postcss assets/css/main.css > assets/css/main.min.css && postcss assets/css/video.css > assets/css/video.min.css",
+    "gen": "npm run gen:feed && npm run gen:sitemap && npm run gen:posts && npm run minify:css"
   },
   "devDependencies": {
     "browserify": "^17.0.0"
@@ -16,6 +17,8 @@
     "imagemin-avif": "^0.1.6",
     "markdown-toc": "^1.2.0",
     "marked": "^0.6.0",
+    "postcss": "^8.4.35",
+    "postcss-cli": "^11.0.0",
     "prettier": "^3.2.4",
     "sitemap": "^2.1.0",
     "zod": "^3.22.4"
