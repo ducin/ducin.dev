@@ -98,6 +98,46 @@
     "coverImageFilename": "cover-red-and-blue.png"
   },
   {
+    "title": "Object.groupBy(collection, keySelector)",
+    "sourceFile": "WIP-descriptors",
+    "keywords": [
+      "Lorem",
+      "Ipsum",
+      "Dolor"
+    ],
+    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
+    "publishedDate": "1970-01-01",
+    "readingTime": "1 min read",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/a-bunch-of-screws-and-screws-on-a-table-yCyPRNLnFMM",
+      "title": "Screws and washers",
+      "authorURL": "https://unsplash.com/@roberto_sorin",
+      "author": "Roberto Sorin"
+    },
+    "coverImageFilename": "test.avif",
+    "workInProgress": true
+  },
+  {
+    "title": "Zod: Runtime type checks (for JavaScript and TypeScript)",
+    "sourceFile": "WIP-zod",
+    "keywords": [
+      "Lorem",
+      "Ipsum",
+      "Dolor"
+    ],
+    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
+    "publishedDate": "1970-01-01",
+    "readingTime": "1 min read",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/seven-construction-workers-standing-on-white-field-x-ghf9LjrVgv",
+      "title": "Seven construction workers",
+      "authorURL": "https://unsplash.com/@sunburned_surveyor",
+      "author": "Scott Blake"
+    },
+    "coverImageFilename": "cover-seven-construction-workers.png",
+    "workInProgress": true
+  },
+  {
     "title": "Test",
     "sourceFile": "test",
     "keywords": [

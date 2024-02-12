@@ -4,7 +4,7 @@
         <title>Tomasz Ducin</title>
         <link>https://ducin.dev</link>
         <description>Tomasz Ducin Blog - Independent Consultant, Architect &amp; Trainer. JavaScript, TypeScript, Angular, React, Redux, RxJS, Architecture, Design Patterns.</description>
-        <lastBuildDate>Sat, 05 Jan 2019 12:38:07 GMT</lastBuildDate>
+        <lastBuildDate>Mon, 12 Feb 2024 13:33:58 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>feed3r</generator>
         <image>
@@ -12,7 +12,7 @@
             <url>https://ducin.dev/images/tomasz-ducin-logo-zolte-300.png</url>
             <link>https://ducin.dev</link>
         </image>
-        <copyright>All rights reserved 2017-2019, Tomasz Ducin</copyright>
+        <copyright>All rights reserved 2017-2024, Tomasz Ducin</copyright>
         <category>JavaScript</category>
         <category>TypeScript</category>
         <category>React</category>
@@ -21,13 +21,39 @@
         <atom:link href="https://ducin.dev/feed.xml" rel="self" type="application/rss+xml"/>
         <item>
             <title><![CDATA[TypeScript Type Inference Guide]]></title>
-            <link>https://ducin.dev/typescript-type-inference-guide</link>
-            <guid>https://ducin.dev/typescript-type-inference-guide</guid>
             <pubDate>Tue, 01 Jan 2019 00:00:00 GMT</pubDate>
             <description><![CDATA[Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit.]]></description>
             <author>tomasz@ducin.dev (Tomasz Ducin)</author>
-            <enclosure url="https://ducin.dev/images/blog/cover-metal-construction.jpg">
-            </enclosure>
+        </item>
+        <item>
+            <title><![CDATA[Angular @defer Interactive Examples]]></title>
+            <pubDate>Thu, 04 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[One of the Angular 17 awesome features shipped is the defer block which allows to lazy load components, directives and pipes, while configuring it on the template level via defer.]]></description>
+            <author>tomasz@ducin.dev (Tomasz Ducin)</author>
+        </item>
+        <item>
+            <title><![CDATA[Diving into Type System behind Angular Signals]]></title>
+            <pubDate>Thu, 28 Dec 2023 00:00:00 GMT</pubDate>
+            <description><![CDATA[In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage.]]></description>
+            <author>tomasz@ducin.dev (Tomasz Ducin)</author>
+        </item>
+        <item>
+            <title><![CDATA[Angular Signals are VALUES, not EVENTS]]></title>
+            <pubDate>Fri, 19 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[Recent release of Angular 17.1 (18th January 2024), introduces Signal Inputs. It's a good opportunity to rethink migrating from RxJS to Signals, as more and more APIs are signal-based: the framework (signals, computeds, effects and the rxjs-interop) and ecosystem (NGRX signal store), as well as tons of experiments.]]></description>
+            <author>tomasz@ducin.dev (Tomasz Ducin)</author>
+        </item>
+        <item>
+            <title><![CDATA[Angular Query Core Concepts]]></title>
+            <pubDate>Thu, 25 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it.]]></description>
+            <author>tomasz@ducin.dev (Tomasz Ducin)</author>
+        </item>
+        <item>
+            <title><![CDATA[There are no simply &quot;hot&quot; Observables in RxJS]]></title>
+            <pubDate>Wed, 31 Jan 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[The &quot;hot and cold&quot; observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the &quot;hot and cold&quot; concept is... harmful.]]></description>
+            <author>tomasz@ducin.dev (Tomasz Ducin)</author>
         </item>
     </channel>
 </rss>

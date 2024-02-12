@@ -26,7 +26,9 @@ const feed = new Feed({
   }
 });
 
-posts.forEach(post => {
+posts
+.filter(({ workInProgress }) => !workInProgress)
+.forEach(post => {
   feed.addItem({
     title: post.title,
     id: post.url,
@@ -40,7 +42,7 @@ posts.forEach(post => {
         link: absoluteUrl()
       }
     ],
-    date: new Date(post.date),
+    date: new Date(post.publishedDate),
     image: post.image
   });
 });
