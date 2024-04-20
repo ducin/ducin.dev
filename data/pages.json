@@ -25,6 +25,11 @@
     "sitemap": true
   },
   {
+    "name": "Newsletter",
+    "url": "/newsletter",
+    "sitemap": true
+  },
+  {
     "name": "ANF",
     "url": "https://architekturanafroncie.pl"
   }
