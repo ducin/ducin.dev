@@ -1,10 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Diving into Type System behind Angular Signals - Tomasz Ducin - blog</title>
     <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Diving into Type System behind Angular Signals - Tomasz Ducin - blog</title>
+    <link rel="stylesheet" href="assets/css/main.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/min/cover-a-pile-of-screws-and-nuts-on-a-table.jpg") !important;
+      }
+    </style>
     <meta name="author" content="Tomasz Ducin" />
     <meta name="keywords" content="Angular, Signals, TypeScript, Type Safety" />
     <meta name="description" content="In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage." />
@@ -18,15 +24,9 @@
     <meta property="og:title" content="Diving into Type System behind Angular Signals - Tomasz Ducin - blog" />
     <meta property="og:description" content="In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage." />
     <meta property="og:image" content="https://ducin.dev/images/blog/min/cover-a-pile-of-screws-and-nuts-on-a-table.jpg" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="canonical" href="https://ducin.dev/angular-diving-into-type-system-behind-angular-signals" />
     <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
-    <link rel="stylesheet" href="assets/css/main.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
-    <style>
-      #main > header {
-        background: url("images/blog/min/cover-a-pile-of-screws-and-nuts-on-a-table.jpg") !important;
-      }
-    </style>
   </head>
   <body>
     <!-- Google tag (gtag.js) -->
