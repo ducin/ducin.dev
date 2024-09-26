@@ -108,6 +108,8 @@ Let's quickly summarize: we make architectural **decisions**, having **architect
 
 **ZOOM OUT** from the code.
 
+<% SUBSCRIBE %>
+
 ## So what constitutes architecture, again?
 
 Let's revisit my *quick and dirty* definition:
