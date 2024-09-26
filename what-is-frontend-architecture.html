@@ -97,7 +97,7 @@
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/a-model-of-a-wooden-building-with-trees-in-front-of-it-ObfRnTp1a1U">Miniature of a building complex</a> by <a href="https://unsplash.com/@d5render">D5 Render</a></p>
             <p>
-              <em> Thursday 26 September 2024 • 📚 17 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/what-is-frontend-architecture.md">edit on Github</a> </em>
+              <em> Thursday 26 September 2024 • 📚 21 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/what-is-frontend-architecture.md">edit on Github</a> </em>
             </p>
             <p><strong>Disclaimer</strong>: if you consider yourself a <strong>coder</strong>, close this page 😉</p>
             <p>
@@ -146,6 +146,7 @@
                       <li><a href="#proceed-to-development-aspects">Proceed to development aspects</a></li>
                     </ul>
                   </li>
+                  <li><a href="#tooling-decisions-vs-architecture-decisions">Tooling decisions vs Architecture decisions</a></li>
                   <li>
                     <a href="#summary">Summary</a>
                     <ul>
@@ -379,7 +380,7 @@
               <li>
                 <em>NOT</em>:
                 <ul>
-                  <li>❌ whether you keep authentication data in redux, context, useState, whatever, Whatever, WHATEVER</li>
+                  <li>❌ whether you keep authentication data in Redux, context, useState, whatever, Whatever, WHATEVER</li>
                 </ul>
               </li>
               <li>
@@ -518,7 +519,7 @@
                 <ul>
                   <li>
                     example: <strong>collaborative mode</strong>. Currently the system allows a single user to apply changes, but the requirement is to allow multiple users to apply changes in real-time on the sama data-set. If your code applies <strong>direct state changes</strong> (e.g. set, update, etc.) then there might be no convenient model to share across the users. But if your state
-                    changes <strong>indirectly</strong> (via the <a href="https://refactoring.guru/design-patterns/command">Command Pattern</a>, e.g. via <a href="https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers">redux actions</a>), then you already have the model which can be shared within the first iteration (of introducing collaborative features). Or reach to
+                    changes <strong>indirectly</strong> (via the <a href="https://refactoring.guru/design-patterns/command">Command Pattern</a>, e.g. via <a href="https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers">Redux actions</a>), then you already have the model which can be shared within the first iteration (of introducing collaborative features). Or reach to
                     <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a>.
                   </li>
                   <li>
@@ -537,6 +538,72 @@
               <p><em>I would rather have questions that can&#39;t be answered than answers that can&#39;t be questioned</em></p>
             </blockquote>
             <p>Thinking carefully about all the above concerns should lead us to making decision about the architectural style and important tool stack used.</p>
+            <h2 id="tooling-decisions-vs-architecture-decisions">Tooling decisions vs Architecture decisions</h2>
+            <p>Some might say:</p>
+            <blockquote>
+              <p>Hey, dude, but there are some decisions related to <strong>tools, libraries, conventions, or code structure</strong> which could have a significant impact on the project and that are difficult to change later. For instance, if I use Redux, it is an architectural decision!!!1 😉</p>
+            </blockquote>
+            <p><strong>Well, yes, and nope. 😉</strong></p>
+            <p>It&#39;s fairly easy to stick to certain words and lose the context on what&#39;s important (i.e. <strong>important from the business and/or overall perspective</strong>).</p>
+            <p>It&#39;s true, that a coding convention decision might be (very) expensive to change after some years. A coding convention, or code structure, or directory structure (really, whatever) could speed up or slow down developers - sure! Some conventions will fit more, some will fit less. Some help us move faster, some don&#39;t, etc.</p>
+            <p>But once you zoom out from the team, where the decision was made, <strong>it just DOESN&#39;T MATTER</strong> 🔥. It&#39;s an implementation detail. It&#39;s <strong>irrelevant outside of your team</strong>.</p>
+            <ul>
+              <li>Example: you decide to keep only one component per file. Totally <strong>irrelevant</strong> outside of your team.</li>
+              <li>Example: you decide to use lodash or ramda for helpers or no helper library because not-invented-here (whatever). Still, <strong>irrelevant</strong> outside of your team.</li>
+              <li>
+                Example: you introduce a very specific file structure for each module you provide. The convention affects testing, storybook, and refactorings. Still, <strong>irrelevant</strong> outside of your team. (BTW, storybook <em>would</em> matter if it was <strong>regularly used <em>outside</em> of your team</strong>)
+              </li>
+            </ul>
+            <p>Now please, don&#39;t get me wrong. <strong>These decisions do matter</strong>. They are <strong>important for your team</strong>. But <strong>ONLY</strong> for your team. They don&#39;t bring/enforce any <strong>overall system characteristics</strong>. If the decision was different, overall system characteristics woudln&#39;t change. Let&#39;s analyse above quote further:</p>
+            <blockquote>
+              <p><em>If I use Redux, it is an architectural decision.</em></p>
+            </blockquote>
+            <p>(sorry, Redux 😅)</p>
+            <p>
+              Please watch out now: <strong>the architectural decision is not about choosing Redux istself</strong>! It&#39;s about <strong>choosing a centralized state management solution</strong>, as it could allow modules to cross-depend on each other (everyone has access to everything in a global store, right?), or in case of distributing a monolith into microfrontends - that task would be
+              easier with multiple separate stores (like <a href="https://mobx.js.org">mobx</a>). Also, <strong>the architectural decision is about choosing a <a href="https://github.com/gaearon/ama/issues/110">client-side event sourcing solution</a></strong
+              >, as the business might require to implement <a href="https://en.wikipedia.org/wiki/Collaborative_real-time_editor">real-time collaboration features</a>.
+            </p>
+            <p>
+              So, does choosing Redux bring consequences? Of course. But again, it&#39;s not the library itself which I want you to <strong>focus</strong> on - it&#39;s the <strong>high-level characteristics</strong> that Redux brings. Both the <strong>capabilities</strong> it brings (mentioned few time before), as well as the <strong>costs and limitations</strong> in introduces, e.g. Redux is the
+              <strong>ONE and ONLY single source of truth</strong>, definitely not a good thing if you ever consider <a href="https://martinfowler.com/articles/micro-frontends.html">MFEs</a>. Redux is inseparable from it&#39;s traits. But <strong>it&#39;s the traits which build the architecture</strong>, not the tools themselves.
+            </p>
+            <p>Let&#39;s take one more, from Angular ecosystem this time:</p>
+            <blockquote>
+              <p>Disagree, it&#39;s really about the library itself if it&#39;s on a higher-level, for instance NGRX. There are multiple questions to answer:</p>
+              <ul>
+                <li>How do we use NGRX?</li>
+                <li>Do we always go with effects?</li>
+                <li>Do we abstract it behind a facade?</li>
+                <li>With which layers do we associate it?</li>
+                <li>How do we share the NGRX store between domains? etc.</li>
+              </ul>
+            </blockquote>
+            <p>So let&#39;s go one by one:</p>
+            <blockquote>
+              <p>How do we use NGRX?</p>
+            </blockquote>
+            <p>That&#39;s a tricky question, as the <em>how</em> could relate to both high-level and low-level aspects. <em>Ambiguous question</em> 😉</p>
+            <blockquote>
+              <p>Do we always go with effects?</p>
+            </blockquote>
+            <p>(context: <a href="https://ngrx.io/guide/effects">NGRX effects</a> is the same concept as <a href="https://redux-observable.js.org/docs/basics/Epics.html">redux-observable&#39;s epics</a>: actions are dispatched, then processed reactively using rxjs reactive streams, anf often resulting in derivative new actions dispatched back into the store)</p>
+            <p>That&#39;s an implementation detail. Whether we go with imperative or reactive paradigm it&#39;s, well, programming (implementation) paradigm. Not architecture. We can change this decision later i.e. do things differently in future.</p>
+            <blockquote>
+              <p>Do we abstract it behind a facade?</p>
+            </blockquote>
+            <p>That&#39;s encapsulation and/or design patterns and/or coding patterns... one level below architectural patterns, as you said. In <a href="https://c4model.com/">C4 model</a> it&#39;s the <strong>Code (Level 4)</strong> (implementation detail). Again - is it important within the team? YES. Is it important outside? No.</p>
+            <blockquote>
+              <p>With which layers do we associate it?</p>
+            </blockquote>
+            <p>Sure, potentially architecture - but it has nothing to do with NGRX (or whatever). One would ask the very same question with other state management solutions, such as: how many / how specific custom hooks in React shall we create. Hypothetical layers (or lack of thereof) surely form our architecture. But they still would, if the libraries were different, right?</p>
+            <blockquote>
+              <p>How do we share the NGRX store between domains?</p>
+            </blockquote>
+            <p>Absolutely, definitely architecture. But again, it has nothing to do with NGRX itself, as one would ask exactly the same question with all other centralized state management solutions. <a href="https://www.youtube.com/watch?v=EmW74ZpGGOI">Right?</a>.</p>
+            <p>Just a side comment: whether you use NGRX/redux-observables or not, certainly, affects the entry level of frontend developers, it affects their motivation (love vs hate relationship with tools 🥹), it certainly affects the way you write tests and so on and so forth. But, again, if you walk outside of your team/module/repo - does it really matter that much?</p>
+            <p>All in all, whether a decision is expensive to change or not <strong>doesn&#39;t determine</strong> whether it&#39;s anyhow relevant in the big picture and/or long-term. Also, what is super important locally within your team/repo <strong>doesn&#39;t determine</strong> whether it&#39;s relevant outside. It could, but it doesn&#39;t have to.</p>
+            <p><strong>In my humble opinion, it doesn&#39;t matter much whether we call choosing Redux an architectural decision or not, as long as we focus on the consequences this decision has.</strong></p>
             <h2 id="summary">Summary</h2>
             <p>Architecture is all about making <strong>important decisions</strong>. These should be <strong>driven</strong> by business priorities, <strong>tradeoffs</strong> should be taken into account, and existing <strong>limitations</strong> make it even more challenging.</p>
             <p>In the face of all these difficulties, the role of an architect is to <strong>balance between business priorities and requirements - and technical aspects and its complexity</strong>.</p>

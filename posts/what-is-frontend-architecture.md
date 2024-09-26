@@ -157,7 +157,7 @@ Now let's confront what satisfies the definition and what does not:
 - *Architecture defined by*:
   - ✅ Whether your system is [single or multi-tenant](https://en.wikipedia.org/wiki/Multitenancy)
 - *NOT*:
-  - ❌ whether you keep authentication data in redux, context, useState, whatever, Whatever, WHATEVER
+  - ❌ whether you keep authentication data in Redux, context, useState, whatever, Whatever, WHATEVER
 - *Architecture defined by*:
   - ✅ How do you provide [Fault Tolerance](https://en.wikipedia.org/wiki/Fault_tolerance) to your UI
 - *NOT*:
@@ -237,7 +237,7 @@ On the technical level, we form the following questions:
   - which pieces should be reused, and which should be forked for the sake of less cross-team dependencies?
   - how the teams/codebases are organized? By platform or by bounded context? 😉 etc.
 - What **specific characteristics** are expected/required?
-  - example: **collaborative mode**. Currently the system allows a single user to apply changes, but the requirement is to allow multiple users to apply changes in real-time on the sama data-set. If your code applies **direct state changes** (e.g. set, update, etc.) then there might be no convenient model to share across the users. But if your state changes **indirectly** (via the [Command Pattern](https://refactoring.guru/design-patterns/command), e.g. via [redux actions](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)), then you already have the model which can be shared within the first iteration (of introducing collaborative features). Or reach to [CRDTs](https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type).
+  - example: **collaborative mode**. Currently the system allows a single user to apply changes, but the requirement is to allow multiple users to apply changes in real-time on the sama data-set. If your code applies **direct state changes** (e.g. set, update, etc.) then there might be no convenient model to share across the users. But if your state changes **indirectly** (via the [Command Pattern](https://refactoring.guru/design-patterns/command), e.g. via [Redux actions](https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers)), then you already have the model which can be shared within the first iteration (of introducing collaborative features). Or reach to [CRDTs](https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type).
   - example: [**never show outdated data**](https://en.wikipedia.org/wiki/Strong_consistency). If you see an outdated number of *likes* under your post, nobody is going to suffer. Okay, hopefully, but still, you get the point 😉. However, in a banking system it's not a good idea to allow the UI to show outdated account balance e.g. when switching across tabs/sections.
   - example: **SDKs**. Do your customers implement their own custom features on top of the platform you provide? How often do you have **breaking changes** (and how often are your customers *f@@@@d up* because of it)? How do you find the balance between evolving your system and not spending enormous costs on older versions while having limited resources? For instance, redesigning your react component's props for a few [atoms](https://bradfrost.com/blog/post/atomic-web-design/) could have really huge consequences and, even though implemented, tested etc. could be - sadly - reverted due to **non-breaking changes** requirement.
 
@@ -246,6 +246,73 @@ As you can see, managing the architecture is all about **asking the right questi
 > *I would rather have questions that can't be answered than answers that can't be questioned*
 
 Thinking carefully about all the above concerns should lead us to making decision about the architectural style and important tool stack used.
+
+## Tooling decisions vs Architecture decisions
+
+Some might say:
+
+> Hey, dude, but there are some decisions related to **tools, libraries, conventions, or code structure** which could have a significant impact on the project and that are difficult to change later. For instance, if I use Redux, it is an architectural decision!!!1 😉
+
+**Well, yes, and nope. 😉**
+
+It's fairly easy to stick to certain words and lose the context on what's important (i.e. **important from the business and/or overall perspective**).
+
+It's true, that a coding convention decision might be (very) expensive to change after some years. A coding convention, or code structure, or directory structure (really, whatever) could speed up or slow down developers - sure! Some conventions will fit more, some will fit less. Some help us move faster, some don't, etc.
+
+But once you zoom out from the team, where the decision was made, **it just DOESN'T MATTER** 🔥. It's an implementation detail. It's **irrelevant outside of your team**.
+- Example: you decide to keep only one component per file. Totally **irrelevant** outside of your team.
+- Example: you decide to use lodash or ramda for helpers or no helper library because not-invented-here (whatever). Still, **irrelevant** outside of your team.
+- Example: you introduce a very specific file structure for each module you provide. The convention affects testing, storybook, and refactorings. Still, **irrelevant** outside of your team. (BTW, storybook *would* matter if it was **regularly used *outside* of your team**)
+
+Now please, don't get me wrong. **These decisions do matter**. They are **important for your team**. But **ONLY** for your team. They don't bring/enforce any **overall system characteristics**. If the decision was different, overall system characteristics woudln't change. Let's analyse above quote further:
+
+> *If I use Redux, it is an architectural decision.*
+
+(sorry, Redux 😅)
+
+Please watch out now: **the architectural decision is not about choosing Redux istself**! It's about **choosing a centralized state management solution**, as it could allow modules to cross-depend on each other (everyone has access to everything in a global store, right?), or in case of distributing a monolith into microfrontends - that task would be easier with multiple separate stores (like [mobx](https://mobx.js.org)). Also, **the architectural decision is about choosing a [client-side event sourcing solution](https://github.com/gaearon/ama/issues/110)**, as the business might require to implement [real-time collaboration features](https://en.wikipedia.org/wiki/Collaborative_real-time_editor).
+
+So, does choosing Redux bring consequences? Of course. But again, it's not the library itself which I want you to **focus** on - it's the **high-level characteristics** that Redux brings. Both the **capabilities** it brings (mentioned few time before), as well as the **costs and limitations** in introduces, e.g. Redux is the **ONE and ONLY single source of truth**, definitely not a good thing if you ever consider [MFEs](https://martinfowler.com/articles/micro-frontends.html). Redux is inseparable from it's traits. But **it's the traits which build the architecture**, not the tools themselves.
+
+Let's take one more, from Angular ecosystem this time:
+
+> Disagree, it's really about the library itself if it's on a higher-level, for instance NGRX. There are multiple questions to answer:
+> - How do we use NGRX?
+> - Do we always go with effects?
+> - Do we abstract it behind a facade?
+> - With which layers do we associate it? 
+> - How do we share the NGRX store between domains?
+> etc.
+
+So let's go one by one:
+
+> How do we use NGRX?
+
+That's a tricky question, as the *how* could relate to both high-level and low-level aspects. *Ambiguous question* 😉
+
+> Do we always go with effects?
+
+(context: [NGRX effects](https://ngrx.io/guide/effects) is the same concept as [redux-observable's epics](https://redux-observable.js.org/docs/basics/Epics.html): actions are dispatched, then processed reactively using rxjs reactive streams, anf often resulting in derivative new actions dispatched back into the store)
+
+That's an implementation detail. Whether we go with imperative or reactive paradigm it's, well, programming (implementation) paradigm. Not architecture. We can change this decision later i.e. do things differently in future.
+
+> Do we abstract it behind a facade?
+
+That's encapsulation and/or design patterns and/or coding patterns... one level below architectural patterns, as you said. In [C4 model](https://c4model.com/) it's the **Code (Level 4)** (implementation detail). Again - is it important within the team? YES. Is it important outside? No.
+
+> With which layers do we associate it? 
+
+Sure, potentially architecture - but it has nothing to do with NGRX (or whatever). One would ask the very same question with other state management solutions, such as: how many / how specific custom hooks in React shall we create. Hypothetical layers (or lack of thereof) surely form our architecture. But they still would, if the libraries were different, right?
+
+> How do we share the NGRX store between domains?
+
+Absolutely, definitely architecture. But again, it has nothing to do with NGRX itself, as one would ask exactly the same question with all other centralized state management solutions. [Right?](https://www.youtube.com/watch?v=EmW74ZpGGOI).
+
+Just a side comment: whether you use NGRX/redux-observables or not, certainly, affects the entry level of frontend developers, it affects their motivation (love vs hate relationship with tools 🥹), it certainly affects the way you write tests and so on and so forth. But, again, if you walk outside of your team/module/repo - does it really matter that much?
+
+All in all, whether a decision is expensive to change or not **doesn't determine** whether it's anyhow relevant in the big picture and/or long-term. Also, what is super important locally within your team/repo **doesn't determine** whether it's relevant outside. It could, but it doesn't have to.
+
+**In my humble opinion, it doesn't matter much whether we call choosing Redux an architectural decision or not, as long as we focus on the consequences this decision has.**
 
 ## Summary
 
@@ -257,7 +324,7 @@ In the face of all these difficulties, the role of an architect is to **balance 
 
 Hope you enjoyed it, thanks for reading 🤓.
 
-Special thanks for [Damian](https://twitter.com/raimeyuu) & [Mateusz](https://twitter.com/mat_ledzewicz) for proof-reading.
+Special thanks for [Damian](https://twitter.com/raimeyuu), [Mateusz](https://twitter.com/mat_ledzewicz) and [Manfred](https://x.com/ManfredSteyer) for valueable feedback.
 
 ### Recommended Read
 

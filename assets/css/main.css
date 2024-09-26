@@ -3824,7 +3824,7 @@
 	}
 
 	blockquote {
-		margin-bottom: 2em;
+		margin-bottom: 0;
 	}
 
 	blockquote .author {
@@ -3846,9 +3846,9 @@
 		display: none;
 	}
 
-	blockquote p {
+	/* blockquote p {
 		margin: 1em 0 1em 0;
-	}
+	} */
 
 	/* CSS filter based on: https://codepen.io/paulcham/pen/QKbpLb */
 
