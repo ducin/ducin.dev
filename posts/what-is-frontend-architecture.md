@@ -106,6 +106,8 @@ This is the sad part. Just to make things slightly more challenging - we need to
 
 Let's quickly summarize: we make architectural **decisions**, having **architectural drivers** in mind, being aware of the **tradeoffs** of these decisions and having to cope with the **limitations**.
 
+**ZOOM OUT** from the code.
+
 ## So what constitutes architecture, again?
 
 Let's revisit my *quick and dirty* definition:
@@ -253,9 +255,13 @@ In the face of all these difficulties, the role of an architect is to **balance 
 
 Hope you enjoyed it, thanks for reading 🤓.
 
+Special thanks for [Damian](https://twitter.com/raimeyuu) & [Mateusz](https://twitter.com/mat_ledzewicz) for proof-reading.
+
 ### Recommended Read
 
 There are several really good books on the topic, but before you get deeper into more specific topics, I'm recommend starting from the basics:
 
 - [*Software Architecture for Developers*](https://simonbrown.je/#writing) by Simon Brown; this is a rather basic, yet **absolute must-read** for anyone **responsible** for any Software A rchitecture whatsoever
 - [*Fundamentals of Software Architecture*](https://fundamentalsofsoftwarearchitecture.com/) by Mark Richards & Neal Ford; slightly going more in-depth
+
+Also, you'll find good introductions to many aspects of architecture at [Martin Fowler's site](https://martinfowler.com/architecture/).

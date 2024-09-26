@@ -23,7 +23,7 @@ const postSourceMarkdownFilepath = (name) => path.join(__dirname, `../posts/${na
 const postTargetHTMLFilepath = (name) => (`./${name}.html`)
 
 const imageURL = (filepath, { absolute = true } = {}) =>
-  absolute ? absoluteUrl(`images/blog/min/${filepath}`) : `images/blog/min/${filepath}`
+  absolute ? absoluteUrl(`images/blog/${filepath}`) : `images/blog/${filepath}`
 
 const generatePostHTML = async (post) => {
   console.log(chalk.green(`processing: ${post.sourceFile}...`))
@@ -38,6 +38,7 @@ const generatePostHTML = async (post) => {
   const postReadingTime = readingTime(origMD)
 
   const coverImageFilepath = path.join(__dirname, '..', 'images/blog/min', coverImageFilename);
+  console.log({coverImageFilename})
   if (!fs.existsSync(coverImageFilepath)) {
     const message = `File ${coverImageFilepath} does not exist`
     console.error(chalk.red(message))
