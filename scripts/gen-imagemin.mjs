@@ -5,6 +5,9 @@
 import imagemin from 'imagemin';
 import imageminAvif from 'imagemin-avif';
 
+console.log('Put the original image (*-orig.png) and the re-scaled (*.png) in the images/[blog/] directory')
+console.log('This script will generate the AVIF images in the images/[blog/]min directory')
+
 const paths = {
   'images/*.{jpg,png}': 'images/min',
   'images/blog/*.{jpg,png}': 'images/blog/min',

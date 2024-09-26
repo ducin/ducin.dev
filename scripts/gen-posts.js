@@ -6,6 +6,7 @@ const toc = require('markdown-toc')
 const myMarked = require('marked')
 const prettier = require("prettier")
 const chalk = require('chalk')
+const readingTime = require('reading-time')
 const { subscribeTpl } = require('../templates/subscribe-tpl')
 
 const { absoluteUrl } = require('./urls')
@@ -26,7 +27,7 @@ const imageURL = (filepath, { absolute = true } = {}) =>
 
 const generatePostHTML = async (post) => {
   console.log(chalk.green(`processing: ${post.sourceFile}...`))
-  const { title, keywords, description, readingTime, publishedDate, coverImage,
+  const { title, keywords, description, publishedDate, coverImage,
     sourceFile, coverImageFilename, githubURL } = post
   const origMD = '' + fs.readFileSync(postSourceMarkdownFilepath(sourceFile))
   const TOCContent = '## Table of Contents\n\n' + toc(origMD).content
@@ -34,6 +35,7 @@ const generatePostHTML = async (post) => {
     .replace(TOCPlaceholder, TOCContent)
     .replace(SubscribePlaceholder, subscribeTpl())
   let output = myMarked(MDWithTOC)
+  const postReadingTime = readingTime(origMD)
 
   const coverImageFilepath = path.join(__dirname, '..', 'images/blog/min', coverImageFilename);
   if (!fs.existsSync(coverImageFilepath)) {
@@ -49,7 +51,7 @@ const generatePostHTML = async (post) => {
       month: 'long',
       day: 'numeric',
     }),
-    readingTime,
+    readingTime: postReadingTime.text,
     coverImage,
     githubURL
   })

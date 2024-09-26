@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>TypeScript Type Inference Guide - Tomasz Ducin - blog</title>
-    <link rel="stylesheet" href="assets/css/main.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
-    <style>
-      #main > header {
-        background: url("images/blog/min/cover-metal-construction.jpg") !important;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Tomasz Ducin" />
     <meta name="keywords" content="TypeScript, Type Inference, Type Safety, Architecture, Software Design" />
     <meta name="description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
@@ -25,8 +19,14 @@
     <meta property="og:description" content="Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit." />
     <meta property="og:image" content="https://ducin.dev/images/blog/min/cover-metal-construction.jpg" />
     <link rel="canonical" href="https://ducin.dev/typescript-type-inference-guide" />
-    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/min/cover-metal-construction.jpg") !important;
+      }
+    </style>
   </head>
   <body>
     <!-- Google tag (gtag.js) -->
@@ -88,7 +88,7 @@
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/P_qvsF7Yodw">Tokyo Tower Construction Frame</a> by <a href="https://unsplash.com/@alain_pham">Alain Pham</a></p>
             <p>
-              <em> Tuesday, 1 January 2019 • 📚 18 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/typescript-type-inference-guide.md">edit on Github</a> </em>
+              <em> Tuesday 1 January 2019 • 📚 20 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/typescript-type-inference-guide.md">edit on Github</a> </em>
             </p>
             <h1 id="typescript-type-inference-guide">TypeScript Type Inference Guide</h1>
             <p>New Year is a good opportunity to start a new initiative - and here I go with the first post of a whole serie, where I explain mechanics of TypeScript and my experience of using it since late 2014 in big commercial projects (including sectors: finance, web analytics, ITIL, OSS).</p>
@@ -475,14 +475,26 @@ genreMap.psychedelic // FAIL! psychedelic doesn&#39;t exist on {}</code></pre>
 
       <footer id="footer">
         <ul class="icons">
-          <li><a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a></li>
-          <li><a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a></li>
-          <li><a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a></li>
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a>
+          </li>
           <!-- <li><a target="_blank" href="https://slides.com/ducin" class="icon fa-slideshare" aria-label="slides link"><span class="label">Slides</span></a></li> -->
-          <li><a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a></li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a>
+          </li>
           <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow" aria-label="stackoverflow link"><span class="label">Stack Overflow</span></a></li> -->
-          <li><a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a></li>
-          <li><a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a></li>
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a>
+          </li>
         </ul>
         <ul class="copyright">
           <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>

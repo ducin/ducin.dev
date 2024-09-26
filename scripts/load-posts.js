@@ -6,7 +6,6 @@ const Post = z.object({
   keywords: z.array(z.string()),
   description: z.string(),
   publishedDate: z.string(),
-  readingTime: z.string(),
   coverImage: z.object({
     URL: z.string(),
     title: z.string(),
@@ -14,12 +13,14 @@ const Post = z.object({
     author: z.string(),
   }).optional(),
   coverImageFilename: z.string(),
-  workInProgress: z.boolean().optional(),
+  status: z.enum(["PUBLISHED", "DRAFT", "IGNORED"]),
 });
 
 const loadPosts = () => {
   const posts = require('../data/posts.json')
-  return posts.map(raw => {
+  return posts
+  .filter(({ status }) => !status.includes("IGNORED"))
+  .map(raw => {
     const parsed = Post.parse(raw)
     const githubURL = `https://github.com/ducin/ducin.dev/blob/gh-pages/posts/${raw.sourceFile}.md`
 

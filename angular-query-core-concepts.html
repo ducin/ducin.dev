@@ -1,16 +1,10 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Angular Query Core Concepts - Tomasz Ducin - blog</title>
-    <link rel="stylesheet" href="assets/css/main.min.css" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
-    <style>
-      #main > header {
-        background: url("images/blog/min/cover-eclipse.png") !important;
-      }
-    </style>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Tomasz Ducin" />
     <meta name="keywords" content="Angular, Query, Signals, Data Loading, Data Refetching, Tanstack" />
     <meta name="description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
@@ -24,9 +18,15 @@
     <meta property="og:title" content="Angular Query Core Concepts - Tomasz Ducin - blog" />
     <meta property="og:description" content="This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it." />
     <meta property="og:image" content="https://ducin.dev/images/blog/min/cover-eclipse.png" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <link rel="canonical" href="https://ducin.dev/angular-query-core-concepts" />
-    <link rel="shortcut icon" href="https://ducin.dev/images/td-logo-zolte-80.png" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/min/cover-eclipse.png") !important;
+      }
+    </style>
   </head>
   <body>
     <!-- Google tag (gtag.js) -->
@@ -88,7 +88,7 @@
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/moon-eclipse-F-pSZO_jeE8">Moon Eclipse</a> by <a href="https://unsplash.com/@sarahleejs">Jongsun Lee</a></p>
             <p>
-              <em> Thursday, 25 January 2024 • 📚 11 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/angular-query-core-concepts.md">edit on Github</a> </em>
+              <em> Thursday 25 January 2024 • 📚 13 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/angular-query-core-concepts.md">edit on Github</a> </em>
             </p>
             <p>This post introduces <strong>Angular Query</strong> to Angular Developers: <strong>why you should care</strong>, what is the <strong>mental model</strong>, <strong>how it works</strong> and how your applications can <strong>benefit</strong> from it.</p>
             <p>This is the start of an entire series on Angular Query. Expect more articles about it 💪</p>
@@ -392,14 +392,26 @@ export class PostComponent {
 
       <footer id="footer">
         <ul class="icons">
-          <li><a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a></li>
-          <li><a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a></li>
-          <li><a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a></li>
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a>
+          </li>
           <!-- <li><a target="_blank" href="https://slides.com/ducin" class="icon fa-slideshare" aria-label="slides link"><span class="label">Slides</span></a></li> -->
-          <li><a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a></li>
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a>
+          </li>
           <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow" aria-label="stackoverflow link"><span class="label">Stack Overflow</span></a></li> -->
-          <li><a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a></li>
-          <li><a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a></li>
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a>
+          </li>
         </ul>
         <ul class="copyright">
           <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>

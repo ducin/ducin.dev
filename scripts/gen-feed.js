@@ -27,7 +27,7 @@ const feed = new Feed({
 });
 
 posts
-.filter(({ workInProgress }) => !workInProgress)
+.filter(({ status }) => status == "PUBLISHED")
 .forEach(post => {
   feed.addItem({
     title: post.title,

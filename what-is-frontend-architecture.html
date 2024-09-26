@@ -1,0 +1,611 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>What is Frontend Architecture? - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Frontend, Software, Architecture, Design, Angular, React" />
+    <meta
+      name="description"
+      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
+    />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/min/cover-wood-architecture.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta
+      name="twitter:description"
+      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
+    />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/min/cover-wood-architecture.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="What is Frontend Architecture? - Tomasz Ducin - blog" />
+    <meta
+      property="og:description"
+      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
+    />
+    <meta property="og:image" content="https://ducin.dev/images/blog/min/cover-wood-architecture.png" />
+    <link rel="canonical" href="https://ducin.dev/what-is-frontend-architecture" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/min/cover-wood-architecture.png") !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMG3MMTWGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MMG3MMTWGW");
+    </script>
+
+    <script>
+      (function (s, e, n, d, er) {
+        s["Sender"] = er;
+        (s[er] =
+          s[er] ||
+          function () {
+            (s[er].q = s[er].q || []).push(arguments);
+          }),
+          (s[er].l = 1 * new Date());
+        var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://cdn.sender.net/accounts_resources/universal.js", "sender");
+      sender("758ace613a8369");
+    </script>
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle" aria-label="Toggle site menu"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/newsletter">Newsletter</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2 class="cover-title-alt">What is Frontend Architecture?</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p class="image-caption"><a href="https://unsplash.com/photos/a-model-of-a-wooden-building-with-trees-in-front-of-it-ObfRnTp1a1U">Miniature of a building complex</a> by <a href="https://unsplash.com/@d5render">D5 Render</a></p>
+            <p>
+              <em> Thursday 26 September 2024 • 📚 17 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/what-is-frontend-architecture.md">edit on Github</a> </em>
+            </p>
+            <p><strong>Disclaimer</strong>: if you consider yourself a <strong>coder</strong>, close this page 😉</p>
+            <p>
+              <strong>We&#39;ve got a problem in Frontend communities 😉</strong> We tend to focus on libraries, frameworks, bundlers, numbers of github stars... and many other areas of little relevance. We tend to love a tool (<a href="https://www.youtube.com/watch?v=xsSnOQynTHs">Redux, I&#39;m looking at you, back in 2015-2016</a>) and significantly overuse it. Then, we turn back and totally
+              hate the same tool for the very same reasons (<a href="https://www.reddit.com/r/reactjs/comments/buzlqc/why_all_the_sudden_hate_for_redux/">Redux, now</a>). Both the love and the hate was unjustified... so what happened? 🤨
+            </p>
+            <p>
+              The &quot;<em>problem</em>&quot; is that many of us Frontend Devs <strong>lack skills and knowledge related to Software Architecture</strong> as-is, as our focus is often somewhere else. And <strong>these skills are absolutely required (but not sufficient) to make a project succeed long-term</strong>. That&#39;s because architecture is the
+              <strong>invisible bridge between what&#39;s important from both the business and the tech perspectives</strong>.
+            </p>
+            <p>
+              While running developer trainings, consultancy activites or recruiting team leaders, etc., I tend to ask: <em>how do you understand <strong>what is Software Architecture</strong></em
+              >? <em>What are the most important aspects, what to watch out for, how to provide proper/healthy System Architecture, and what is the role of an Architect?</em>
+            </p>
+            <p>Before moving on, take a while and try to answer these yourself 😉...</p>
+            <p>Tick tock ⏰...</p>
+            <p>
+              The question is deliberately very wide, so that my interlocutor can freely say whatever they consider important. I&#39;m not suggesting anything. But when the answer starts something like: <em>(frontend) architecture is how we structure directories and files [...]</em> - then it&#39;s an immediate red flag 🟥 to me. And yes, I got motivated to write this post by yet another person
+              who said the above 😉.
+            </p>
+            <p>
+              My intention, dear Reader, is to <strong>shift your focus</strong>. Inspire you to think about architecture from a different perspective. <strong>Detach</strong> from the structure you see in your repo, or from the specific solutions in your code. And concentrate on <strong>what characteristics you want your system to have</strong>. What <strong>capabilities</strong> are you going to
+              need in a <strong>broader perspective</strong>. <strong>Detach from the tools and reattach to the tradeoffs they bring</strong>. And, last but not least, what required software capabilities are <strong>determined by your business</strong>.
+            </p>
+            <h2 id="table-of-contents">Table of Contents</h2>
+            <ul>
+              <li>
+                <a href="#what-is-frontend-architecture">What is (Frontend) Architecture?</a>
+                <ul>
+                  <li>
+                    <a href="#decisions">Decisions</a>
+                    <ul>
+                      <li><a href="#drivers">Drivers</a></li>
+                      <li><a href="#tradeoffs">Tradeoffs</a></li>
+                      <li><a href="#limitations">Limitations</a></li>
+                      <li><a href="#recap">Recap</a></li>
+                    </ul>
+                  </li>
+                  <li><a href="#so-what-constitutes-architecture-again">So what constitutes architecture, again?</a></li>
+                  <li><a href="#why-directory-structure-shouldnt-be-considered-as-architecture">Why directory structure shouldn&#39;t be considered as architecture?</a></li>
+                  <li><a href="#what-directory-structure-will-not-tell-us">What directory structure will not tell us</a></li>
+                  <li>
+                    <a href="#building-the-proper-understanding-of-frontend-architecture">Building the proper understanding of Frontend Architecture</a>
+                    <ul>
+                      <li><a href="#whats-the-input-and-where-to-get-it-from">What&#39;s the input and where to get it from?</a></li>
+                      <li><a href="#proceed-to-development-aspects">Proceed to development aspects</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#summary">Summary</a>
+                    <ul>
+                      <li><a href="#recommended-read">Recommended Read</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <hr />
+            <h1 id="what-is-frontend-architecture">What is (Frontend) Architecture?</h1>
+            <p>So this tweet <em>happened</em> 😅:</p>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">friendly reminder:<br /><br />folder structure is NOT architecture (and never has been)</p>
+              &mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1834183544169451609?ref_src=twsrc%5Etfw">September 12, 2024</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+            <p>Somewhere in the comments below, I got asked <em>What is Architecture in my view</em>. I tried to make the answer concise:</p>
+            <blockquote>
+              <p><em>The decisions you make according to business requirements that shape your system today and that are difficult to change in the future.</em></p>
+            </blockquote>
+            <p>The truth is, there&#39;s no single definition of what Software Architecture is. I strongly recommend reading Martin Fowler&#39;s <a href="https://martinfowler.com/architecture/">Software Architecture Guide</a>. Some alternative definitions include:</p>
+            <blockquote>
+              <p>
+                <em>The decisions <strong>you wish you could</strong> get right early in a project.</em>
+              </p>
+            </blockquote>
+            <p>or</p>
+            <blockquote>
+              <p><em>Architecture is about the important stuff. Whatever that is.</em></p>
+            </blockquote>
+            <p>
+              Notice the word: <strong><em>important</em></strong
+              >.
+            </p>
+            <p>
+              And notice another word: <strong><em>decisions</em></strong
+              >.
+            </p>
+            <p>Before me move on to examples (later in the article) let&#39;s <strong>start from the essentials</strong>.</p>
+            <h2 id="decisions">Decisions</h2>
+            <p>
+              We need to decide on lots of things throughout the lifetime of a project: the language/platform, the libraries, the paradigm, coding style... tabs vs spaces... 🤔 but also: how do we ensure that business priorities and requirements are met, how do we enable dozens of developers to work on the same system, how do we enable frequent deploys (daily, hourly, Fridays included) and so on.
+            </p>
+            <p>Yes, as you can see the topics range from not really relevant ones to absolutely essential ones. The aspects we analyze and the decisions we make are of <strong>different relevance</strong>. The more experienced developers are, the more likely they&#39;ll try to <strong>avoid investing energy into things that don&#39;t really matter</strong>.</p>
+            <p>Especially, if the decision can be easily <strong>reverted</strong>.</p>
+            <p>So how do we evaluate whether a certain decision is the right one?</p>
+            <h3 id="drivers">Drivers</h3>
+            <p>Whenever in doubt, it&#39;s always a good idea to take a step back and see a wider perspective - and this includes:</p>
+            <ul>
+              <li>what are the top <strong>priorities</strong> for our business?</li>
+              <li>what are the <strong>limitations</strong> we need to take into account?</li>
+              <li>what can we <strong>sacrifice</strong> (optional goals) and what we cannot (mandatory goals)?</li>
+            </ul>
+            <p><strong>Architecture drivers are the aspects that make us dive very deep into a very specific context of a very specific project</strong>. Think of it as the project&#39;s <strong>context</strong> which <strong>evaluates</strong>, whether a theoretical advantage or disadvantage is important in a specific situation, or not.</p>
+            <p>Architectural drivers can be very different:</p>
+            <ul>
+              <li><strong>response time</strong>: the system has to respond very quickly</li>
+              <li><strong>traffic</strong>: it needs to handle <strong>massive</strong> amount of <strong>requests</strong></li>
+              <li><strong>SLA/HA</strong>: its uptime needs to be ~99,99%</li>
+              <li><strong>organization scale</strong>: it needs to be developed by dozens or even hundreds of developers</li>
+              <li><strong>entry level</strong>: it should be relatively easy to pick up by less skilled devs</li>
+              <li><strong>TTM</strong>: delivering features have to be very quick due to business situation (whatever it is)</li>
+            </ul>
+            <p>In business environments, the drivers are almost always there. Most probably, your company&#39;s business representatives express them directly, just not using the &quot;<em>drivers</em>&quot; word literally. Failing to identify them significantly reduces the chances of your success, as you could concentrate on the wrong things.</p>
+            <p>So how do we shape system&#39;s design in order to achieve those high-level goals?</p>
+            <h3 id="tradeoffs">Tradeoffs</h3>
+            <p>We need to realize, that nothing comes for free. If we want to provide a nice characteristic for the system, it&#39;ll come with a price. We need to be aware of that price. Let&#39;s revisit the list of architectural drivers above and extend it with the probable downsides:</p>
+            <ul>
+              <li>the system has to respond very quickly <strong>at the cost of increased complexity and worsened flexibility</strong></li>
+              <li>it needs to handle massive amount of traffic via horizontal/auto scaling <strong>at the cost of moving from monolithic to distributed systems</strong></li>
+              <li>its uptime needs to be ~99,99% <strong>at the cost of maintaining canary releases, blue/green deployment and other expensive techniques</strong></li>
+              <li>it needs to be developed by dozens or even hundreds of developers via making smaller &amp; independent teams <strong>at the cost of code/effort duplication and way more complex infrastructure</strong></li>
+              <li>it should be relatively easy to pick up by less skilled devs <strong>at the cost of not using what our devs love the most</strong></li>
+              <li>delivering features have to be very quick due to business <strong>at the cost of increasing tech debt</strong> and so on...</li>
+            </ul>
+            <p>
+              Tradeoffs are <em>simple</em> in a way, that we can <strong>consciously decide</strong> what are the <strong>things</strong> that we can carry on <strong>without</strong>. Example:
+              <em>is 99,99% uptime really necessary? - Yes, because our contract obliges us to support it. - But is 80% Code Coverage really necessary? - It&#39;s nice to have, but no, it&#39;s not necessary. <strong>We can carry on without it</strong>.</em>
+            </p>
+            <p>While making architectural decisions, it&#39;s necessary to <strong>focus on drivers, while having tradeoffs in mind</strong>. We aim to achieve our <strong>goals</strong>, but we also know what we might need to <strong>sacrifice</strong>.</p>
+            <h3 id="limitations">Limitations</h3>
+            <p>One more truism: not everything is possible.</p>
+            <p>😉</p>
+            <p>Sometimes we cannot implement a decision even though all our considerations prove this is a good decision. External factors might collide:</p>
+            <ul>
+              <li>
+                the system has to respond very quickly, at the cost of increased complexity and worsened flexibility, <strong>but we cannot remodel our database <em>because of reasons</em></strong>
+              </li>
+              <li>
+                it needs to handle massive amount of traffic via horizontal/auto scaling, at the cost of moving from monolithic to distributed systems, <strong>but we cannot change the cloud provider <em>because of reasons</em></strong>
+              </li>
+              <li>
+                delivering features have to be very quick, due to business, at the cost of increasing tech debt <strong>but we cannot hire more developers to speed us up <em>because of reasons</em></strong> etc.
+              </li>
+            </ul>
+            <p>This is the sad part. Just to make things slightly more challenging - we need to accept that our capabilities are limited <em>because of reasons</em> 😉. But we still want to achieve our goals!</p>
+            <h3 id="recap">Recap</h3>
+            <p>Let&#39;s quickly summarize: we make architectural <strong>decisions</strong>, having <strong>architectural drivers</strong> in mind, being aware of the <strong>tradeoffs</strong> of these decisions and having to cope with the <strong>limitations</strong>.</p>
+            <h2 id="so-what-constitutes-architecture-again">So what constitutes architecture, again?</h2>
+            <p>Let&#39;s revisit my <em>quick and dirty</em> definition:</p>
+            <blockquote>
+              <p>
+                <em>The (<strong>high-level, technical</strong>) decisions you make according to business requirements that shape your system today and that are difficult to change in the future.</em>
+              </p>
+            </blockquote>
+            <p>Now let&#39;s confront what satisfies the definition and what does not:</p>
+            <ul>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Choosing to implement <a href="https://martinfowler.com/articles/micro-frontends.html">MicroFrontends (MFEs)</a> or not (and how)</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ Whether we use <a href="https://webpack.js.org/concepts/module-federation/">webpack module federation</a> or something else</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Does reusability matter more than isolation - or vice versa</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ Whether you implement <a href="https://tkdodo.eu/blog/please-stop-using-barrel-files">barrel files</a> (index.js/ts) in your codebase or not</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Do <em>models</em> get shared across different <em>modules</em> or are they isolated, e.g. via <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer">ACL</a></li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ Whether we stick to classes/OOP or functions/FP</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Whether your state is meant to be centralized/shared or distributed/local</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ Whether you use a <a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts">redux-ish</a> store for this</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Whether <a href="https://github.com/kriskowal/gtor#observables">PULL-based or PUSH-based</a> fits your needs more</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ Whether you use promises, async await or rxjs, really, WHATEVER</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Does your UI rely heavily on <a href="https://en.wikipedia.org/wiki/Real-time_computing">real-time data</a></li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ Whether you use firebase vs supabase vs [...]</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Who can change the <a href="https://www.geeksforgeeks.org/api-contracts-system-design/">client-server API contract</a>?</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ Whether you&#39;re using <a href="https://graphql.org/">GraphQL</a>, <a href="https://en.wikipedia.org/wiki/REST">REST</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">SSE</a>, etc.</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ What architectural drivers are the most important ones?</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ whether you claim you follow best practices or not</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Whether highly optimized <a href="https://web.dev/articles/lcp">LCP</a> is a nice-to-have or a must-have</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ how big (LoC) your UI components are</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ Whether your system is <a href="https://en.wikipedia.org/wiki/Multitenancy">single or multi-tenant</a></li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ whether you keep authentication data in redux, context, useState, whatever, Whatever, WHATEVER</li>
+                </ul>
+              </li>
+              <li>
+                <em>Architecture defined by</em>:
+                <ul>
+                  <li>✅ How do you provide <a href="https://en.wikipedia.org/wiki/Fault_tolerance">Fault Tolerance</a> to your UI</li>
+                </ul>
+              </li>
+              <li>
+                <em>NOT</em>:
+                <ul>
+                  <li>❌ that your CI pipeline requires 80% <a href="https://martinfowler.com/bliki/TestCoverage.html">Code Coverage</a>, otherwise it fails.</li>
+                </ul>
+              </li>
+            </ul>
+            <p>At this point I hope you get the point quite well 😅.</p>
+            <h2 id="why-directory-structure-shouldnt-be-considered-as-architecture">Why directory structure shouldn&#39;t be considered as architecture?</h2>
+            <p>Directory structure is a result of some design work and conventions introduced. They are meant to help us move faster, deliver faster, deliver without breaking (or with breaking less) things.</p>
+            <p>Directory structure is not a goal itself. It is a means to achieve another, higher-level goal, such as:</p>
+            <ul>
+              <li><a href="https://martinfowler.com/articles/micro-frontends.html">MFE</a>/<a href="https://www.kamilgrzybek.com/blog/posts/modular-monolith-primer">Modulith</a> separation of bounded contexts</li>
+              <li>allowing separate teams to deliver and <a href="https://microservices.io/post/architecture/2022/05/04/microservice-architecture-essentials-deployability.html">deploy independently</a> on one another</li>
+              <li>helping to isolate the local models via <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer">ACL</a> etc.</li>
+            </ul>
+            <p>As we can clearly see, directory structure can fit a given architecture sometimes better, sometimes worse. But it is materializing a concept, it&#39;s an <strong>implementation</strong>. An implementation <strong>detail</strong>. It is a way to achieve our final goal.</p>
+            <h2 id="what-directory-structure-will-not-tell-us">What directory structure will not tell us</h2>
+            <p>There are tons of very important aspects, which we simply <strong>cannot figure out from whatever the dir structure / convention is</strong>. These include:</p>
+            <ul>
+              <li>you cannot tell whether you implemented some <a href="https://en.wikipedia.org/wiki/God_object">&quot;god classes&quot;</a> or whether your modules are isolated, <a href="https://martinfowler.com/bliki/BoundedContext.html">bounded contexts</a></li>
+              <li>you cannot tell whether you <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer">reuse the same model between the contract and your local frontend logic</a></li>
+              <li>you cannot tell whether <a href="https://twitter.com/mathiasverraes/status/711168935798902785">your state is shared/centralized or distributed</a></li>
+              <li>
+                you cannot tell where is the <a href="https://en.wikipedia.org/wiki/Coupling_(computer_programming)#Types_of_coupling">troublesome coupling</a> within the codebase, did you apply <a href="https://en.wikipedia.org/wiki/Dependency_inversion_principle">dependency inversion</a> and how <a href="https://en.wikipedia.org/wiki/Cohesion_(computer_science)">cohesive</a> is your codebase
+                etc.
+              </li>
+            </ul>
+            <p>
+              To say it gently, the directory structure is <em>not important <strong>enough</strong></em> to be considered Architecture. Directory structure can <strong>fulfill</strong> an architecture (or not), but it is not architecture itself.
+            </p>
+            <h2 id="building-the-proper-understanding-of-frontend-architecture">Building the proper understanding of Frontend Architecture</h2>
+            <p>Architecture is <em>not</em> something we want 😘, desire 🥰 or enforce 😤. It&#39;s <em>not</em> something we draw out of a sudden 😶‍🌫️. And is surely <em>not</em> something we should copy-paste across projects, because it worked well in the previous company 🥸.</p>
+            <p>
+              Architecture is a <strong>result of communication, detailed analysis and reasoning</strong>. <strong>It&#39;s an outcome</strong>. Like a function producing <strong>certain output for given input</strong>. And, for sure, the inputs will change over time. The role of <strong>an architect</strong> is to gather the knowledge/experience to run this
+              <code>input -&gt; output</code> function <strong>regularly</strong>.
+            </p>
+            <h3 id="whats-the-input-and-where-to-get-it-from">What&#39;s the input and where to get it from?</h3>
+            <p>The most important skill of an architect is <strong>communication</strong>, with all: management, business and development. Totally different groups, right? There are lots of information to be gathered, including:</p>
+            <ul>
+              <li>
+                What the <strong>product offers</strong>, what are the <strong>advantages</strong>, what is the <a href="https://martinfowler.com/bliki/DomainDrivenDesign.html"><strong>core domain</strong></a> which allows us to have advantage over competition?
+                <ul>
+                  <li>The modules/features/teams included within the core domain should <em>not</em> be outsourced to any third party</li>
+                  <li>The quality should <em>not</em> get sacrificed</li>
+                  <li>Discovering/modelling the domain might be driven by <a href="https://martinfowler.com/bliki/DomainDrivenDesign.html">DDD</a> practices, such as <a href="https://en.wikipedia.org/wiki/Event_storming">Event Storming</a></li>
+                  <li>Non-core domains are of secondary importance</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Company structure</strong> - and how does the <a href="https://en.wikipedia.org/wiki/Conway%27s_law"><strong>Conway&#39;s Law</strong></a> affect our software development and delivery
+                <ul>
+                  <li>How big is the Development Dept.? How many teams we have?</li>
+                  <li>Is the company product-oriented? Does each team take full responsibility for a (sub)product which they&#39;re developing, testing, deploying etc. 100% independently on other teams?</li>
+                  <li>Are there any associate companies, shared tech, acquisitions or any other critical concerns which affect our organization now - or which could change soon and invalidate all our current reasoning about &quot;<em>how we should structure our teams</em>&quot;?</li>
+                </ul>
+              </li>
+              <li>
+                <strong>Business goals, customer expectations, market situation</strong>
+                <ul>
+                  <li>How soon solution deliveries are expected? Do we have the know-how to achieve them?</li>
+                  <li>How frequently deployments/deliveries should happen? Is the company ready for it?</li>
+                </ul>
+              </li>
+            </ul>
+            <h3 id="proceed-to-development-aspects">Proceed to development aspects</h3>
+            <p>On the technical level, we form the following questions:</p>
+            <ul>
+              <li>
+                How much should we <a href="https://softwareyoga.com/is-your-code-dry-or-wet/"><strong>encourage/discourage code reuse</strong></a
+                >?
+                <ul>
+                  <li>
+                    The more we reuse, the <a href="https://bit.ly/47GxRFC">less code is needed</a>, but also the less independent the teams will become (!), especially when shared pieces change rather frequently than not (as <em>compared</em> with <a href="https://en.wikipedia.org/wiki/Shared-nothing_architecture"><strong>Shared Nothing Architecture</strong></a
+                    >)
+                  </li>
+                  <li>
+                    what would be the <strong>consequences of changing a shared piece</strong> (a file, a component library, an artifact, etc)? Would a rebuild be needed? If yes - rebuild of how many pieces? How much testing (hopefully automatic) would be needed? How many pieces get deployed? Sequentially or indepentently? How long would it all take? How much unnecessary effort / time loss gets
+                    introduced by this sharing?
+                    <ul>
+                      <li>and how does that affect our <a href="https://en.wikipedia.org/wiki/Uptime">uptime</a>/<a href="https://en.wikipedia.org/wiki/Service-level_agreement">SLA</a>?</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                How flexible is your system and how do you <a href="https://dora.dev/research/">measure your architecture</a>?
+                <ul>
+                  <li>In short, what is the expected and current <a href="https://en.wikipedia.org/wiki/Time_to_market">TTM</a>? But also:</li>
+                  <li>How <strong>often</strong> application changes are <strong>deployed to production</strong> (<a href="https://www.cortex.io/post/deployment-frequency-why-and-how-to-measure-it">DF</a>)?</li>
+                  <li>How <strong>long</strong> does it take between the point where a developer <strong>starts coding</strong> and when it <strong>reaches production</strong> (<a href="https://www.sleuth.io/post/change-lead-time-explained/">CLT</a>)?</li>
+                  <li>How <strong>often</strong> do changes introduce a <strong>failure</strong> (<a href="https://www.jit.io/blog/calculate-change-failure-rate">CFR</a>)?</li>
+                  <li>How much <strong>time</strong> it takes to <strong>recover from a failure</strong> (<a href="https://help.swarmia.com/mean-time-to-recovery">MTTR/FDRT</a>)?</li>
+                </ul>
+              </li>
+              <li>
+                How do you ensure the <strong>stability</strong> of the system (<em>apart</em> from testing, code coverage, thresholds, etc):
+                <ul>
+                  <li>What is the procedure in case of a failure? And how often do people need to reach out to it? 😄</li>
+                  <li>How many/how big pieces need to be deployed synchronously/together? Does your product&#39;s deployment require unnecessary builds of its dependencies <em>only because</em> of how CI/CD and (overly granlar) repositories are structured?</li>
+                  <li>
+                    How much do the teams <strong>trust</strong> each other? Is it a good idea to trust that what they ship is ok? <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Git-flow</a>-ish workflow or <a href="https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development">trunk-based</a> development? CI/CD and the whole
+                    provess will tremendously depend on these.
+                  </li>
+                  <li>
+                    How <a href="https://en.wikipedia.org/wiki/Fault_tolerance"><strong>fault tolerant</strong></a> the system is? Is the <a href="https://en.wikipedia.org/wiki/Chaos_engineering">frontend app automatically tested against various scenarios of backend failures</a>?
+                  </li>
+                  <li>
+                    Can the developers effectively make use of <a href="https://learn.microsoft.com/en-us/data-engineering/playbook/capabilities/data-observability/">observability</a>? E.g. how long does it take to:
+                    <ul>
+                      <li>Diagnose the source of the frontend issue?</li>
+                      <li>Rollback?</li>
+                      <li>Provide the fix?</li>
+                      <li>or how/when do developers notice any regression in <a href="https://web.dev/articles/vitals">Core Web Vitals</a>?</li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li>
+                What <strong>distinct devices/environments</strong> are the users using? Web, (native) mobile, both? Again:
+                <ul>
+                  <li>which pieces should be reused, and which should be forked for the sake of less cross-team dependencies?</li>
+                  <li>how the teams/codebases are organized? By platform or by bounded context? 😉 etc.</li>
+                </ul>
+              </li>
+              <li>
+                What <strong>specific characteristics</strong> are expected/required?
+                <ul>
+                  <li>
+                    example: <strong>collaborative mode</strong>. Currently the system allows a single user to apply changes, but the requirement is to allow multiple users to apply changes in real-time on the sama data-set. If your code applies <strong>direct state changes</strong> (e.g. set, update, etc.) then there might be no convenient model to share across the users. But if your state
+                    changes <strong>indirectly</strong> (via the <a href="https://refactoring.guru/design-patterns/command">Command Pattern</a>, e.g. via <a href="https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers">redux actions</a>), then you already have the model which can be shared within the first iteration (of introducing collaborative features). Or reach to
+                    <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a>.
+                  </li>
+                  <li>
+                    example: <a href="https://en.wikipedia.org/wiki/Strong_consistency"><strong>never show outdated data</strong></a
+                    >. If you see an outdated number of <em>likes</em> under your post, nobody is going to suffer. Okay, hopefully, but still, you get the point 😉. However, in a banking system it&#39;s not a good idea to allow the UI to show outdated account balance e.g. when switching across tabs/sections.
+                  </li>
+                  <li>
+                    example: <strong>SDKs</strong>. Do your customers implement their own custom features on top of the platform you provide? How often do you have <strong>breaking changes</strong> (and how often are your customers <em>f@@@@d up</em> because of it)? How do you find the balance between evolving your system and not spending enormous costs on older versions while having limited
+                    resources? For instance, redesigning your react component&#39;s props for a few <a href="https://bradfrost.com/blog/post/atomic-web-design/">atoms</a> could have really huge consequences and, even though implemented, tested etc. could be - sadly - reverted due to <strong>non-breaking changes</strong> requirement.
+                  </li>
+                </ul>
+              </li>
+            </ul>
+            <p>As you can see, managing the architecture is all about <strong>asking the right questions</strong>. To <a href="https://www.goodreads.com/quotes/1134331-i-would-rather-have-questions-that-can-t-be-answered-than">quote the classic</a>:</p>
+            <blockquote>
+              <p><em>I would rather have questions that can&#39;t be answered than answers that can&#39;t be questioned</em></p>
+            </blockquote>
+            <p>Thinking carefully about all the above concerns should lead us to making decision about the architectural style and important tool stack used.</p>
+            <h2 id="summary">Summary</h2>
+            <p>Architecture is all about making <strong>important decisions</strong>. These should be <strong>driven</strong> by business priorities, <strong>tradeoffs</strong> should be taken into account, and existing <strong>limitations</strong> make it even more challenging.</p>
+            <p>In the face of all these difficulties, the role of an architect is to <strong>balance between business priorities and requirements - and technical aspects and its complexity</strong>.</p>
+            <p>
+              <strong>Don&#39;t confuse architecture</strong> (the high-level decisions that are meant to help you fulfill your goal) <strong>with how you&#39;re going to implement it</strong>. Certain tools, libraries, conventions, APIs, etc - they&#39;re all low-level details, which can get you closer to reaching your goal or not. But from the perspective of business priorities, limitations (and
+              so on), they&#39;re only details. Details of little relevance.
+            </p>
+            <p>Hope you enjoyed it, thanks for reading 🤓.</p>
+            <h3 id="recommended-read">Recommended Read</h3>
+            <p>There are several really good books on the topic, but before you get deeper into more specific topics, I&#39;m recommend starting from the basics:</p>
+            <ul>
+              <li>
+                <a href="https://simonbrown.je/#writing"><em>Software Architecture for Developers</em></a> by Simon Brown; this is a rather basic, yet <strong>absolute must-read</strong> for anyone <strong>responsible</strong> for any Software A rchitecture whatsoever
+              </li>
+              <li>
+                <a href="https://fundamentalsofsoftwarearchitecture.com/"><em>Fundamentals of Software Architecture</em></a> by Mark Richards &amp; Neal Ford; slightly going more in-depth
+              </li>
+            </ul>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves working with people. Ex-theatre actor. 4 espressos a
+                day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                  <span class="label">Twitter</span>
+                  Follow me on X/twitter for tech-related updates.
+                </a>
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://slides.com/ducin" class="icon fa-slideshare" aria-label="slides link"><span class="label">Slides</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow" aria-label="stackoverflow link"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

@@ -11,14 +11,14 @@
     ],
     "description": "Type Inference is the most important feature we should master, as we progress with using TypeScript. It allows us to keep the type safety of our codebase, and declare types less. Less investment cost, same profit.",
     "publishedDate": "2019-01-01",
-    "readingTime": "18 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/P_qvsF7Yodw",
       "title": "Tokyo Tower Construction Frame",
       "authorURL": "https://unsplash.com/@alain_pham",
       "author": "Alain Pham"
     },
-    "coverImageFilename": "cover-metal-construction.jpg"
+    "coverImageFilename": "cover-metal-construction.jpg",
+    "status": "PUBLISHED"
   },
   {
     "title": "Angular @defer Interactive Examples",
@@ -26,8 +26,8 @@
     "keywords": ["Angular", "Defer", "Examples", "Lazy Loading", "Bundling"],
     "description": "One of the Angular 17 awesome features shipped is the defer block which allows to lazy load components, directives and pipes, while configuring it on the template level via defer.",
     "publishedDate": "2024-01-04",
-    "readingTime": "2 min read",
-    "coverImageFilename": "cover-angular-defer.png"
+    "coverImageFilename": "cover-angular-defer.png",
+    "status": "PUBLISHED"
   },
   {
     "title": "Diving into Type System behind Angular Signals",
@@ -35,14 +35,14 @@
     "keywords": ["Angular", "Signals", "TypeScript", "Type Safety"],
     "description": "In this post we'll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage.",
     "publishedDate": "2023-12-28",
-    "readingTime": "6 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/a-pile-of-screws-and-nuts-on-a-table-LjnP00C93Co",
       "title": "A pile of screws and nuts on a table",
       "authorURL": "https://unsplash.com/@surya1213",
       "author": "Surya Prakash"
     },
-    "coverImageFilename": "cover-a-pile-of-screws-and-nuts-on-a-table.jpg"
+    "coverImageFilename": "cover-a-pile-of-screws-and-nuts-on-a-table.jpg",
+    "status": "PUBLISHED"
   },
   {
     "title": "Angular Signals are VALUES, not EVENTS",
@@ -50,14 +50,14 @@
     "keywords": ["Angular", "Signals", "Architecture", "Software Design"],
     "description": "Recent release of Angular 17.1 (18th January 2024), introduces Signal Inputs. It's a good opportunity to rethink migrating from RxJS to Signals, as more and more APIs are signal-based: the framework (signals, computeds, effects and the rxjs-interop) and ecosystem (NGRX signal store), as well as tons of experiments.",
     "publishedDate": "2024-01-19",
-    "readingTime": "8 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/low-angle-photography-of-metal-structure-ZiQkhI7417A",
       "title": "Low-angle photography of metal structure",
       "authorURL": "https://unsplash.com/@alinnnaaaa",
       "author": "Alina Grubnyak"
     },
-    "coverImageFilename": "cover-low-angle-metal-structure.png"
+    "coverImageFilename": "cover-low-angle-metal-structure.png",
+    "status": "PUBLISHED"
   },
   {
     "title": "Angular Query Core Concepts",
@@ -65,14 +65,14 @@
     "keywords": ["Angular", "Query", "Signals", "Data Loading", "Data Refetching", "Tanstack"],
     "description": "This post introduces Angular Query to Angular Developers: why you should care, what is the mental model, how it works and how your applications can benefit from it.",
     "publishedDate": "2024-01-25",
-    "readingTime": "11 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/moon-eclipse-F-pSZO_jeE8",
       "title": "Moon Eclipse",
       "authorURL": "https://unsplash.com/@sarahleejs",
       "author": "Jongsun Lee"
     },
-    "coverImageFilename": "cover-eclipse.png"
+    "coverImageFilename": "cover-eclipse.png",
+    "status": "PUBLISHED"
   },
   {
     "title": "There are no simply &quot;hot&quot; Observables in RxJS",
@@ -88,14 +88,14 @@
     ],
     "description": "The &quot;hot and cold&quot; observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the &quot;hot and cold&quot; concept is... harmful.",
     "publishedDate": "2024-01-31",
-    "readingTime": "9 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/red-and-blue-wallpaper-6lQDFGOB1iw",
       "title": "Red and Blue",
       "authorURL": "https://unsplash.com/@pawel_czerwinski",
       "author": "Pawel Czerwinski"
     },
-    "coverImageFilename": "cover-red-and-blue.png"
+    "coverImageFilename": "cover-red-and-blue.png",
+    "status": "PUBLISHED"
   },
   {
     "title": "Object.groupBy(collection, keySelector)",
@@ -107,7 +107,6 @@
     ],
     "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
     "publishedDate": "1970-01-01",
-    "readingTime": "1 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/a-bunch-of-screws-and-screws-on-a-table-yCyPRNLnFMM",
       "title": "Screws and washers",
@@ -115,7 +114,7 @@
       "author": "Roberto Sorin"
     },
     "coverImageFilename": "test.avif",
-    "workInProgress": true
+    "status": "IGNORED"
   },
   {
     "title": "Zod: Runtime type checks (for JavaScript and TypeScript)",
@@ -127,7 +126,6 @@
     ],
     "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
     "publishedDate": "1970-01-01",
-    "readingTime": "1 min read",
     "coverImage": {
       "URL": "https://unsplash.com/photos/seven-construction-workers-standing-on-white-field-x-ghf9LjrVgv",
       "title": "Seven construction workers",
@@ -135,7 +133,29 @@
       "author": "Scott Blake"
     },
     "coverImageFilename": "cover-seven-construction-workers.png",
-    "workInProgress": true
+    "status": "IGNORED"
+  },
+  {
+    "title": "What is Frontend Architecture?",
+    "sourceFile": "what-is-frontend-architecture",
+    "keywords": [
+      "Frontend",
+      "Software",
+      "Architecture",
+      "Design",
+      "Angular",
+      "React"
+    ],
+    "description": "While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?",
+    "publishedDate": "2024-09-26",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/a-model-of-a-wooden-building-with-trees-in-front-of-it-ObfRnTp1a1U",
+      "title": "Miniature of a building complex",
+      "authorURL": "https://unsplash.com/@d5render",
+      "author": "D5 Render"
+    },
+    "coverImageFilename": "cover-wood-architecture.png",
+    "status": "DRAFT"
   },
   {
     "title": "Test",
@@ -147,8 +167,7 @@
     ],
     "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
     "publishedDate": "1970-01-01",
-    "readingTime": "1 min read",
     "coverImageFilename": "cover-red-and-blue.png",
-    "workInProgress": true
+    "status": "DRAFT"
   }
 ]

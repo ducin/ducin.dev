@@ -35,7 +35,7 @@ const pageItems = pages
   }))
 
 const postItems = posts
-.filter(({ workInProgress }) => !workInProgress)
+.filter(({ status }) => status == "PUBLISHED")
 .map(({ sourceFile }) => ({
   loc: absoluteUrl(sourceFile),
   changefreq: 'weekly',

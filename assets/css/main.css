@@ -1452,7 +1452,7 @@
 		-webkit-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 		-ms-transition: color 0.2s ease, border-bottom-color 0.2s ease;
 		transition: color 0.2s ease, border-bottom-color 0.2s ease;
-		border-bottom: dotted 1px;
+		/* border-bottom: dotted 1px; */
 		color: inherit;
 		text-decoration: none;
 	}
@@ -3871,6 +3871,11 @@
 	font-family: "Virgil";
 	src: url("https://excalidraw.com/fonts/Virgil.woff2");
 } */
+
+.inner a {
+	text-decoration: underline;
+	font-style: italic;
+}
   
 .blogposts li {
 	list-style-type: none;
