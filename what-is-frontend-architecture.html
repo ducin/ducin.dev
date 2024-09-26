@@ -109,7 +109,7 @@
               <strong>invisible bridge between what&#39;s important from both the business and the tech perspectives</strong>.
             </p>
             <p>
-              While running developer trainings, consultancy activites or recruiting team leaders, etc., I tend to ask: <em>how do you understand <strong>what is Software Architecture</strong></em
+              While running developer trainings, consultancy activities or recruiting team leaders, etc., I tend to ask: <em>how do you understand <strong>what is Software Architecture</strong></em
               >? <em>What are the most important aspects, what to watch out for, how to provide proper/healthy System Architecture, and what is the role of an Architect?</em>
             </p>
             <p>Before moving on, take a while and try to answer these yourself 😉...</p>
@@ -262,139 +262,62 @@
               </p>
             </blockquote>
             <p>Now let&#39;s confront what satisfies the definition and what does not:</p>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Choosing to implement <a href="https://martinfowler.com/articles/micro-frontends.html">MicroFrontends (MFEs)</a> or not (and how)</li>
+              <li>❌ Whether we use <a href="https://webpack.js.org/concepts/module-federation/">webpack module federation</a> or something else</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Does reusability matter more than isolation - or vice versa</li>
+              <li>❌ Whether you implement <a href="https://tkdodo.eu/blog/please-stop-using-barrel-files">barrel files</a> (index.js/ts) in your codebase or not</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Do <em>models</em> get shared across different <em>modules</em> or are they isolated, e.g. via <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer">ACL</a></li>
+              <li>❌ Whether we stick to classes/OOP or functions/FP</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Whether your state is meant to be centralized/shared or distributed/local</li>
+              <li>❌ Whether you use a <a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts">redux-ish</a> store for this</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
             <ul>
               <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Choosing to implement <a href="https://martinfowler.com/articles/micro-frontends.html">MicroFrontends (MFEs)</a> or not (and how)</li>
-                </ul>
+                <p>✅ Whether <a href="https://github.com/kriskowal/gtor#observables">PULL-based or PUSH-based</a> fits your needs more</p>
               </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ Whether we use <a href="https://webpack.js.org/concepts/module-federation/">webpack module federation</a> or something else</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Does reusability matter more than isolation - or vice versa</li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ Whether you implement <a href="https://tkdodo.eu/blog/please-stop-using-barrel-files">barrel files</a> (index.js/ts) in your codebase or not</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Do <em>models</em> get shared across different <em>modules</em> or are they isolated, e.g. via <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer">ACL</a></li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ Whether we stick to classes/OOP or functions/FP</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Whether your state is meant to be centralized/shared or distributed/local</li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ Whether you use a <a href="https://redux.js.org/tutorials/essentials/part-1-overview-concepts">redux-ish</a> store for this</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Whether <a href="https://github.com/kriskowal/gtor#observables">PULL-based or PUSH-based</a> fits your needs more</li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ Whether you use promises, async await or rxjs, really, WHATEVER</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Does your UI rely heavily on <a href="https://en.wikipedia.org/wiki/Real-time_computing">real-time data</a></li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ Whether you use firebase vs supabase vs [...]</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Who can change the <a href="https://www.geeksforgeeks.org/api-contracts-system-design/">client-server API contract</a>?</li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ Whether you&#39;re using <a href="https://graphql.org/">GraphQL</a>, <a href="https://en.wikipedia.org/wiki/REST">REST</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">SSE</a>, etc.</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ What architectural drivers are the most important ones?</li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ whether you claim you follow best practices or not</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Whether highly optimized <a href="https://web.dev/articles/lcp">LCP</a> is a nice-to-have or a must-have</li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ how big (LoC) your UI components are</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ Whether your system is <a href="https://en.wikipedia.org/wiki/Multitenancy">single or multi-tenant</a></li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ whether you keep authentication data in Redux, context, useState, whatever, Whatever, WHATEVER</li>
-                </ul>
-              </li>
-              <li>
-                <em>Architecture defined by</em>:
-                <ul>
-                  <li>✅ How do you provide <a href="https://en.wikipedia.org/wiki/Fault_tolerance">Fault Tolerance</a> to your UI</li>
-                </ul>
-              </li>
-              <li>
-                <em>NOT</em>:
-                <ul>
-                  <li>❌ that your CI pipeline requires 80% <a href="https://martinfowler.com/bliki/TestCoverage.html">Code Coverage</a>, otherwise it fails.</li>
-                </ul>
-              </li>
+              <li><p>❌ Whether you use promises, async await or rxjs, really, WHATEVER</p></li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Does your UI rely heavily on <a href="https://en.wikipedia.org/wiki/Real-time_computing">real-time data</a></li>
+              <li>❌ Whether you use firebase vs supabase vs [...]</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Who can change the <a href="https://www.geeksforgeeks.org/api-contracts-system-design/">client-server API contract</a>?</li>
+              <li>❌ Whether you&#39;re using <a href="https://graphql.org/">GraphQL</a>, <a href="https://en.wikipedia.org/wiki/REST">REST</a>, <a href="https://developer.mozilla.org/en-US/docs/Web/API/Server-sent_events">SSE</a>, etc.</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ What architectural drivers are the most important ones?</li>
+              <li>❌ whether you claim you follow best practices or not</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Whether highly optimized <a href="https://web.dev/articles/lcp">LCP</a> is a nice-to-have or a must-have</li>
+              <li>❌ how big (LoC) your UI components are</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ Whether your system is <a href="https://en.wikipedia.org/wiki/Multitenancy">single or multi-tenant</a></li>
+              <li>❌ whether you keep authentication data in Redux, context, useState, whatever, Whatever, WHATEVER</li>
+            </ul>
+            <p><em>Architecture defined by</em>:</p>
+            <ul>
+              <li>✅ How do you provide <a href="https://en.wikipedia.org/wiki/Fault_tolerance">Fault Tolerance</a> to your UI</li>
+              <li>❌ that your CI pipeline requires 80% <a href="https://martinfowler.com/bliki/TestCoverage.html">Code Coverage</a>, otherwise it fails.</li>
             </ul>
             <p>At this point I hope you get the point quite well 😅.</p>
             <h2 id="why-directory-structure-shouldnt-be-considered-as-architecture">Why directory structure shouldn&#39;t be considered as architecture?</h2>
@@ -466,7 +389,7 @@
                     >)
                   </li>
                   <li>
-                    what would be the <strong>consequences of changing a shared piece</strong> (a file, a component library, an artifact, etc)? Would a rebuild be needed? If yes - rebuild of how many pieces? How much testing (hopefully automatic) would be needed? How many pieces get deployed? Sequentially or indepentently? How long would it all take? How much unnecessary effort / time loss gets
+                    what would be the <strong>consequences of changing a shared piece</strong> (a file, a component library, an artifact, etc)? Would a rebuild be needed? If yes - rebuild of how many pieces? How much testing (hopefully automatic) would be needed? How many pieces get deployed? Sequentially or independently? How long would it all take? How much unnecessary effort / time loss gets
                     introduced by this sharing?
                     <ul>
                       <li>and how does that affect our <a href="https://en.wikipedia.org/wiki/Uptime">uptime</a>/<a href="https://en.wikipedia.org/wiki/Service-level_agreement">SLA</a>?</li>
@@ -488,10 +411,10 @@
                 How do you ensure the <strong>stability</strong> of the system (<em>apart</em> from testing, code coverage, thresholds, etc):
                 <ul>
                   <li>What is the procedure in case of a failure? And how often do people need to reach out to it? 😄</li>
-                  <li>How many/how big pieces need to be deployed synchronously/together? Does your product&#39;s deployment require unnecessary builds of its dependencies <em>only because</em> of how CI/CD and (overly granlar) repositories are structured?</li>
+                  <li>How many/how big pieces need to be deployed synchronously/together? Does your product&#39;s deployment require unnecessary builds of its dependencies <em>only because</em> of how CI/CD and (overly granular) repositories are structured?</li>
                   <li>
                     How much do the teams <strong>trust</strong> each other? Is it a good idea to trust that what they ship is ok? <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Git-flow</a>-ish workflow or <a href="https://www.atlassian.com/continuous-delivery/continuous-integration/trunk-based-development">trunk-based</a> development? CI/CD and the whole
-                    provess will tremendously depend on these.
+                    process will tremendously depend on these.
                   </li>
                   <li>
                     How <a href="https://en.wikipedia.org/wiki/Fault_tolerance"><strong>fault tolerant</strong></a> the system is? Is the <a href="https://en.wikipedia.org/wiki/Chaos_engineering">frontend app automatically tested against various scenarios of backend failures</a>?
@@ -518,7 +441,7 @@
                 What <strong>specific characteristics</strong> are expected/required?
                 <ul>
                   <li>
-                    example: <strong>collaborative mode</strong>. Currently the system allows a single user to apply changes, but the requirement is to allow multiple users to apply changes in real-time on the sama data-set. If your code applies <strong>direct state changes</strong> (e.g. set, update, etc.) then there might be no convenient model to share across the users. But if your state
+                    example: <strong>collaborative mode</strong>. Currently the system allows a single user to apply changes, but the requirement is to allow multiple users to apply changes in real-time on the same data-set. If your code applies <strong>direct state changes</strong> (e.g. set, update, etc.) then there might be no convenient model to share across the users. But if your state
                     changes <strong>indirectly</strong> (via the <a href="https://refactoring.guru/design-patterns/command">Command Pattern</a>, e.g. via <a href="https://redux.js.org/tutorials/fundamentals/part-3-state-actions-reducers">Redux actions</a>), then you already have the model which can be shared within the first iteration (of introducing collaborative features). Or reach to
                     <a href="https://en.wikipedia.org/wiki/Conflict-free_replicated_data_type">CRDTs</a>.
                   </li>
@@ -551,16 +474,16 @@
               <li>Example: you decide to keep only one component per file. Totally <strong>irrelevant</strong> outside of your team.</li>
               <li>Example: you decide to use lodash or ramda for helpers or no helper library because not-invented-here (whatever). Still, <strong>irrelevant</strong> outside of your team.</li>
               <li>
-                Example: you introduce a very specific file structure for each module you provide. The convention affects testing, storybook, and refactorings. Still, <strong>irrelevant</strong> outside of your team. (BTW, storybook <em>would</em> matter if it was <strong>regularly used <em>outside</em> of your team</strong>)
+                Example: you introduce a very specific file structure for each module you provide. The convention affects testing, storybook, and refactors. Still, <strong>irrelevant</strong> outside of your team. (BTW, storybook <em>would</em> matter if it was <strong>regularly used <em>outside</em> of your team</strong>)
               </li>
             </ul>
-            <p>Now please, don&#39;t get me wrong. <strong>These decisions do matter</strong>. They are <strong>important for your team</strong>. But <strong>ONLY</strong> for your team. They don&#39;t bring/enforce any <strong>overall system characteristics</strong>. If the decision was different, overall system characteristics woudln&#39;t change. Let&#39;s analyse above quote further:</p>
+            <p>Now please, don&#39;t get me wrong. <strong>These decisions do matter</strong>. They are <strong>important for your team</strong>. But <strong>ONLY</strong> for your team. They don&#39;t bring/enforce any <strong>overall system characteristics</strong>. If the decision was different, overall system characteristics wouldn&#39;t change. Let&#39;s analyze above quote further:</p>
             <blockquote>
               <p><em>If I use Redux, it is an architectural decision.</em></p>
             </blockquote>
             <p>(sorry, Redux 😅)</p>
             <p>
-              Please watch out now: <strong>the architectural decision is not about choosing Redux istself</strong>! It&#39;s about <strong>choosing a centralized state management solution</strong>, as it could allow modules to cross-depend on each other (everyone has access to everything in a global store, right?), or in case of distributing a monolith into microfrontends - that task would be
+              Please watch out now: <strong>the architectural decision is not about choosing Redux itself</strong>! It&#39;s about <strong>choosing a centralized state management solution</strong>, as it could allow modules to cross-depend on each other (everyone has access to everything in a global store, right?), or in case of distributing a monolith into microfrontends - that task would be
               easier with multiple separate stores (like <a href="https://mobx.js.org">mobx</a>). Also, <strong>the architectural decision is about choosing a <a href="https://github.com/gaearon/ama/issues/110">client-side event sourcing solution</a></strong
               >, as the business might require to implement <a href="https://en.wikipedia.org/wiki/Collaborative_real-time_editor">real-time collaboration features</a>.
             </p>
@@ -612,12 +535,12 @@
               so on), they&#39;re only details. Details of little relevance.
             </p>
             <p>Hope you enjoyed it, thanks for reading 🤓.</p>
-            <p>Special thanks for <a href="https://twitter.com/raimeyuu">Damian</a> &amp; <a href="https://twitter.com/mat_ledzewicz">Mateusz</a> for proof-reading.</p>
+            <p>Special thanks for <a href="https://twitter.com/raimeyuu">Damian</a>, <a href="https://twitter.com/mat_ledzewicz">Mateusz</a> and <a href="https://x.com/ManfredSteyer">Manfred</a> for valuable feedback.</p>
             <h3 id="recommended-read">Recommended Read</h3>
             <p>There are several really good books on the topic, but before you get deeper into more specific topics, I&#39;m recommend starting from the basics:</p>
             <ul>
               <li>
-                <a href="https://simonbrown.je/#writing"><em>Software Architecture for Developers</em></a> by Simon Brown; this is a rather basic, yet <strong>absolute must-read</strong> for anyone <strong>responsible</strong> for any Software A rchitecture whatsoever
+                <a href="https://simonbrown.je/#writing"><em>Software Architecture for Developers</em></a> by Simon Brown; this is a rather basic, yet <strong>absolute must-read</strong> for anyone <strong>responsible</strong> for any Software Architecture whatsoever
               </li>
               <li>
                 <a href="https://fundamentalsofsoftwarearchitecture.com/"><em>Fundamentals of Software Architecture</em></a> by Mark Richards &amp; Neal Ford; slightly going more in-depth
