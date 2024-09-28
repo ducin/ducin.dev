@@ -165,6 +165,8 @@ Now let's confront what satisfies the definition and what does not:
 
 At this point I hope you get the point quite well 😅.
 
+Also, notice that the above juxtaposition confronts **architectural decisions** with **technical decisions**.
+
 ## Why directory structure shouldn't be considered as architecture?
 
 Directory structure is a result of some design work and conventions introduced. They are meant to help us move faster, deliver faster, deliver without breaking (or with breaking less) things.
