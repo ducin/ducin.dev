@@ -122,7 +122,13 @@
               My intention, dear Reader, is to <strong>shift your focus</strong>. Inspire you to think about architecture from a different perspective. <strong>Detach</strong> from the structure you see in your repo, or from the specific solutions in your code. And concentrate on <strong>what characteristics you want your system to have</strong>. What <strong>capabilities</strong> are you going to
               need in a <strong>broader perspective</strong>. <strong>Detach from the tools and reattach to the tradeoffs they bring</strong>. And, last but not least, what required software capabilities are <strong>determined by your business</strong>.
             </p>
-            <h2 id="table-of-contents">Table of Contents</h2>
+
+            <h2 id="table-of-contents">
+              <a href="#table-of-contents">
+                <span class="header-link"></span>
+                Table of Contents
+              </a>
+            </h2>
             <ul>
               <li>
                 <a href="#what-is-frontend-architecture">What is (Frontend) Architecture?</a>
@@ -157,7 +163,13 @@
               </li>
             </ul>
             <hr />
-            <h1 id="what-is-frontend-architecture">What is (Frontend) Architecture?</h1>
+
+            <h1 id="what-is-frontend-architecture">
+              <a href="#what-is-frontend-architecture">
+                <span class="header-link"></span>
+                What is (Frontend) Architecture?
+              </a>
+            </h1>
             <p>So this tweet <em>happened</em> 😅:</p>
             <blockquote class="twitter-tweet">
               <p lang="en" dir="ltr">friendly reminder:<br /><br />folder structure is NOT architecture (and never has been)</p>
@@ -180,22 +192,34 @@
               <p><em>Architecture is about the important stuff. Whatever that is.</em></p>
             </blockquote>
             <p>
-              Notice the word: <strong><em>important</em></strong
+              Notice the word: <em><strong>important</strong></em
               >.
             </p>
             <p>
-              And notice another word: <strong><em>decisions</em></strong
+              And notice another word: <em><strong>decisions</strong></em
               >.
             </p>
             <p>Before me move on to examples (later in the article) let&#39;s <strong>start from the essentials</strong>.</p>
-            <h2 id="decisions">Decisions</h2>
+
+            <h2 id="decisions">
+              <a href="#decisions">
+                <span class="header-link"></span>
+                Decisions
+              </a>
+            </h2>
             <p>
               We need to decide on lots of things throughout the lifetime of a project: the language/platform, the libraries, the paradigm, coding style... tabs vs spaces... 🤔 but also: how do we ensure that business priorities and requirements are met, how do we enable dozens of developers to work on the same system, how do we enable frequent deploys (daily, hourly, Fridays included) and so on.
             </p>
             <p>Yes, as you can see the topics range from not really relevant ones to absolutely essential ones. The aspects we analyze and the decisions we make are of <strong>different relevance</strong>. The more experienced developers are, the more likely they&#39;ll try to <strong>avoid investing energy into things that don&#39;t really matter</strong>.</p>
             <p>Especially, if the decision can be easily <strong>reverted</strong>.</p>
             <p>So how do we evaluate whether a certain decision is the right one?</p>
-            <h3 id="drivers">Drivers</h3>
+
+            <h3 id="drivers">
+              <a href="#drivers">
+                <span class="header-link"></span>
+                Drivers
+              </a>
+            </h3>
             <p>Whenever in doubt, it&#39;s always a good idea to take a step back and see a wider perspective - and this includes:</p>
             <ul>
               <li>what are the top <strong>priorities</strong> for our business?</li>
@@ -214,7 +238,13 @@
             </ul>
             <p>In business environments, the drivers are almost always there. Most probably, your company&#39;s business representatives express them directly, just not using the &quot;<em>drivers</em>&quot; word literally. Failing to identify them significantly reduces the chances of your success, as you could concentrate on the wrong things.</p>
             <p>So how do we shape system&#39;s design in order to achieve those high-level goals?</p>
-            <h3 id="tradeoffs">Tradeoffs</h3>
+
+            <h3 id="tradeoffs">
+              <a href="#tradeoffs">
+                <span class="header-link"></span>
+                Tradeoffs
+              </a>
+            </h3>
             <p>We need to realize, that nothing comes for free. If we want to provide a nice characteristic for the system, it&#39;ll come with a price. We need to be aware of that price. Let&#39;s revisit the list of architectural drivers above and extend it with the probable downsides:</p>
             <ul>
               <li>the system has to respond very quickly <strong>at the cost of increased complexity and worsened flexibility</strong></li>
@@ -229,7 +259,13 @@
               <em>is 99,99% uptime really necessary? - Yes, because our contract obliges us to support it. - But is 80% Code Coverage really necessary? - It&#39;s nice to have, but no, it&#39;s not necessary. <strong>We can carry on without it</strong>.</em>
             </p>
             <p>While making architectural decisions, it&#39;s necessary to <strong>focus on drivers, while having tradeoffs in mind</strong>. We aim to achieve our <strong>goals</strong>, but we also know what we might need to <strong>sacrifice</strong>.</p>
-            <h3 id="limitations">Limitations</h3>
+
+            <h3 id="limitations">
+              <a href="#limitations">
+                <span class="header-link"></span>
+                Limitations
+              </a>
+            </h3>
             <p>One more truism: not everything is possible.</p>
             <p>😉</p>
             <p>Sometimes we cannot implement a decision even though all our considerations prove this is a good decision. External factors might collide:</p>
@@ -245,7 +281,13 @@
               </li>
             </ul>
             <p>This is the sad part. Just to make things slightly more challenging - we need to accept that our capabilities are limited <em>because of reasons</em> 😉. But we still want to achieve our goals!</p>
-            <h3 id="recap">Recap</h3>
+
+            <h3 id="recap">
+              <a href="#recap">
+                <span class="header-link"></span>
+                Recap
+              </a>
+            </h3>
             <p>Let&#39;s quickly summarize: we make architectural <strong>decisions</strong>, having <strong>architectural drivers</strong> in mind, being aware of the <strong>tradeoffs</strong> of these decisions and having to cope with the <strong>limitations</strong>.</p>
             <p><strong>ZOOM OUT</strong> from the code.</p>
             <div class="email-subscribe">
@@ -254,7 +296,12 @@
               <div class="sender-form-field" data-sender-form-id="lrt2rokxero62a36uep"></div>
             </div>
 
-            <h2 id="so-what-constitutes-architecture-again">So what constitutes architecture, again?</h2>
+            <h2 id="so-what-constitutes-architecture-again">
+              <a href="#so-what-constitutes-architecture-again">
+                <span class="header-link"></span>
+                So what constitutes architecture, again?
+              </a>
+            </h2>
             <p>Let&#39;s revisit my <em>quick and dirty</em> definition:</p>
             <blockquote>
               <p>
@@ -284,10 +331,8 @@
             </ul>
             <p><em>Architecture defined by</em>:</p>
             <ul>
-              <li>
-                <p>✅ Whether <a href="https://github.com/kriskowal/gtor#observables">PULL-based or PUSH-based</a> fits your needs more</p>
-              </li>
-              <li><p>❌ Whether you use promises, async await or rxjs, really, WHATEVER</p></li>
+              <li>✅ Whether <a href="https://github.com/kriskowal/gtor#observables">PULL-based or PUSH-based</a> fits your needs more</li>
+              <li>❌ Whether you use promises, async await or rxjs, really, WHATEVER</li>
             </ul>
             <p><em>Architecture defined by</em>:</p>
             <ul>
@@ -321,7 +366,13 @@
             </ul>
             <p>At this point I hope you get the point quite well 😅.</p>
             <p>Also, notice that the above juxtaposition confronts <strong>architectural decisions</strong> with <strong>technical decisions</strong>.</p>
-            <h2 id="why-directory-structure-shouldnt-be-considered-as-architecture">Why directory structure shouldn&#39;t be considered as architecture?</h2>
+
+            <h2 id="why-directory-structure-shouldn-39-t-be-considered-as-architecture">
+              <a href="#why-directory-structure-shouldn-39-t-be-considered-as-architecture">
+                <span class="header-link"></span>
+                Why directory structure shouldn&#39;t be considered as architecture?
+              </a>
+            </h2>
             <p>Directory structure is a result of some design work and conventions introduced. They are meant to help us move faster, deliver faster, deliver without breaking (or with breaking less) things.</p>
             <p>Directory structure is not a goal itself. It is a means to achieve another, higher-level goal, such as:</p>
             <ul>
@@ -330,7 +381,13 @@
               <li>helping to isolate the local models via <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/anti-corruption-layer">ACL</a> etc.</li>
             </ul>
             <p>As we can clearly see, directory structure can fit a given architecture sometimes better, sometimes worse. But it is materializing a concept, it&#39;s an <strong>implementation</strong>. An implementation <strong>detail</strong>. It is a way to achieve our final goal.</p>
-            <h2 id="what-directory-structure-will-not-tell-us">What directory structure will not tell us</h2>
+
+            <h2 id="what-directory-structure-will-not-tell-us">
+              <a href="#what-directory-structure-will-not-tell-us">
+                <span class="header-link"></span>
+                What directory structure will not tell us
+              </a>
+            </h2>
             <p>There are tons of very important aspects, which we simply <strong>cannot figure out from whatever the dir structure / convention is</strong>. These include:</p>
             <ul>
               <li>you cannot tell whether you implemented some <a href="https://en.wikipedia.org/wiki/God_object">&quot;god classes&quot;</a> or whether your modules are isolated, <a href="https://martinfowler.com/bliki/BoundedContext.html">bounded contexts</a></li>
@@ -344,13 +401,25 @@
             <p>
               To say it gently, the directory structure is <em>not important <strong>enough</strong></em> to be considered Architecture. Directory structure can <strong>fulfill</strong> an architecture (or not), but it is not architecture itself.
             </p>
-            <h2 id="building-the-proper-understanding-of-frontend-architecture">Building the proper understanding of Frontend Architecture</h2>
+
+            <h2 id="building-the-proper-understanding-of-frontend-architecture">
+              <a href="#building-the-proper-understanding-of-frontend-architecture">
+                <span class="header-link"></span>
+                Building the proper understanding of Frontend Architecture
+              </a>
+            </h2>
             <p>Architecture is <em>not</em> something we want 😘, desire 🥰 or enforce 😤. It&#39;s <em>not</em> something we draw out of a sudden 😶‍🌫️. And is surely <em>not</em> something we should copy-paste across projects, because it worked well in the previous company 🥸.</p>
             <p>
               Architecture is a <strong>result of communication, detailed analysis and reasoning</strong>. <strong>It&#39;s an outcome</strong>. Like a function producing <strong>certain output for given input</strong>. And, for sure, the inputs will change over time. The role of <strong>an architect</strong> is to gather the knowledge/experience to run this
               <code>input -&gt; output</code> function <strong>regularly</strong>.
             </p>
-            <h3 id="whats-the-input-and-where-to-get-it-from">What&#39;s the input and where to get it from?</h3>
+
+            <h3 id="what-39-s-the-input-and-where-to-get-it-from">
+              <a href="#what-39-s-the-input-and-where-to-get-it-from">
+                <span class="header-link"></span>
+                What&#39;s the input and where to get it from?
+              </a>
+            </h3>
             <p>The most important skill of an architect is <strong>communication</strong>, with all: management, business and development. Totally different groups, right? There are lots of information to be gathered, including:</p>
             <ul>
               <li>
@@ -378,7 +447,13 @@
                 </ul>
               </li>
             </ul>
-            <h3 id="proceed-to-development-aspects">Proceed to development aspects</h3>
+
+            <h3 id="proceed-to-development-aspects">
+              <a href="#proceed-to-development-aspects">
+                <span class="header-link"></span>
+                Proceed to development aspects
+              </a>
+            </h3>
             <p>On the technical level, we form the following questions:</p>
             <ul>
               <li>
@@ -462,7 +537,13 @@
               <p><em>I would rather have questions that can&#39;t be answered than answers that can&#39;t be questioned</em></p>
             </blockquote>
             <p>Thinking carefully about all the above concerns should lead us to making decision about the architectural style and important tool stack used.</p>
-            <h2 id="tooling-decisions-vs-architecture-decisions">Tooling decisions vs Architecture decisions</h2>
+
+            <h2 id="tooling-decisions-vs-architecture-decisions">
+              <a href="#tooling-decisions-vs-architecture-decisions">
+                <span class="header-link"></span>
+                Tooling decisions vs Architecture decisions
+              </a>
+            </h2>
             <p>Some might say:</p>
             <blockquote>
               <p>Hey, dude, but there are some decisions related to <strong>tools, libraries, conventions, or code structure</strong> which could have a significant impact on the project and that are difficult to change later. For instance, if I use Redux, it is an architectural decision!!!1 😉</p>
@@ -528,7 +609,13 @@
             <p>Just a side comment: whether you use NGRX/redux-observables or not, certainly, affects the entry level of frontend developers, it affects their motivation (love vs hate relationship with tools 🥹), it certainly affects the way you write tests and so on and so forth. But, again, if you walk outside of your team/module/repo - does it really matter that much?</p>
             <p>All in all, whether a decision is expensive to change or not <strong>doesn&#39;t determine</strong> whether it&#39;s anyhow relevant in the big picture and/or long-term. Also, what is super important locally within your team/repo <strong>doesn&#39;t determine</strong> whether it&#39;s relevant outside. It could, but it doesn&#39;t have to.</p>
             <p><strong>In my humble opinion, it doesn&#39;t matter much whether we call choosing Redux an architectural decision or not, as long as we focus on the consequences this decision has.</strong></p>
-            <h2 id="summary">Summary</h2>
+
+            <h2 id="summary">
+              <a href="#summary">
+                <span class="header-link"></span>
+                Summary
+              </a>
+            </h2>
             <p>Architecture is all about making <strong>important decisions</strong>. These should be <strong>driven</strong> by business priorities, <strong>tradeoffs</strong> should be taken into account, and existing <strong>limitations</strong> make it even more challenging.</p>
             <p>In the face of all these difficulties, the role of an architect is to <strong>balance between business priorities and requirements - and technical aspects and its complexity</strong>.</p>
             <p>
@@ -537,7 +624,13 @@
             </p>
             <p>Hope you enjoyed it, thanks for reading 🤓.</p>
             <p>Special thanks for <a href="https://twitter.com/raimeyuu">Damian</a>, <a href="https://twitter.com/mat_ledzewicz">Mateusz</a> and <a href="https://x.com/ManfredSteyer">Manfred</a> for valuable feedback.</p>
-            <h3 id="recommended-read">Recommended Read</h3>
+
+            <h3 id="recommended-read">
+              <a href="#recommended-read">
+                <span class="header-link"></span>
+                Recommended Read
+              </a>
+            </h3>
             <p>There are several really good books on the topic, but before you get deeper into more specific topics, I&#39;m recommend starting from the basics:</p>
             <ul>
               <li>
