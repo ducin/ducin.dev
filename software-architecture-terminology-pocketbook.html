@@ -88,7 +88,7 @@
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c">Open book lot photo</a> by <a href="https://unsplash.com/@impatrickt">Patrick Tomasso</a></p>
             <p>
-              <em> Sunday 1 December 2024 • 📚 8 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
+              <em> Sunday 1 December 2024 • 📚 11 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
             </p>
             <p>This document briefly describes dozens of <strong>important software architecture</strong> topics, terms, acronyms, strategies, characteristics, and so on.</p>
 
@@ -139,23 +139,31 @@
                   <li><a href="#c4-model">C4 Model</a></li>
                   <li><a href="#chaos-engineering">Chaos Engineering</a></li>
                   <li><a href="#circuit-breaker-pattern">Circuit Breaker Pattern</a></li>
+                  <li><a href="#consistency">Consistency</a></li>
                   <li><a href="#correlation-id">Correlation ID</a></li>
+                  <li><a href="#databases">Databases</a></li>
                   <li><a href="#design-for-failure">Design For Failure</a></li>
+                  <li><a href="#devops">DevOps</a></li>
                   <li><a href="#distributed-tracing">Distributed Tracing</a></li>
                   <li><a href="#dora-metrics">DORA metrics</a></li>
+                  <li><a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a></li>
                   <li><a href="#fallacies-of-distributed-computing">Fallacies of Distributed Computing</a></li>
                   <li><a href="#fault-injection">Fault Injection</a></li>
                   <li><a href="#fault-tolerance">Fault Tolerance</a></li>
                   <li><a href="#fitness-functions">Fitness Functions</a></li>
+                  <li><a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a></li>
+                  <li><a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a></li>
                   <li><a href="#lean-startup">Lean Startup</a></li>
                   <li><a href="#legacy-code">Legacy Code</a></li>
                   <li><a href="#monitoring">Monitoring</a></li>
                   <li><a href="#mvp-minimum-viable-product">MVP (Minimum Viable Product)</a></li>
                   <li><a href="#observability">Observability</a></li>
                   <li><a href="#rate-limiting">Rate Limiting</a></li>
+                  <li><a href="#resilience">Resilience</a></li>
                   <li><a href="#rfc-request-for-comments">RFC (Request For Comments)</a></li>
                   <li><a href="#software-architecture">Software Architecture</a></li>
                   <li><a href="#taxonomy">Taxonomy</a></li>
+                  <li><a href="#technical-debt">Technical Debt</a></li>
                   <li><a href="#ttm-time-to-market">TTM (Time To Market)</a></li>
                 </ul>
               </li>
@@ -168,8 +176,8 @@
               </a>
             </h3>
             <p>
-              An Architecture Decision Record (ADR) allows to make future developers understand WHY a decision has been made in a given context; it is a document that captures an important architectural decision made along with its context and consequences, providing a record of the motivations behind the decision, the alternatives considered, and the trade-offs involved, to help maintain a shared
-              understanding of the system design over time.
+              An Architecture Decision Record (ADR) allows to <strong>make future developers understand <em>WHY</em> a decision has been made in a given context</strong>; it is a document that captures an important architectural decision made along with its context and consequences, providing a record of the motivations behind the decision, the alternatives considered, and the trade-offs involved,
+              to help maintain a shared understanding of the system design over time.
             </p>
             <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#c4-model">C4 Model</a>, <a href="#rfc-request-for-comments">RFC (Request For Comments)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
@@ -206,7 +214,9 @@
                 C4 Model
               </a>
             </h3>
-            <p>The C4 Model allows to document systems from different perspectives and for different audiences; it is a framework for visualizing software architecture via hierarchical diagrams on 4 different levels: Context, Containers, Components, and Code, in order to help teams understand and communicate the system&#39;s structure and relationships effectively.</p>
+            <p>
+              The C4 Model allows to document systems from <strong>different perspectives</strong> and for <strong>different audiences</strong>; it is a framework for visualizing software architecture via hierarchical diagrams on 4 different levels: Context, Containers, Components, and Code, in order to help teams understand and communicate the system&#39;s structure and relationships effectively.
+            </p>
             <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#adr-architecture-decision-record">ADR (Architecture Decision Record)</a>, <a href="#rfc-request-for-comments">RFC (Request For Comments)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="chaos-engineering">
@@ -230,14 +240,38 @@
             <p>The Circuit Breaker Pattern disallows to kick someone who&#39;s currently down; it&#39;s a a Fault Tolerance mechanism which detects failures and prevents further requests from being sent to the failing service, thus avoiding overload while recovering, and retrying e.g. after a timeout (then passing requests normally).</p>
             <p>See: <a href="#microservices">Microservices</a>, <a href="#rate-limiting">Rate Limiting</a>, <a href="#backpressure">Backpressure</a>, <a href="#backoff">Backoff</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="consistency">
+              <a href="#consistency">
+                <span class="header-link"></span>
+                Consistency
+              </a>
+            </h3>
+            <p>Consistency is the state of a system where all data is the same across all nodes in a <strong>distributed system</strong>, ensuring that <strong>all nodes see the same data at the same time</strong>, and that changes are propagated correctly and in a timely manner, to maintain data integrity and reliability.</p>
+            <p>
+              See: <a href="#strong-consistency">Strong Consistency</a>, <a href="#eventual-consistency">Eventual Consistency</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem (Consistency, Availability, Partition Tolerance)</a>,
+              <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions (Atomicity, Consistency, Isolation, Durability)</a>, <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions (Basically Available, Soft State, Eventually Consistent)</a>. 👉 <a href="#table-of-contents">back to ToC</a>
+            </p>
+
             <h3 id="correlation-id">
               <a href="#correlation-id">
                 <span class="header-link"></span>
                 Correlation ID
               </a>
             </h3>
-            <p>A Correlation ID is a unique identifier that gets attached to each request made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.</p>
+            <p>A Correlation ID is a <strong>unique identifier</strong> that gets <strong>attached to each request</strong> made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.</p>
             <p>See: <a href="#distributed-systems">Distributed Systems</a>, <a href="#microservices">Microservices</a>, <a href="#observability">Observability</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="databases">
+              <a href="#databases">
+                <span class="header-link"></span>
+                Databases
+              </a>
+            </h3>
+            <p>Databases are organized collections of structured information or data that are stored and managed electronically, allowing for efficient retrieval, manipulation, and updating of data through various query languages, with different types, e.g. <strong>relational</strong> (SQL) and <strong>non-relational</strong> (NoSQL) databases.</p>
+            <p>
+              See: <a href="#ha-high-availability">HA (High Availability)</a>, <a href="#clustering">Clustering</a>, <a href="#sharding">Sharding</a>, <a href="#replication">Replication</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem (Consistency, Availability, Partition Tolerance)</a>,
+              <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions (Atomicity, Consistency, Isolation, Durability)</a>, <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions (Basically Available, Soft State, Eventually Consistent)</a>. 👉 <a href="#table-of-contents">back to ToC</a>
+            </p>
 
             <h3 id="design-for-failure">
               <a href="#design-for-failure">
@@ -254,6 +288,18 @@
               <a href="#observability">Observability</a>, <a href="#distributed-tracing">Distributed Tracing</a>. 👉 <a href="#table-of-contents">back to ToC</a>
             </p>
 
+            <h3 id="devops">
+              <a href="#devops">
+                <span class="header-link"></span>
+                DevOps
+              </a>
+            </h3>
+            <p>
+              DevOps is caring not only about the <strong>coding phase</strong>, but also <strong>everything that happens next</strong>; it&#39;s a cultural and technical movement that combines development (Dev) and operations (Ops), aiming to automate and integrate software development, testing, deployment, and monitoring processes to enhance efficiency, accelerate delivery, and improve overall
+              software quality.
+            </p>
+            <p>See: <a href="#continuous-integration">Continuous Integration</a>, <a href="#continuous-deployment">Continuous Deployment</a>, <a href="#continuous-delivery">Continuous Delivery</a>, <a href="#observability">Observability</a>, <a href="#monitoring">Monitoring</a>, <a href="#dora-metrics">DORA metrics</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="distributed-tracing">
               <a href="#distributed-tracing">
                 <span class="header-link"></span>
@@ -261,8 +307,8 @@
               </a>
             </h3>
             <p>
-              Distributed Tracing allows to see how a user&#39;s request travels through the entire system; it is a technique used to monitor and troubleshoot the flow of each requests across various Microservices in a Distributed System, capturing timing data and dependencies to identify performance bottlenecks and enhance overall system observability, where a single user&#39;s request gets
-              identified and tracked across entire system using a Correlation ID.
+              Distributed Tracing allows to see how a user&#39;s <strong>request travels throughout the entire system</strong>; it is a technique used to monitor and troubleshoot the flow of each requests across various Microservices in a Distributed System, capturing timing data and dependencies to identify performance bottlenecks and enhance overall system observability, where a single
+              user&#39;s request gets identified and tracked across entire system using a Correlation ID.
             </p>
             <p>See: <a href="#distributed-systems">Distributed Systems</a>, <a href="#microservices">Microservices</a>, <a href="#observability">Observability</a>, <a href="#monitoring">Monitoring</a>, <a href="#correlation-id">Correlation ID</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
@@ -272,8 +318,20 @@
                 DORA metrics
               </a>
             </h3>
-            <p>DORA metrics express how fast can you ship or rollback; they are key performance indicators used to assess the effectiveness of software delivery and operational performance, focusing on four dimensions: deployment frequency (DF), lead time for changes (LTC), mean time to restore service (MTTR), and change failure rate (CFR), helping teams improve their DevOps practices.</p>
+            <p>
+              DORA metrics express <strong>how fast can you ship or rollback</strong>; they are key performance indicators used to assess the effectiveness of software delivery and operational performance, focusing on four dimensions: deployment frequency (DF), lead time for changes (LTC), mean time to restore service (MTTR), and change failure rate (CFR), helping teams improve their DevOps
+              practices.
+            </p>
             <p>See: <a href="#devops">DevOps</a>, <a href="#fitness-functions">Fitness Functions</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="dreyfus-model-of-skill-acquisition">
+              <a href="#dreyfus-model-of-skill-acquisition">
+                <span class="header-link"></span>
+                Dreyfus Model of Skill Acquisition
+              </a>
+            </h3>
+            <p>The Dreyfus Model of Skill Acquisition describes the five stages of learning a new skill: Novice, Advanced Beginner, Competent, Proficient, and Expert, highlighting the progression from following rules to intuitive decision-making, and the importance of experience, practice, and feedback in skill development.</p>
+            <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#unknown-unknowns">(Un)known (Un)knowns</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="fallacies-of-distributed-computing">
               <a href="#fallacies-of-distributed-computing">
@@ -308,8 +366,28 @@
                 Fitness Functions
               </a>
             </h3>
-            <p>Fitness functions allow to measure how a given system achieves high-level goals; they are metrics used to evaluate how well an existing system&#39;s architecture meets specified requirements or goals, guiding design and development decisions by providing quantitative feedback on performance, reliability, and other critical attributes.</p>
+            <p>Fitness functions allow to measure how a given system achieves <strong>high-level goals</strong>; they are metrics used to evaluate how well an existing system&#39;s architecture meets specified requirements or goals, guiding design and development decisions by providing quantitative feedback on performance, reliability, and other critical attributes.</p>
             <p>See: <a href="#software-architecture">Software Architecture</a>, <a href="#dora-metrics">DORA metrics</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="kolb-39-s-learning-cycle">
+              <a href="#kolb-39-s-learning-cycle">
+                <span class="header-link"></span>
+                Kolb&#39;s Learning Cycle
+              </a>
+            </h3>
+            <p>
+              Kolb&#39;s Learning Cycle is a four-stage model of experiential learning that includes: Concrete Experience (having a direct experience), Reflective Observation (reviewing and reflecting on the experience), Abstract Conceptualization (learning from the experience), and Active Experimentation (applying the new knowledge), emphasizing learning through a continuous, iterative process.
+            </p>
+            <p>See: <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#unknown-unknowns">(Un)known (Un)knowns</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="law-of-triviality-bikeshedding">
+              <a href="#law-of-triviality-bikeshedding">
+                <span class="header-link"></span>
+                Law of Triviality (Bikeshedding)
+              </a>
+            </h3>
+            <p>Bikeshedding is the tendency to give disproportionate weight to trivial issues, focusing on minor details rather than important matters, often leading to lengthy discussions and delays in decision-making, due to the ease of understanding and debating simple problems compared to complex ones.</p>
+            <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="lean-startup">
               <a href="#lean-startup">
@@ -336,8 +414,8 @@
               </a>
             </h3>
             <p>
-              Monitoring allows to constantly check if &quot;all is fine&quot;; it involves continuously tracking and measuring system performance, availability, health, and resource usage, typically through the collection of predefined metrics, in order to detect issues, ensure reliability, and optimize application behavior, often utilizing additional tooling for real-time alerts and metrics
-              analysis.
+              Monitoring allows to <strong>constantly check if &quot;all is fine&quot;</strong>; it involves continuously tracking and measuring system performance, availability, health, and resource usage, typically through the collection of predefined metrics, in order to detect issues, ensure reliability, and optimize application behavior, often utilizing additional tooling for real-time alerts
+              and metrics analysis.
             </p>
             <p>See: <a href="#observability">Observability</a>, <a href="#devops">DevOps</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
@@ -356,7 +434,7 @@
                 Observability
               </a>
             </h3>
-            <p>Observability is about understanding what&#39;s happening inside a system by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.</p>
+            <p>Observability is about understanding <strong>what&#39;s happening inside a system</strong> by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.</p>
             <p>See: <a href="#devops">DevOps</a>, <a href="#monitoring">Monitoring</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="rate-limiting">
@@ -368,13 +446,25 @@
             <p>Rate Limiting is a technique to control the rate of requests a user can send or receive, within a given time-frame, preventing abuse and overuse, ensuring the system remains responsive and available, and protecting against denial-of-service (DoS) attacks.</p>
             <p>See: <a href="#microservices">Microservices</a>, <a href="#resilience">Resilience</a>, <a href="#backpressure">Backpressure</a>, <a href="#backoff">Backoff</a>, <a href="#circuit-breaker">Circuit Breaker</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="resilience">
+              <a href="#resilience">
+                <span class="header-link"></span>
+                Resilience
+              </a>
+            </h3>
+            <p>Resilience is the ability of a system to <strong>recover from failures and continue to function</strong>, even when some of its components fail; it is achieved through various practices and patterns that help systems adapt to changing conditions, maintain functionality, and minimize downtime, ensuring reliability and availability.</p>
+            <p>
+              See: <a href="#fault-tolerance">Fault Tolerance</a>, <a href="#design-for-failure">Design For Failure</a>, <a href="#chaos-engineering">Chaos Engineering</a>, <a href="#monitoring">Monitoring</a>, <a href="#graceful-degradation">Graceful Degradation</a>, <a href="#failover">Failover</a>, <a href="#redundancy">Redundancy</a>, <a href="#backpressure">Backpressure</a>,
+              <a href="#rate-limiting">Rate Limiting</a>. 👉 <a href="#table-of-contents">back to ToC</a>
+            </p>
+
             <h3 id="rfc-request-for-comments">
               <a href="#rfc-request-for-comments">
                 <span class="header-link"></span>
                 RFC (Request For Comments)
               </a>
             </h3>
-            <p>A Request for Comments (RFC) is a document used to propose standards and/or gather feedback, allowing architects to collect diverse opinions and insights before making important architectural decisions.</p>
+            <p>A Request for Comments (RFC) is a document used to <strong>propose standards and/or gather feedback</strong>, allowing architects to collect diverse opinions and insights before making important architectural decisions.</p>
             <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#c4-model">C4 Model</a>, <a href="#adr-architecture-decision-record">ADR (Architecture Decision Record)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="software-architecture">
@@ -395,8 +485,17 @@
                 Taxonomy
               </a>
             </h3>
-            <p>Taxonomy is how things are categorized; is the science of classification, organizing and naming things based on shared characteristics, properties, and relationships, to help understand and communicate complex systems, and guide design decisions.</p>
+            <p>Taxonomy is how things are <strong>categorized</strong>; is the science of classification, organizing and naming things based on shared characteristics, properties, and relationships, to help understand and communicate complex systems, and guide design decisions.</p>
             <p>See: <a href="#architecture-styles">Architecture Styles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="technical-debt">
+              <a href="#technical-debt">
+                <span class="header-link"></span>
+                Technical Debt
+              </a>
+            </h3>
+            <p>Technical Debt is the <strong>cost of additional rework</strong> caused by choosing an easy solution now instead of using a better approach that would take longer; it represents the cumulative consequences of cutting corners, making trade-offs, and postponing improvements, which can slow down development, increase complexity, and reduce maintainability over time.</p>
+            <p>See: <a href="#legacy-code">Legacy Code</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="ttm-time-to-market">
               <a href="#ttm-time-to-market">

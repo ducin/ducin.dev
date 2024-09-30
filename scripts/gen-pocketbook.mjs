@@ -7,7 +7,7 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 import {slug as githubSlug} from 'github-slugger'
-import {entries} from '../data/pocketbook.js'
+import entries from '../data/pocketbook.json' with { type: "json" };
 
 const slugDict = {}
 const slug = (name) => {

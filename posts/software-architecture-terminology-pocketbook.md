@@ -22,7 +22,7 @@ I believe this will make it easier for developers to enter the world of Software
 
 ### ADR (Architecture Decision Record)
 
-An Architecture Decision Record (ADR) allows to make future developers understand WHY a decision has been made in a given context; it is a document that captures an important architectural decision made along with its context and consequences, providing a record of the motivations behind the decision, the alternatives considered, and the trade-offs involved, to help maintain a shared understanding of the system design over time.
+An Architecture Decision Record (ADR) allows to **make future developers understand _WHY_ a decision has been made in a given context**; it is a document that captures an important architectural decision made along with its context and consequences, providing a record of the motivations behind the decision, the alternatives considered, and the trade-offs involved, to help maintain a shared understanding of the system design over time.
 
 See: [Architecture Documentation](#architecture-documentation), [C4 Model](#c4-model), [RFC (Request For Comments)](#rfc-request-for-comments). 👉 [back to ToC](#table-of-contents)
 
@@ -46,7 +46,7 @@ See: [Resilience](#resilience), [Reactivity](#reactivity), [Rate Limiting](#rate
 
 ### C4 Model
 
-The C4 Model allows to document systems from different perspectives and for different audiences; it is a framework for visualizing software architecture via hierarchical diagrams on 4 different levels: Context, Containers, Components, and Code, in order to help teams understand and communicate the system's structure and relationships effectively.
+The C4 Model allows to document systems from **different perspectives** and for **different audiences**; it is a framework for visualizing software architecture via hierarchical diagrams on 4 different levels: Context, Containers, Components, and Code, in order to help teams understand and communicate the system's structure and relationships effectively.
 
 See: [Architecture Documentation](#architecture-documentation), [ADR (Architecture Decision Record)](#adr-architecture-decision-record), [RFC (Request For Comments)](#rfc-request-for-comments). 👉 [back to ToC](#table-of-contents)
 
@@ -62,11 +62,23 @@ The Circuit Breaker Pattern disallows to kick someone who's currently down; it's
 
 See: [Microservices](#microservices), [Rate Limiting](#rate-limiting), [Backpressure](#backpressure), [Backoff](#backoff). 👉 [back to ToC](#table-of-contents)
 
+### Consistency
+
+Consistency is the state of a system where all data is the same across all nodes in a **distributed system**, ensuring that **all nodes see the same data at the same time**, and that changes are propagated correctly and in a timely manner, to maintain data integrity and reliability.
+
+See: [Strong Consistency](#strong-consistency), [Eventual Consistency](#eventual-consistency), [CAP Theorem (Consistency, Availability, Partition Tolerance)](#cap-theorem-consistency-availability-partition-tolerance), [ACID Transactions (Atomicity, Consistency, Isolation, Durability)](#acid-transactions-atomicity-consistency-isolation-durability), [BASE Transactions (Basically Available, Soft State, Eventually Consistent)](#base-transactions-basically-available-soft-state-eventually-consistent). 👉 [back to ToC](#table-of-contents)
+
 ### Correlation ID
 
-A Correlation ID is a unique identifier that gets attached to each request made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.
+A Correlation ID is a **unique identifier** that gets **attached to each request** made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.
 
 See: [Distributed Systems](#distributed-systems), [Microservices](#microservices), [Observability](#observability). 👉 [back to ToC](#table-of-contents)
+
+### Databases
+
+Databases are organized collections of structured information or data that are stored and managed electronically, allowing for efficient retrieval, manipulation, and updating of data through various query languages, with different types, e.g. **relational** (SQL) and **non-relational** (NoSQL) databases.
+
+See: [HA (High Availability)](#ha-high-availability), [Clustering](#clustering), [Sharding](#sharding), [Replication](#replication), [CAP Theorem (Consistency, Availability, Partition Tolerance)](#cap-theorem-consistency-availability-partition-tolerance), [ACID Transactions (Atomicity, Consistency, Isolation, Durability)](#acid-transactions-atomicity-consistency-isolation-durability), [BASE Transactions (Basically Available, Soft State, Eventually Consistent)](#base-transactions-basically-available-soft-state-eventually-consistent). 👉 [back to ToC](#table-of-contents)
 
 ### Design For Failure
 
@@ -74,17 +86,29 @@ Designing for failure assumes that things will break inevitably and a system nee
 
 See: [Resilience](#resilience), [Graceful Degradation](#graceful-degradation), [Failover](#failover), [Redundancy](#redundancy), [Fault Tolerance](#fault-tolerance), [Chaos Engineering](#chaos-engineering), [Circuit Breaker Pattern](#circuit-breaker-pattern), [Monitoring](#monitoring), [Observability](#observability), [Distributed Tracing](#distributed-tracing). 👉 [back to ToC](#table-of-contents)
 
+### DevOps
+
+DevOps is caring not only about the **coding phase**, but also **everything that happens next**; it's a cultural and technical movement that combines development (Dev) and operations (Ops), aiming to automate and integrate software development, testing, deployment, and monitoring processes to enhance efficiency, accelerate delivery, and improve overall software quality.
+
+See: [Continuous Integration](#continuous-integration), [Continuous Deployment](#continuous-deployment), [Continuous Delivery](#continuous-delivery), [Observability](#observability), [Monitoring](#monitoring), [DORA metrics](#dora-metrics). 👉 [back to ToC](#table-of-contents)
+
 ### Distributed Tracing
 
-Distributed Tracing allows to see how a user's request travels through the entire system; it is a technique used to monitor and troubleshoot the flow of each requests across various Microservices in a Distributed System, capturing timing data and dependencies to identify performance bottlenecks and enhance overall system observability, where a single user's request gets identified and tracked across entire system using a Correlation ID.
+Distributed Tracing allows to see how a user's **request travels throughout the entire system**; it is a technique used to monitor and troubleshoot the flow of each requests across various Microservices in a Distributed System, capturing timing data and dependencies to identify performance bottlenecks and enhance overall system observability, where a single user's request gets identified and tracked across entire system using a Correlation ID.
 
 See: [Distributed Systems](#distributed-systems), [Microservices](#microservices), [Observability](#observability), [Monitoring](#monitoring), [Correlation ID](#correlation-id). 👉 [back to ToC](#table-of-contents)
 
 ### DORA metrics
 
-DORA metrics express how fast can you ship or rollback; they are key performance indicators used to assess the effectiveness of software delivery and operational performance, focusing on four dimensions: deployment frequency (DF), lead time for changes (LTC), mean time to restore service (MTTR), and change failure rate (CFR), helping teams improve their DevOps practices.
+DORA metrics express **how fast can you ship or rollback**; they are key performance indicators used to assess the effectiveness of software delivery and operational performance, focusing on four dimensions: deployment frequency (DF), lead time for changes (LTC), mean time to restore service (MTTR), and change failure rate (CFR), helping teams improve their DevOps practices.
 
 See: [DevOps](#devops), [Fitness Functions](#fitness-functions). 👉 [back to ToC](#table-of-contents)
+
+### Dreyfus Model of Skill Acquisition
+
+The Dreyfus Model of Skill Acquisition describes the five stages of learning a new skill: Novice, Advanced Beginner, Competent, Proficient, and Expert, highlighting the progression from following rules to intuitive decision-making, and the importance of experience, practice, and feedback in skill development.
+
+See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [(Un)known (Un)knowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
 
 ### Fallacies of Distributed Computing
 
@@ -106,9 +130,21 @@ See: [Resilience](#resilience), [Design For Failure](#design-for-failure). 👉 
 
 ### Fitness Functions
 
-Fitness functions allow to measure how a given system achieves high-level goals; they are metrics used to evaluate how well an existing system's architecture meets specified requirements or goals, guiding design and development decisions by providing quantitative feedback on performance, reliability, and other critical attributes.
+Fitness functions allow to measure how a given system achieves **high-level goals**; they are metrics used to evaluate how well an existing system's architecture meets specified requirements or goals, guiding design and development decisions by providing quantitative feedback on performance, reliability, and other critical attributes.
 
 See: [Software Architecture](#software-architecture), [DORA metrics](#dora-metrics). 👉 [back to ToC](#table-of-contents)
+
+### Kolb's Learning Cycle
+
+Kolb's Learning Cycle is a four-stage model of experiential learning that includes: Concrete Experience (having a direct experience), Reflective Observation (reviewing and reflecting on the experience), Abstract Conceptualization (learning from the experience), and Active Experimentation (applying the new knowledge), emphasizing learning through a continuous, iterative process.
+
+See: [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [(Un)known (Un)knowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
+
+### Law of Triviality (Bikeshedding)
+
+Bikeshedding is the tendency to give disproportionate weight to trivial issues, focusing on minor details rather than important matters, often leading to lengthy discussions and delays in decision-making, due to the ease of understanding and debating simple problems compared to complex ones.
+
+See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition). 👉 [back to ToC](#table-of-contents)
 
 ### Lean Startup
 
@@ -124,7 +160,7 @@ See: [Technical Debt](#technical-debt). 👉 [back to ToC](#table-of-contents)
 
 ### Monitoring
 
-Monitoring allows to constantly check if "all is fine"; it involves continuously tracking and measuring system performance, availability, health, and resource usage, typically through the collection of predefined metrics, in order to detect issues, ensure reliability, and optimize application behavior, often utilizing additional tooling for real-time alerts and metrics analysis.
+Monitoring allows to **constantly check if "all is fine"**; it involves continuously tracking and measuring system performance, availability, health, and resource usage, typically through the collection of predefined metrics, in order to detect issues, ensure reliability, and optimize application behavior, often utilizing additional tooling for real-time alerts and metrics analysis.
 
 See: [Observability](#observability), [DevOps](#devops). 👉 [back to ToC](#table-of-contents)
 
@@ -136,7 +172,7 @@ See: [Lean Startup](#lean-startup), [TTM (Time To Market)](#ttm-time-to-market).
 
 ### Observability
 
-Observability is about understanding what's happening inside a system by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.
+Observability is about understanding **what's happening inside a system** by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.
 
 See: [DevOps](#devops), [Monitoring](#monitoring). 👉 [back to ToC](#table-of-contents)
 
@@ -146,9 +182,15 @@ Rate Limiting is a technique to control the rate of requests a user can send or 
 
 See: [Microservices](#microservices), [Resilience](#resilience), [Backpressure](#backpressure), [Backoff](#backoff), [Circuit Breaker](#circuit-breaker). 👉 [back to ToC](#table-of-contents)
 
+### Resilience
+
+Resilience is the ability of a system to **recover from failures and continue to function**, even when some of its components fail; it is achieved through various practices and patterns that help systems adapt to changing conditions, maintain functionality, and minimize downtime, ensuring reliability and availability.
+
+See: [Fault Tolerance](#fault-tolerance), [Design For Failure](#design-for-failure), [Chaos Engineering](#chaos-engineering), [Monitoring](#monitoring), [Graceful Degradation](#graceful-degradation), [Failover](#failover), [Redundancy](#redundancy), [Backpressure](#backpressure), [Rate Limiting](#rate-limiting). 👉 [back to ToC](#table-of-contents)
+
 ### RFC (Request For Comments)
 
-A Request for Comments (RFC) is a document used to propose standards and/or gather feedback, allowing architects to collect diverse opinions and insights before making important architectural decisions.
+A Request for Comments (RFC) is a document used to **propose standards and/or gather feedback**, allowing architects to collect diverse opinions and insights before making important architectural decisions.
 
 See: [Architecture Documentation](#architecture-documentation), [C4 Model](#c4-model), [ADR (Architecture Decision Record)](#adr-architecture-decision-record). 👉 [back to ToC](#table-of-contents)
 
@@ -162,9 +204,15 @@ See: [Architecture Documentation](#architecture-documentation), [Architecture St
 
 ### Taxonomy
 
-Taxonomy is how things are categorized; is the science of classification, organizing and naming things based on shared characteristics, properties, and relationships, to help understand and communicate complex systems, and guide design decisions.
+Taxonomy is how things are **categorized**; is the science of classification, organizing and naming things based on shared characteristics, properties, and relationships, to help understand and communicate complex systems, and guide design decisions.
 
 See: [Architecture Styles](#architecture-styles). 👉 [back to ToC](#table-of-contents)
+
+### Technical Debt
+
+Technical Debt is the **cost of additional rework** caused by choosing an easy solution now instead of using a better approach that would take longer; it represents the cumulative consequences of cutting corners, making trade-offs, and postponing improvements, which can slow down development, increase complexity, and reduce maintainability over time.
+
+See: [Legacy Code](#legacy-code). 👉 [back to ToC](#table-of-contents)
 
 ### TTM (Time To Market)
 
