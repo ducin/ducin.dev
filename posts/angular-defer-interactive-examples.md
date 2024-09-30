@@ -2,7 +2,9 @@ One of the Angular 17 awesome features shipped is the **defer block** which allo
 
 If you already know the theory and want to **get your hands dirty** with `@defer`, here's an app you can see various usecases and combinations:
 
-# [ducin.github.io/angular-defer](https://ducin.github.io/angular-defer)
+## angular defer demo application
+
+👉 [ducin.github.io/angular-defer](https://ducin.github.io/angular-defer)
 
 <iframe type="text/html" class="youtube"
   src="https://www.youtube.com/embed/NPcpXuaZe30?autoplay=1&origin=https://ducin.dev"

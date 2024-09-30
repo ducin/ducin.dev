@@ -3,7 +3,6 @@
 const fs = require('fs')
 const path = require('path')
 const toc = require('markdown-toc')
-const myMarked = require('marked')
 const prettier = require("prettier")
 const chalk = require('chalk')
 const readingTime = require('reading-time')
@@ -15,6 +14,28 @@ const { pageTpl } = require('../templates/page-tpl')
 const { postContentTopTpl } = require('../templates/post-content-top-tpl')
 const { blogFooterTpl } = require('../templates/blog-footer-tpl')
 const { commentsTpl } = require('../templates/comments-tpl')
+
+const { marked } = require('marked')
+const { gfmHeadingId } = require("marked-gfm-heading-id")
+marked.use(gfmHeadingId({}));
+const renderer = {
+  heading({ tokens, depth }) {
+    const text = this.parser.parseInline(tokens);
+    let escapedText = text.toLowerCase().replace(/[^\w]+/g, '-');
+    while (escapedText.endsWith('-')) {
+      escapedText = escapedText.slice(0, -1)
+    }
+
+    return `
+      <h${depth} id="${escapedText}">
+        <a href="#${escapedText}">
+          <span class="header-link"></span>
+          ${text}
+        </a>
+      </h${depth}>`;
+  }
+};
+marked.use({ renderer });
 
 const TOCPlaceholder = '<% TOC %>'
 const SubscribePlaceholder = '<% SUBSCRIBE %>'
@@ -34,7 +55,7 @@ const generatePostHTML = async (post) => {
   const MDWithTOC = origMD
     .replace(TOCPlaceholder, TOCContent)
     .replace(SubscribePlaceholder, subscribeTpl())
-  let output = myMarked(MDWithTOC)
+  let output = marked(MDWithTOC)
   const postReadingTime = readingTime(origMD)
 
   const coverImageFilepath = path.join(__dirname, '..', 'images/blog/min', coverImageFilename);

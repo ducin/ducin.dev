@@ -1,6 +1,10 @@
 **Disclaimer**: if you consider yourself a **coder**, close this page 😉
 
-**We've got a problem in Frontend communities 😉** We tend to focus on libraries, frameworks, bundlers, numbers of github stars... and many other areas of little relevance. We tend to love a tool ([Redux, I'm looking at you, back in 2015-2016](https://www.youtube.com/watch?v=xsSnOQynTHs)) and significantly overuse it. Then, we turn back and totally hate the same tool for the very same reasons ([Redux, now](https://www.reddit.com/r/reactjs/comments/buzlqc/why_all_the_sudden_hate_for_redux/)). Both the love and the hate was unjustified... so what happened? 🤨
+**We've got a problem in Frontend communities 😉** We tend to focus on libraries, frameworks, bundlers, numbers of github stars... and many other areas of little relevance. We tend to love a tool ([Redux, I'm looking at you, back in 2015-2016](https://www.youtube.com/watch?v=xsSnOQynTHs)) and significantly overuse it.
+
+![Angular Query Client and Cache Hierarchy](images/blog/blog-it-javascript-frameworks.png)
+
+Then, we turn back and totally hate the same tool for the very same reasons ([Redux, now](https://www.reddit.com/r/reactjs/comments/buzlqc/why_all_the_sudden_hate_for_redux/)). Both the love and the hate was unjustified... so what happened? 🤨
 
 The "_problem_" is that many of us Frontend Devs **lack skills and knowledge related to Software Architecture** as-is, as our focus is often somewhere else. And **these skills are absolutely required (but not sufficient) to make a project succeed long-term**. That's because architecture is the **invisible bridge between what's important from both the business and the tech perspectives**.
 
@@ -136,7 +140,6 @@ Now let's confront what satisfies the definition and what does not:
 
 *Architecture defined by*:
 - ✅ Whether [PULL-based or PUSH-based](https://github.com/kriskowal/gtor#observables) fits your needs more
-
 - ❌ Whether you use promises, async await or rxjs, really, WHATEVER
 
 *Architecture defined by*:

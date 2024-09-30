@@ -4,7 +4,7 @@
         <title>Tomasz Ducin</title>
         <link>https://ducin.dev</link>
         <description>Tomasz Ducin Blog - Independent Consultant, Architect &amp; Trainer. JavaScript, TypeScript, Angular, React, Redux, RxJS, Architecture, Design Patterns.</description>
-        <lastBuildDate>Thu, 26 Sep 2024 20:56:27 GMT</lastBuildDate>
+        <lastBuildDate>Sun, 29 Sep 2024 19:08:53 GMT</lastBuildDate>
         <docs>http://blogs.law.harvard.edu/tech/rss</docs>
         <generator>feed3r</generator>
         <image>
@@ -53,6 +53,12 @@
             <title><![CDATA[There are no simply &quot;hot&quot; Observables in RxJS]]></title>
             <pubDate>Wed, 31 Jan 2024 00:00:00 GMT</pubDate>
             <description><![CDATA[The &quot;hot and cold&quot; observables concept is quite useful when we introduce RxJS to a complete beginner. But as soon as they dive into real project usecases, e.g. late subscription of a newly rendered component that subscribes to a (behavior? replay?) subject which had already emitted something - then the &quot;hot and cold&quot; concept is... harmful.]]></description>
+            <author>tomasz@ducin.dev (Tomasz Ducin)</author>
+        </item>
+        <item>
+            <title><![CDATA[What is Frontend Architecture?]]></title>
+            <pubDate>Thu, 26 Sep 2024 00:00:00 GMT</pubDate>
+            <description><![CDATA[While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?]]></description>
             <author>tomasz@ducin.dev (Tomasz Ducin)</author>
         </item>
     </channel>

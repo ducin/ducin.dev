@@ -104,19 +104,37 @@
 
             <hr />
             <p>As you may know, <strong>Signal Inputs</strong> are coming to Angular in mid January 2024 in version 17.1. But we can actually play with them already, or at least, take a look at their <em>almost public</em> API. In this post we&#39;ll take a deep dive into the type design of Signal Inputs internals, its consequences, and a lot of examples of Signal Inputs usage.</p>
-            <h2 id="demo-code">Demo code</h2>
+
+            <h2 id="demo-code">
+              <a href="#demo-code">
+                <span class="header-link"></span>
+                Demo code
+              </a>
+            </h2>
             <p>Just to make it more entertaining for people who want to see how things work under the hood, I&#39;m going to keep using <code>ɵinput</code> even though the <code>input</code> is publicly available since the <code>v17.1</code> release. Perhaps you might want to do a similar play one day?</p>
             <p>So we&#39;re gonna expose what the Angular Team has been hiding from us...</p>
             <p>🪄 <strong>the trick is</strong>:</p>
-            <pre><code class="language-ts">import { ɵinput as input } from &#39;@angular/core&#39;;</code></pre>
+            <pre><code class="language-ts">import { ɵinput as input } from &#39;@angular/core&#39;;
+</code></pre>
             <p><strong>don&#39;t do this at home 😈!</strong></p>
             <p>Following stackblitz allows you to see Signal Input declarations. Note that there&#39;s no Signal Input implementation within angular as of now (<code>v17.1.0-next.5</code>), so we&#39;ll focus on declarations/public API only.</p>
             <iframe width="100%" height="500" src="https://stackblitz.com/edit/angular-signal-inputs?embed=1&file=src%2Fmain.ts&view=editor"></iframe>
 
-            <h2 id="toc">ToC</h2>
+            <h2 id="toc">
+              <a href="#toc">
+                <span class="header-link"></span>
+                ToC
+              </a>
+            </h2>
             <p>🛠️ first - examples 🥩 then - internals</p>
             <p>We&#39;ll analyze the examples from above stackblitz one by one, and later we&#39;ll analyze the internals &amp; types underneath.</p>
-            <h2 id="examples">Examples</h2>
+
+            <h2 id="examples">
+              <a href="#examples">
+                <span class="header-link"></span>
+                Examples
+              </a>
+            </h2>
             <p>We&#39;ll start with lots of examples. Take a look at the first one:</p>
             <p>🔍 initial value is used to infer the input&#39;s type, same as with ordinary signals:</p>
             <p><img src="images/blog/min/blog-screenshot-signals-1.png" alt="signal usage screen" /></p>
@@ -143,7 +161,12 @@
               <div class="sender-form-field" data-sender-form-id="lrt2rokxero62a36uep"></div>
             </div>
 
-            <h1 id="internals">Internals</h1>
+            <h1 id="internals">
+              <a href="#internals">
+                <span class="header-link"></span>
+                Internals
+              </a>
+            </h1>
             <p>Now let&#39;s see 🍖 some internals 🥩</p>
             <p><img src="images/blog/min/blog-animation-meat.gif" alt="signal internals code" /></p>
             <p>
@@ -167,7 +190,8 @@
             <p>Reassigning signals, however, is not going to be anyhow common 😉. But the Angular compiler also makes use of the symbols internally.</p>
             <p>Now, this is where we get the signals API from. There&#39;s a completely <strong>separate implementation</strong> for optional and required inputs. It&#39;s just exposed as a convenient API:</p>
             <pre><code class="language-ts">s1 = input()
-s2 = input.required()</code></pre>
+s2 = input.required()
+</code></pre>
             <p><img src="images/blog/min/blog-screenshot-signals-11.png" alt="signal internals code" /></p>
             <p>The sad thing, however, is that currently we cannot see its runtime.</p>
             <p>
@@ -181,7 +205,8 @@ s2 = input.required()</code></pre>
             <p><img src="images/blog/min/blog-screenshot-signals-14.png" alt="Image description" /></p>
             <p>First of all, if we pass <code>&lt;ReadT&gt;</code> only, we <strong>can&#39;t</strong> pass the input transform (that&#39;s the same as with current</p>
             <pre><code class="language-ts">@Input
-({ transform: ... })</code></pre>
+({ transform: ... })
+</code></pre>
             <p><img src="images/blog/min/blog-screenshot-signals-15.png" alt="signal internals code" /></p>
             <p>However, if we pass <strong>both</strong> <code>&lt;ReadT, WriteT&gt;</code>, we can additionally pass the transform. Note that:</p>
             <ul>
@@ -204,7 +229,13 @@ s2 = input.required()</code></pre>
             <p>All in all we&#39;ve got 3 overloads for the <code>prop = input()</code> (optional) ... and 2 overloads for the <code>prop = input.required()</code> (required)</p>
             <p><img src="images/blog/min/blog-screenshot-signals-20.png" alt="signal internals code" /></p>
             <p>Phew 😅 that was quite a lot. Hope you enjoyed that.</p>
-            <h1 id="conclusion">Conclusion</h1>
+
+            <h1 id="conclusion">
+              <a href="#conclusion">
+                <span class="header-link"></span>
+                Conclusion
+              </a>
+            </h1>
             <p>We&#39;ve seen quite a few examples on how certain usage of input signals affect underlying TypeScript types. Each usage depends on your specific needs in a specific situation. However, you should always pay attention to what types get declared/inferred in each case, as type-safety is one of the most important factors that form overall code quality.</p>
             <p>Underlying Signal Input types are very well defined, but it&#39;s always your responsibility to verify, whether a given input should be optional or required in the long run. <strong>Types should only reflect your design</strong>.</p>
             <p>Remember you can play with it <a href="https://stackblitz.com/edit/angular-signal-inputs?file=src%2Fmain.ts">on this stackblitz</a>. It includes the code of all examples.</p>

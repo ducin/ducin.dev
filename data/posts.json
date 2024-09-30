@@ -155,6 +155,25 @@
       "author": "D5 Render"
     },
     "coverImageFilename": "cover-wood-architecture.png",
+    "status": "PUBLISHED"
+  },
+  {
+    "title": "Software Architecture Terminology - a Pocketbook",
+    "sourceFile": "software-architecture-terminology-pocketbook",
+    "keywords": [
+      "Software",
+      "Architecture",
+      "Design"
+    ],
+    "description": "",
+    "publishedDate": "2024-12-01",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c",
+      "title": "Open book lot photo",
+      "authorURL": "https://unsplash.com/@impatrickt",
+      "author": "Patrick Tomasso"
+    },
+    "coverImageFilename": "cover-open-book-lot.png",
     "status": "DRAFT"
   },
   {
