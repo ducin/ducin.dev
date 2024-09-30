@@ -14,7 +14,7 @@ const entries = [
   {
     "name": "Software Architecture",
     "group": true,
-    "description": "Software Architecture is all about the important stuff... whatever that is. (Ralp Johnson)",
+    "description": "_Software Architecture is all about the important stuff... whatever that is._\n\n> &#45; Ralph Johnson",
     "seeAlso": [
       "Architecture Documentation",
       "Architecture Styles"
@@ -968,9 +968,13 @@ const entries = [
   },
   {
     "name": "Legacy Code",
-    "description": "everything we've written is already legacy 🥲",
+    "description": "Everything we've written is already legacy 🥲",
     "seeAlso": [
       "Technical Debt",
     ]
   }
 ]
+
+module.exports = {
+  entries
+}

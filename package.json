@@ -4,6 +4,7 @@
     "gen:feed": "node scripts/gen-feed.js",
     "gen:sitemap": "node scripts/gen-sitemap.js",
     "gen:posts": "node scripts/gen-posts.js",
+    "gen:pocketbook": "node scripts/gen-pocketbook.mjs",
     "gen:imagemin": "node scripts/gen-imagemin.mjs",
     "minify:css": "postcss assets/css/main.css > assets/css/main.min.css && postcss assets/css/video.css > assets/css/video.min.css",
     "gen": "npm run gen:feed && npm run gen:sitemap && npm run gen:posts && npm run minify:css"
