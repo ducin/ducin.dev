@@ -180,7 +180,7 @@ See: [DevOps](#devops), [Fitness Functions](#fitness-functions). 👉 [back to T
 
 The Dreyfus Model of Skill Acquisition describes the five stages of learning a new skill: Novice, Advanced Beginner, Competent, Proficient, and Expert, highlighting the progression from following rules to intuitive decision-making, and the importance of experience, practice, and feedback in skill development.
 
-See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [(Un)known (Un)knowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
+See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [Unknown Unknowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
 
 ### DTO (Data Transfer Object)
 
@@ -210,7 +210,7 @@ See: [Resilience](#resilience), [Design For Failure](#design-for-failure), [Faul
 
 The Fallacies of Distributed Computing are a set of assumptions that developers often make about distributed systems, including beliefs like "the network is (always) reliable" and "latency is zero," which can lead to misdesign and failures; recognizing these fallacies helps in creating more resilient applications.
 
-See: [Distributed Systems](#distributed-systems), [Resilience](#resilience). 👉 [back to ToC](#table-of-contents)
+See: [Distributed Systems](#distributed-systems), [Resilience](#resilience), [Microservices](#microservices), [Network Protocols](#network-protocols), [Failover](#failover). 👉 [back to ToC](#table-of-contents)
 
 ### Fault Injection
 
@@ -258,7 +258,7 @@ See: [Off-the-shelf Software](#off-the-shelf-software). 👉 [back to ToC](#tabl
 
 Kolb's Learning Cycle is a four-stage model of experiential learning that includes: Concrete Experience (having a direct experience), Reflective Observation (reviewing and reflecting on the experience), Abstract Conceptualization (learning from the experience), and Active Experimentation (applying the new knowledge), emphasizing learning through a continuous, iterative process.
 
-See: [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [(Un)known (Un)knowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
+See: [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [Unknown Unknowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
 
 ### Law of Triviality (Bikeshedding)
 
@@ -402,7 +402,7 @@ Underfetching happens when an API doesn't provide enough data in a single reques
 
 See: [Web Services](#web-services), [GraphQL](#graphql), [Overfetching](#overfetching), [REST](#rest-representational-state-transfer), [Performance](#performance), [HTTP](#http-hypertext-transfer-protocol), [Latency](#latency). 👉 [back to ToC](#table-of-contents)
 
-### (Un)known (Un)knowns
+### Unknown Unknowns
 
 _Reports that say that something hasn't happened are always interesting to me, because as we know, **there are known knowns**; there are things we know we know. We also know there are **known unknowns**; that is to say we know there are some things we do not know. But there are also **unknown unknowns** — the ones we don't know we don't know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones._
 

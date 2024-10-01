@@ -18,6 +18,9 @@ const { commentsTpl } = require('../templates/comments-tpl')
 const { marked } = require('marked')
 const { gfmHeadingId } = require("marked-gfm-heading-id")
 marked.use(gfmHeadingId({}));
+const { slug : githubSlug } = require('../lib/github-slugger')
+
+marked.use(gfmHeadingId({}));
 const renderer = {
   heading({ tokens, depth }) {
     const text = this.parser.parseInline(tokens);
@@ -25,6 +28,7 @@ const renderer = {
     while (escapedText.endsWith('-')) {
       escapedText = escapedText.slice(0, -1)
     }
+    escapedText = githubSlug(escapedText);
 
     return `
       <h${depth} id="${escapedText}">
