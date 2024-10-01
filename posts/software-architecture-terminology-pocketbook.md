@@ -42,6 +42,14 @@ Amdahl's Law is a formula that illustrates the **potential speedup** of a task f
 
 See: [Parallelism](#parallelism), [Concurrency](#concurrency), [Performance](#performance). 👉 [back to ToC](#table-of-contents)
 
+### Anti-patterns
+
+_An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one._
+
+> &#45; Andrew Koenig
+
+See: [God Class](#god-class), [Abstraction Leak](#abstraction-leak), [n+1 Problem](#n1-problem), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding). 👉 [back to ToC](#table-of-contents)
+
 ### Architecture Documentation
 
 Documenting architecture involves creating detailed representations and descriptions of a system's structure, components, and interactions to communicate design decisions, guide development, and facilitate future maintenance and understanding among stakeholders

@@ -1491,7 +1491,13 @@
   {
     "name": "Anti-patterns",
     "group": true,
-    "description": "_An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one._\n\n> &#45; Andrew Koenig"
+    "description": "_An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one._\n\n> &#45; Andrew Koenig",
+    "seeAlso": [
+      "God Class",
+      "Abstraction Leak",
+      "n+1 Problem",
+      "Law of Triviality (Bikeshedding)"
+    ]
   },
   {
     "name": "Abstraction Leak",
