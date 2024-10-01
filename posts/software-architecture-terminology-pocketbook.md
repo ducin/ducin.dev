@@ -70,7 +70,7 @@ See: [Off-the-shelf Software](#off-the-shelf-software). 👉 [back to ToC](#tabl
 
 _Adding manpower to a late software project makes it later._
 
-&mdash; Fred Brooks
+> &#45; Fred Brooks
 
 Brooks' Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.
 
@@ -124,7 +124,7 @@ _Data is a precious thing and will last longer than the systems themselves._
 
 > &#45; Tim Berners-Lee
 
-See: [HA (High Availability)](#ha-high-availability), [Clustering](#clustering), [Sharding](#sharding), [Replication](#replication), [CAP Theorem](#cap-theorem-consistency-availability-partition-tolerance), [ACID Transactions](#acid-transactions-atomicity-consistency-isolation-durability), [BASE Transactions](#base-transactions-basically-available-soft-state-eventually-consistent). 👉 [back to ToC](#table-of-contents)
+See: [HA](#ha-high-availability), [Clustering](#clustering), [Sharding](#sharding), [Replication](#replication), [CAP Theorem](#cap-theorem-consistency-availability-partition-tolerance), [ACID Transactions](#acid-transactions-atomicity-consistency-isolation-durability), [BASE Transactions](#base-transactions-basically-available-soft-state-eventually-consistent). 👉 [back to ToC](#table-of-contents)
 
 ### Defensive Programming
 
@@ -136,7 +136,7 @@ See: [Resilience](#resilience), [Design For Failure](#design-for-failure), [Faul
 
 Derivation is when you create something by using something that already exists; e.g. creating a concept, new entity, class, interface etc.
 
-See: [Inheritance](#inheritance), [Abstraction](#abstraction). 👉 [back to ToC](#table-of-contents)
+See: [Inheritance](#inheritance), [Abstraction](#abstraction), [Reactivity](#reactivity). 👉 [back to ToC](#table-of-contents)
 
 ### Design For Failure
 
@@ -304,7 +304,7 @@ See: [Web Services](#web-services), [GraphQL](#graphql), [REST](#rest-representa
 
 _Work expands so as to fill the time available for its completion._
 
-&mdash; Cyril Northcote Parkinson
+> &#45; Cyril Northcote Parkinson
 
 Parkinson's Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.
 
@@ -338,7 +338,7 @@ See: [Architecture Documentation](#architecture-documentation), [C4 Model](#c4-m
 
 _Be conservative in what you do, be liberal in what you accept from others._
 
-&mdash; Jon Postel
+> &#45; Jon Postel
 
 Postel's Law (also known as the Robustness Principle) is a design guideline for software development that encourages **leniency and tolerance in handling input** and **strictness in generating output**, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected data.
 
@@ -398,7 +398,7 @@ See: [Web Services](#web-services), [GraphQL](#graphql), [Overfetching](#overfet
 
 _Reports that say that something hasn't happened are always interesting to me, because as we know, **there are known knowns**; there are things we know we know. We also know there are **known unknowns**; that is to say we know there are some things we do not know. But there are also **unknown unknowns** — the ones we don't know we don't know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones._
 
-&mdash; Donald Rumsfeld
+> &#45; Donald Rumsfeld
 
 See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding). 👉 [back to ToC](#table-of-contents)
 

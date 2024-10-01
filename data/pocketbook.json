@@ -603,7 +603,12 @@
     ]
   },
   {
-    "name": "HA (High Availability)"
+    "name": "HA (High Availability)",
+    "shortName": "HA",
+    "seeAlso": [
+      "Monitoring",
+      "SLA (Service Level Agreement)"
+    ]
   },
   {
     "name": "Clustering",
@@ -688,7 +693,8 @@
     "description": "Derivation is when you create something by using something that already exists; e.g. creating a concept, new entity, class, interface etc.",
     "seeAlso": [
       "Inheritance",
-      "Abstraction"
+      "Abstraction",
+      "Reactivity"
     ]
   },
   {
@@ -1406,7 +1412,7 @@
   },
   {
     "name": "Robustness Principle (Postel's Law)",
-    "description": "_Be conservative in what you do, be liberal in what you accept from others._\n\n&mdash; Jon Postel\n\nPostel's Law (also known as the Robustness Principle) is a design guideline for software development that encourages **leniency and tolerance in handling input** and **strictness in generating output**, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected data.",
+    "description": "_Be conservative in what you do, be liberal in what you accept from others._\n\n> &#45; Jon Postel\n\nPostel's Law (also known as the Robustness Principle) is a design guideline for software development that encourages **leniency and tolerance in handling input** and **strictness in generating output**, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected data.",
     "seeAlso": [
       "Defensive Programming",
       "Web Services"
@@ -1414,14 +1420,14 @@
   },
   {
     "name": "Brooks' Law",
-    "description": "_Adding manpower to a late software project makes it later._\n\n&mdash; Fred Brooks\n\nBrooks' Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.",
+    "description": "_Adding manpower to a late software project makes it later._\n\n> &#45; Fred Brooks\n\nBrooks' Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.",
     "seeAlso": [
       "Team Topologies"
     ]
   },
   {
     "name": "Parkinson's Law",
-    "description": "_Work expands so as to fill the time available for its completion._\n\n&mdash; Cyril Northcote Parkinson\n\nParkinson's Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.",
+    "description": "_Work expands so as to fill the time available for its completion._\n\n> &#45; Cyril Northcote Parkinson\n\nParkinson's Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.",
     "seeAlso": [
       "Law of Triviality (Bikeshedding)",
       "Dreyfus Model of Skill Acquisition"
@@ -1429,7 +1435,7 @@
   },
   {
     "name": "Hofstadter's Law",
-    "description": "_It always takes longer than you expect, even when you take into account Hofstadter's Law._\n\n&mdash; Douglas Hofstadter\n\nHofstadter's Law highlighting the inherent difficulty in accurately estimating the time required to complete complex tasks, particularly in software development and project management."
+    "description": "_It always takes longer than you expect, even when you take into account Hofstadter's Law._\n\n> &#45; Douglas Hofstadter\n\nHofstadter's Law highlighting the inherent difficulty in accurately estimating the time required to complete complex tasks, particularly in software development and project management."
   },
   {
     "name": "Moore's Law",
@@ -1446,15 +1452,15 @@
   },
   {
     "name": "Gall's Law",
-    "description": "_A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system._\n\n&mdash; John Gall\n\nGall's Law suggests that successful complex systems are typically built from simpler, functioning prototypes, rather than attempting to design and implement complex systems from scratch"
+    "description": "_A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system._\n\n> &#45; John Gall\n\nGall's Law suggests that successful complex systems are typically built from simpler, functioning prototypes, rather than attempting to design and implement complex systems from scratch"
   },
   {
     "name": "Ninety-Ninety Rule",
-    "description": "_The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time._\n\n&mdash; Tom Cargill\n\n> &#45; Tom Cargill\n\nSoftware development projects to take longer than initially estimated, due to unforeseen complexities, edge cases, and challenges that arise during the final stages of development."
+    "description": "_The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time._\n\n> &#45; Tom Cargill\n\nSoftware development projects to take longer than initially estimated, due to unforeseen complexities, edge cases, and challenges that arise during the final stages of development."
   },
   {
     "name": "Pareto Principle",
-    "description": "_For many events, roughly 80% of the effects come from 20% of the causes._\n\n&mdash; Vilfredo Pareto\n\nThe Pareto Principle (also known as the **_80/20 rule_**) states that roughly 80% of the effects come from 20% of the causes, suggesting that a minority of inputs or efforts often lead to the majority of results or outcomes, and can be applied to various areas, such as productivity, decision-making, and problem-solving."
+    "description": "_For many events, roughly 80% of the effects come from 20% of the causes._\n\n> &#45; Vilfredo Pareto\n\nThe Pareto Principle (also known as the **_80/20 rule_**) states that roughly 80% of the effects come from 20% of the causes, suggesting that a minority of inputs or efforts often lead to the majority of results or outcomes, and can be applied to various areas, such as productivity, decision-making, and problem-solving."
   },
 
 
@@ -1485,7 +1491,7 @@
   {
     "name": "Anti-patterns",
     "group": true,
-    "description": "_An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one._\n\n&mdash; Andrew Koenig"
+    "description": "_An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one._\n\n> &#45; Andrew Koenig"
   },
   {
     "name": "Abstraction Leak",
@@ -1536,7 +1542,7 @@
   },
   {
     "name": "(Un)known (Un)knowns",
-    "description": "_Reports that say that something hasn't happened are always interesting to me, because as we know, **there are known knowns**; there are things we know we know. We also know there are **known unknowns**; that is to say we know there are some things we do not know. But there are also **unknown unknowns** — the ones we don't know we don't know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones._\n\n&mdash; Donald Rumsfeld",
+    "description": "_Reports that say that something hasn't happened are always interesting to me, because as we know, **there are known knowns**; there are things we know we know. We also know there are **known unknowns**; that is to say we know there are some things we do not know. But there are also **unknown unknowns** — the ones we don't know we don't know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones._\n\n> &#45; Donald Rumsfeld",
     "seeAlso": [
       "Kolb's Learning Cycle",
       "Dreyfus Model of Skill Acquisition",
