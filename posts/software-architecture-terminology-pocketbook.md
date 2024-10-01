@@ -46,7 +46,7 @@ See: [Parallelism](#parallelism), [Concurrency](#concurrency), [Performance](#pe
 
 Documenting architecture involves creating detailed representations and descriptions of a system's structure, components, and interactions to communicate design decisions, guide development, and facilitate future maintenance and understanding among stakeholders
 
-See: [Software Architecture](#software-architecture). 👉 [back to ToC](#table-of-contents)
+See: [Software Architecture](#software-architecture), [C4 Model](#c4-model), [ADR (Architecture Decision Record)](#adr-architecture-decision-record), [RFC](#rfc-request-for-comments). 👉 [back to ToC](#table-of-contents)
 
 ### Backoff
 
@@ -58,7 +58,7 @@ See: [Resilience](#resilience), [Backpressure](#backpressure). 👉 [back to ToC
 
 Backpressure is a mechanism to control the flow of data being sent from the producer to the consumer from becoming overloaded, when the consumers cannot keep up, helping to prevent resource exhaustion and maintain overall system stability, in a lossy or lossless manner.
 
-See: [Resilience](#resilience), [Reactivity](#reactivity), [Rate Limiting](#rate-limiting), [Backoff](#backoff), [Circuit Breaker](#circuit-breaker-pattern). 👉 [back to ToC](#table-of-contents)
+See: [Resilience](#resilience), [Reactivity](#reactivity), [Rate Limiting](#rate-limiting), [Backoff](#backoff), [Circuit Breaker](#circuit-breaker-pattern), [Client-Server Model](#client-server-model). 👉 [back to ToC](#table-of-contents)
 
 ### BI (Business Intelligence)
 
@@ -68,7 +68,9 @@ See: [Off-the-shelf Software](#off-the-shelf-software). 👉 [back to ToC](#tabl
 
 ### Brooks' Law
 
-_Adding manpower to a late software project makes it later._ &mdash; Fred Brooks
+_Adding manpower to a late software project makes it later._
+
+&mdash; Fred Brooks
 
 Brooks' Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.
 
@@ -224,7 +226,7 @@ See: [Software Architecture](#software-architecture), [DORA metrics](#dora-metri
 
 A God Class (also an object, component, interface etc) is a class that **knows too much or does too much**; it's an anti-pattern where a single class becomes overly complex, bloated, and takes on too many responsibilities (hence significantly strengthening **tight coupling**), violating the Single Responsibility Principle and making the codebase harder to maintain, test, and understand; e.g. a **User class being reused across various different modules**, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.
 
-See: [Anti-patterns](#anti-patterns), [Bounded Context](#bounded-context), [Domain Model](#domain-model). 👉 [back to ToC](#table-of-contents)
+See: [Anti-patterns](#anti-patterns), [Bounded Context](#bounded-context), [Domain Model](#domain-model), [Legacy Code](#legacy-code). 👉 [back to ToC](#table-of-contents)
 
 ### HTTP (Hypertext Transfer Protocol)
 
@@ -300,7 +302,9 @@ See: [Web Services](#web-services), [GraphQL](#graphql), [REST](#rest-representa
 
 ### Parkinson's Law
 
-_Work expands so as to fill the time available for its completion._ &mdash; Cyril Northcote Parkinson
+_Work expands so as to fill the time available for its completion._
+
+&mdash; Cyril Northcote Parkinson
 
 Parkinson's Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.
 
@@ -332,7 +336,9 @@ See: [Architecture Documentation](#architecture-documentation), [C4 Model](#c4-m
 
 ### Robustness Principle (Postel's Law)
 
-_Be conservative in what you do, be liberal in what you accept from others._ &mdash; Jon Postel
+_Be conservative in what you do, be liberal in what you accept from others._
+
+&mdash; Jon Postel
 
 Postel's Law (also known as the Robustness Principle) is a design guideline for software development that encourages **leniency and tolerance in handling input** and **strictness in generating output**, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected data.
 
@@ -390,7 +396,9 @@ See: [Web Services](#web-services), [GraphQL](#graphql), [Overfetching](#overfet
 
 ### (Un)known (Un)knowns
 
-_Reports that say that something hasn't happened are always interesting to me, because as we know, **there are known knowns**; there are things we know we know. We also know there are **known unknowns**; that is to say we know there are some things we do not know. But there are also **unknown unknowns** — the ones we don't know we don't know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones._ &mdash; Donald Rumsfeld
+_Reports that say that something hasn't happened are always interesting to me, because as we know, **there are known knowns**; there are things we know we know. We also know there are **known unknowns**; that is to say we know there are some things we do not know. But there are also **unknown unknowns** — the ones we don't know we don't know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones._
+
+&mdash; Donald Rumsfeld
 
 See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding). 👉 [back to ToC](#table-of-contents)
 

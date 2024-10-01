@@ -239,7 +239,7 @@
               </a>
             </h3>
             <p>Documenting architecture involves creating detailed representations and descriptions of a system&#39;s structure, components, and interactions to communicate design decisions, guide development, and facilitate future maintenance and understanding among stakeholders</p>
-            <p>See: <a href="#software-architecture">Software Architecture</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#software-architecture">Software Architecture</a>, <a href="#c4-model">C4 Model</a>, <a href="#adr-architecture-decision-record">ADR (Architecture Decision Record)</a>, <a href="#rfc-request-for-comments">RFC</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="backoff">
               <a href="#backoff">
@@ -257,7 +257,7 @@
               </a>
             </h3>
             <p>Backpressure is a mechanism to control the flow of data being sent from the producer to the consumer from becoming overloaded, when the consumers cannot keep up, helping to prevent resource exhaustion and maintain overall system stability, in a lossy or lossless manner.</p>
-            <p>See: <a href="#resilience">Resilience</a>, <a href="#reactivity">Reactivity</a>, <a href="#rate-limiting">Rate Limiting</a>, <a href="#backoff">Backoff</a>, <a href="#circuit-breaker-pattern">Circuit Breaker</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#resilience">Resilience</a>, <a href="#reactivity">Reactivity</a>, <a href="#rate-limiting">Rate Limiting</a>, <a href="#backoff">Backoff</a>, <a href="#circuit-breaker-pattern">Circuit Breaker</a>, <a href="#client-server-model">Client-Server Model</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="bi-business-intelligence">
               <a href="#bi-business-intelligence">
@@ -274,7 +274,8 @@
                 Brooks&#39; Law
               </a>
             </h3>
-            <p><em>Adding manpower to a late software project makes it later.</em> &mdash; Fred Brooks</p>
+            <p><em>Adding manpower to a late software project makes it later.</em></p>
+            <p>&mdash; Fred Brooks</p>
             <p>Brooks&#39; Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.</p>
             <p>See: <a href="#team-topologies">Team Topologies</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
@@ -539,7 +540,7 @@
               A God Class (also an object, component, interface etc) is a class that <strong>knows too much or does too much</strong>; it&#39;s an anti-pattern where a single class becomes overly complex, bloated, and takes on too many responsibilities (hence significantly strengthening <strong>tight coupling</strong>), violating the Single Responsibility Principle and making the codebase harder
               to maintain, test, and understand; e.g. a <strong>User class being reused across various different modules</strong>, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.
             </p>
-            <p>See: <a href="#anti-patterns">Anti-patterns</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#domain-model">Domain Model</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#anti-patterns">Anti-patterns</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#domain-model">Domain Model</a>, <a href="#legacy-code">Legacy Code</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="http-hypertext-transfer-protocol">
               <a href="#http-hypertext-transfer-protocol">
@@ -663,7 +664,8 @@
                 Parkinson&#39;s Law
               </a>
             </h3>
-            <p><em>Work expands so as to fill the time available for its completion.</em> &mdash; Cyril Northcote Parkinson</p>
+            <p><em>Work expands so as to fill the time available for its completion.</em></p>
+            <p>&mdash; Cyril Northcote Parkinson</p>
             <p>Parkinson&#39;s Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.</p>
             <p>See: <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
@@ -712,7 +714,8 @@
                 Robustness Principle (Postel&#39;s Law)
               </a>
             </h3>
-            <p><em>Be conservative in what you do, be liberal in what you accept from others.</em> &mdash; Jon Postel</p>
+            <p><em>Be conservative in what you do, be liberal in what you accept from others.</em></p>
+            <p>&mdash; Jon Postel</p>
             <p>
               Postel&#39;s Law (also known as the Robustness Principle) is a design guideline for software development that encourages <strong>leniency and tolerance in handling input</strong> and <strong>strictness in generating output</strong>, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected
               data.
@@ -805,8 +808,8 @@
                 >Reports that say that something hasn&#39;t happened are always interesting to me, because as we know, <strong>there are known knowns</strong>; there are things we know we know. We also know there are <strong>known unknowns</strong>; that is to say we know there are some things we do not know. But there are also <strong>unknown unknowns</strong> — the ones we don&#39;t know we
                 don&#39;t know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones.</em
               >
-              &mdash; Donald Rumsfeld
             </p>
+            <p>&mdash; Donald Rumsfeld</p>
             <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="webhook">
