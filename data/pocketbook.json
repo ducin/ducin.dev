@@ -23,18 +23,19 @@
     ]
   },
   {
-    "name": "Architecture Styles",
-    "group": true,
-    "seeAlso": [
-      "Software Architecture",
-      "Taxonomy"
-    ]
-  },
-  {
     "name": "Taxonomy",
     "description": "Taxonomy is how things are **categorized**; is the science of classification, organizing and naming things based on shared characteristics, properties, and relationships, to help understand and communicate complex systems, and guide design decisions.",
     "seeAlso": [
-      "Architecture Styles"
+      "Architecture Styles",
+      "Network Protocols"
+    ]
+  },
+  {
+    "name": "Protocol",
+    "description": "A protocol is a set of rules and conventions that define how data is transmitted and received between devices in a network, ensuring proper communication, synchronization, and error handling, with examples like HTTP, TCP/IP, and FTP.",
+    "seeAlso": [
+      "Taxonomy",
+      "Network Protocols"
     ]
   },
   {
@@ -47,6 +48,18 @@
       "DORA metrics"
     ]
   },
+  {
+    "name": "Architecture Styles",
+    "group": true,
+    "seeAlso": [
+      "Software Architecture",
+      "Taxonomy"
+    ]
+  },
+  {
+    "name": "Team Topologies"
+  },
+
   {
     "name": "Architecture Documentation",
     "group": true,
@@ -79,6 +92,7 @@
   },
   {
     "name": "RFC (Request For Comments)",
+    "shortName": "RFC",
     "description": "A Request for Comments (RFC) is a document used to **propose standards and/or gather feedback**, allowing architects to collect diverse opinions and insights before making important architectural decisions.",
     "tags": [
       "Architecture Documentation"
@@ -96,7 +110,13 @@
   {
     "name": "Separation of Concerns"
   },
-
+  {
+    "name": "API (Application Programming Interface)",
+    "shortName": "API",
+    "seeAlso": [
+      "Web Services"
+    ]
+  },
   
 
 
@@ -158,6 +178,10 @@
     "tags": [
       "Observability",
       "DevOps"
+    ],
+    "seeAlso": [
+      "Distributed Tracing",
+      "Performance"
     ]
   },
   {
@@ -165,7 +189,8 @@
     "description": "Distributed Tracing allows to see how a user's **request travels throughout the entire system**; it is a technique used to monitor and troubleshoot the flow of each requests across various Microservices in a Distributed System, capturing timing data and dependencies to identify performance bottlenecks and enhance overall system observability, where a single user's request gets identified and tracked across entire system using a Correlation ID.",
     "tags": [
       "Distributed Systems",
-      "Microservices"
+      "Microservices",
+      "Performance"
     ],
     "seeAlso": [
       "Observability",
@@ -192,6 +217,23 @@
     "name": "Continuous Delivery"
   },
 
+
+  {
+    "name": "Performance",
+    "group": true
+  },
+  {
+    "name": "Bottleneck",
+    "seeAlso": [
+      "Performance"
+    ]
+  },
+  {
+    "name": "Lazy Evaluation",
+    "seeAlso": [
+      "Performance"
+    ]
+  },
 
 
   {
@@ -226,6 +268,19 @@
     ]
   },
   {
+    "name": "Defensive Programming",
+    "description": "Defensive Programming is about **expecting the unexpected**; it is a coding practice that anticipates and guards against potential failures, errors, and exceptions, by validating inputs, handling edge cases, and implementing error-checking mechanisms, to ensure robustness, reliability, and fault tolerance in software applications.",
+    "tags": [
+      "Resilience"
+    ],
+    "seeAlso": [
+      "Design For Failure",
+      "Fault Tolerance",
+      "Chaos Engineering",
+      "Isolate Failure"
+    ]
+  },
+  {
     "name": "Fault Tolerance",
     "description": "Fault Tolerance is the ability of a system to continue operating correctly even in the event of a failure or error, typically achieved through redundancy, error detection, and recovery mechanisms to ensure uninterrupted service.",
     "tags": [
@@ -253,10 +308,38 @@
       "Distributed Tracing"
     ]
   },
-
-
-
-  
+  {
+    "name": "Failover",
+    "description": "Failover is the process of **switching to a redundant or standby system** when the primary system fails, ensuring continuous operation and minimal disruption to services.",
+    "tags": [
+      "Resilience"
+    ],
+    "seeAlso": [
+      "Design For Failure",
+      "Fault Tolerance"
+    ]
+  },
+  {
+    "name": "Isolate Failure",
+    "description": "Isolating failure is about **preventing a single failure from cascading**, even from taking the whole system down; it is a design principle that aims to contain and limit the impact of failures by isolating components, services, or processes, to prevent them from affecting the entire system, ensuring that failures are contained and do not propagate.",
+    "tags": [
+      "Resilience"
+    ],
+    "seeAlso": [
+      "Defensive Programming",
+      "Fault Tolerance",
+      "Microservices"
+    ]
+  },
+  {
+    "name": "Single Point of Failure",
+    "description": "A Single Point of Failure (SPOF) is a piece of system which, if it fails, **will cause the entire system to fail**; it is a critical component or dependency that does not have redundancy or failover mechanisms, often centralized, making the system **vulnerable** to downtime and disruptions.",
+    "seeAlso": [
+      "Resilience",
+      "Fault Tolerance",
+      "Anti-patterns"
+    ]
+  },
   {
     "name": "Software Testing",
     "seeAlso": [
@@ -306,7 +389,7 @@
     "seeAlso": [
       "Rate Limiting",
       "Backoff",
-      "Circuit Breaker"
+      "Circuit Breaker Pattern"
     ]
   },
   {
@@ -319,7 +402,7 @@
     "seeAlso": [
       "Backpressure",
       "Backoff",
-      "Circuit Breaker"
+      "Circuit Breaker Pattern"
     ]
   },
   {
@@ -330,6 +413,7 @@
   
   {
     "name": "Circuit Breaker Pattern",
+    "shortName": "Circuit Breaker",
     "description": "The Circuit Breaker Pattern disallows to kick someone who's currently down; it's a a Fault Tolerance mechanism which detects failures and prevents further requests from being sent to the failing service, thus avoiding overload while recovering, and retrying e.g. after a timeout (then passing requests normally).",
     "tags": [
       "Microservices"
@@ -347,7 +431,8 @@
     "name": "Outbox Pattern"
   },
   {
-    "name": "Bulkhead Pattern"
+    "name": "Bulkhead Pattern",
+    "shortName": "Bulkhead"
   },
   {
     "name": "Retry Pattern"
@@ -377,9 +462,6 @@
 
 
 
-  {
-    "name": "Anti-Corruption Layer"
-  },
   {
     "name": "Sticky Sessions"
   },
@@ -505,7 +587,7 @@
   {
     "name": "Databases",
     "group": true,
-    "description": "Databases are organized collections of structured information or data that are stored and managed electronically, allowing for efficient retrieval, manipulation, and updating of data through various query languages, with different types, e.g. **relational** (SQL) and **non-relational** (NoSQL) databases.",
+    "description": "_Data is a precious thing and will last longer than the systems themselves._\n\n> &#45; Tim Berners-Lee",
     "seeAlso": [
       "HA (High Availability)",
       "Clustering",
@@ -539,18 +621,21 @@
   },
   {
     "name": "CAP Theorem (Consistency, Availability, Partition Tolerance)",
+    "shortName": "CAP Theorem",
     "tags": [
       "Databases"
     ]
   },
   {
     "name": "ACID Transactions (Atomicity, Consistency, Isolation, Durability)",
+    "shortName": "ACID Transactions",
     "tags": [
       "Databases"
     ]
   },
   {
     "name": "BASE Transactions (Basically Available, Soft State, Eventually Consistent)",
+    "shortName": "BASE Transactions",
     "tags": [
       "Databases"
     ]
@@ -561,10 +646,32 @@
 
 
   {
-    "name": "Encapsulation"
+    "name": "Essential Complexity",
+    "seeAlso": [
+      "Accidental Complexity"
+    ]
   },
   {
-    "name": "Abstraction"
+    "name": "Accidental Complexity",
+    "seeAlso": [
+      "Essential Complexity"
+    ]
+  },
+  {
+    "name": "Encapsulation",
+    "seeAlso": [
+      "Abstraction",
+      "Abstraction Leak",
+      "ACL (Anti-Corruption Layer)"
+    ]
+  },
+  {
+    "name": "Abstraction",
+    "seeAlso": [
+      "Encapsulation",
+      "Abstraction Leak",
+      "Separation of Concerns"
+    ]
   },
   {
     "name": "Polymorphism"
@@ -573,7 +680,12 @@
     "name": "Inheritance"
   },
   {
-    "name": "Derivation"
+    "name": "Derivation",
+    "description": "Derivation is when you create something by using something that already exists; e.g. creating a concept, new entity, class, interface etc.",
+    "seeAlso": [
+      "Inheritance",
+      "Abstraction"
+    ]
   },
   {
     "name": "Composition"
@@ -668,14 +780,10 @@
 
 
 
-  {
-    "name": "Webhook"
-  },
-
-
 
   {
-    "name": "Event Driven Architecture"
+    "name": "Event Driven Architecture",
+    "group": true
   },
   {
     "name": "Event Bus"
@@ -687,14 +795,26 @@
     "name": "Message Queue"
   },
   {
-    "name": "Pub/Sub (Publish/Subscribe)"
+    "name": "Pub/Sub (Publish/Subscribe)",
+    "shortName": "Pub/Sub"
   },
 
 
 
   {
     "name": "Microservices",
-    "group": true
+    "group": true,
+    "tags": [
+      "Architecture Styles"
+    ],
+    "seeAlso": [
+      "Isolate Failure",
+      "CQRS (Command Query Responsibility Segregation)",
+      "Circuit Breaker Pattern",
+      "Service Mesh",
+      "Monitoring",
+      "Observability"
+    ]
   },
   {
     "name": "Monolith"
@@ -703,34 +823,35 @@
     "name": "Modulith"
   },
   {
-    "name": "Distributed Monolith"
+    "name": "Distributed Monolith",
+    "description": "A Distributed Monolith is an architectural anti-pattern which takes **the worst of both worlds** (Monoliths, Distributed Systems); it's a system that is **split into multiple services** (distributed) along with all its complexity and other downsides but still exhibits the same characteristics and problems as a monolith (usually unintentionally designed to be deployed as a whole) such as tight coupling, shared data, and dependencies, leading to complexity, performance issues, and maintainability challenges, despite being distributed across multiple services.",
+    "tags": [
+      "Microservices"
+    ],
+    "seeAlso": [
+      "Monolith",
+      "Modulith",
+      "Anti-patterns",
+      "Fallacies of Distributed Computing"
+    ]
   },
   {
-    "name": "SOA (Service Oriented Architecture)"
+    "name": "SOA (Service Oriented Architecture)",
+    "shortName": "SOA"
   },
   {
-    "name": "BFF (Backend For Frontend)"
+    "name": "ESB (Enterprise Service Bus)",
+    "shortName": "ESB",
+    "description": "An Enterprise Service Bus (ESB) is an **old-school** way to implement service-oriented architecture (SOA), relatively **expensive**, introduces a **centralized** bus which other services/applications can integrate e.g. through standardized data exchange, thus looses coupling between them, but also becomes a single point of failure and a bottleneck.",
+    "seeAlso": [
+      "SOA (Service Oriented Architecture)",
+      "Single Point of Failure",
+      "Bottleneck"
+    ]
   },
   {
-    "name": "API (Application Programming Interface)"
-  },
-  {
-    "name": "REST (Representational State Transfer)"
-  },
-  {
-    "name": "Overfetching"
-  },
-  {
-    "name": "Underfetching"
-  },
-  {
-    "name": "GraphQL"
-  },
-  {
-    "name": "RPC (Remote Procedure Call)"
-  },
-  {
-    "name": "WebService"
+    "name": "BFF (Backend For Frontend)",
+    "shortName": "BFF"
   },
   {
     "name": "Hexagonal Architecture"
@@ -752,9 +873,169 @@
   },
 
 
+  {
+    "name": "Web Services",
+    "group": true,
+    "seeAlso": [
+      "Client-Server Model",
+      "P2P (Peer to Peer)",
+      "SOAP (Simple Object Access Protocol)",
+      "REST (Representational State Transfer)",
+      "RPC (Remote Procedure Call)",
+      "API (Application Programming Interface)",
+      "DTO (Data Transfer Object)",
+      "GraphQL",
+      "Webhook",
+      "HTTP (Hypertext Transfer Protocol)",
+      "Latency"
+    ]
+  },
+  {
+    "name": "SOAP (Simple Object Access Protocol)",
+    "shortName": "SOAP",
+    "description": "SOAP is a protocol for exchanging structured information over networks, enforcing pre-generating both client and server definitions upfront from a contract file (WSDL,Web Services Description Language), typically using XML and sent over HTTP",
+    "tags": [
+      "Web Services"
+    ],
+    "seeAlso": [
+      "REST (Representational State Transfer)",
+      "RPC (Remote Procedure Call)",
+      "API (Application Programming Interface)",
+      "DTO (Data Transfer Object)"
+    ]
+  },
+  {
+    "name": "REST (Representational State Transfer)",
+    "shortName": "REST",
+    "tags": [
+      "Web Services"
+    ],
+    "seeAlso": [
+      "RPC (Remote Procedure Call)",
+      "API (Application Programming Interface)",
+      "DTO (Data Transfer Object)",
+      "GraphQL"
+    ]
+  },
+  {
+    "name": "Overfetching",
+    "description": "Overfetching occurs when an API returns more data than necessary for a client's request, leading to inefficiencies by providing extra information that the client doesn't need or use, often seen in traditional REST APIs when the response can't be precisely tailored to the client’s requirements.",
+    "tags": [
+      "Web Services"
+    ],
+    "seeAlso":[
+      "GraphQL",
+      "REST (Representational State Transfer)",
+      "Underfetching"
+    ]
+  },
+  {
+    "name": "Underfetching",
+    "description": "Underfetching happens when an API doesn't provide enough data in a single request, requiring the client to make additional requests to fetch the necessary information, leading to performance issues and increased latency, commonly seen in REST APIs when the response doesn't include all required data for a specific view or business operation.",
+    "tags": [
+      "Web Services"
+    ],
+    "seeAlso":[
+      "GraphQL",
+      "Overfetching",
+      "REST (Representational State Transfer)",
+      "Performance",
+      "HTTP (Hypertext Transfer Protocol)",
+      "Latency"
+    ]
+  },
+  {
+    "name": "GraphQL",
+    "tags": [
+      "Web Services"
+    ],
+    "seeAlso":[
+      "Overfetching",
+      "Underfetching"
+    ]
+  },
+  {
+    "name": "RPC (Remote Procedure Call)",
+    "shortName": "RPC",
+    "tags": [
+      "Web Services"
+    ]
+  },
+  {
+    "name": "DTO (Data Transfer Object)", 
+    "shortName": "DTO",
+    "description": "A Data Transfer Object (DTO) is an object with **only the data, and no logic** (methods); it carries data between processes or services, typically used to encapsulate and disallow leaking abstraction of one module to another.",
+    "tags": [
+      "Web Services"
+    ],
+    "seeAlso": [
+      "DDD (Domain Driven Design)",
+      "Entity",
+      "VO (Value Object)",
+      "ACL (Anti-Corruption Layer)",
+      "Encapsulation",
+      "Abstraction Leak"
+    ]
+  },
+  {
+    "name": "Webhook",
+    "description": "A webhook is like a _callback over the network_; it's user-defined (usually HTTP POST) callback that automatically sends real-time data or notifications from one system to another when a specific event occurs, enabling event-driven communication and automation between systems, such as triggering notifications, updates, or data synchronization.",
+    "seeAlso":[
+      "Web Services",
+      "HTTP (Hypertext Transfer Protocol)"
+    ]
+  },
 
   {
-    "name": "P2P (Peer to Peer)"
+    "name": "Network Protocols",
+    "group": true
+  },
+  {
+    "name": "HTTP (Hypertext Transfer Protocol)",
+    "shortName": "HTTP",
+    "description": "HTTP (Hypertext Transfer Protocol) is the foundation of web communication, defining how clients (like browsers) and servers exchange information over the internet, using requests and responses to retrieve or send data, typically operating over TCP and supporting methods like GET, POST, PUT, and DELETE for interacting with resources.",
+    "tags": [
+      "Network Protocols"
+    ],
+    "seeAlso":[
+      "Web Services",
+      "Client-Server Model",
+      "REST (Representational State Transfer)",
+      "SOAP (Simple Object Access Protocol)",
+      "RPC (Remote Procedure Call)",
+      "Webhook"
+    ]
+  },
+  {
+    "name": "SSE (Server-Sent Events)",
+    "shortName": "SSE",
+    "tags": [
+      "Network Protocols"
+    ]
+  },
+  {
+    "name": "WebSockets",
+    "tags": [
+      "Network Protocols"
+    ]
+  },
+  {
+    "name": "Interaction Models",
+    "group": true,
+    "description": "An interaction model defines how (distributed) components or systems communicate and interact with each other and exchange, specifying the patterns of information exchange, such as client-server or peer-to-peer, to ensure coordinated behavior and achieve desired outcomes."
+  },
+  {
+    "name": "Client-Server Model",
+    "tags": [
+      "Web Services"
+    ]
+  },
+  {
+    "name": "P2P (Peer to Peer)",
+    "shortName": "P2P",
+    "tags": [
+      "Web Services"
+    ]
   },
 
 
@@ -778,7 +1059,8 @@
     "name": "JAMstack"
   },
   {
-    "name": "SEO (Search Engine Optimization)"
+    "name": "SEO (Search Engine Optimization)",
+    "shortName": "SEO"
   },
   {
     "name": "Micro Frontends"
@@ -799,6 +1081,7 @@
   
   {
     "name": "DDD (Domain Driven Design)",
+    "shortName": "DDD",
     "group": true,
     "seeAlso": [
       "Bounded Context",
@@ -817,7 +1100,7 @@
       "Domain Service",
       "Repository",
       "Policy",
-      "Anti-Corruption Layer",
+      "ACL (Anti-Corruption Layer)",
       "Shared Kernel",
       "Business Archetype",
       "Business Process",
@@ -870,6 +1153,9 @@
     ]
   },
   {
+    "name": "Domain Model"
+  },
+  {
     "name": "Entity",
     "tags": [
       "DDD (Domain Driven Design)"
@@ -882,7 +1168,8 @@
     ]
   },
   {
-    "name": "Value Object",
+    "name": "VO (Value Object)",
+    "shortName": "VO",
     "tags": [
       "DDD (Domain Driven Design)"
     ]
@@ -924,9 +1211,15 @@
     ]
   },
   {
-    "name": "Anti-Corruption Layer",
+    "name": "ACL (Anti-Corruption Layer)",
+    "shortName": "ACL",
     "tags": [
       "DDD (Domain Driven Design)"
+    ],
+    "seeAlso": [
+      "Bounded Context",
+      "Web Services",
+      "DTO (Data Transfer Object)"
     ]
   },
   {
@@ -970,6 +1263,7 @@
   },
   {
     "name": "CQRS (Command Query Responsibility Segregation)",
+    "shortName": "CQRS",
     "seeAlso": [
       "Read Model",
       "Write Model",
@@ -1015,6 +1309,7 @@
 
   {
     "name": "MVP (Minimum Viable Product)",
+    "shortName": "MVP",
     "description": "A Minimum Viable Product (MVP) is a version of a new product that includes only the essential features, allowing to quickly validate the idea, gather feedback, and learn from real-world usage, while minimizing development costs and time-to-market.",
     "seeAlso": [
       "Lean Startup",
@@ -1023,6 +1318,7 @@
   },
   {
     "name": "TTM (Time To Market)",
+    "shortName": "TTM",
     "description": "Time To Market (TTM) describes how fast can you ship stuff; it's the time it takes to develop and launch a new product or feature, from the initial idea to its availability to customers, and is a critical factor in a company's success, as it directly impacts competitiveness, revenue, and market share.",
     "seeAlso": [
       "MVP (Minimum Viable Product)"
@@ -1030,7 +1326,16 @@
   },
   {
     "name": "Off-the-shelf Software",
-    "description": "Off-the-shelf software refers to pre-built applications or programs that are readily available for purchase or download, designed to meet general user needs, offering a cost-effective and quick solution compared to custom software development but may lack specific features tailored to unique business requirements."
+    "group": true,
+    "description": "Off-the-shelf software refers to pre-built applications or programs that are readily available for purchase or download, designed to meet general user needs, offering a cost-effective and quick solution compared to custom software development but may lack specific features tailored to unique business requirements.",
+    "seeAlso":[
+      "CMS (Content Management System)",
+      "CRM (Customer Relationship Management)",
+      "ERP (Enterprise Resource Planning)",
+      "SCM (Supply Chain Management)",
+      "ITSM (IT Service Management)",
+      "BI (Business Intelligence)"
+    ]
   },
   {
     "name": "Lean Startup",
@@ -1040,35 +1345,54 @@
     ]
   },
   {
-    "name": "CMS (Content Management System)"
+    "name": "CMS (Content Management System)",
+    "shortName": "CMS",
+    "description": "A Content Management System (CMS) is a software application that allows users to create, manage, and publish digital content, such as websites, blogs, or documentation, without requiring technical expertise, providing tools for content editing, collaboration, and version control.",
+    "seeAlso": [
+      "Off-the-shelf Software"
+    ]
   },
   {
-    "name": "CRM (Customer Relationship Management)"
+    "name": "CRM (Customer Relationship Management)",
+    "shortName": "CRM",
+    "description": "Customer Relationship Management (CRM) is a technology for managing a company's relationships and interactions with current customers and potential customers, typically using data analysis to improve business relationships, customer satisfaction, retention, and sales growth, through personalized communication and targeted marketing",
+    "seeAlso": [
+      "Off-the-shelf Software"
+    ]
   },
   {
-    "name": "ERP (Enterprise Resource Planning)"
+    "name": "ERP (Enterprise Resource Planning)",
+    "shortName": "ERP",
+    "description": "Enterprise Resource Planning (ERP) is a software system that integrates business processes and functions, such as accounting, human resources, inventory, and supply chain management, into a single unified platform, providing real-time data and insights to streamline operations, improve efficiency, and support decision-making.",
+    "seeAlso": [
+      "Off-the-shelf Software"
+    ]
   },
   {
-    "name": "SCM (Supply Chain Management)"
+    "name": "SCM (Supply Chain Management)",
+    "shortName": "SCM",
+    "description": "Supply Chain Management (SCM) is the management of the flow of goods and services, involving the movement and storage of raw materials, work-in-progress inventory, and finished products, from the point of origin to the point of consumption, optimizing processes, reducing costs, and improving collaboration between suppliers, manufacturers, and customers.",
+    "seeAlso": [
+      "Off-the-shelf Software"
+    ]
+  },
+  {
+    "name": "ITSM (IT Service Management)",
+    "shortName": "ITSM",
+    "description": "IT Service Management (ITSM) is a set of practices and tools for managing IT services and aligning them with business needs, focusing on delivering value to customers, optimizing processes, and ensuring service quality, typically using ITIL (Information Technology Infrastructure Library) as a framework.",
+    "seeAlso": [
+      "Off-the-shelf Software"
+    ]
+  },
+  {
+    "name": "BI (Business Intelligence)",
+    "shortName": "BI",
+    "description": "Business Intelligence (BI) refers to the technologies, tools, and practices used to collect, analyze, and present business data, enabling organizations to make informed decisions by providing insights through data visualization, reporting, and analytics, ultimately driving strategic planning and performance improvement.",
+    "seeAlso": [
+      "Off-the-shelf Software"
+    ]
   },
 
-
-
-  {
-    "name": "BI (Business Intelligence)"
-  },
-  {
-    "name": "EAI (Enterprise Application Integration)"
-  },
-  {
-    "name": "EIP (Enterprise Integration Pattern)"
-  },
-  {
-    "name": "ESB (Enterprise Service Bus)"
-  },
-  {
-    "name": "Team Topologies"
-  },
 
 
 
@@ -1077,55 +1401,112 @@
     "description": "_[O]rganizations which design systems (in the broad sense used here) are constrained to produce designs which are copies of the communication structures of these organizations._\n\n> &#45; Melvin E. Conway, _How Do Committees Invent?_\n\nConway's Law states that organizations design systems that mirror their own communication structures; it suggests that the architecture of a software system will reflect the social structure of the organization that produced it, and vice versa, highlighting the importance of aligning team structures with system architecture to improve collaboration and productivity."
   },
   {
-    "name": "Postel's Law"
+    "name": "Robustness Principle (Postel's Law)",
+    "description": "_Be conservative in what you do, be liberal in what you accept from others._ &mdash; Jon Postel\n\nPostel's Law (also known as the Robustness Principle) is a design guideline for software development that encourages **leniency and tolerance in handling input** and **strictness in generating output**, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected data.",
+    "seeAlso": [
+      "Defensive Programming",
+      "Web Services"
+    ]
   },
   {
-    "name": "Brooks' Law"
+    "name": "Brooks' Law",
+    "description": "_Adding manpower to a late software project makes it later._ &mdash; Fred Brooks\n\nBrooks' Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.",
+    "seeAlso": [
+      "Team Topologies"
+    ]
   },
   {
-    "name": "Parkinson's Law"
+    "name": "Parkinson's Law",
+    "description": "_Work expands so as to fill the time available for its completion._ &mdash; Cyril Northcote Parkinson\n\nParkinson's Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.",
+    "seeAlso": [
+      "Law of Triviality (Bikeshedding)",
+      "Dreyfus Model of Skill Acquisition"
+    ]
   },
   {
-    "name": "Hofstadter's Law"
+    "name": "Hofstadter's Law",
+    "description": "_It always takes longer than you expect, even when you take into account Hofstadter's Law._ &mdash; Douglas Hofstadter\n\nHofstadter's Law highlighting the inherent difficulty in accurately estimating the time required to complete complex tasks, particularly in software development and project management."
   },
   {
-    "name": "Moore's Law"
+    "name": "Moore's Law",
+    "description": "Moore's Law is the observation that the number of transistors on a microchip doubles approximately every two years, leading to an exponential increase in computing power and a decrease in relative cost, which has significantly influenced the growth of technology and the capabilities of electronic devices over time."
   },
   {
-    "name": "Metcalfe's Law"
+    "name": "Amdahl's Law",
+    "description": "Amdahl's Law is a formula that illustrates the **potential speedup** of a task from **parallel processing**, stating that the maximum improvement is limited by the fraction of the task that cannot be parallelized; as such, **improvements diminish as the non-parallelizable portion becomes more significant**.",
+    "seeAlso": [
+      "Parallelism",
+      "Concurrency",
+      "Performance"
+    ]
   },
   {
-    "name": "Amdahl's Law"
+    "name": "Gall's Law",
+    "description": "_A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system.._ &mdash; John Gall\n\nGall's Law suggests that successful complex systems are typically built from simpler, functioning prototypes, rather than attempting to design and implement complex systems from scratch"
   },
   {
-    "name": "Gall's Law"
+    "name": "Ninety-Ninety Rule",
+    "description": "The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time. &mdash; Tom Cargill\n\n> &#45; Tom Cargill\n\nSoftware development projects to take longer than initially estimated, due to unforeseen complexities, edge cases, and challenges that arise during the final stages of development."
   },
   {
-    "name": "Ninety-Ninety Rule"
-  },
-  {
-    "name": "Pareto Principle"
+    "name": "Pareto Principle",
+    "description": "_For many events, roughly 80% of the effects come from 20% of the causes._ &mdash; Vilfredo Pareto\n\nThe Pareto Principle (also known as the **_80/20 rule_**) states that roughly 80% of the effects come from 20% of the causes, suggesting that a minority of inputs or efforts often lead to the majority of results or outcomes, and can be applied to various areas, such as productivity, decision-making, and problem-solving."
   },
 
 
 
   {
-    "name": "DRY (Don't Repeat Yourself)"
+    "name": "DRY (Don't Repeat Yourself)",
+    "shortName": "DRY",
+    "seeAlso": [
+      "WET (Write Everything Twice)"
+    ]
   },
   {
-    "name": "KISS (Keep It Simple, Stupid)"
+    "name": "KISS (Keep It Simple, Stupid)",
+    "shortName": "KISS"
   },
   {
-    "name": "YAGNI (You Aren't Gonna Need It)"
+    "name": "YAGNI (You Aren't Gonna Need It)",
+    "shortName": "YAGNI"
   },
   {
-    "name": "WET (Write Everything Twice)"
+    "name": "WET (Write Everything Twice)",
+    "shortName": "WET",
+    "seeAlso": [
+      "DRY (Don't Repeat Yourself)"
+    ]
+  },
+
+  {
+    "name": "Anti-patterns",
+    "group": true,
+    "description": "_An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one._ &mdash; Andrew Koenig"
   },
   {
-    "name": "n+1 Problem"
+    "name": "Abstraction Leak",
+    "description": "An Abstraction Leak is when internal details, concepts and limitations **are being exposed instead of hidden away**; it occurs when the underlying implementation details of a module or component are unintentionally exposed to the outside world, breaking the abstraction barrier and leading to tight coupling, dependencies, and potential issues when making changes or updates.",
+    "tags": [
+      "Anti-patterns",
+      "Abstraction"
+    ]
   },
   {
-    "name": "off-by-one Error"
+    "name": "God Class",
+    "description": "A God Class (also an object, component, interface etc) is a class that **knows too much or does too much**; it's an anti-pattern where a single class becomes overly complex, bloated, and takes on too many responsibilities (hence significantly strengthening **tight coupling**), violating the Single Responsibility Principle and making the codebase harder to maintain, test, and understand; e.g. a **User class being reused across various different modules**, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.",
+    "tags": [
+      "Anti-patterns",
+      "Bounded Context",
+      "Domain Model"
+    ]
+  },
+  {
+    "name": "n+1 Problem",
+    "seeAlso": [
+      "Lazy Loading",
+      "Performance",
+      "Databases"
+    ]
   },
 
 
@@ -1150,6 +1531,7 @@
   },
   {
     "name": "(Un)known (Un)knowns",
+    "description": "_Reports that say that something hasn't happened are always interesting to me, because as we know, **there are known knowns**; there are things we know we know. We also know there are **known unknowns**; that is to say we know there are some things we do not know. But there are also **unknown unknowns** — the ones we don't know we don't know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones._ &mdash; Donald Rumsfeld",
     "seeAlso": [
       "Kolb's Learning Cycle",
       "Dreyfus Model of Skill Acquisition",
@@ -1161,7 +1543,8 @@
     "description": "Bikeshedding is the tendency to give disproportionate weight to trivial issues, focusing on minor details rather than important matters, often leading to lengthy discussions and delays in decision-making, due to the ease of understanding and debating simple problems compared to complex ones.",
     "seeAlso": [
       "Kolb's Learning Cycle",
-      "Dreyfus Model of Skill Acquisition"
+      "Dreyfus Model of Skill Acquisition",
+      "Anti-patterns"
     ]
   }
 ]

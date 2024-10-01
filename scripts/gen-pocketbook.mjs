@@ -17,6 +17,11 @@ const slug = (name) => {
   return slugDict[name]
 }
 
+const entryDict = {}
+entries.forEach(entry => {
+  entryDict[entry.name] = entry
+})
+
 /**
  * @param {Entry} entry 
  */
@@ -31,11 +36,19 @@ const generateEntry = (entry) => {
     throw new Error(`Entry "${entry.name}" has missing "see" related entries`)
   }
 
+  const seeAlso = `See: ${related.map(name => {
+    if (!(name in entryDict)) {
+      throw new Error(`Entry "${entry.name}" has missing related entry "${name}" (${JSON.stringify(entry)})`)
+    }
+    const seeAlsoName = entryDict[name].shortName ?? name
+    return `[${seeAlsoName}](#${slug(name)})`
+  }).join(', ')}. 👉 [back to ToC](#table-of-contents)`
+
   return `### ${entry.name}
 
 ${entry.description}
 
-See: ${related.map(name => `[${name}](#${slug(name)})`).join(', ')}. 👉 [back to ToC](#table-of-contents)
+${seeAlso}
 
 `
 }
@@ -45,11 +58,18 @@ const generateMarkdown = (entries) => {
     .filter(entry => entry.description)
     .filter(entry => entry.seeAlso || entry.tags)
     .sort((e1, e2) => {
-      return e1.name.localeCompare(e2.name)
+      // remove all non-alphanumeric characters
+      const name1 = e1.name.replace(/[^a-zA-Z0-9]/g, '')
+      const name2 = e2.name.replace(/[^a-zA-Z0-9]/g, '')
+      return name1.localeCompare(name2)
     })
     .map(generateEntry)
 
-  console.log(chalk.green(`All entries: ${chalk.yellow(entries.length)}, included: ${chalk.yellow(resultEntries.length)}`))
+  console.log(chalk.green(`Summary
+all entries: ${chalk.yellow(entries.length)}
+included: ${chalk.yellow(resultEntries.length)}
+progress: ${chalk.yellow((resultEntries.length / entries.length * 100).toFixed(2))}%
+`))
 
   return resultEntries.join('')
 }

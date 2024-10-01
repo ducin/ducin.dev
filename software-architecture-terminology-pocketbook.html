@@ -88,9 +88,9 @@
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c">Open book lot photo</a> by <a href="https://unsplash.com/@impatrickt">Patrick Tomasso</a></p>
             <p>
-              <em> Sunday 1 December 2024 • 📚 11 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
+              <em> Sunday 1 December 2024 • 📚 20 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
             </p>
-            <p>This document briefly describes dozens of <strong>important software architecture</strong> topics, terms, acronyms, strategies, characteristics, and so on.</p>
+            <p>This document briefly describes dozens of <strong>important software architecture</strong> topics, terms, acronyms, strategies, characteristics, and so on. It shows the <strong>relations</strong> between them and outlines <strong>how endlessly interdisciplinary Software Architecture is</strong>.</p>
 
             <h2 id="motivation">
               <a href="#motivation">
@@ -104,8 +104,10 @@
               <a href="https://en.wikipedia.org/wiki/There_are_unknown_unknowns">know our unknowns</a>. <strong>But this can be intimidating</strong>.
             </p>
             <p>The purpose of this Pocketbook is to introduce each term in <strong>the simplest possible form</strong>.</p>
-            <p><strong>Each definition is just 1 sentence.</strong> It&#39;s very far from a detailed analysis, it doesn&#39;t cover all possible usecases, especially it doesn&#39;t cover edge cases. It&#39;ss just a very high-level description, often including the <strong>WHY</strong>: why would someone use a certain tool or adapt a technique.</p>
-            <p>I believe this will make it easier for developers to enter the world of Software Architecture in a less painful way. Enjoy the read!</p>
+            <p><strong>Each definition is just 1 sentence.</strong> It&#39;s very far from a detailed analysis, it doesn&#39;t cover all possible usecases, especially it doesn&#39;t cover edge cases. It&#39;s just a very high-level description, often including the <strong>WHY</strong>: why would someone use a certain tool or adapt a technique.</p>
+            <p>I believe this will make it easier for developers to <strong>enter the world of Software Architecture</strong> in a less painful.</p>
+            <p>I hope that below you&#39;ll find lots of <strong>inspirations for further learning</strong>.</p>
+            <p>Enjoy the read!</p>
             <blockquote>
               <p>yours sincerely, the author 😉</p>
             </blockquote>
@@ -132,25 +134,42 @@
               <li>
                 <a href="#software-architecture-terminology">Software Architecture Terminology</a>
                 <ul>
+                  <li><a href="#abstraction-leak">Abstraction Leak</a></li>
                   <li><a href="#adr-architecture-decision-record">ADR (Architecture Decision Record)</a></li>
+                  <li><a href="#amdahls-law">Amdahl&#39;s Law</a></li>
                   <li><a href="#architecture-documentation">Architecture Documentation</a></li>
                   <li><a href="#backoff">Backoff</a></li>
                   <li><a href="#backpressure">Backpressure</a></li>
+                  <li><a href="#bi-business-intelligence">BI (Business Intelligence)</a></li>
+                  <li><a href="#brooks-law">Brooks&#39; Law</a></li>
                   <li><a href="#c4-model">C4 Model</a></li>
                   <li><a href="#chaos-engineering">Chaos Engineering</a></li>
                   <li><a href="#circuit-breaker-pattern">Circuit Breaker Pattern</a></li>
+                  <li><a href="#cms-content-management-system">CMS (Content Management System)</a></li>
                   <li><a href="#consistency">Consistency</a></li>
                   <li><a href="#correlation-id">Correlation ID</a></li>
+                  <li><a href="#crm-customer-relationship-management">CRM (Customer Relationship Management)</a></li>
                   <li><a href="#databases">Databases</a></li>
+                  <li><a href="#defensive-programming">Defensive Programming</a></li>
+                  <li><a href="#derivation">Derivation</a></li>
                   <li><a href="#design-for-failure">Design For Failure</a></li>
                   <li><a href="#devops">DevOps</a></li>
+                  <li><a href="#distributed-monolith">Distributed Monolith</a></li>
                   <li><a href="#distributed-tracing">Distributed Tracing</a></li>
                   <li><a href="#dora-metrics">DORA metrics</a></li>
                   <li><a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a></li>
+                  <li><a href="#dto-data-transfer-object">DTO (Data Transfer Object)</a></li>
+                  <li><a href="#erp-enterprise-resource-planning">ERP (Enterprise Resource Planning)</a></li>
+                  <li><a href="#esb-enterprise-service-bus">ESB (Enterprise Service Bus)</a></li>
+                  <li><a href="#failover">Failover</a></li>
                   <li><a href="#fallacies-of-distributed-computing">Fallacies of Distributed Computing</a></li>
                   <li><a href="#fault-injection">Fault Injection</a></li>
                   <li><a href="#fault-tolerance">Fault Tolerance</a></li>
                   <li><a href="#fitness-functions">Fitness Functions</a></li>
+                  <li><a href="#god-class">God Class</a></li>
+                  <li><a href="#http-hypertext-transfer-protocol">HTTP (Hypertext Transfer Protocol)</a></li>
+                  <li><a href="#isolate-failure">Isolate Failure</a></li>
+                  <li><a href="#itsm-it-service-management">ITSM (IT Service Management)</a></li>
                   <li><a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a></li>
                   <li><a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a></li>
                   <li><a href="#lean-startup">Lean Startup</a></li>
@@ -158,16 +177,39 @@
                   <li><a href="#monitoring">Monitoring</a></li>
                   <li><a href="#mvp-minimum-viable-product">MVP (Minimum Viable Product)</a></li>
                   <li><a href="#observability">Observability</a></li>
+                  <li><a href="#off-the-shelf-software">Off-the-shelf Software</a></li>
+                  <li><a href="#overfetching">Overfetching</a></li>
+                  <li><a href="#parkinsons-law">Parkinson&#39;s Law</a></li>
+                  <li><a href="#protocol">Protocol</a></li>
                   <li><a href="#rate-limiting">Rate Limiting</a></li>
                   <li><a href="#resilience">Resilience</a></li>
                   <li><a href="#rfc-request-for-comments">RFC (Request For Comments)</a></li>
+                  <li><a href="#robustness-principle-postels-law">Robustness Principle (Postel&#39;s Law)</a></li>
+                  <li><a href="#scm-supply-chain-management">SCM (Supply Chain Management)</a></li>
+                  <li><a href="#single-point-of-failure">Single Point of Failure</a></li>
+                  <li><a href="#soap-simple-object-access-protocol">SOAP (Simple Object Access Protocol)</a></li>
                   <li><a href="#software-architecture">Software Architecture</a></li>
                   <li><a href="#taxonomy">Taxonomy</a></li>
                   <li><a href="#technical-debt">Technical Debt</a></li>
                   <li><a href="#ttm-time-to-market">TTM (Time To Market)</a></li>
+                  <li><a href="#underfetching">Underfetching</a></li>
+                  <li><a href="#unknown-unknowns">(Un)known (Un)knowns</a></li>
+                  <li><a href="#webhook">Webhook</a></li>
                 </ul>
               </li>
             </ul>
+
+            <h3 id="abstraction-leak">
+              <a href="#abstraction-leak">
+                <span class="header-link"></span>
+                Abstraction Leak
+              </a>
+            </h3>
+            <p>
+              An Abstraction Leak is when internal details, concepts and limitations <strong>are being exposed instead of hidden away</strong>; it occurs when the underlying implementation details of a module or component are unintentionally exposed to the outside world, breaking the abstraction barrier and leading to tight coupling, dependencies, and potential issues when making changes or
+              updates.
+            </p>
+            <p>See: <a href="#anti-patterns">Anti-patterns</a>, <a href="#abstraction">Abstraction</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="adr-architecture-decision-record">
               <a href="#adr-architecture-decision-record">
@@ -179,7 +221,16 @@
               An Architecture Decision Record (ADR) allows to <strong>make future developers understand <em>WHY</em> a decision has been made in a given context</strong>; it is a document that captures an important architectural decision made along with its context and consequences, providing a record of the motivations behind the decision, the alternatives considered, and the trade-offs involved,
               to help maintain a shared understanding of the system design over time.
             </p>
-            <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#c4-model">C4 Model</a>, <a href="#rfc-request-for-comments">RFC (Request For Comments)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#c4-model">C4 Model</a>, <a href="#rfc-request-for-comments">RFC</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="amdahl-39-s-law">
+              <a href="#amdahl-39-s-law">
+                <span class="header-link"></span>
+                Amdahl&#39;s Law
+              </a>
+            </h3>
+            <p>Amdahl&#39;s Law is a formula that illustrates the <strong>potential speedup</strong> of a task from <strong>parallel processing</strong>, stating that the maximum improvement is limited by the fraction of the task that cannot be parallelized; as such, <strong>improvements diminish as the non-parallelizable portion becomes more significant</strong>.</p>
+            <p>See: <a href="#parallelism">Parallelism</a>, <a href="#concurrency">Concurrency</a>, <a href="#performance">Performance</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="architecture-documentation">
               <a href="#architecture-documentation">
@@ -206,7 +257,26 @@
               </a>
             </h3>
             <p>Backpressure is a mechanism to control the flow of data being sent from the producer to the consumer from becoming overloaded, when the consumers cannot keep up, helping to prevent resource exhaustion and maintain overall system stability, in a lossy or lossless manner.</p>
-            <p>See: <a href="#resilience">Resilience</a>, <a href="#reactivity">Reactivity</a>, <a href="#rate-limiting">Rate Limiting</a>, <a href="#backoff">Backoff</a>, <a href="#circuit-breaker">Circuit Breaker</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#resilience">Resilience</a>, <a href="#reactivity">Reactivity</a>, <a href="#rate-limiting">Rate Limiting</a>, <a href="#backoff">Backoff</a>, <a href="#circuit-breaker-pattern">Circuit Breaker</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="bi-business-intelligence">
+              <a href="#bi-business-intelligence">
+                <span class="header-link"></span>
+                BI (Business Intelligence)
+              </a>
+            </h3>
+            <p>Business Intelligence (BI) refers to the technologies, tools, and practices used to collect, analyze, and present business data, enabling organizations to make informed decisions by providing insights through data visualization, reporting, and analytics, ultimately driving strategic planning and performance improvement.</p>
+            <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="brooks-39-law">
+              <a href="#brooks-39-law">
+                <span class="header-link"></span>
+                Brooks&#39; Law
+              </a>
+            </h3>
+            <p><em>Adding manpower to a late software project makes it later.</em> &mdash; Fred Brooks</p>
+            <p>Brooks&#39; Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.</p>
+            <p>See: <a href="#team-topologies">Team Topologies</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="c4-model">
               <a href="#c4-model">
@@ -217,7 +287,7 @@
             <p>
               The C4 Model allows to document systems from <strong>different perspectives</strong> and for <strong>different audiences</strong>; it is a framework for visualizing software architecture via hierarchical diagrams on 4 different levels: Context, Containers, Components, and Code, in order to help teams understand and communicate the system&#39;s structure and relationships effectively.
             </p>
-            <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#adr-architecture-decision-record">ADR (Architecture Decision Record)</a>, <a href="#rfc-request-for-comments">RFC (Request For Comments)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#adr-architecture-decision-record">ADR (Architecture Decision Record)</a>, <a href="#rfc-request-for-comments">RFC</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="chaos-engineering">
               <a href="#chaos-engineering">
@@ -240,6 +310,15 @@
             <p>The Circuit Breaker Pattern disallows to kick someone who&#39;s currently down; it&#39;s a a Fault Tolerance mechanism which detects failures and prevents further requests from being sent to the failing service, thus avoiding overload while recovering, and retrying e.g. after a timeout (then passing requests normally).</p>
             <p>See: <a href="#microservices">Microservices</a>, <a href="#rate-limiting">Rate Limiting</a>, <a href="#backpressure">Backpressure</a>, <a href="#backoff">Backoff</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="cms-content-management-system">
+              <a href="#cms-content-management-system">
+                <span class="header-link"></span>
+                CMS (Content Management System)
+              </a>
+            </h3>
+            <p>A Content Management System (CMS) is a software application that allows users to create, manage, and publish digital content, such as websites, blogs, or documentation, without requiring technical expertise, providing tools for content editing, collaboration, and version control.</p>
+            <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="consistency">
               <a href="#consistency">
                 <span class="header-link"></span>
@@ -248,8 +327,8 @@
             </h3>
             <p>Consistency is the state of a system where all data is the same across all nodes in a <strong>distributed system</strong>, ensuring that <strong>all nodes see the same data at the same time</strong>, and that changes are propagated correctly and in a timely manner, to maintain data integrity and reliability.</p>
             <p>
-              See: <a href="#strong-consistency">Strong Consistency</a>, <a href="#eventual-consistency">Eventual Consistency</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem (Consistency, Availability, Partition Tolerance)</a>,
-              <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions (Atomicity, Consistency, Isolation, Durability)</a>, <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions (Basically Available, Soft State, Eventually Consistent)</a>. 👉 <a href="#table-of-contents">back to ToC</a>
+              See: <a href="#strong-consistency">Strong Consistency</a>, <a href="#eventual-consistency">Eventual Consistency</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem</a>, <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions</a>,
+              <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions</a>. 👉 <a href="#table-of-contents">back to ToC</a>
             </p>
 
             <h3 id="correlation-id">
@@ -261,17 +340,47 @@
             <p>A Correlation ID is a <strong>unique identifier</strong> that gets <strong>attached to each request</strong> made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.</p>
             <p>See: <a href="#distributed-systems">Distributed Systems</a>, <a href="#microservices">Microservices</a>, <a href="#observability">Observability</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="crm-customer-relationship-management">
+              <a href="#crm-customer-relationship-management">
+                <span class="header-link"></span>
+                CRM (Customer Relationship Management)
+              </a>
+            </h3>
+            <p>Customer Relationship Management (CRM) is a technology for managing a company&#39;s relationships and interactions with current customers and potential customers, typically using data analysis to improve business relationships, customer satisfaction, retention, and sales growth, through personalized communication and targeted marketing</p>
+            <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="databases">
               <a href="#databases">
                 <span class="header-link"></span>
                 Databases
               </a>
             </h3>
-            <p>Databases are organized collections of structured information or data that are stored and managed electronically, allowing for efficient retrieval, manipulation, and updating of data through various query languages, with different types, e.g. <strong>relational</strong> (SQL) and <strong>non-relational</strong> (NoSQL) databases.</p>
+            <p><em>Data is a precious thing and will last longer than the systems themselves.</em></p>
+            <blockquote>
+              <p>&#45; Tim Berners-Lee</p>
+            </blockquote>
             <p>
-              See: <a href="#ha-high-availability">HA (High Availability)</a>, <a href="#clustering">Clustering</a>, <a href="#sharding">Sharding</a>, <a href="#replication">Replication</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem (Consistency, Availability, Partition Tolerance)</a>,
-              <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions (Atomicity, Consistency, Isolation, Durability)</a>, <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions (Basically Available, Soft State, Eventually Consistent)</a>. 👉 <a href="#table-of-contents">back to ToC</a>
+              See: <a href="#ha-high-availability">HA (High Availability)</a>, <a href="#clustering">Clustering</a>, <a href="#sharding">Sharding</a>, <a href="#replication">Replication</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem</a>, <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions</a>,
+              <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions</a>. 👉 <a href="#table-of-contents">back to ToC</a>
             </p>
+
+            <h3 id="defensive-programming">
+              <a href="#defensive-programming">
+                <span class="header-link"></span>
+                Defensive Programming
+              </a>
+            </h3>
+            <p>Defensive Programming is about <strong>expecting the unexpected</strong>; it is a coding practice that anticipates and guards against potential failures, errors, and exceptions, by validating inputs, handling edge cases, and implementing error-checking mechanisms, to ensure robustness, reliability, and fault tolerance in software applications.</p>
+            <p>See: <a href="#resilience">Resilience</a>, <a href="#design-for-failure">Design For Failure</a>, <a href="#fault-tolerance">Fault Tolerance</a>, <a href="#chaos-engineering">Chaos Engineering</a>, <a href="#isolate-failure">Isolate Failure</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="derivation">
+              <a href="#derivation">
+                <span class="header-link"></span>
+                Derivation
+              </a>
+            </h3>
+            <p>Derivation is when you create something by using something that already exists; e.g. creating a concept, new entity, class, interface etc.</p>
+            <p>See: <a href="#inheritance">Inheritance</a>, <a href="#abstraction">Abstraction</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="design-for-failure">
               <a href="#design-for-failure">
@@ -284,7 +393,7 @@
               more.
             </p>
             <p>
-              See: <a href="#resilience">Resilience</a>, <a href="#graceful-degradation">Graceful Degradation</a>, <a href="#failover">Failover</a>, <a href="#redundancy">Redundancy</a>, <a href="#fault-tolerance">Fault Tolerance</a>, <a href="#chaos-engineering">Chaos Engineering</a>, <a href="#circuit-breaker-pattern">Circuit Breaker Pattern</a>, <a href="#monitoring">Monitoring</a>,
+              See: <a href="#resilience">Resilience</a>, <a href="#graceful-degradation">Graceful Degradation</a>, <a href="#failover">Failover</a>, <a href="#redundancy">Redundancy</a>, <a href="#fault-tolerance">Fault Tolerance</a>, <a href="#chaos-engineering">Chaos Engineering</a>, <a href="#circuit-breaker-pattern">Circuit Breaker</a>, <a href="#monitoring">Monitoring</a>,
               <a href="#observability">Observability</a>, <a href="#distributed-tracing">Distributed Tracing</a>. 👉 <a href="#table-of-contents">back to ToC</a>
             </p>
 
@@ -300,6 +409,18 @@
             </p>
             <p>See: <a href="#continuous-integration">Continuous Integration</a>, <a href="#continuous-deployment">Continuous Deployment</a>, <a href="#continuous-delivery">Continuous Delivery</a>, <a href="#observability">Observability</a>, <a href="#monitoring">Monitoring</a>, <a href="#dora-metrics">DORA metrics</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="distributed-monolith">
+              <a href="#distributed-monolith">
+                <span class="header-link"></span>
+                Distributed Monolith
+              </a>
+            </h3>
+            <p>
+              A Distributed Monolith is an architectural anti-pattern which takes <strong>the worst of both worlds</strong> (Monoliths, Distributed Systems); it&#39;s a system that is <strong>split into multiple services</strong> (distributed) along with all its complexity and other downsides but still exhibits the same characteristics and problems as a monolith (usually unintentionally designed
+              to be deployed as a whole) such as tight coupling, shared data, and dependencies, leading to complexity, performance issues, and maintainability challenges, despite being distributed across multiple services.
+            </p>
+            <p>See: <a href="#microservices">Microservices</a>, <a href="#monolith">Monolith</a>, <a href="#modulith">Modulith</a>, <a href="#anti-patterns">Anti-patterns</a>, <a href="#fallacies-of-distributed-computing">Fallacies of Distributed Computing</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="distributed-tracing">
               <a href="#distributed-tracing">
                 <span class="header-link"></span>
@@ -310,7 +431,7 @@
               Distributed Tracing allows to see how a user&#39;s <strong>request travels throughout the entire system</strong>; it is a technique used to monitor and troubleshoot the flow of each requests across various Microservices in a Distributed System, capturing timing data and dependencies to identify performance bottlenecks and enhance overall system observability, where a single
               user&#39;s request gets identified and tracked across entire system using a Correlation ID.
             </p>
-            <p>See: <a href="#distributed-systems">Distributed Systems</a>, <a href="#microservices">Microservices</a>, <a href="#observability">Observability</a>, <a href="#monitoring">Monitoring</a>, <a href="#correlation-id">Correlation ID</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#distributed-systems">Distributed Systems</a>, <a href="#microservices">Microservices</a>, <a href="#performance">Performance</a>, <a href="#observability">Observability</a>, <a href="#monitoring">Monitoring</a>, <a href="#correlation-id">Correlation ID</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="dora-metrics">
               <a href="#dora-metrics">
@@ -332,6 +453,45 @@
             </h3>
             <p>The Dreyfus Model of Skill Acquisition describes the five stages of learning a new skill: Novice, Advanced Beginner, Competent, Proficient, and Expert, highlighting the progression from following rules to intuitive decision-making, and the importance of experience, practice, and feedback in skill development.</p>
             <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#unknown-unknowns">(Un)known (Un)knowns</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="dto-data-transfer-object">
+              <a href="#dto-data-transfer-object">
+                <span class="header-link"></span>
+                DTO (Data Transfer Object)
+              </a>
+            </h3>
+            <p>A Data Transfer Object (DTO) is an object with <strong>only the data, and no logic</strong> (methods); it carries data between processes or services, typically used to encapsulate and disallow leaking abstraction of one module to another.</p>
+            <p>See: <a href="#web-services">Web Services</a>, <a href="#ddd-domain-driven-design">DDD</a>, <a href="#entity">Entity</a>, <a href="#vo-value-object">VO</a>, <a href="#acl-anti-corruption-layer">ACL</a>, <a href="#encapsulation">Encapsulation</a>, <a href="#abstraction-leak">Abstraction Leak</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="erp-enterprise-resource-planning">
+              <a href="#erp-enterprise-resource-planning">
+                <span class="header-link"></span>
+                ERP (Enterprise Resource Planning)
+              </a>
+            </h3>
+            <p>Enterprise Resource Planning (ERP) is a software system that integrates business processes and functions, such as accounting, human resources, inventory, and supply chain management, into a single unified platform, providing real-time data and insights to streamline operations, improve efficiency, and support decision-making.</p>
+            <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="esb-enterprise-service-bus">
+              <a href="#esb-enterprise-service-bus">
+                <span class="header-link"></span>
+                ESB (Enterprise Service Bus)
+              </a>
+            </h3>
+            <p>
+              An Enterprise Service Bus (ESB) is an <strong>old-school</strong> way to implement service-oriented architecture (SOA), relatively <strong>expensive</strong>, introduces a <strong>centralized</strong> bus which other services/applications can integrate e.g. through standardized data exchange, thus looses coupling between them, but also becomes a single point of failure and a
+              bottleneck.
+            </p>
+            <p>See: <a href="#soa-service-oriented-architecture">SOA</a>, <a href="#single-point-of-failure">Single Point of Failure</a>, <a href="#bottleneck">Bottleneck</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="failover">
+              <a href="#failover">
+                <span class="header-link"></span>
+                Failover
+              </a>
+            </h3>
+            <p>Failover is the process of <strong>switching to a redundant or standby system</strong> when the primary system fails, ensuring continuous operation and minimal disruption to services.</p>
+            <p>See: <a href="#resilience">Resilience</a>, <a href="#design-for-failure">Design For Failure</a>, <a href="#fault-tolerance">Fault Tolerance</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="fallacies-of-distributed-computing">
               <a href="#fallacies-of-distributed-computing">
@@ -369,6 +529,48 @@
             <p>Fitness functions allow to measure how a given system achieves <strong>high-level goals</strong>; they are metrics used to evaluate how well an existing system&#39;s architecture meets specified requirements or goals, guiding design and development decisions by providing quantitative feedback on performance, reliability, and other critical attributes.</p>
             <p>See: <a href="#software-architecture">Software Architecture</a>, <a href="#dora-metrics">DORA metrics</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="god-class">
+              <a href="#god-class">
+                <span class="header-link"></span>
+                God Class
+              </a>
+            </h3>
+            <p>
+              A God Class (also an object, component, interface etc) is a class that <strong>knows too much or does too much</strong>; it&#39;s an anti-pattern where a single class becomes overly complex, bloated, and takes on too many responsibilities (hence significantly strengthening <strong>tight coupling</strong>), violating the Single Responsibility Principle and making the codebase harder
+              to maintain, test, and understand; e.g. a <strong>User class being reused across various different modules</strong>, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.
+            </p>
+            <p>See: <a href="#anti-patterns">Anti-patterns</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#domain-model">Domain Model</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="http-hypertext-transfer-protocol">
+              <a href="#http-hypertext-transfer-protocol">
+                <span class="header-link"></span>
+                HTTP (Hypertext Transfer Protocol)
+              </a>
+            </h3>
+            <p>HTTP (Hypertext Transfer Protocol) is the foundation of web communication, defining how clients (like browsers) and servers exchange information over the internet, using requests and responses to retrieve or send data, typically operating over TCP and supporting methods like GET, POST, PUT, and DELETE for interacting with resources.</p>
+            <p>
+              See: <a href="#network-protocols">Network Protocols</a>, <a href="#web-services">Web Services</a>, <a href="#client-server-model">Client-Server Model</a>, <a href="#rest-representational-state-transfer">REST</a>, <a href="#soap-simple-object-access-protocol">SOAP</a>, <a href="#rpc-remote-procedure-call">RPC</a>, <a href="#webhook">Webhook</a>. 👉
+              <a href="#table-of-contents">back to ToC</a>
+            </p>
+
+            <h3 id="isolate-failure">
+              <a href="#isolate-failure">
+                <span class="header-link"></span>
+                Isolate Failure
+              </a>
+            </h3>
+            <p>Isolating failure is about <strong>preventing a single failure from cascading</strong>, even from taking the whole system down; it is a design principle that aims to contain and limit the impact of failures by isolating components, services, or processes, to prevent them from affecting the entire system, ensuring that failures are contained and do not propagate.</p>
+            <p>See: <a href="#resilience">Resilience</a>, <a href="#defensive-programming">Defensive Programming</a>, <a href="#fault-tolerance">Fault Tolerance</a>, <a href="#microservices">Microservices</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="itsm-it-service-management">
+              <a href="#itsm-it-service-management">
+                <span class="header-link"></span>
+                ITSM (IT Service Management)
+              </a>
+            </h3>
+            <p>IT Service Management (ITSM) is a set of practices and tools for managing IT services and aligning them with business needs, focusing on delivering value to customers, optimizing processes, and ensuring service quality, typically using ITIL (Information Technology Infrastructure Library) as a framework.</p>
+            <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="kolb-39-s-learning-cycle">
               <a href="#kolb-39-s-learning-cycle">
                 <span class="header-link"></span>
@@ -387,7 +589,7 @@
               </a>
             </h3>
             <p>Bikeshedding is the tendency to give disproportionate weight to trivial issues, focusing on minor details rather than important matters, often leading to lengthy discussions and delays in decision-making, due to the ease of understanding and debating simple problems compared to complex ones.</p>
-            <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>, <a href="#anti-patterns">Anti-patterns</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="lean-startup">
               <a href="#lean-startup">
@@ -396,7 +598,7 @@
               </a>
             </h3>
             <p>The Lean Startup is a methodology for developing businesses and products that emphasizes rapid prototyping, validated learning, and iterative experimentation to efficiently discover what customers want and minimize waste, ultimately accelerating the product development process.</p>
-            <p>See: <a href="#mvp-minimum-viable-product">MVP (Minimum Viable Product)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#mvp-minimum-viable-product">MVP</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="legacy-code">
               <a href="#legacy-code">
@@ -417,7 +619,7 @@
               Monitoring allows to <strong>constantly check if &quot;all is fine&quot;</strong>; it involves continuously tracking and measuring system performance, availability, health, and resource usage, typically through the collection of predefined metrics, in order to detect issues, ensure reliability, and optimize application behavior, often utilizing additional tooling for real-time alerts
               and metrics analysis.
             </p>
-            <p>See: <a href="#observability">Observability</a>, <a href="#devops">DevOps</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#observability">Observability</a>, <a href="#devops">DevOps</a>, <a href="#distributed-tracing">Distributed Tracing</a>, <a href="#performance">Performance</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="mvp-minimum-viable-product">
               <a href="#mvp-minimum-viable-product">
@@ -426,7 +628,7 @@
               </a>
             </h3>
             <p>A Minimum Viable Product (MVP) is a version of a new product that includes only the essential features, allowing to quickly validate the idea, gather feedback, and learn from real-world usage, while minimizing development costs and time-to-market.</p>
-            <p>See: <a href="#lean-startup">Lean Startup</a>, <a href="#ttm-time-to-market">TTM (Time To Market)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#lean-startup">Lean Startup</a>, <a href="#ttm-time-to-market">TTM</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="observability">
               <a href="#observability">
@@ -437,6 +639,43 @@
             <p>Observability is about understanding <strong>what&#39;s happening inside a system</strong> by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.</p>
             <p>See: <a href="#devops">DevOps</a>, <a href="#monitoring">Monitoring</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="off-the-shelf-software">
+              <a href="#off-the-shelf-software">
+                <span class="header-link"></span>
+                Off-the-shelf Software
+              </a>
+            </h3>
+            <p>Off-the-shelf software refers to pre-built applications or programs that are readily available for purchase or download, designed to meet general user needs, offering a cost-effective and quick solution compared to custom software development but may lack specific features tailored to unique business requirements.</p>
+            <p>See: <a href="#cms-content-management-system">CMS</a>, <a href="#crm-customer-relationship-management">CRM</a>, <a href="#erp-enterprise-resource-planning">ERP</a>, <a href="#scm-supply-chain-management">SCM</a>, <a href="#itsm-it-service-management">ITSM</a>, <a href="#bi-business-intelligence">BI</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="overfetching">
+              <a href="#overfetching">
+                <span class="header-link"></span>
+                Overfetching
+              </a>
+            </h3>
+            <p>Overfetching occurs when an API returns more data than necessary for a client&#39;s request, leading to inefficiencies by providing extra information that the client doesn&#39;t need or use, often seen in traditional REST APIs when the response can&#39;t be precisely tailored to the client’s requirements.</p>
+            <p>See: <a href="#web-services">Web Services</a>, <a href="#graphql">GraphQL</a>, <a href="#rest-representational-state-transfer">REST</a>, <a href="#underfetching">Underfetching</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="parkinson-39-s-law">
+              <a href="#parkinson-39-s-law">
+                <span class="header-link"></span>
+                Parkinson&#39;s Law
+              </a>
+            </h3>
+            <p><em>Work expands so as to fill the time available for its completion.</em> &mdash; Cyril Northcote Parkinson</p>
+            <p>Parkinson&#39;s Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.</p>
+            <p>See: <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="protocol">
+              <a href="#protocol">
+                <span class="header-link"></span>
+                Protocol
+              </a>
+            </h3>
+            <p>A protocol is a set of rules and conventions that define how data is transmitted and received between devices in a network, ensuring proper communication, synchronization, and error handling, with examples like HTTP, TCP/IP, and FTP.</p>
+            <p>See: <a href="#taxonomy">Taxonomy</a>, <a href="#network-protocols">Network Protocols</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="rate-limiting">
               <a href="#rate-limiting">
                 <span class="header-link"></span>
@@ -444,7 +683,7 @@
               </a>
             </h3>
             <p>Rate Limiting is a technique to control the rate of requests a user can send or receive, within a given time-frame, preventing abuse and overuse, ensuring the system remains responsive and available, and protecting against denial-of-service (DoS) attacks.</p>
-            <p>See: <a href="#microservices">Microservices</a>, <a href="#resilience">Resilience</a>, <a href="#backpressure">Backpressure</a>, <a href="#backoff">Backoff</a>, <a href="#circuit-breaker">Circuit Breaker</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#microservices">Microservices</a>, <a href="#resilience">Resilience</a>, <a href="#backpressure">Backpressure</a>, <a href="#backoff">Backoff</a>, <a href="#circuit-breaker-pattern">Circuit Breaker</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="resilience">
               <a href="#resilience">
@@ -467,6 +706,46 @@
             <p>A Request for Comments (RFC) is a document used to <strong>propose standards and/or gather feedback</strong>, allowing architects to collect diverse opinions and insights before making important architectural decisions.</p>
             <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#c4-model">C4 Model</a>, <a href="#adr-architecture-decision-record">ADR (Architecture Decision Record)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="robustness-principle-postel-39-s-law">
+              <a href="#robustness-principle-postel-39-s-law">
+                <span class="header-link"></span>
+                Robustness Principle (Postel&#39;s Law)
+              </a>
+            </h3>
+            <p><em>Be conservative in what you do, be liberal in what you accept from others.</em> &mdash; Jon Postel</p>
+            <p>
+              Postel&#39;s Law (also known as the Robustness Principle) is a design guideline for software development that encourages <strong>leniency and tolerance in handling input</strong> and <strong>strictness in generating output</strong>, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected
+              data.
+            </p>
+            <p>See: <a href="#defensive-programming">Defensive Programming</a>, <a href="#web-services">Web Services</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="scm-supply-chain-management">
+              <a href="#scm-supply-chain-management">
+                <span class="header-link"></span>
+                SCM (Supply Chain Management)
+              </a>
+            </h3>
+            <p>Supply Chain Management (SCM) is the management of the flow of goods and services, involving the movement and storage of raw materials, work-in-progress inventory, and finished products, from the point of origin to the point of consumption, optimizing processes, reducing costs, and improving collaboration between suppliers, manufacturers, and customers.</p>
+            <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="single-point-of-failure">
+              <a href="#single-point-of-failure">
+                <span class="header-link"></span>
+                Single Point of Failure
+              </a>
+            </h3>
+            <p>A Single Point of Failure (SPOF) is a piece of system which, if it fails, <strong>will cause the entire system to fail</strong>; it is a critical component or dependency that does not have redundancy or failover mechanisms, often centralized, making the system <strong>vulnerable</strong> to downtime and disruptions.</p>
+            <p>See: <a href="#resilience">Resilience</a>, <a href="#fault-tolerance">Fault Tolerance</a>, <a href="#anti-patterns">Anti-patterns</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="soap-simple-object-access-protocol">
+              <a href="#soap-simple-object-access-protocol">
+                <span class="header-link"></span>
+                SOAP (Simple Object Access Protocol)
+              </a>
+            </h3>
+            <p>SOAP is a protocol for exchanging structured information over networks, enforcing pre-generating both client and server definitions upfront from a contract file (WSDL,Web Services Description Language), typically using XML and sent over HTTP</p>
+            <p>See: <a href="#web-services">Web Services</a>, <a href="#rest-representational-state-transfer">REST</a>, <a href="#rpc-remote-procedure-call">RPC</a>, <a href="#api-application-programming-interface">API</a>, <a href="#dto-data-transfer-object">DTO</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="software-architecture">
               <a href="#software-architecture">
                 <span class="header-link"></span>
@@ -486,7 +765,7 @@
               </a>
             </h3>
             <p>Taxonomy is how things are <strong>categorized</strong>; is the science of classification, organizing and naming things based on shared characteristics, properties, and relationships, to help understand and communicate complex systems, and guide design decisions.</p>
-            <p>See: <a href="#architecture-styles">Architecture Styles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#architecture-styles">Architecture Styles</a>, <a href="#network-protocols">Network Protocols</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="technical-debt">
               <a href="#technical-debt">
@@ -504,7 +783,40 @@
               </a>
             </h3>
             <p>Time To Market (TTM) describes how fast can you ship stuff; it&#39;s the time it takes to develop and launch a new product or feature, from the initial idea to its availability to customers, and is a critical factor in a company&#39;s success, as it directly impacts competitiveness, revenue, and market share.</p>
-            <p>See: <a href="#mvp-minimum-viable-product">MVP (Minimum Viable Product)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#mvp-minimum-viable-product">MVP</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="underfetching">
+              <a href="#underfetching">
+                <span class="header-link"></span>
+                Underfetching
+              </a>
+            </h3>
+            <p>Underfetching happens when an API doesn&#39;t provide enough data in a single request, requiring the client to make additional requests to fetch the necessary information, leading to performance issues and increased latency, commonly seen in REST APIs when the response doesn&#39;t include all required data for a specific view or business operation.</p>
+            <p>See: <a href="#web-services">Web Services</a>, <a href="#graphql">GraphQL</a>, <a href="#overfetching">Overfetching</a>, <a href="#rest-representational-state-transfer">REST</a>, <a href="#performance">Performance</a>, <a href="#http-hypertext-transfer-protocol">HTTP</a>, <a href="#latency">Latency</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="-un-known-un-knowns">
+              <a href="#-un-known-un-knowns">
+                <span class="header-link"></span>
+                (Un)known (Un)knowns
+              </a>
+            </h3>
+            <p>
+              <em
+                >Reports that say that something hasn&#39;t happened are always interesting to me, because as we know, <strong>there are known knowns</strong>; there are things we know we know. We also know there are <strong>known unknowns</strong>; that is to say we know there are some things we do not know. But there are also <strong>unknown unknowns</strong> — the ones we don&#39;t know we
+                don&#39;t know. And if one looks throughout the history of our country and other free countries, it is the latter category that tends to be the difficult ones.</em
+              >
+              &mdash; Donald Rumsfeld
+            </p>
+            <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="webhook">
+              <a href="#webhook">
+                <span class="header-link"></span>
+                Webhook
+              </a>
+            </h3>
+            <p>A webhook is like a <em>callback over the network</em>; it&#39;s user-defined (usually HTTP POST) callback that automatically sends real-time data or notifications from one system to another when a specific event occurs, enabling event-driven communication and automation between systems, such as triggering notifications, updates, or data synchronization.</p>
+            <p>See: <a href="#web-services">Web Services</a>, <a href="#http-hypertext-transfer-protocol">HTTP</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <hr />
             <div class="blog-footer">

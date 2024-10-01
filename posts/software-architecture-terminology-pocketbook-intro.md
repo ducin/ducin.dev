@@ -1,4 +1,4 @@
-This document briefly describes dozens of **important software architecture** topics, terms, acronyms, strategies, characteristics, and so on.
+This document briefly describes dozens of **important software architecture** topics, terms, acronyms, strategies, characteristics, and so on. It shows the **relations** between them and outlines **how endlessly interdisciplinary Software Architecture is**.
 
 ## Motivation
 
@@ -8,9 +8,13 @@ There's a quite a lot of high quality materials out there (as well as low qualit
 
 The purpose of this Pocketbook is to introduce each term in **the simplest possible form**.
 
-**Each definition is just 1 sentence.** It's very far from a detailed analysis, it doesn't cover all possible usecases, especially it doesn't cover edge cases. It'ss just a very high-level description, often including the **WHY**: why would someone use a certain tool or adapt a technique.
+**Each definition is just 1 sentence.** It's very far from a detailed analysis, it doesn't cover all possible usecases, especially it doesn't cover edge cases. It's just a very high-level description, often including the **WHY**: why would someone use a certain tool or adapt a technique.
 
-I believe this will make it easier for developers to enter the world of Software Architecture in a less painful way. Enjoy the read!
+I believe this will make it easier for developers to **enter the world of Software Architecture** in a less painful.
+
+I hope that below you'll find lots of **inspirations for further learning**.
+
+Enjoy the read!
 
 > yours sincerely, the author 😉
 
