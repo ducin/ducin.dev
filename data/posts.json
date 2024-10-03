@@ -169,9 +169,12 @@
       "DDD",
       "Domain-Driven Design",
       "Model",
-      "God Class"
+      "God Class",
+      "Nx",
+      "Angular",
+      "React"
     ],
-    "description": "While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?",
+    "description": "???",
     "publishedDate": "2024-10-09",
     "coverImage": {
       "URL": "https://unsplash.com/photos/a-black-and-white-photo-of-a-chain-link-fence-VgZYoHmewag",
@@ -180,6 +183,34 @@
       "author": "Serena Tyrrell"
     },
     "coverImageFilename": "cover-chain-like-fence.png",
+    "status": "DRAFT"
+  },
+  {
+    "title": "Embracing MicroFrontend Architecture",
+    "sourceFile": "embracing-microfrontend-architecture",
+    "keywords": [
+      "Frontend",
+      "Software",
+      "Architecture",
+      "MicroFrontends",
+      "MFE",
+      "Monolith",
+      "Monorepo",
+      "Subdomains",
+      "Nx",
+      "Angular",
+      "React",
+      "Modules"
+    ],
+    "description": "???",
+    "publishedDate": "???",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/a-black-and-white-photo-of-cubes-on-a-black-background-IlUq1ruyv0Q",
+      "title": "A black and white photo of cubes on a black background",
+      "authorURL": "https://unsplash.com/@theshubhamdhage",
+      "author": "Shubham Dhage"
+    },
+    "coverImageFilename": "cover-cubes-on-a-black-background.png",
     "status": "DRAFT"
   },
   {
