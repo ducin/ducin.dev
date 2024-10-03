@@ -114,6 +114,12 @@ Consistency is the state of a system where all data is the same across all nodes
 
 See: [Strong Consistency](#strong-consistency), [Eventual Consistency](#eventual-consistency), [CAP Theorem](#cap-theorem-consistency-availability-partition-tolerance), [ACID Transactions](#acid-transactions-atomicity-consistency-isolation-durability), [BASE Transactions](#base-transactions-basically-available-soft-state-eventually-consistent). 👉 [back to ToC](#table-of-contents)
 
+### Context Mapping
+
+Context Mapping is about **integrating different Bounded Contexts**; it' i's a strategic design technique in DDD that helps in **identifying and managing the relationships and interactions between different Bounded Contexts**, by defining explicit boundaries, communication models, and translation mechanisms, to ensure consistency and alignment between different models and teams; the term is slightly unfortunate, as** it's not about mapping but about aligning and integrating**.
+
+See: [DDD](#ddd-domain-driven-design). 👉 [back to ToC](#table-of-contents)
+
 ### Correlation ID
 
 A Correlation ID is a **unique identifier** that gets **attached to each request** made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.
@@ -235,6 +241,12 @@ See: [Software Architecture](#software-architecture), [DORA metrics](#dora-metri
 A God Class (also an object, component, interface etc) is a class that **knows too much or does too much**; it's an anti-pattern where a single class becomes overly complex, bloated, and takes on too many responsibilities (hence significantly strengthening **tight coupling**), violating the Single Responsibility Principle and making the codebase harder to maintain, test, and understand; e.g. a **User class being reused across various different modules**, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.
 
 See: [Anti-patterns](#anti-patterns), [Bounded Context](#bounded-context), [Domain Model](#domain-model), [Legacy Code](#legacy-code). 👉 [back to ToC](#table-of-contents)
+
+### Heuristics
+
+Heuristics are **rules of thumb** that help in making decisions; they are practical guidelines or strategies that are not guaranteed to be optimal or perfect, but are useful in **problem solving** and decision-making under uncertainty or with limited information; usually multiple heuristics are combined to make a decision.
+
+See: [DDD](#ddd-domain-driven-design), [Subdomain](#subdomain), [Bounded Context](#bounded-context). 👉 [back to ToC](#table-of-contents)
 
 ### HTTP (Hypertext Transfer Protocol)
 
@@ -377,6 +389,14 @@ _Software Architecture is all about the important stuff... whatever that is._
 > &#45; Ralph Johnson
 
 See: [Architecture Documentation](#architecture-documentation), [Architecture Styles](#architecture-styles). 👉 [back to ToC](#table-of-contents)
+
+### Software Testing
+
+_Program testing can be used to show the presence of bugs, but never to show their absence._
+
+ > &#45; Edsger W. Dijkstra
+
+See: [Chaos Engineering](#chaos-engineering). 👉 [back to ToC](#table-of-contents)
 
 ### Taxonomy
 

@@ -348,6 +348,7 @@
   },
   {
     "name": "Software Testing",
+    "description": "_Program testing can be used to show the presence of bugs, but never to show their absence._\n\n > &#45; Edsger W. Dijkstra",
     "seeAlso": [
       "Chaos Engineering"
     ]
@@ -1098,6 +1099,7 @@
     "group": true,
     "seeAlso": [
       "Bounded Context",
+      "Heuristics",
       "Ubiquitous Language",
       "Context Mapping",
       "Core Domain",
@@ -1130,6 +1132,17 @@
     ]
   },
   {
+    "name": "Heuristics",
+    "description": "Heuristics are **rules of thumb** that help in making decisions; they are practical guidelines or strategies that are not guaranteed to be optimal or perfect, but are useful in **problem solving** and decision-making under uncertainty or with limited information; usually multiple heuristics are combined to make a decision.",
+    "tags": [
+      "DDD (Domain Driven Design)"
+    ],
+    "seeAlso": [
+      "Subdomain",
+      "Bounded Context"
+    ]
+  },
+  {
     "name": "Ubiquitous Language",
     "tags": [
       "DDD (Domain Driven Design)"
@@ -1137,6 +1150,7 @@
   },
   {
     "name": "Context Mapping",
+    "description": "Context Mapping is about **integrating different Bounded Contexts**; it' i's a strategic design technique in DDD that helps in **identifying and managing the relationships and interactions between different Bounded Contexts**, by defining explicit boundaries, communication models, and translation mechanisms, to ensure consistency and alignment between different models and teams; the term is slightly unfortunate, as** it's not about mapping but about aligning and integrating**.",
     "tags": [
       "DDD (Domain Driven Design)"
     ]

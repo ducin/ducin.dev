@@ -88,7 +88,7 @@
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c">Open book lot photo</a> by <a href="https://unsplash.com/@impatrickt">Patrick Tomasso</a></p>
             <p>
-              <em> Sunday 1 December 2024 • 📚 20 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
+              <em> Sunday 1 December 2024 • 📚 21 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
             </p>
             <p>This document briefly describes dozens of <strong>important software architecture</strong> topics, terms, acronyms, strategies, characteristics, and so on. It shows the <strong>relations</strong> between them and outlines <strong>how endlessly interdisciplinary Software Architecture is</strong>.</p>
 
@@ -148,6 +148,7 @@
                   <li><a href="#circuit-breaker-pattern">Circuit Breaker Pattern</a></li>
                   <li><a href="#cms-content-management-system">CMS (Content Management System)</a></li>
                   <li><a href="#consistency">Consistency</a></li>
+                  <li><a href="#context-mapping">Context Mapping</a></li>
                   <li><a href="#correlation-id">Correlation ID</a></li>
                   <li><a href="#crm-customer-relationship-management">CRM (Customer Relationship Management)</a></li>
                   <li><a href="#databases">Databases</a></li>
@@ -168,6 +169,7 @@
                   <li><a href="#fault-tolerance">Fault Tolerance</a></li>
                   <li><a href="#fitness-functions">Fitness Functions</a></li>
                   <li><a href="#god-class">God Class</a></li>
+                  <li><a href="#heuristics">Heuristics</a></li>
                   <li><a href="#http-hypertext-transfer-protocol">HTTP (Hypertext Transfer Protocol)</a></li>
                   <li><a href="#isolate-failure">Isolate Failure</a></li>
                   <li><a href="#itsm-it-service-management">ITSM (IT Service Management)</a></li>
@@ -190,6 +192,7 @@
                   <li><a href="#single-point-of-failure">Single Point of Failure</a></li>
                   <li><a href="#soap-simple-object-access-protocol">SOAP (Simple Object Access Protocol)</a></li>
                   <li><a href="#software-architecture">Software Architecture</a></li>
+                  <li><a href="#software-testing">Software Testing</a></li>
                   <li><a href="#taxonomy">Taxonomy</a></li>
                   <li><a href="#technical-debt">Technical Debt</a></li>
                   <li><a href="#ttm-time-to-market">TTM (Time To Market)</a></li>
@@ -346,6 +349,18 @@
               See: <a href="#strong-consistency">Strong Consistency</a>, <a href="#eventual-consistency">Eventual Consistency</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem</a>, <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions</a>,
               <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions</a>. 👉 <a href="#table-of-contents">back to ToC</a>
             </p>
+
+            <h3 id="context-mapping">
+              <a href="#context-mapping">
+                <span class="header-link"></span>
+                Context Mapping
+              </a>
+            </h3>
+            <p>
+              Context Mapping is about <strong>integrating different Bounded Contexts</strong>; it&#39; i&#39;s a strategic design technique in DDD that helps in <strong>identifying and managing the relationships and interactions between different Bounded Contexts</strong>, by defining explicit boundaries, communication models, and translation mechanisms, to ensure consistency and alignment
+              between different models and teams; the term is slightly unfortunate, as** it&#39;s not about mapping but about aligning and integrating**.
+            </p>
+            <p>See: <a href="#ddd-domain-driven-design">DDD</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="correlation-id">
               <a href="#correlation-id">
@@ -556,6 +571,15 @@
               to maintain, test, and understand; e.g. a <strong>User class being reused across various different modules</strong>, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.
             </p>
             <p>See: <a href="#anti-patterns">Anti-patterns</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#domain-model">Domain Model</a>, <a href="#legacy-code">Legacy Code</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="heuristics">
+              <a href="#heuristics">
+                <span class="header-link"></span>
+                Heuristics
+              </a>
+            </h3>
+            <p>Heuristics are <strong>rules of thumb</strong> that help in making decisions; they are practical guidelines or strategies that are not guaranteed to be optimal or perfect, but are useful in <strong>problem solving</strong> and decision-making under uncertainty or with limited information; usually multiple heuristics are combined to make a decision.</p>
+            <p>See: <a href="#ddd-domain-driven-design">DDD</a>, <a href="#subdomain">Subdomain</a>, <a href="#bounded-context">Bounded Context</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="http-hypertext-transfer-protocol">
               <a href="#http-hypertext-transfer-protocol">
@@ -779,6 +803,18 @@
               <p>&#45; Ralph Johnson</p>
             </blockquote>
             <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#architecture-styles">Architecture Styles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="software-testing">
+              <a href="#software-testing">
+                <span class="header-link"></span>
+                Software Testing
+              </a>
+            </h3>
+            <p><em>Program testing can be used to show the presence of bugs, but never to show their absence.</em></p>
+            <blockquote>
+              <p>&#45; Edsger W. Dijkstra</p>
+            </blockquote>
+            <p>See: <a href="#chaos-engineering">Chaos Engineering</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="taxonomy">
               <a href="#taxonomy">
