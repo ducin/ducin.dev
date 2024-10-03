@@ -1,0 +1,555 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Anti-Corruption Layer in Frontend Development - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Frontend, Software, Architecture, ACL, Anti-Corruption Layer, DDD, Domain-Driven Design, Model, God Class" />
+    <meta
+      name="description"
+      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
+    />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-chain-like-fence.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta
+      name="twitter:description"
+      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
+    />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-chain-like-fence.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Anti-Corruption Layer in Frontend Development - Tomasz Ducin - blog" />
+    <meta
+      property="og:description"
+      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
+    />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-chain-like-fence.png" />
+    <link rel="canonical" href="https://ducin.dev/anti-corruption-layer-in-frontend-development" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-chain-like-fence.png") !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMG3MMTWGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MMG3MMTWGW");
+    </script>
+
+    <script>
+      (function (s, e, n, d, er) {
+        s["Sender"] = er;
+        (s[er] =
+          s[er] ||
+          function () {
+            (s[er].q = s[er].q || []).push(arguments);
+          }),
+          (s[er].l = 1 * new Date());
+        var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://cdn.sender.net/accounts_resources/universal.js", "sender");
+      sender("758ace613a8369");
+    </script>
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle" aria-label="Toggle site menu"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/newsletter">Newsletter</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <h2 class="cover-title-alt">Anti-Corruption Layer in Frontend Development</h2>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p class="image-caption"><a href="https://unsplash.com/photos/a-black-and-white-photo-of-a-chain-link-fence-VgZYoHmewag">Chain like fence</a> by <a href="https://unsplash.com/@serenatyrrell">Serena Tyrrell</a></p>
+            <p>
+              <em> Wednesday 9 October 2024 • 📚 11 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/anti-corruption-layer-in-frontend-development.md">edit on Github</a> </em>
+            </p>
+            <p>
+              As our frontend applications grow, more challenges arise that don&#39;t exist unless a certain scale and complexity is reached. One of them is: <strong>how much is your code tightly coupled with the objects you fetch from external sources?</strong> This includes <strong>server APIs</strong>, but also communication with other micro-apps within a
+              <strong>MicroFrontend architecture</strong>.
+            </p>
+            <p>Whenever a response shape changes (JSON, interface, whatever), <strong>how many components, functions, services etc. do you have to update</strong>?</p>
+            <p>Have you ever discouraged, or even <strong>rejected an API refactor</strong> due to the amount of <strong>work required on client-side</strong> to adapt to the refactor?</p>
+
+            <h2 id="table-of-contents">
+              <a href="#table-of-contents">
+                <span class="header-link"></span>
+                Table of Contents
+              </a>
+            </h2>
+            <ul>
+              <li>
+                <a href="#the-problem-space-model-leak">The Problem Space: Model Leak</a>
+                <ul>
+                  <li><a href="#who-owns-the-model">Who owns the Model?</a></li>
+                  <li><a href="#what-is-the-team-organization--org-structure">What is the team organization / org. structure?</a></li>
+                  <li><a href="#how-frequently-does-the-model-change">How frequently does the model change?</a></li>
+                  <li><a href="#what-is-the-contract-versioning-strategy">What is the contract versioning strategy?</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#the-solution-space-anti-corruption-layer">The Solution Space: Anti-Corruption Layer</a>
+                <ul>
+                  <li><a href="#avoiding-god-classes">Avoiding &quot;God Classes&quot;</a></li>
+                  <li><a href="#show-me-the-code">Show me the code</a></li>
+                </ul>
+              </li>
+              <li>
+                <a href="#acl-tailored-to-frontend">ACL tailored to Frontend</a>
+                <ul>
+                  <li>
+                    <a href="#example-module-structure">Example module structure</a>
+                    <ul>
+                      <li><a href="#external-contract">External contract</a></li>
+                      <li><a href="#microfrontends-communication">MicroFrontends Communication</a></li>
+                    </ul>
+                  </li>
+                  <li>
+                    <a href="#consequences">Consequences</a>
+                    <ul>
+                      <li><a href="#advantages">Advantages</a></li>
+                      <li><a href="#disadvantages">Disadvantages</a></li>
+                      <li><a href="#incremental-adaption">Incremental Adaption</a></li>
+                    </ul>
+                  </li>
+                </ul>
+              </li>
+              <li><a href="#summary">Summary</a></li>
+            </ul>
+            <p>Let&#39;s understand the problem first.</p>
+
+            <h1 id="the-problem-space-model-leak">
+              <a href="#the-problem-space-model-leak">
+                <span class="header-link"></span>
+                The Problem Space: Model Leak
+              </a>
+            </h1>
+            <p>
+              Each deployable piece os software (a monolithic backend or frontend, a microservice, a microfrontend etc.) is using some models that it relies on. Frontend UI components, services, utility functions etc. - they&#39;re all using some <strong>domain entities</strong> (e.g. <code>Order</code>, <code>Product</code>, etc. depending on your business) in order to display their data or to
+              allow some user interactions. These entities are defined using interfaces, types, classes etc.
+            </p>
+            <p>In the long run, following critical questions arise:</p>
+
+            <h2 id="who-owns-the-model">
+              <a href="#who-owns-the-model">
+                <span class="header-link"></span>
+                Who owns the Model?
+              </a>
+            </h2>
+            <p>Who is in charge of <strong>changing the model</strong> your codebase uses? Is it a separate team? Or even an external vendor?</p>
+            <p>Do they just <em>announce</em> the model change - and you just have to adapt to it, given a rather short period of time (otherwise you&#39;d be the blocker, disallowing the entire platform to move forward)?</p>
+            <p>
+              Models shared across a system are parts of <strong>a Contract</strong>. Defining who is the owner of the contract enables making <a href="https://ducin.dev/what-is-frontend-architecture#decisions"><strong>proper architectural decisions</strong></a
+              >.
+            </p>
+
+            <h2 id="what-is-the-team-organization-org-structure">
+              <a href="#what-is-the-team-organization-org-structure">
+                <span class="header-link"></span>
+                What is the team organization / org. structure?
+              </a>
+            </h2>
+            <p>The bigger the organization (i.e. more development teams), <strong>the more the whole topic matters</strong>.</p>
+            <p>According to <strong>Conway&#39;s Law</strong>, the codebase would reflect the organizational structure. And by strengthening coupling between each other&#39;s models, we introduce more troublesome frictions between teams 🫤.</p>
+            <p>On the other hand: the smaller the development dept., the less friction is expected. Especially, <strong>within a single dev team</strong> or a <strong>relatively small project</strong>, there&#39;s no need to introduce <strong>artificial boundaries</strong> that would reduce coupling. Make sure we <strong>don&#39;t try to solve problems that don&#39;t exist</strong> 😉.</p>
+
+            <h2 id="how-frequently-does-the-model-change">
+              <a href="#how-frequently-does-the-model-change">
+                <span class="header-link"></span>
+                How frequently does the model change?
+              </a>
+            </h2>
+            <p>The less stable the contract/model is, <strong>the more the whole topic matters</strong>. The more frequently the model changes, the more time would be needed to adapt to the changes.</p>
+            <blockquote>
+              <p><em>So if I consider my API contract stable, shall I stop reading? 😜</em></p>
+            </blockquote>
+            <p>
+              Practice proves, that - <em>truism alert(!)</em> - we can&#39;t effectively foresee the future 😔 (<em>unless you do and you can prove it - then <a href="mailto:tomasz@ducin.dev!">contact me immediately</a></em
+              >. And hence, if we&#39;re ignoring the fact that <strong>our codebase is tightly coupled to an external model</strong> that we don&#39;t own, then we limit the possibilities of improving the contract <strong>in the future</strong>. Or even <em>freeze</em> it in extreme cases (too much code to adapt, too expensive, case closed).
+            </p>
+            <p>A significant shift in business requirements might require a change of the contract. Even if you consider your API Contract relatively stable, can you be sure that this will never happen?</p>
+
+            <h2 id="what-is-the-contract-versioning-strategy">
+              <a href="#what-is-the-contract-versioning-strategy">
+                <span class="header-link"></span>
+                What is the contract versioning strategy?
+              </a>
+            </h2>
+            <p>Most probably, when providing a new model shape, the old is also available <em>for some time</em>, e.g. via versioning. This can be achieved e.g. in REST APIs, hopefully:</p>
+            <ul>
+              <li>via HTTP Headers, not URLs 🤦</li>
+              <li>per resource, not per entire API 🤦🤦</li>
+            </ul>
+            <p>Versioning is a must-have in <strong>Distributed Systems</strong>, in order to keep each element independently deployable, often in the following form:</p>
+            <ul>
+              <li>(<em>starting point</em>) <strong>old</strong> contract provided, <strong>old</strong> contract consumed</li>
+              <li><strong>old + new</strong> contract provided (<strong>deploy</strong>), <strong>old</strong> contract consumed</li>
+              <li><strong>old + new</strong> contract provided, <strong>new</strong> contract consumed (<strong>deploy</strong>)</li>
+              <li><strong>new</strong> contract provided (<strong>deploy</strong>), <strong>new</strong> contract consumed</li>
+            </ul>
+            <p>
+              Of course, <strong>this pattern introduces overhead</strong> - it&#39;s broken into 3 steps, each finished in a separate deploy. But it&#39;s the price we have to pay for <strong>team independence</strong> - this way nobody enforces other parties to synchronize with each other. If anything happens, roadmap is changed, work is rescheduled etc. the process will just take longer. But
+              <strong>one team will NOT make another fail because of that</strong>. And the bigger your system is, the more critical this aspect becomes.
+            </p>
+            <p>Nevertheless, can you see that this is <em>orthogonal</em> to whether your codebase is tightly coupled with a contract? <strong>Effective versioning allows you to postpone adapting new versions</strong>, but it doesn&#39;t guarantee reducing coupling, if you still tightly <strong>depend on somebody else&#39;s model</strong>.</p>
+            <p>At this point we know what problems we want to solve/reduce and we can proceed to the solution.</p>
+
+            <h1 id="the-solution-space-anti-corruption-layer">
+              <a href="#the-solution-space-anti-corruption-layer">
+                <span class="header-link"></span>
+                The Solution Space: Anti-Corruption Layer
+              </a>
+            </h1>
+            <p>Technically, ACL is a piece of code that <strong>maps the model that you don&#39;t own into a model that you do own</strong>. All in all, if the external contract changes, the only thing you shall change is this mapping code. Your local codebase is expected to use your own model - and this doesn&#39;t change no matter how many external contract changes take place</p>
+            <p>Architecture-wise, it&#39;s a <strong>thin layer put at the point where two independent elements integrate with each other</strong>. The layer effectively reduces coupling across different pieces of the system and/or teams.</p>
+            <p><img src="images/blog/blog-anti-corruption-layer.jpg" alt="Anti-Corruption Layer" /></p>
+            <p>This <em>pattern</em> originates from <strong>Domain-Driven Design</strong> and works extremely well with the <strong>Ubiquitous Language</strong> concept, but it&#39;s not limited to it - ACL makes sense in many different approaches and architecture styles.</p>
+
+            <h2 id="avoiding-quot-god-classes-quot">
+              <a href="#avoiding-quot-god-classes-quot">
+                <span class="header-link"></span>
+                Avoiding &quot;God Classes&quot;
+              </a>
+            </h2>
+            <p>
+              A <em>God Class</em> is an anti-pattern, unfortunately still commonly used 😒. It&#39;s a class (could be an object, interface etc.) which is <strong>used in too many places</strong>, and hence <strong>has too many responsibilities</strong>, technically: <strong>has too many methods and too much data</strong>. It&#39;s a <em>monster</em> 👹 that has possessed control and knowledge
+              about too many aspects of a system - and is already <strong>too big</strong> to be effectively broken into smaller, SRP-friendly pieces.
+            </p>
+            <p>A typical example of a <em>God Class</em> is a <em>User</em> entity. How come 😵? A User entity could take part in lots of different features and/or business processes, e.g.:</p>
+            <ul>
+              <li>a <em>User</em> can submit an <em>Order</em> and access their <em>Order History</em></li>
+              <li>a <em>User</em> can define their preferences, <em>Favorite products</em>, each <em>User</em> would have different <em>Recommendations</em> on top of them</li>
+              <li>a <em>User</em> manages their <em>Shipment</em> and <em>Payment</em> details</li>
+              <li>a <em>User</em> has their separate <em>Discounts</em>, based on <em>Order History</em></li>
+            </ul>
+            <p>etc.</p>
+            <p>Now imagine you put <strong>all this information into a single class/interface</strong>. Let&#39;s assume that each <code>order</code>, <code>shipment</code>, <code>payment</code>, <code>catalogue</code> (and many more) modules are being maintained by separate teams. We can clearly see that <strong>a change made by one team can affect others</strong>.</p>
+            <p>(<em>BTW, do you have a 1k+ LoC component in your frontend codebase that does too much?</em> 🫠 <em>is that the one no one wants to touch?</em> 😛)</p>
+            <p>The reason for introducing a <em>God Class</em> is <strong>lack of clear module boundaries</strong>. The model, the semantics, <strong>the knowledge of one module leaks to another</strong>, hence <strong>strengthening coupling</strong>.</p>
+
+            <h2 id="show-me-the-code">
+              <a href="#show-me-the-code">
+                <span class="header-link"></span>
+                Show me the code
+              </a>
+            </h2>
+            <p>Implementation is really straightforward. It&#39;s the reasoning that matters in case of ACL. Technically, we&#39;re just introducing e.g. a mapping function, that can:</p>
+            <ul>
+              <li>map an <strong>array</strong> of <code>X</code>&#39;s into an <strong>array</strong> of <code>Y</code>&#39;s</li>
+              <li>map a <strong>dictionary</strong> (<code>{ str: value }</code>) of <code>X</code>&#39;s into a <strong>dictionary</strong> of <code>Y</code>&#39;s</li>
+              <li>map an <strong>array into a dictionary</strong>, because externally the dataset is an array, but we need to optimize for fast lookups by IDs (hence using a dictionary/hashmap) etc.</li>
+            </ul>
+            <p>In a React/Vue-based application using native <code>fetch</code> (or <code>axios</code>), ACL could look like the following:</p>
+            <pre><code class="language-ts">// the external contract 👇
+import { EmployeeDTO } from &#39;./dto/EmployeeDTO&#39;;
+
+// the local model 👇
+import { EmployeeModel, employeeDTOToModel } from &#39;./model/EmployeeModel&#39;;
+
+export const getEmployees = (params: unknown): Promise&lt;EmployeeModel[]&gt; =&gt; {
+  return fetch(`API.COM/employees` + new URLSearchParams(params).toString())
+    .then(res =&gt; res.json())
+    .then(items =&gt; items.map(employeeDTOToModel))
+}
+
+import axios from &#39;axios&#39;
+
+export const getEmployees = (params: unknown): Promise&lt;EmployeeModel[]&gt; =&gt; {
+  return axios.get&lt;Employee[]&gt;(`API.COM/employees`, { params })
+    .then(res =&gt; res.data)
+    .then(items =&gt; items.map(employeeDTOToModel))
+}
+</code></pre>
+            <p>In Angular, it could look like the following:</p>
+            <pre><code class="language-ts">// the external contract 👇
+import { EmployeeDTO } from &#39;./dto/EmployeeDTO&#39;;
+
+// the local model 👇
+import { EmployeeModel, employeeDTOToModel } from &#39;./model/EmployeeModel&#39;;
+
+import { map } from &#39;rxjs/operators&#39;;
+
+export class EmployeesHTTPService {
+  #http = inject(HttpClient)
+
+  getEmployees(params: unknown): Observable&lt;EmployeeModel[]&gt; {
+    return this.#http.get&lt;EmployeeDTO[]&gt;(`API.COM/employees`, { params }).pipe(
+        // this is the ACL mapping 👇
+        map(employeeDTOToModel)
+    )
+  }
+</code></pre>
+            <p>
+              (<em>sidenote: for simplicity reasons, I&#39;m ignoring hypothetical runtime validation using tools like <code>zod</code></em
+              >)
+            </p>
+            <p>Deadly simple implementation, isn&#39;t it?</p>
+            <p>
+              As you can see, the core difficulty is <strong>drawing the boundaries of ownership of the semantics</strong>, i.e. <em>I need to make that external request, but I&#39;m <strong>not gonna let the response interface leak into my code</strong> and spread throughout multiple files</em>.
+            </p>
+
+            <h1 id="acl-tailored-to-frontend">
+              <a href="#acl-tailored-to-frontend">
+                <span class="header-link"></span>
+                ACL tailored to Frontend
+              </a>
+            </h1>
+            <p>When adapting ACL to frontend applications, the first thing we should take a look at are our modules:</p>
+            <ul>
+              <li>their hierarchy</li>
+              <li>their relationships</li>
+              <li>their boundaries</li>
+            </ul>
+
+            <h2 id="example-module-structure">
+              <a href="#example-module-structure">
+                <span class="header-link"></span>
+                Example module structure
+              </a>
+            </h2>
+            <p>Let&#39;s see an <strong>example</strong> of a <strong>domain-driven directory structure</strong>:</p>
+            <pre><code>src/
+  employees/
+    api/
+      EmployeesHTTP.ts
+      DepartmentsHTTP.ts
+    model/
+      EmployeeModel.ts // 👈 EmployeeModel
+    state/
+      EmployeesSlice.ts
+      EmployeesSelectors.ts
+    ui/
+      EmployeesList.tsx
+      EmployeeDetails.tsx
+  products/
+    api/
+      ProductsHTTP.ts
+    model/
+      ProductModel.ts // 👈 ProductModel
+    state
+      ProductQueries.ts
+      CreateProductStateMachine.ts
+    ui/
+      CreateProductForm.tsx
+      ProductDetails.tsx
+      ProductSearch.tsx
+  finances/
+    api/
+      FinancesHTTP.ts
+    model/
+      MonthlyExpenses.ts 
+      MonthlyIncomes.ts
+    // 👆 they include both Employee and Product data
+    // yet in a DIFFERENT shape (different model)
+  ...
+  shell/
+    communication/
+      PubSub.ts
+</code></pre>
+
+            <h3 id="external-contract">
+              <a href="#external-contract">
+                <span class="header-link"></span>
+                External contract
+              </a>
+            </h3>
+            <p>First place where ACL is implemented is the server API response mapping to a local model:</p>
+            <ul>
+              <li><code>EmployeeDTO</code> -&gt; <code>EmployeeModel</code>, implemented within <code>EmployeeHTTP</code> (the mapper could be considered an implementation detail of this file)</li>
+              <li><code>ProductDTO</code> -&gt; <code>ProductModel</code>, etc.</li>
+            </ul>
+            <p>Note: where is the external API&#39;s Contract? Depending on the situation, it could be located in:</p>
+            <ul>
+              <li><code>node_modules/your-private-package-with-contract</code></li>
+              <li><code>packages/api-contract</code> within a monorepo</li>
+              <li>yet another place</li>
+            </ul>
+            <p>
+              Hopefully, contract synchronization is automated 🙃 (e.g. using <a href="https://petstore.swagger.io/">Open API</a>, <a href="https://github.com/bcherny/json-schema-to-typescript"><code>json-schema-to-typescript</code></a> or similar software)
+            </p>
+
+            <h3 id="microfrontends-communication">
+              <a href="#microfrontends-communication">
+                <span class="header-link"></span>
+                MicroFrontends Communication
+              </a>
+            </h3>
+            <p>Another place to implement ACL is where the MFEs interact with each other.</p>
+            <p>NOTE: cross-MFE communication should be:</p>
+            <ul>
+              <li>reduced to bare minimum</li>
+              <li>never direct (use a mediator, such as a Pub-Sub / Message Broker)</li>
+            </ul>
+            <p>
+              The shell application (host of all MicroFrontends) allows registered MFEs to dispatch and subscribe to messages. Each MFE could be interested in a change, e.g. what <em>User</em> is logged in. But also, <strong>each MFE should keep the <em>User</em> data in its own model</strong>.
+            </p>
+            <p>For exactly the same reasons as discussed above.</p>
+
+            <h2 id="consequences">
+              <a href="#consequences">
+                <span class="header-link"></span>
+                Consequences
+              </a>
+            </h2>
+            <p>The files are <strong>organized by business subdomains</strong>.</p>
+            <p>One one hand, there might be (quite some) code repetition. We&#39;re dealing with <em>Employees</em> in potentially multiple places.</p>
+
+            <h3 id="advantages">
+              <a href="#advantages">
+                <span class="header-link"></span>
+                Advantages
+              </a>
+            </h3>
+            <ul>
+              <li>the code is <strong>highly modular</strong> and we&#39;re limiting cross-module dependencies to bare minimum</li>
+              <li>
+                we can <strong>automatically disallow cross-module dependencies</strong> using <a href="https://nx.dev/core-features/enforce-module-boundaries">Nx Module Boundaries</a> or <a href="https://eslint.org/docs/latest/rules/no-restricted-imports"><code>no-restricted-imports</code></a>
+              </li>
+              <li>this approach is both <em>modulith-friendly</em> and <em>microfrontend-friendly</em>; whatever your future application is going to look like, such codebase is <strong>easy to split</strong></li>
+              <li>works well with <strong>monorepos</strong> as well</li>
+              <li><strong>no anti-patterns</strong> such as God Classes</li>
+            </ul>
+
+            <h3 id="disadvantages">
+              <a href="#disadvantages">
+                <span class="header-link"></span>
+                Disadvantages
+              </a>
+            </h3>
+            <ul>
+              <li>if applied <strong>prematurely</strong>, such approach could end up as over-engineering</li>
+              <li>requires a <strong>pro-active approach to analyzing responsibilities and semantics</strong> of certain modules (business subdomains)</li>
+            </ul>
+
+            <h3 id="incremental-adaption">
+              <a href="#incremental-adaption">
+                <span class="header-link"></span>
+                Incremental Adaption
+              </a>
+            </h3>
+            <p>ACL is not a 0-1 approach, fortunately 🙂. If your codebase is full of DTOs directly used everywhere (we already know what this could lead to...), then we can introduce ACL gradually:</p>
+            <ul>
+              <li>whenever there is a change to an external model (API contract), introduce the local model along with the mapping function; switch the UI components/services/etc. to using the local model</li>
+              <li>
+                visualize a graph of your dependencies, e.g. using <a href="https://nx.dev/features/explore-graph">Nx graph</a> or <a href="https://www.npmjs.com/package/madge"><code>madge</code></a>
+              </li>
+              <li>
+                adapt automation (<a href="https://nx.dev/core-features/enforce-module-boundaries">Nx Module Boundaries</a> and/or <a href="https://eslint.org/docs/latest/rules/no-restricted-imports"><code>no-restricted-imports</code></a
+                >) gradually
+              </li>
+            </ul>
+            <p>Adapting ACL into an existing codebase will very likely <em>pull the skeletons out from the closet</em>. Most probably, you have unwanted dependencies across your modules that you&#39;re not yet aware of.</p>
+
+            <h1 id="summary">
+              <a href="#summary">
+                <span class="header-link"></span>
+                Summary
+              </a>
+            </h1>
+            <p>As you can see, the implementation is no challenge at all. That&#39;s not what matters.</p>
+            <p>What matters is: <strong>does ACL fit into your project context</strong>, i.e.</p>
+            <ul>
+              <li>team/org size</li>
+              <li>project complexity</li>
+              <li>frequency of model changes</li>
+              <li>relations between teams and/or business subdomains</li>
+              <li>architecture flexibility (adapting monorepos, microfrontends, etc)</li>
+              <li>enforcing codebase to remain modular.</li>
+            </ul>
+            <p>The whole difficulty lies in choosing the proper <strong>heuristics</strong> (discussed throughout the whole article above) helping us to <strong>estimate whether the benefits would outweight the costs</strong>.</p>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves working with people. Ex-theatre actor. 4 espressos a
+                day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                <a target="_blank" href="http://twitter.com/tomasz_ducin" class="icon fa-twitter twitter-color">
+                  <span class="label">Twitter</span>
+                  Follow me on X/twitter for tech-related updates.
+                </a>
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://slides.com/ducin" class="icon fa-slideshare" aria-label="slides link"><span class="label">Slides</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow" aria-label="stackoverflow link"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

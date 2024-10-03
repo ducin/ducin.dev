@@ -158,6 +158,31 @@
     "status": "PUBLISHED"
   },
   {
+    "title": "Anti-Corruption Layer in Frontend Development",
+    "sourceFile": "anti-corruption-layer-in-frontend-development",
+    "keywords": [
+      "Frontend",
+      "Software",
+      "Architecture",
+      "ACL",
+      "Anti-Corruption Layer",
+      "DDD",
+      "Domain-Driven Design",
+      "Model",
+      "God Class"
+    ],
+    "description": "While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?",
+    "publishedDate": "2024-10-09",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/a-black-and-white-photo-of-a-chain-link-fence-VgZYoHmewag",
+      "title": "Chain like fence",
+      "authorURL": "https://unsplash.com/@serenatyrrell",
+      "author": "Serena Tyrrell"
+    },
+    "coverImageFilename": "cover-chain-like-fence.png",
+    "status": "DRAFT"
+  },
+  {
     "title": "Software Architecture Terminology - a Pocketbook",
     "sourceFile": "software-architecture-terminology-pocketbook",
     "keywords": [
