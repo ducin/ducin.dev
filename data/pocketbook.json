@@ -1081,6 +1081,27 @@
   },
 
 
+  {
+    "name": "API Contract",
+    "description": "An API Contract **defines how providers and consumers communicate**; it's a specification including the expected behavior, inputs, outputs, and constraints of an API; either formalized in a contract file (e.g. OpenAPI/Swagger, Pact, RAML) or informally (un)documented.",
+    "seeAlso": [
+      "API (Application Programming Interface)",
+      "Web Services",
+      "Bounded Context",
+      "ACL (Anti-Corruption Layer)",
+      "Consumer-Driven Contracts",
+      "Versioning",
+      "Contract Testing"
+    ]
+  },
+  {
+    "name": "Consumer-Driven Contracts"
+  },
+  {
+    "name": "Versioning"
+  }
+
+
 
   {
     "name": "Reactivity",
