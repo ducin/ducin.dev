@@ -354,6 +354,16 @@
     ]
   },
   {
+    "name": "Code Coverage",
+    "description": "Code Coverage is a set of metrics measuring the **percentage of code executed within automated tests** (and **percentage of code not taking part in any tests whatsoever**), saying nothing about the tests _quality_, their goals, feature/business process coverage or the overall _effectiveness_ of the tests.",
+    "tags": [
+      "Software Testing"
+    ],
+    "seeAlso": [
+      "Goodhart's Law"
+    ]
+  },
+  {
     "name": "Fault Injection",
     "description": "Fault injection is a testing technique where errors or failures are deliberately introduced into a system to evaluate its behavior under stress, helping developers identify vulnerabilities, assess recovery mechanisms, and improve overall system reliability and fault tolerance.",
     "tags": [
@@ -1447,6 +1457,13 @@
   {
     "name": "Conway's Law",
     "description": "_[O]rganizations which design systems (in the broad sense used here) are constrained to produce designs which are copies of the communication structures of these organizations._\n\n> &#45; Melvin E. Conway, _How Do Committees Invent?_\n\nConway's Law states that organizations design systems that mirror their own communication structures; it suggests that the architecture of a software system will reflect the social structure of the organization that produced it, and vice versa, highlighting the importance of aligning team structures with system architecture to improve collaboration and productivity."
+  },
+  {
+    "name": "Goodhart's Law",
+    "description": "_When a measure becomes a target, it ceases to be a good measure._\n\n> &#45; Charles Goodhart\n\nGoodhart's Law states that when a measure becomes a target, it loses its effectiveness as a measure, as people will optimize for the target rather than the underlying goal, leading to unintended consequences, distortions, and gaming of the system.",
+    "seeAlso": [
+      "Code Coverage"
+    ]
   },
   {
     "name": "Robustness Principle (Postel's Law)",

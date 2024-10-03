@@ -4,6 +4,10 @@ Whenever a response shape changes (JSON, interface, whatever), **how many compon
 
 Have you ever discouraged, or even **rejected an API refactor** due to the amount of **work required on client-side** to adapt to the refactor?
 
+Here's a TL;DR;
+
+<blockquote class="twitter-tweet"><p lang="en" dir="ltr">🔥 <a href="https://twitter.com/hashtag/ARCHITECTURE?src=hash&amp;ref_src=twsrc%5Etfw">#ARCHITECTURE</a> <a href="https://twitter.com/hashtag/FOCUS?src=hash&amp;ref_src=twsrc%5Etfw">#FOCUS</a> 🔥<br><br>When should you introduce ANTI-CORRUPTION LAYER (ACL)?<br><br>ACL is:<br>🧱 an element of your modular architecture<br>🧱 a module-level LOOSE COUPLING technique<br>🧱 usually implemented by straightforward mappings<br>🧱 DEPENDENCY INVERSION PRINCIPLE on architectural… <a href="https://t.co/5ofDZWSwW7">pic.twitter.com/5ofDZWSwW7</a></p>&mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1735273053762826301?ref_src=twsrc%5Etfw">December 14, 2023</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
 <% TOC %>
 
 Let's understand the problem first.

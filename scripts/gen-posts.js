@@ -55,7 +55,7 @@ const generatePostHTML = async (post) => {
   const { title, keywords, description, publishedDate, coverImage,
     sourceFile, coverImageFilename, githubURL } = post
   const origMD = '' + fs.readFileSync(postSourceMarkdownFilepath(sourceFile))
-  const TOCContent = '## Table of Contents\n\n' + toc(origMD).content
+  const TOCContent = '## Table of Contents\n\n' + toc(origMD, { slugify: githubSlug }).content
   const MDWithTOC = origMD
     .replace(TOCPlaceholder, TOCContent)
     .replace(SubscribePlaceholder, subscribeTpl())

@@ -6,26 +6,17 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Tomasz Ducin" />
-    <meta name="keywords" content="Frontend, Software, Architecture, ACL, Anti-Corruption Layer, DDD, Domain-Driven Design, Model, God Class" />
-    <meta
-      name="description"
-      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
-    />
+    <meta name="keywords" content="Frontend, Software, Architecture, ACL, Anti-Corruption Layer, DDD, Domain-Driven Design, Model, God Class, Nx, Angular, React" />
+    <meta name="description" content="???" />
     <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-chain-like-fence.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@tomasz_ducin" />
     <meta name="twitter:creator" content="@tomasz_ducin" />
-    <meta
-      name="twitter:description"
-      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
-    />
+    <meta name="twitter:description" content="???" />
     <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-chain-like-fence.png" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Anti-Corruption Layer in Frontend Development - Tomasz Ducin - blog" />
-    <meta
-      property="og:description"
-      content="While working on applications (let it be React, Angular, Vue, pick your favorite one), we make architectural decisions all the time. It's extremely important to be aware of them, i.e. have architectural drivers in mind, be aware of the tradeoffs of these decisions and cope with the limitations. Or maybe you think that it's all overcomplicated and Frontend Architecture is just  the directory structure?"
-    />
+    <meta property="og:description" content="???" />
     <meta property="og:image" content="https://ducin.dev/images/blog/cover-chain-like-fence.png" />
     <link rel="canonical" href="https://ducin.dev/anti-corruption-layer-in-frontend-development" />
     <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
@@ -105,6 +96,15 @@
             </p>
             <p>Whenever a response shape changes (JSON, interface, whatever), <strong>how many components, functions, services etc. do you have to update</strong>?</p>
             <p>Have you ever discouraged, or even <strong>rejected an API refactor</strong> due to the amount of <strong>work required on client-side</strong> to adapt to the refactor?</p>
+            <p>TL;DR;</p>
+            <blockquote class="twitter-tweet">
+              <p lang="en" dir="ltr">
+                🔥 <a href="https://twitter.com/hashtag/ARCHITECTURE?src=hash&amp;ref_src=twsrc%5Etfw">#ARCHITECTURE</a> <a href="https://twitter.com/hashtag/FOCUS?src=hash&amp;ref_src=twsrc%5Etfw">#FOCUS</a> 🔥<br /><br />When should you introduce ANTI-CORRUPTION LAYER (ACL)?<br /><br />ACL is:<br />🧱 an element of your modular architecture<br />🧱 a module-level LOOSE COUPLING technique<br />🧱
+                usually implemented by straightforward mappings<br />🧱 DEPENDENCY INVERSION PRINCIPLE on architectural… <a href="https://t.co/5ofDZWSwW7">pic.twitter.com/5ofDZWSwW7</a>
+              </p>
+              &mdash; Tomasz Ducin (@tomasz_ducin) <a href="https://twitter.com/tomasz_ducin/status/1735273053762826301?ref_src=twsrc%5Etfw">December 14, 2023</a>
+            </blockquote>
+            <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
             <h2 id="table-of-contents">
               <a href="#table-of-contents">
@@ -114,42 +114,42 @@
             </h2>
             <ul>
               <li>
-                <a href="#the-problem-space-model-leak">The Problem Space: Model Leak</a>
+                <a href="#The-Problem-Space%3A-Model-Leak">The Problem Space: Model Leak</a>
                 <ul>
-                  <li><a href="#who-owns-the-model">Who owns the Model?</a></li>
-                  <li><a href="#what-is-the-team-organization--org-structure">What is the team organization / org. structure?</a></li>
-                  <li><a href="#how-frequently-does-the-model-change">How frequently does the model change?</a></li>
-                  <li><a href="#what-is-the-contract-versioning-strategy">What is the contract versioning strategy?</a></li>
+                  <li><a href="#Who-owns-the-Model%3F">Who owns the Model?</a></li>
+                  <li><a href="#What-is-the-team-organization-%2F-org.-structure%3F">What is the team organization / org. structure?</a></li>
+                  <li><a href="#How-frequently-does-the-model-change%3F">How frequently does the model change?</a></li>
+                  <li><a href="#What-is-the-contract-versioning-strategy%3F">What is the contract versioning strategy?</a></li>
                 </ul>
               </li>
               <li>
-                <a href="#the-solution-space-anti-corruption-layer">The Solution Space: Anti-Corruption Layer</a>
+                <a href="#The-Solution-Space%3A-Anti-Corruption-Layer">The Solution Space: Anti-Corruption Layer</a>
                 <ul>
-                  <li><a href="#avoiding-god-classes">Avoiding &quot;God Classes&quot;</a></li>
-                  <li><a href="#show-me-the-code">Show me the code</a></li>
+                  <li><a href="#Avoiding-%22God-Classes%22">Avoiding &quot;God Classes&quot;</a></li>
+                  <li><a href="#Show-me-the-code">Show me the code</a></li>
                 </ul>
               </li>
               <li>
-                <a href="#acl-tailored-to-frontend">ACL tailored to Frontend</a>
+                <a href="#ACL-tailored-to-Frontend">ACL tailored to Frontend</a>
                 <ul>
                   <li>
-                    <a href="#example-module-structure">Example module structure</a>
+                    <a href="#Example-module-structure">Example module structure</a>
                     <ul>
-                      <li><a href="#external-contract">External contract</a></li>
-                      <li><a href="#microfrontends-communication">MicroFrontends Communication</a></li>
+                      <li><a href="#External-contract">External contract</a></li>
+                      <li><a href="#MicroFrontends-Communication">MicroFrontends Communication</a></li>
                     </ul>
                   </li>
                   <li>
-                    <a href="#consequences">Consequences</a>
+                    <a href="#Consequences">Consequences</a>
                     <ul>
-                      <li><a href="#advantages">Advantages</a></li>
-                      <li><a href="#disadvantages">Disadvantages</a></li>
-                      <li><a href="#incremental-adaption">Incremental Adaption</a></li>
+                      <li><a href="#Advantages">Advantages</a></li>
+                      <li><a href="#Disadvantages">Disadvantages</a></li>
+                      <li><a href="#Incremental-Adaption">Incremental Adaption</a></li>
                     </ul>
                   </li>
                 </ul>
               </li>
-              <li><a href="#summary">Summary</a></li>
+              <li><a href="#Summary">Summary</a></li>
             </ul>
             <p>Let&#39;s understand the problem first.</p>
 
@@ -199,7 +199,7 @@
               <p><em>So if I consider my API contract stable, shall I stop reading? 😜</em></p>
             </blockquote>
             <p>
-              Practice proves, that - <em>truism alert(!)</em> - we can&#39;t effectively foresee the future 😔 (<em>unless you do and you can prove it - then <a href="mailto:tomasz@ducin.dev!">contact me immediately</a></em
+              Practice proves, that - <em>truism alert (!)</em> - we can&#39;t effectively foresee the future 😔 (<em>unless you do and you can prove it - then <a href="mailto:tomasz@ducin.dev!">contact me immediately</a></em
               >. And hence, if we&#39;re ignoring the fact that <strong>our codebase is tightly coupled to an external model</strong> that we don&#39;t own, then we limit the possibilities of improving the contract <strong>in the future</strong>. Or even <em>freeze</em> it in extreme cases (too much code to adapt, too expensive, case closed).
             </p>
             <p>A significant shift in business requirements might require a change of the contract. Even if you consider your API Contract relatively stable, can you be sure that this will never happen?</p>
