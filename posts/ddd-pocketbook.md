@@ -1,0 +1,53 @@
+- DDD
+- Strategic DDD
+  - Problem Space
+    - Domains
+      - Domain Expert
+    - Subdomains
+      - Core Domain
+      - Supporting Subdomain
+      - Generic Subdomain
+        - Business Archetype
+  - Solution Space
+    - Bounded Context
+      - Ubiquitous Language
+      - Domain Model
+      - Business Process
+    - Context Mapping
+      - Upstream/Downstream
+      - Partnership
+      - Customer-Supplier
+      - Conformist
+      - ACL (Anti-Corruption Layer)
+      - OHS (Open Host Service)
+      - Shared Kernel
+      - Published Language
+      - Separate Ways
+  - Heuristics
+- Tactical DDD
+  - Anemic Domain Model
+  - Entity
+    - Identity
+    - Durability
+  - Value Object
+    - Value Equality
+    - Immutability
+  - Aggregate
+    - Aggregate Root
+    - Business Rule
+      - Policy
+  - Modules
+  - Domain Event
+  - Domain Service
+  - Repository
+  - Factory
+- Discovering Domain
+  - Event Storming
+    - Big Picture Event Storming
+    - Design-Level Event Storming
+  - Event Modelling
+  - Domain Storytelling
+- Documentation Tools
+  - C4 model
+  - Bounded Context Canvas
+  - Aggregate Design Canvas
