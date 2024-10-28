@@ -8,6 +8,7 @@
       - Supporting Subdomain
       - Generic Subdomain
         - Business Archetype
+    - Value Stream Mapping
   - Solution Space
     - Bounded Context
       - Ubiquitous Language
@@ -48,7 +49,6 @@
   - Event Modelling
   - Domain Storytelling
   - Story Mapping
-    - Value Stream
 - Documentation Tools
   - C4 model
   - Bounded Context Canvas

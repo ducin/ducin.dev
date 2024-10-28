@@ -18,25 +18,37 @@ Have a good read 🙂.
 
 > Data is a precious thing and will last longer than the systems themselves.
 
-- Tim Berners-Lee
+― Tim Berners-Lee
+
+----
+
+> Deleting dead code is not a technical problem; it is a problem of mindset and culture.
+
+― Kevlin Henney
 
 ----
 
 > Adding manpower to a late software project makes it later.
 
-- Fred Brooks
+― Fred Brooks
 
 ----
 
 > Work expands so as to fill the time available for its completion.
 
-- Cyril Northcote Parkinson
+― Cyril Northcote Parkinson
 
 ----
 
 > Be conservative in what you do, be liberal in what you accept from others.
 
-- Jon Postel
+― Jon Postel
+
+----
+
+> The connections between modules are the assumptions which the modules make about each other.
+
+― David Parnas
 
 ----
 
@@ -66,13 +78,13 @@ Have a good read 🙂.
 
 > An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one.
 
-- Andrew Koenig
+― Andrew Koenig
 
 ----
 
 > Program testing can be used to show the presence of bugs, but never to show their absence.
 
-- Edsger W. Dijkstra
+― Edsger W. Dijkstra
 
 ----
 
