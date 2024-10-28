@@ -47,6 +47,8 @@
     - Design-Level Event Storming
   - Event Modelling
   - Domain Storytelling
+  - Story Mapping
+    - Value Stream
 - Documentation Tools
   - C4 model
   - Bounded Context Canvas
