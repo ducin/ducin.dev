@@ -233,6 +233,25 @@
     "status": "DRAFT"
   },
   {
+    "title": "Software, Architecture and Design Quotes",
+    "sourceFile": "software-quotes",
+    "keywords": [
+      "Software",
+      "Architecture",
+      "Quotes"
+    ],
+    "description": "These are some of the quotes that I found interesting, related to software, software architecture and software design.",
+    "publishedDate": "2024-10-29",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/low-angle-photo-of-assorted-book-on-bookshelf-FYev7eaTcRE",
+      "title": "low angle photo of assorted book on bookshelf",
+      "authorURL": "https://unsplash.com/@joshstyle",
+      "author": "Joshua Coleman"
+    },
+    "coverImageFilename": "cover-assorted-book-on-bookshelf.jpg",
+    "status": "PUBLISHED"
+  },
+  {
     "title": "Test",
     "sourceFile": "test",
     "keywords": [
