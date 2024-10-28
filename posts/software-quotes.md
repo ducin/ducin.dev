@@ -16,6 +16,30 @@ Have a good read 🙂.
 
 ----
 
+> Data is a precious thing and will last longer than the systems themselves.
+
+- Tim Berners-Lee
+
+----
+
+> Adding manpower to a late software project makes it later.
+
+- Fred Brooks
+
+----
+
+> Work expands so as to fill the time available for its completion.
+
+- Cyril Northcote Parkinson
+
+----
+
+> Be conservative in what you do, be liberal in what you accept from others.
+
+- Jon Postel
+
+----
+
 > Make it work, make it right, make it fast.
 
 ― Kent Beck
@@ -37,6 +61,36 @@ Have a good read 🙂.
 > If testing costs more than not testing, then don't test.
 
 ― Kent Beck
+
+----
+
+> An antipattern is just like a pattern, except that instead of a solution it gives something that looks superficially like a solution but isn't one.
+
+- Andrew Koenig
+
+----
+
+> Program testing can be used to show the presence of bugs, but never to show their absence.
+
+- Edsger W. Dijkstra
+
+----
+
+> Simplicity is a great virtue but it requires hard work to achieve it and education to appreciate it. And to make matters worse: complexity sells better.
+
+― Edsger W. Dijkstra
+
+----
+
+> Simplicity is prerequisite for reliability.
+
+― Edsger W. Dijkstra
+
+----
+
+> If debugging is the process of removing software bugs, then programming must be the process of putting them in.
+
+― Edsger W. Dijkstra
 
 ----
 
