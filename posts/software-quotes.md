@@ -106,6 +106,14 @@ Have a good read 🙂.
 
 ----
 
+and one for the balance 😉
+
+> I don't know how many of you have ever met Dijkstra, but you probably know that arrogance in computer science is measured in nano-Dijkstras.
+
+― Alan Kay
+
+----
+
 > No matter what they tell you, it's always a people problem.
 
 ― Gerald Weinberg
@@ -233,6 +241,14 @@ Have a good read 🙂.
 ― Phil Karlton
 
 see also: [two hard things](https://martinfowler.com/bliki/TwoHardThings.html)
+
+or a more humorous variation 😉 (by unknown):
+
+> There are two things difficult in programming:
+> - (1) naming things
+> - (2) cache invalidation
+> - (3) off-by-1 errors
+> - (7) async callbacks
 
 ----
 
