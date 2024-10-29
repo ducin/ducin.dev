@@ -4,6 +4,12 @@ Have a good read 🙂.
 
 ----
 
+> Nothing is more dangerous than an idea when it is the only one you have.
+
+― Emile Chartier Alain
+
+----
+
 > Defer the actual decision until a decision can be made more responsibly, based on actual knowledge, but not so late that it is not possible to take advantage of the knowledge.
 
 ― Richard Monson-Haefel
@@ -13,6 +19,12 @@ Have a good read 🙂.
 > You don‘t drive the architecture, the requirements do. You do your best to serve their needs.
 
 ― Richard Monson-Haefel
+
+----
+
+> How do you make two systems loosely coupled? Don't connect them.
+
+― David Orchard
 
 ----
 
