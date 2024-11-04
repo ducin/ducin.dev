@@ -12,7 +12,8 @@
     "name": "Technical Debt",
     "description": "Technical Debt is the **cost of additional rework** caused by choosing an easy solution now instead of using a better approach that would take longer; it represents the cumulative consequences of cutting corners, making trade-offs, and postponing improvements, which can slow down development, increase complexity, and reduce maintainability over time.",
     "seeAlso": [
-      "Legacy Code"
+      "Legacy Code",
+      "Accidental Complexity"
     ]
   },
   {
@@ -20,6 +21,23 @@
     "description": "Everything we've written is already legacy 🥲",
     "seeAlso": [
       "Technical Debt"
+    ]
+  },
+  {
+    "name": "Essential Complexity",
+    "seeAlso": [
+      "Accidental Complexity",
+      "DDD (Domain Driven Design)",
+      "Bounded Context",
+      "Ubiquitous Language"
+    ]
+  },
+  {
+    "name": "Accidental Complexity",
+    "seeAlso": [
+      "Essential Complexity",
+      "Technical Debt",
+      "Legacy Code"
     ]
   },
   {
@@ -41,7 +59,7 @@
   {
     "name": "Fitness Functions",
     "description": "Fitness functions allow to measure how a given system achieves **high-level goals**; they are metrics used to evaluate how well an existing system's architecture meets specified requirements or goals, guiding design and development decisions by providing quantitative feedback on performance, reliability, and other critical attributes.",
-    "tags": [
+    "belongsTo": [
       "Software Architecture"
     ],
     "seeAlso": [
@@ -59,6 +77,14 @@
   {
     "name": "Team Topologies"
   },
+  {
+    "name": "Separation of Concerns",
+    "seeAlso": [
+      "Divide and Conquer",
+      "Coupling",
+      "Cohesion"
+    ]
+  },
 
   {
     "name": "Architecture Documentation",
@@ -74,7 +100,7 @@
   {
     "name": "C4 Model",
     "description": "The C4 Model allows to document systems from **different perspectives** and for **different audiences**; it is a framework for visualizing software architecture via hierarchical diagrams on 4 different levels: Context, Containers, Components, and Code, in order to help teams understand and communicate the system's structure and relationships effectively.",
-    "tags": [
+    "belongsTo": [
       "Architecture Documentation"
     ],
     "seeAlso": [
@@ -85,7 +111,7 @@
   {
     "name": "ADR (Architecture Decision Record)",
     "description": "An Architecture Decision Record (ADR) allows to **make future developers understand _WHY_ a decision has been made in a given context**; it is a document that captures an important architectural decision made along with its context and consequences, providing a record of the motivations behind the decision, the alternatives considered, and the trade-offs involved, to help maintain a shared understanding of the system design over time.",
-    "tags": [
+    "belongsTo": [
       "Architecture Documentation"
     ],
     "seeAlso": [
@@ -97,7 +123,7 @@
     "name": "RFC (Request For Comments)",
     "shortName": "RFC",
     "description": "A Request for Comments (RFC) is a document used to **propose standards and/or gather feedback**, allowing architects to collect diverse opinions and insights before making important architectural decisions.",
-    "tags": [
+    "belongsTo": [
       "Architecture Documentation"
     ],
     "seeAlso": [
@@ -108,26 +134,28 @@
 
 
   {
-    "name": "Divide and Conquer"
-  },
-  {
-    "name": "Separation of Concerns"
-  },
-  {
     "name": "API (Application Programming Interface)",
     "shortName": "API",
     "seeAlso": [
       "Web Services"
     ]
   },
-  
-
-
-
-
-
   {
-    "name": "On-premise"
+    "name": "Infrastructure",
+    "group": true,
+    "description": "Infrastructure is the foundational hardware, networking, and software environments that support and host applications, ensuring their availability, performance, and scalability.",
+    "belongsTo": [
+      "DevOps"
+    ],
+    "seeAlso": [
+      "Cloud-native",
+      "Cloud Computing",
+      "Edge Computing",
+      "Serverless",
+      "CDN (Content Delivery Network)",
+      "On-premise",
+      "IaaS (Infrastructure as a Service)"
+    ]
   },
   {
     "name": "Cloud-native"
@@ -136,7 +164,17 @@
     "name": "Cloud Computing"
   },
   {
+    "name": "Edge Computing"
+  },
+  {
     "name": "Serverless"
+  },
+  {
+    "name": "CDN (Content Delivery Network)",
+    "shortName": "CDN"
+  },
+  {
+    "name": "On-premise"
   },
 
 
@@ -158,7 +196,7 @@
   {
     "name": "DORA metrics",
     "description": "DORA metrics express **how fast can you ship or rollback**; they are key performance indicators used to assess the effectiveness of software delivery and operational performance, focusing on four dimensions: deployment frequency (DF), lead time for changes (LTC), mean time to restore service (MTTR), and change failure rate (CFR), helping teams improve their DevOps practices.",
-    "tags": [
+    "belongsTo": [
       "DevOps"
     ],
     "seeAlso": [
@@ -168,7 +206,7 @@
   {
     "name": "Observability",
     "description": "Observability is about understanding **what's happening inside a system** by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.",
-    "tags": [
+    "belongsTo": [
       "DevOps"
     ],
     "seeAlso": [
@@ -178,7 +216,7 @@
   {
     "name": "Monitoring",
     "description": "Monitoring allows to **constantly check if \"all is fine\"**; it involves continuously tracking and measuring system performance, availability, health, and resource usage, typically through the collection of predefined metrics, in order to detect issues, ensure reliability, and optimize application behavior, often utilizing additional tooling for real-time alerts and metrics analysis.",
-    "tags": [
+    "belongsTo": [
       "Observability",
       "DevOps"
     ],
@@ -190,7 +228,7 @@
   {
     "name": "Distributed Tracing",
     "description": "Distributed Tracing allows to see how a user's **request travels throughout the entire system**; it is a technique used to monitor and troubleshoot the flow of each requests across various Microservices in a Distributed System, capturing timing data and dependencies to identify performance bottlenecks and enhance overall system observability, where a single user's request gets identified and tracked across entire system using a Correlation ID.",
-    "tags": [
+    "belongsTo": [
       "Distributed Systems",
       "Microservices",
       "Performance"
@@ -204,7 +242,7 @@
   {
     "name": "Correlation ID",
     "description": "A Correlation ID is a **unique identifier** that gets **attached to each request** made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.",
-    "tags": [
+    "belongsTo": [
       "Distributed Systems",
       "Microservices",
       "Observability"
@@ -237,6 +275,15 @@
       "Performance"
     ]
   },
+  {
+    "name": "Latency"
+  },
+  {
+    "name": "Throughput"
+  },
+  {
+    "name": "Bandwidth"
+  },
 
 
   {
@@ -249,14 +296,43 @@
   {
     "name": "Fallacies of Distributed Computing",
     "description": "The Fallacies of Distributed Computing are a set of assumptions that developers often make about distributed systems, including beliefs like \"the network is (always) reliable\" and \"latency is zero,\" which can lead to misdesign and failures; recognizing these fallacies helps in creating more resilient applications.",
-    "tags": [
+    "belongsTo": [
       "Distributed Systems",
       "Resilience",
-      "Microservices",
+      "Microservices"
+    ],
+    "seeAlso": [
       "Network Protocols",
-      "Failover"
+      "Failover",
+      "Distributed Tracing"
     ]
   },
+  {
+    "name": "Choreography",
+    "belongsTo": [
+      "Distributed Systems"
+    ]
+  },
+  {
+    "name": "Orchestration",
+    "belongsTo": [
+      "Distributed Systems"
+    ]
+  },
+  {
+    "name": "Synchronous Communication",
+    "belongsTo": [
+      "Distributed Systems"
+    ]
+  },
+  {
+    "name": "Asynchronous Communication",
+    "belongsTo": [
+      "Distributed Systems"
+    ]
+  },
+
+
   {
     "name": "Resilience",
     "group": true,
@@ -276,7 +352,7 @@
   {
     "name": "Defensive Programming",
     "description": "Defensive Programming is about **expecting the unexpected**; it is a coding practice that anticipates and guards against potential failures, errors, and exceptions, by validating inputs, handling edge cases, and implementing error-checking mechanisms, to ensure robustness, reliability, and fault tolerance in software applications.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -289,7 +365,7 @@
   {
     "name": "Fault Tolerance",
     "description": "Fault Tolerance is the ability of a system to continue operating correctly even in the event of a failure or error, typically achieved through redundancy, error detection, and recovery mechanisms to ensure uninterrupted service.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -299,7 +375,7 @@
   {
     "name": "Design For Failure",
     "description": "Designing for failure assumes that things will break inevitably and a system needs to be ready for it upfront; it is a proactive approach in software architecture where each element is expected to fail, and incorporates various strategies to maintain functionality and minimize downtime, such as: graceful degradation, failovers, redundancy, chaos engineering, observability and many more.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -317,7 +393,7 @@
   {
     "name": "Failover",
     "description": "Failover is the process of **switching to a redundant or standby system** when the primary system fails, ensuring continuous operation and minimal disruption to services.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -328,7 +404,7 @@
   {
     "name": "Isolate Failure",
     "description": "Isolating failure is about **preventing a single failure from cascading**, even from taking the whole system down; it is a design principle that aims to contain and limit the impact of failures by isolating components, services, or processes, to prevent them from affecting the entire system, ensuring that failures are contained and do not propagate.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -356,7 +432,7 @@
   {
     "name": "Code Coverage",
     "description": "Code Coverage is a set of metrics measuring the **percentage of code executed within automated tests** (and **percentage of code not taking part in any tests whatsoever**), saying nothing about the tests _quality_, their goals, feature/business process coverage or the overall _effectiveness_ of the tests.",
-    "tags": [
+    "belongsTo": [
       "Software Testing"
     ],
     "seeAlso": [
@@ -366,7 +442,7 @@
   {
     "name": "Fault Injection",
     "description": "Fault injection is a testing technique where errors or failures are deliberately introduced into a system to evaluate its behavior under stress, helping developers identify vulnerabilities, assess recovery mechanisms, and improve overall system reliability and fault tolerance.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -378,7 +454,7 @@
   {
     "name": "Chaos Engineering",
     "description": "Chaos Engineering is about breaking things on purpose and seeing what has collapsed; it's a discipline that proactively introduces (repetetively) controlled failures and disruptions into a system to test its resilience, identify weaknesses, and improve recovery mechanisms, enabling teams to improve system robustness and reliability by understanding how the system behaves under adverse conditions.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -389,7 +465,7 @@
   {
     "name": "Backoff",
     "description": "Backoff is waiting until you try again; it's a technique used to manage retries in an application control flow or network communication, where a system waits for an increasing amount of time after each failed attempt before trying again, helping to reduce network congestion and avoid overwhelming resources.",
-    "tags": [
+    "belongsTo": [
       "Resilience"
     ],
     "seeAlso": [
@@ -399,7 +475,7 @@
   {
     "name": "Backpressure",
     "description": "Backpressure is a mechanism to control the flow of data being sent from the producer to the consumer from becoming overloaded, when the consumers cannot keep up, helping to prevent resource exhaustion and maintain overall system stability, in a lossy or lossless manner.",
-    "tags": [
+    "belongsTo": [
       "Resilience",
       "Reactivity"
     ],
@@ -413,7 +489,7 @@
   {
     "name": "Rate Limiting",
     "description": "Rate Limiting is a technique to control the rate of requests a user can send or receive, within a given time-frame, preventing abuse and overuse, ensuring the system remains responsive and available, and protecting against denial-of-service (DoS) attacks.",
-    "tags": [
+    "belongsTo": [
       "Microservices",
       "Resilience"
     ],
@@ -433,7 +509,7 @@
     "name": "Circuit Breaker Pattern",
     "shortName": "Circuit Breaker",
     "description": "The Circuit Breaker Pattern disallows to kick someone who's currently down; it's a a Fault Tolerance mechanism which detects failures and prevents further requests from being sent to the failing service, thus avoiding overload while recovering, and retrying e.g. after a timeout (then passing requests normally).",
-    "tags": [
+    "belongsTo": [
       "Microservices"
     ],
     "seeAlso": [
@@ -471,18 +547,54 @@
     "name": "Service Mesh"
   },
   {
-    "name": "Load Balancer"
+    "name": "Load Balancer",
+    "belongsTo": [
+      "Scalability",
+      "Performance",
+      "Infrastructure",
+      "Microservices"
+    ]
   },
   {
     "name": "Service Discovery"
   },
 
 
-
-
   {
-    "name": "Sticky Sessions"
+    "name": "Scalability",
+    "group": true,
+    "belongsTo": [
+      "Performance"
+    ]
   },
+  {
+    "name": "Concurrency",
+    "belongsTo": [
+      "Scalability"
+    ]
+  },
+  {
+    "name": "Parallelism",
+    "belongsTo": [
+      "Scalability"
+    ]
+  },
+  {
+    "name": "Redundancy",
+    "belongsTo": [
+      "Scalability"
+    ]
+  },
+  {
+    "name": "Sticky Sessions",
+    "belongsTo": [
+      "Scalability"
+    ]
+  },
+
+
+
+
   {
     "name": "Blue-Green Deployment"
   },
@@ -547,31 +659,51 @@
 
 
   {
-    "name": "Coupling"
+    "name": "Coupling",
+    "group": true
   },
   {
-    "name": "Temporal Coupling"
+    "name": "Temporal Coupling",
+    "belongsTo": [
+      "Coupling"
+    ]
   },
   {
-    "name": "Spatial Coupling"
+    "name": "Spatial Coupling",
+    "belongsTo": [
+      "Coupling"
+    ]
   },
   {
-    "name": "Content Coupling"
+    "name": "Content Coupling",
+    "belongsTo": [
+      "Coupling"
+    ]
   },
   {
-    "name": "Control Coupling"
+    "name": "Control Coupling",
+    "belongsTo": [
+      "Coupling"
+    ]
   },
   {
-    "name": "Cohesion"
+    "name": "Cohesion",
+    "belongsTo": [
+      "Coupling"
+    ]
   },
   {
-    "name": "Decoupling"
+    "name": "Decoupling",
+    "belongsTo": [
+      "Coupling"
+    ]
   },
 
 
 
   {
     "name": "Consistency",
+    "group": true,
     "description": "Consistency is the state of a system where all data is the same across all nodes in a **distributed system**, ensuring that **all nodes see the same data at the same time**, and that changes are propagated correctly and in a timely manner, to maintain data integrity and reliability.",
     "seeAlso": [
       "Strong Consistency",
@@ -583,8 +715,11 @@
   },
   {
     "name": "Strong Consistency",
+    "belongsTo": [
+      "Consistency"
+    ],
     "seeAlso": [
-      "Consistency",
+      "Eventual Consistency",
       "CAP Theorem (Consistency, Availability, Partition Tolerance)",
       "Scalability",
       "Replication"
@@ -592,12 +727,27 @@
   },
   {
     "name": "Eventual Consistency",
+    "belongsTo": [
+      "Consistency"
+    ],
     "seeAlso": [
-      "Consistency",
+      "Strong Consistency",
       "CAP Theorem (Consistency, Availability, Partition Tolerance)",
       "Scalability",
       "Distributed Systems",
       "Replication"
+    ]
+  },
+  {
+    "name": "Idempotency",
+    "belongsTo": [
+      "Consistency"
+    ],
+    "seeAlso": [
+      "HTTP",
+      "CAP Theorem (Consistency, Availability, Partition Tolerance)",
+      "ACID Transactions (Atomicity, Consistency, Isolation, Durability)",
+      "BASE Transactions (Basically Available, Soft State, Eventually Consistent)"
     ]
   },
 
@@ -626,40 +776,40 @@
   },
   {
     "name": "Clustering",
-    "tags": [
+    "belongsTo": [
       "Databases"
     ]
   },
   {
     "name": "Sharding",
-    "tags": [
+    "belongsTo": [
       "Databases"
     ]
   },
   {
     "name": "Replication",
-    "tags": [
+    "belongsTo": [
       "Databases"
     ]
   },
   {
     "name": "CAP Theorem (Consistency, Availability, Partition Tolerance)",
     "shortName": "CAP Theorem",
-    "tags": [
+    "belongsTo": [
       "Databases"
     ]
   },
   {
     "name": "ACID Transactions (Atomicity, Consistency, Isolation, Durability)",
     "shortName": "ACID Transactions",
-    "tags": [
+    "belongsTo": [
       "Databases"
     ]
   },
   {
     "name": "BASE Transactions (Basically Available, Soft State, Eventually Consistent)",
     "shortName": "BASE Transactions",
-    "tags": [
+    "belongsTo": [
       "Databases"
     ]
   },
@@ -668,18 +818,7 @@
 
 
 
-  {
-    "name": "Essential Complexity",
-    "seeAlso": [
-      "Accidental Complexity"
-    ]
-  },
-  {
-    "name": "Accidental Complexity",
-    "seeAlso": [
-      "Essential Complexity"
-    ]
-  },
+
   {
     "name": "Encapsulation",
     "seeAlso": [
@@ -732,21 +871,8 @@
 
 
 
-  {
-    "name": "Latency"
-  },
-  {
-    "name": "Throughput"
-  },
-  {
-    "name": "Bandwidth"
-  },
-  {
-    "name": "Concurrency"
-  },
-  {
-    "name": "Parallelism"
-  },
+
+
 
 
 
@@ -755,15 +881,6 @@
   },
   {
     "name": "Git Flow"
-  },
-  {
-    "name": "Optimistic Locking"
-  },
-  {
-    "name": "Pessimistic Locking"
-  },
-  {
-    "name": "Deadlock"
   },
   {
     "name": "Command"
@@ -786,21 +903,8 @@
 
 
 
-  {
-    "name": "Choreography"
-  },
-  {
-    "name": "Orchestration"
-  },
-  {
-    "name": "Synchronous Communication"
-  },
-  {
-    "name": "Asynchronous Communication"
-  },
-  {
-    "name": "Idempotency"
-  },
+
+
 
 
 
@@ -822,13 +926,16 @@
     "name": "Pub/Sub (Publish/Subscribe)",
     "shortName": "Pub/Sub"
   },
+  {
+    "name": "Messaging System"
+  },
 
 
 
   {
     "name": "Microservices",
     "group": true,
-    "tags": [
+    "belongsTo": [
       "Architecture Styles"
     ],
     "seeAlso": [
@@ -849,7 +956,7 @@
   {
     "name": "Distributed Monolith",
     "description": "A Distributed Monolith is an architectural anti-pattern which takes **the worst of both worlds** (Monoliths, Distributed Systems); it's a system that is **split into multiple services** (distributed) along with all its complexity and other downsides but still exhibits the same characteristics and problems as a monolith (usually unintentionally designed to be deployed as a whole) such as tight coupling, shared data, and dependencies, leading to complexity, performance issues, and maintainability challenges, despite being distributed across multiple services.",
-    "tags": [
+    "belongsTo": [
       "Microservices"
     ],
     "seeAlso": [
@@ -918,7 +1025,7 @@
     "name": "SOAP (Simple Object Access Protocol)",
     "shortName": "SOAP",
     "description": "SOAP is a protocol for exchanging structured information over networks, enforcing pre-generating both client and server definitions upfront from a contract file (WSDL,Web Services Description Language), typically using XML and sent over HTTP",
-    "tags": [
+    "belongsTo": [
       "Web Services"
     ],
     "seeAlso": [
@@ -931,7 +1038,7 @@
   {
     "name": "REST (Representational State Transfer)",
     "shortName": "REST",
-    "tags": [
+    "belongsTo": [
       "Web Services"
     ],
     "seeAlso": [
@@ -944,7 +1051,7 @@
   {
     "name": "Overfetching",
     "description": "Overfetching occurs when an API returns more data than necessary for a client's request, leading to inefficiencies by providing extra information that the client doesn't need or use, often seen in traditional REST APIs when the response can't be precisely tailored to the client’s requirements.",
-    "tags": [
+    "belongsTo": [
       "Web Services"
     ],
     "seeAlso":[
@@ -956,7 +1063,7 @@
   {
     "name": "Underfetching",
     "description": "Underfetching happens when an API doesn't provide enough data in a single request, requiring the client to make additional requests to fetch the necessary information, leading to performance issues and increased latency, commonly seen in REST APIs when the response doesn't include all required data for a specific view or business operation.",
-    "tags": [
+    "belongsTo": [
       "Web Services"
     ],
     "seeAlso":[
@@ -970,7 +1077,7 @@
   },
   {
     "name": "GraphQL",
-    "tags": [
+    "belongsTo": [
       "Web Services"
     ],
     "seeAlso":[
@@ -981,7 +1088,7 @@
   {
     "name": "RPC (Remote Procedure Call)",
     "shortName": "RPC",
-    "tags": [
+    "belongsTo": [
       "Web Services"
     ]
   },
@@ -989,13 +1096,13 @@
     "name": "DTO (Data Transfer Object)", 
     "shortName": "DTO",
     "description": "A Data Transfer Object (DTO) is an object with **only the data, and no logic** (methods); it carries data between processes or services, typically used to encapsulate and disallow leaking abstraction of one module to another.",
-    "tags": [
+    "belongsTo": [
       "Web Services"
     ],
     "seeAlso": [
       "DDD (Domain Driven Design)",
       "Entity",
-      "VO (Value Object)",
+      "Value Object",
       "ACL (Anti-Corruption Layer)",
       "Encapsulation",
       "Abstraction Leak"
@@ -1018,7 +1125,7 @@
     "name": "HTTP (Hypertext Transfer Protocol)",
     "shortName": "HTTP",
     "description": "HTTP (Hypertext Transfer Protocol) is the foundation of web communication, defining how clients (like browsers) and servers exchange information over the internet, using requests and responses to retrieve or send data, typically operating over TCP and supporting methods like GET, POST, PUT, and DELETE for interacting with resources.",
-    "tags": [
+    "belongsTo": [
       "Network Protocols"
     ],
     "seeAlso":[
@@ -1033,13 +1140,13 @@
   {
     "name": "SSE (Server-Sent Events)",
     "shortName": "SSE",
-    "tags": [
+    "belongsTo": [
       "Network Protocols"
     ]
   },
   {
     "name": "WebSockets",
-    "tags": [
+    "belongsTo": [
       "Network Protocols"
     ]
   },
@@ -1050,41 +1157,90 @@
   },
   {
     "name": "Client-Server Model",
-    "tags": [
+    "description": "The Client-Server Model is a computing architecture (or structure) where tasks and responsibilities are divided between clients and servers, with clients requesting services or resources from servers, which process and fulfill these requests.",
+    "belongsTo": [
       "Web Services"
+    ],
+    "seeAlso":[
+      "Frontend",
+      "Web Services",
+      "HTTP (Hypertext Transfer Protocol)",
+      "RPC (Remote Procedure Call)",
+      "API (Application Programming Interface)"
     ]
   },
   {
     "name": "P2P (Peer to Peer)",
     "shortName": "P2P",
-    "tags": [
+    "description": "Peer-to-Peer (P2P) is when **two parties communicate directly**; it's a decentralized communication model where each participant can act as both a client and a server, enabling resource sharing between nodes **without the need for a central server**, often used in file sharing, messaging, and content distribution applications.",
+    "belongsTo": [
       "Web Services"
     ]
   },
-
-
-
   {
-    "name": "Server Side Rendering"
+    "name": "Frontend",
+    "description": "The frontend is the part of a software application that users interact with directly, typically through a user interface, such as a web browser or mobile app, enabling users to view and interact with content, data, and services, and providing a way to input data, perform actions, and receive feedback.",
+    "group": true,
+    "seeAlso": [
+      "Client-Server Model",
+      "CSR (Client Side Rendering)",
+      "SSR (Server Side Rendering)",
+      "SPA (Single Page Application)",
+      "PWA (Progressive Web App)",
+      "SSG (Static Site Generator)",
+      "JAMstack",
+      "SEO (Search Engine Optimization)"
+    ]
   },
   {
-    "name": "Client Side Rendering"
+    "name": "SSR (Server Side Rendering)",
+    "shortName": "SSR",
+    "belongsTo": [
+      "Frontend"
+    ]
   },
   {
-    "name": "Single Page Application"
+    "name": "CSR (Client Side Rendering)",
+    "shortName": "CSR",
+    "belongsTo": [
+      "Frontend"
+    ]
   },
   {
-    "name": "Progressive Web App"
+    "name": "SPA (Single Page Application)",
+    "shortName": "SPA",
+    "belongsTo": [
+      "Frontend"
+    ]
   },
   {
-    "name": "Static Site Generator"
+    "name": "PWA (Progressive Web App)",
+    "shortName": "PWA",
+    "belongsTo": [
+      "Frontend"
+    ]
   },
   {
-    "name": "JAMstack"
+    "name": "SSG (Static Site Generator)",
+    "shortName": "SSG",
+    "belongsTo": [
+      "Frontend"
+    ]
+  },
+  {
+    "name": "JAMstack",
+    "description": "JavaScript, API and Markup, which means everything and nothing 🤨",
+    "belongsTo": [
+      "Frontend"
+    ]
   },
   {
     "name": "SEO (Search Engine Optimization)",
-    "shortName": "SEO"
+    "shortName": "SEO",
+    "description": "SEO are practices aiming at optimizing websites to rank higher in search engine results (e.g. core web vitals, A11y etc), improving visibility, traffic, and user engagement, by following best practices, and ensuring technical compliance with search engine guidelines.",
+    "belongsTo": [
+      "Frontend"
+    ]
   },
   {
     "name": "Micro Frontends"
@@ -1108,27 +1264,54 @@
     "name": "Consumer-Driven Contracts"
   },
   {
+    "name": "Contract Testing"
+  },
+  {
     "name": "Versioning"
-  }
+  },
 
 
 
   {
     "name": "Reactivity",
-    "group": true
+    "group": true,
+    "seeAlso":[
+      "Observer Pattern",
+      "Derivation",
+      "Event Driven Architecture",
+      "Upstreams and Downstreams"
+    ]
   },
-
-
   {
-    "name": "Frozen Caveman Antipattern"
+    "name": "Upstreams and Downstreams",
+    "description": "**Upstream is the source**/provider of data, events (or even git commits) etc, while **Downstream is the destination / consumer / subscriber etc; Downstream directly depends on the upstream, forming a unidirectional data flow",
+    "belongsTo": [
+      "Reactivity"
+    ]
   },
+  {
+    "name": "Invariant",
+    "description": "An **Invariant is a condition that must always be true**, regardless of the state of the system; it is a rule or constraint that should never be violated, ensuring the correctness and consistency of the system.",
+    "belongsTo": [
+      "Reactivity",
+      "DDD (Domain Driven Design)",
+      "Business Rule"
+    ]
+  },
+
 
   
   {
     "name": "DDD (Domain Driven Design)",
     "shortName": "DDD",
+    "description": "Domain-Driven Design is about **focusing on the business domain** first and foremost, instead of technical details; it highly **discourages using unified/universal models** in favor of **breaking the domain into multiple subdomains**, each having their own **specific model, language, and context**, ensuring that each is highly specialized, according to the business needs and knowledge gathered from **domain experts**.",
+    "belongsTo": [
+      "Software Architecture"
+    ],
     "group": true,
     "seeAlso": [
+      "Strategic DDD",
+      "Tactical DDD",
       "Bounded Context",
       "Heuristics",
       "Ubiquitous Language",
@@ -1151,21 +1334,34 @@
       "Business Archetype",
       "Business Process",
       "Business Rule",
+      "Invariant",
       "Event Sourcing",
       "Event Storming",
       "CQRS (Command Query Responsibility Segregation)"
     ]
   },
   {
+    "name": "Strategic DDD",
+    "belongsTo": [
+      "DDD (Domain Driven Design)"
+    ]
+  },
+  {
+    "name": "Tactical DDD",
+    "belongsTo": [
+      "DDD (Domain Driven Design)"
+    ]
+  },
+  {
     "name": "Bounded Context",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Heuristics",
     "description": "Heuristics are **rules of thumb** that help in making decisions; they are practical guidelines or strategies that are not guaranteed to be optimal or perfect, but are useful in **problem solving** and decision-making under uncertainty or with limited information; usually multiple heuristics are combined to make a decision.",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ],
     "seeAlso": [
@@ -1175,38 +1371,38 @@
   },
   {
     "name": "Ubiquitous Language",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Context Mapping",
     "description": "Context Mapping is about **integrating different Bounded Contexts**; it' i's a strategic design technique in DDD that helps in **identifying and managing the relationships and interactions between different Bounded Contexts**, by defining explicit boundaries, communication models, and translation mechanisms, to ensure consistency and alignment between different models and teams; the term is slightly unfortunate, as** it's not about mapping but about aligning and integrating**.",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Core Domain",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Subdomain",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Generic Subdomain",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Supporting Subdomain",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
@@ -1215,63 +1411,89 @@
   },
   {
     "name": "Entity",
-    "tags": [
+    "description": "An Entity is a **distinct and identifiable object** (which has an ID and changes within time, unlike a _Value Object_) in a domain model; it represents a real-world concept with a **unique identity**, properties, and behavior, and is typically used to model core business objects that have a long lifespan and require **persistent** state, such as users, products, or orders.",
+    "belongsTo": [
       "DDD (Domain Driven Design)"
+    ],
+    "seeAlso": [
+      "Anemic Domain Model",
+      "Value Object",
+      "Aggregate",
+      "Bounded Context",
+      "Ubiquitous Language",
+      "ACL (Anti-Corruption Layer)"
     ]
   },
   {
     "name": "Anemic Domain Model",
-    "tags": [
-      "DDD (Domain Driven Design)"
+    "description": "An Anemic Domain Model (or Anemic Entity) is an **anti-pattern** where the domain model classes have **barely any behavior** (only data properties) and are **separated from the business logic** (which is placed outside, e.g. in services); it allows important **domain rules and behavior to _leak_** and be implemented in different, often random places, hence **lacking encapsulation** and **cohesion**, eventually leading to being tough to maintain, test, and evolve**.",
+    "belongsTo": [
+      "DDD (Domain Driven Design)",
+      "Anti-patterns"
+    ],
+    "seeAlso": [
+      "Encapsulation",
+      "Domain Model",
+      "Abstraction Leak",
+      "Cohesion",
+      "Entity"
     ]
   },
   {
-    "name": "VO (Value Object)",
-    "shortName": "VO",
-    "tags": [
+    "name": "Value Object",
+    "description": "A Value Object **represents a domain-related value along with its logic without having any identity**; having no identity (no ID property, **unlike an _Entity_**) means that Value Objects cannot change over time, have no lifecycle, hence are **immutable**, making them ideal to be reused in memory across different objects having the same value (as they cannot change); examples: a `skill` in a HR system, `money` in a financial system etc.",
+    "belongsTo": [
       "DDD (Domain Driven Design)"
+    ],
+    "seeAlso": [
+      "Entity",
+      "Aggregate",
+      "Bounded Context",
+      "Ubiquitous Language",
+      "ACL (Anti-Corruption Layer)"
     ]
   },
   {
     "name": "Aggregate",
-    "tags": [
+    "description": "An Aggregate is a **cluster of domain objects** that can be treated as a single unit; the most important pattern in tactical DDD; it is a collection of related entities and value objects that are bound together by a root entity, which acts as a gateway to the aggregate, ensuring consistency and encapsulation of domain logic within the boundary of the aggregate",
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Aggregate Root",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Domain Event",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Domain Service",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Repository",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Policy",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "ACL (Anti-Corruption Layer)",
     "shortName": "ACL",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ],
     "seeAlso": [
@@ -1282,26 +1504,29 @@
   },
   {
     "name": "Shared Kernel",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Business Archetype",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Business Process",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
   {
     "name": "Business Rule",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
+    ],
+    "seeAlso": [
+      "Invariant"
     ]
   },
 
@@ -1315,7 +1540,7 @@
   },
   {
     "name": "Event Storming",
-    "tags": [
+    "belongsTo": [
       "DDD (Domain Driven Design)"
     ]
   },
@@ -1331,27 +1556,25 @@
   {
     "name": "Read Model",
     "seeAlso": [
-      "CQRS (Command Query Responsibility Segregation)"
+      "CQRS (Command Query Responsibility Segregation)",
+      "Event Sourcing",
+      "Bounded Context"
     ]
   },
   {
     "name": "Write Model",
     "seeAlso": [
-      "CQRS (Command Query Responsibility Segregation)"
+      "CQRS (Command Query Responsibility Segregation)",
+      "Event Sourcing",
+      "Message Queue"
     ]
   },
 
 
 
-  {
-    "name": "Redundancy"
-  },
-  {
-    "name": "Scalability"
-  },
-  {
-    "name": "Messaging System"
-  },
+
+
+
 
 
 
@@ -1401,6 +1624,10 @@
     "seeAlso": [
       "MVP (Minimum Viable Product)"
     ]
+  },
+  {
+    "name": "Revenue Model",
+    "description": "A Revenue outlines **how a business generates income**, detailing the strategy for selling products, services, or subscriptions, including methods like direct sales, advertising, licensing, or a subscription-based approach; these include:\n- **Pay-per-Click** (Advertisers pay a fee each time their online ad is clicked by a user)\n- **Pay-per-View** (Users pay for access to specific content (like a movie or live event) each time they view it)\n- **Pay-per-Use** (Users pay based on the actual usage of a service or resource, such as cloud computing or software featuresaf)\n- **Freemium** (Basic services are provided for free, but users can pay for premium features or upgrades)\n- **Subscription** (Users pay a recurring fee, usually monthly or annually, for continuous access to a product or service)\n- **Licensing** (Businesses or users pay a one-time or recurring fee to use a product or intellectual property, often with restrictions on usage or redistribution)\n- **Affiliate** (A company earns commissions by promoting and driving sales or traffic to another company’s products or services via special referral links)\n\nand many others"
   },
   {
     "name": "CMS (Content Management System)",
@@ -1453,14 +1680,59 @@
 
 
 
-
+  {
+    "name": "Principles",
+    "group": true,
+    "description": "Principles are **fundamental rules or guidelines** that guide behavior, decisions, and actions, providing a foundation for understanding and solving problems",
+    "seeAlso": [
+      "Anti-patterns",
+      "Divide and Conquer",
+      "Conway's Law",
+      "Goodhart's Law",
+      "Robustness Principle (Postel's Law)",
+      "Brooks' Law",
+      "Parkinson's Law",
+      "Hofstadter's Law",
+      "Moore's Law",
+      "Amdahl's Law",
+      "Gall's Law",
+      "Ninety-Ninety Rule",
+      "Pareto Principle",
+      "Occam's Razor"
+    ]
+  },
+  {
+    "name": "Divide and Conquer",
+    "description": "Divide and Conquer is a problem-solving strategy that involves breaking down a complex problem into smaller, more manageable subproblems, solving them independently, and then combining their solutions to address the original problem, helping to simplify the design, improve efficiency, and enhance scalability; e.g. domain -> subdomains",
+    "belongsTo": [
+      "Principles"
+    ],
+    "seeAlso": [
+      "Separation of Concerns",
+      "Coupling",
+      "Cohesion"
+    ]
+  },
+  {
+    "name": "Occam's Razor",
+    "description": "_Among competing hypotheses, the one with the fewest assumptions should be selected._\n\n> &#45; William of Ockham\n\nOccam's Razor is a problem-solving principle that suggests selecting the simplest explanation or solution when faced with multiple competing hypotheses, emphasizing the importance of minimizing assumptions and complexity to improve clarity, understanding, and efficiency.",
+    "belongsTo": [
+      "Principles"
+    ]
+  },
   {
     "name": "Conway's Law",
-    "description": "_[O]rganizations which design systems (in the broad sense used here) are constrained to produce designs which are copies of the communication structures of these organizations._\n\n> &#45; Melvin E. Conway, _How Do Committees Invent?_\n\nConway's Law states that organizations design systems that mirror their own communication structures; it suggests that the architecture of a software system will reflect the social structure of the organization that produced it, and vice versa, highlighting the importance of aligning team structures with system architecture to improve collaboration and productivity."
+    "description": "_[O]rganizations which design systems (in the broad sense used here) are constrained to produce designs which are copies of the communication structures of these organizations._\n\n> &#45; Melvin E. Conway, _How Do Committees Invent?_\n\nConway's Law states that organizations design systems that mirror their own communication structures; it suggests that the architecture of a software system will reflect the social structure of the organization that produced it, and vice versa, highlighting the importance of aligning team structures with system architecture to improve collaboration and productivity.",
+    "belongsTo": [
+      "Principles"
+    ]
   },
   {
     "name": "Goodhart's Law",
     "description": "_When a measure becomes a target, it ceases to be a good measure._\n\n> &#45; Charles Goodhart\n\nGoodhart's Law states that when a measure becomes a target, it loses its effectiveness as a measure, as people will optimize for the target rather than the underlying goal, leading to unintended consequences, distortions, and gaming of the system.",
+    "belongsTo": [
+      "Principles"
+    ],
     "seeAlso": [
       "Code Coverage"
     ]
@@ -1468,6 +1740,9 @@
   {
     "name": "Robustness Principle (Postel's Law)",
     "description": "_Be conservative in what you do, be liberal in what you accept from others._\n\n> &#45; Jon Postel\n\nPostel's Law (also known as the Robustness Principle) is a design guideline for software development that encourages **leniency and tolerance in handling input** and **strictness in generating output**, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected data.",
+    "belongsTo": [
+      "Principles"
+    ],
     "seeAlso": [
       "Defensive Programming",
       "Web Services"
@@ -1476,6 +1751,9 @@
   {
     "name": "Brooks' Law",
     "description": "_Adding manpower to a late software project makes it later._\n\n> &#45; Fred Brooks\n\nBrooks' Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.",
+    "belongsTo": [
+      "Principles"
+    ],
     "seeAlso": [
       "Team Topologies"
     ]
@@ -1483,6 +1761,9 @@
   {
     "name": "Parkinson's Law",
     "description": "_Work expands so as to fill the time available for its completion._\n\n> &#45; Cyril Northcote Parkinson\n\nParkinson's Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.",
+    "belongsTo": [
+      "Principles"
+    ],
     "seeAlso": [
       "Law of Triviality (Bikeshedding)",
       "Dreyfus Model of Skill Acquisition"
@@ -1490,15 +1771,24 @@
   },
   {
     "name": "Hofstadter's Law",
-    "description": "_It always takes longer than you expect, even when you take into account Hofstadter's Law._\n\n> &#45; Douglas Hofstadter\n\nHofstadter's Law highlighting the inherent difficulty in accurately estimating the time required to complete complex tasks, particularly in software development and project management."
+    "description": "_It always takes longer than you expect, even when you take into account Hofstadter's Law._\n\n> &#45; Douglas Hofstadter\n\nHofstadter's Law highlighting the inherent difficulty in accurately estimating the time required to complete complex tasks, particularly in software development and project management.",
+    "belongsTo": [
+      "Principles"
+    ]
   },
   {
     "name": "Moore's Law",
-    "description": "Moore's Law is the observation that the number of transistors on a microchip doubles approximately every two years, leading to an exponential increase in computing power and a decrease in relative cost, which has significantly influenced the growth of technology and the capabilities of electronic devices over time."
+    "description": "Moore's Law is the observation that the number of transistors on a microchip doubles approximately every two years, leading to an exponential increase in computing power and a decrease in relative cost, which has significantly influenced the growth of technology and the capabilities of electronic devices over time.",
+    "belongsTo": [
+      "Principles"
+    ]
   },
   {
     "name": "Amdahl's Law",
     "description": "Amdahl's Law is a formula that illustrates the **potential speedup** of a task from **parallel processing**, stating that the maximum improvement is limited by the fraction of the task that cannot be parallelized; as such, **improvements diminish as the non-parallelizable portion becomes more significant**.",
+    "belongsTo": [
+      "Principles"
+    ],
     "seeAlso": [
       "Parallelism",
       "Concurrency",
@@ -1507,42 +1797,63 @@
   },
   {
     "name": "Gall's Law",
-    "description": "_A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system._\n\n> &#45; John Gall\n\nGall's Law suggests that successful complex systems are typically built from simpler, functioning prototypes, rather than attempting to design and implement complex systems from scratch"
+    "description": "_A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system._\n\n> &#45; John Gall\n\nGall's Law suggests that successful complex systems are typically built from simpler, functioning prototypes, rather than attempting to design and implement complex systems from scratch",
+    "belongsTo": [
+      "Principles"
+    ]
   },
   {
     "name": "Ninety-Ninety Rule",
-    "description": "_The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time._\n\n> &#45; Tom Cargill\n\nSoftware development projects to take longer than initially estimated, due to unforeseen complexities, edge cases, and challenges that arise during the final stages of development."
+    "description": "_The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time._\n\n> &#45; Tom Cargill\n\nSoftware development projects to take longer than initially estimated, due to unforeseen complexities, edge cases, and challenges that arise during the final stages of development.",
+    "belongsTo": [
+      "Principles"
+    ]
   },
   {
     "name": "Pareto Principle",
-    "description": "_For many events, roughly 80% of the effects come from 20% of the causes._\n\n> &#45; Vilfredo Pareto\n\nThe Pareto Principle (also known as the **_80/20 rule_**) states that roughly 80% of the effects come from 20% of the causes, suggesting that a minority of inputs or efforts often lead to the majority of results or outcomes, and can be applied to various areas, such as productivity, decision-making, and problem-solving."
+    "description": "_For many events, roughly 80% of the effects come from 20% of the causes._\n\n> &#45; Vilfredo Pareto\n\nThe Pareto Principle (also known as the **_80/20 rule_**) states that roughly 80% of the effects come from 20% of the causes, suggesting that a minority of inputs or efforts often lead to the majority of results or outcomes, and can be applied to various areas, such as productivity, decision-making, and problem-solving.",
+    "belongsTo": [
+      "Principles"
+    ]
   },
-
-
-
   {
     "name": "DRY (Don't Repeat Yourself)",
     "shortName": "DRY",
+    "description": "DRY (Don't Repeat Yourself) is a software development principle that promotes **reducing repetition and redundancy** in code, by **extracting common logic into reusable components**, functions, or modules, to improve consistency and maintainability; however when **misunderstood** (or taken to extreme) it leads to **over-abstraction**, making the codebase more complex and harder to understand",
+    "belongsTo": [
+      "Principles"
+    ],
     "seeAlso": [
       "WET (Write Everything Twice)"
     ]
   },
   {
     "name": "KISS (Keep It Simple, Stupid)",
-    "shortName": "KISS"
-  },
-  {
-    "name": "YAGNI (You Aren't Gonna Need It)",
-    "shortName": "YAGNI"
+    "shortName": "KISS",
+    "description": "KISS (Keep It Simple, Stupid) is a design principle that suggests keeping systems, processes, or solutions **as simple as possible**, **avoiding unnecessary complexity**, features, or components, to improve clarity, maintainability, and usability, and reduce the risk of confusion or errors.",
+    "belongsTo": [
+      "Principles"
+    ]
   },
   {
     "name": "WET (Write Everything Twice)",
     "shortName": "WET",
+    "description": "WET (Write Everything Twice), an opposite of DRY, is a humorous response to the DRY principle, suggesting that **duplication is sometimes preferable to the wrong abstraction**, and that **clarity and readability** should be prioritized over premature optimization or over-engineering.",
+    "belongsTo": [
+      "Principles"
+    ],
     "seeAlso": [
       "DRY (Don't Repeat Yourself)"
     ]
   },
-
+  {
+    "name": "YAGNI (You Aren't Gonna Need It)",
+    "shortName": "YAGNI",
+    "description": "YAGNI (You Aren't Gonna Need It) is a software development principle that advises against implementing features or functionality **until they are absolutely necessary**, promoting a focus on **current requirements** to reduce complexity, avoid wasted effort, and improve maintainability by **preventing over-engineering**.",
+    "belongsTo": [
+      "Principles"
+    ]
+  },
   {
     "name": "Anti-patterns",
     "group": true,
@@ -1557,7 +1868,7 @@
   {
     "name": "Abstraction Leak",
     "description": "An Abstraction Leak is when internal details, concepts and limitations **are being exposed instead of hidden away**; it occurs when the underlying implementation details of a module or component are unintentionally exposed to the outside world, breaking the abstraction barrier and leading to tight coupling, dependencies, and potential issues when making changes or updates.",
-    "tags": [
+    "belongsTo": [
       "Anti-patterns",
       "Abstraction"
     ]
@@ -1565,7 +1876,7 @@
   {
     "name": "God Class",
     "description": "A God Class (also an object, component, interface etc) is a class that **knows too much or does too much**; it's an anti-pattern where a single class becomes overly complex, bloated, and takes on too many responsibilities (hence significantly strengthening **tight coupling**), violating the Single Responsibility Principle and making the codebase harder to maintain, test, and understand; e.g. a **User class being reused across various different modules**, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.",
-    "tags": [
+    "belongsTo": [
       "Anti-patterns",
       "Bounded Context",
       "Domain Model",
@@ -1578,6 +1889,12 @@
       "Lazy Loading",
       "Performance",
       "Databases"
+    ]
+  },
+  {
+    "name": "Frozen Caveman Antipattern",
+    "belongsTo": [
+      "Anti-patterns"
     ]
   },
 
@@ -1598,7 +1915,15 @@
     "seeAlso": [
       "Kolb's Learning Cycle",
       "Law of Triviality (Bikeshedding)",
+      "Cynefin Model",
       "Unknown Unknowns"
+    ]
+  },
+  {
+    "name": "Cynefin Model",
+    "description": "The Cynefin Model helps to identify how difficult a problem is and which strategy to apply; it is a decision model which helps to understand the nature of a given problem or situation, categorizing it into one of five domains: **Simple, Complicated, Complex, Chaotic, and Disorder**, to guide decision-making and problem-solving approaches based on the characteristics of the context.",
+    "seeAlso": [
+      "Dreyfus Model of Skill Acquisition"
     ]
   },
   {

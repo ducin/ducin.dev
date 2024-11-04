@@ -88,7 +88,7 @@
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/open-book-lot-Oaqk7qqNh_c">Open book lot photo</a> by <a href="https://unsplash.com/@impatrickt">Patrick Tomasso</a></p>
             <p>
-              <em> Sunday 1 December 2024 • 📚 21 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
+              <em> Sunday 1 December 2024 • 📚 30 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/software-architecture-terminology-pocketbook.md">edit on Github</a> </em>
             </p>
             <p>This document briefly describes dozens of <strong>important software architecture</strong> topics, terms, acronyms, strategies, characteristics, and so on. It shows the <strong>relations</strong> between them and outlines <strong>how endlessly interdisciplinary Software Architecture is</strong>.</p>
 
@@ -136,8 +136,11 @@
                 <ul>
                   <li><a href="#Abstraction-Leak">Abstraction Leak</a></li>
                   <li><a href="#ADR-(Architecture-Decision-Record)">ADR (Architecture Decision Record)</a></li>
+                  <li><a href="#Aggregate">Aggregate</a></li>
                   <li><a href="#Amdahl's-Law">Amdahl&#39;s Law</a></li>
+                  <li><a href="#Anemic-Domain-Model">Anemic Domain Model</a></li>
                   <li><a href="#Anti-patterns">Anti-patterns</a></li>
+                  <li><a href="#API-Contract">API Contract</a></li>
                   <li><a href="#Architecture-Documentation">Architecture Documentation</a></li>
                   <li><a href="#Backoff">Backoff</a></li>
                   <li><a href="#Backpressure">Backpressure</a></li>
@@ -146,12 +149,17 @@
                   <li><a href="#C4-Model">C4 Model</a></li>
                   <li><a href="#Chaos-Engineering">Chaos Engineering</a></li>
                   <li><a href="#Circuit-Breaker-Pattern">Circuit Breaker Pattern</a></li>
+                  <li><a href="#Client-Server-Model">Client-Server Model</a></li>
                   <li><a href="#CMS-(Content-Management-System)">CMS (Content Management System)</a></li>
+                  <li><a href="#Code-Coverage">Code Coverage</a></li>
                   <li><a href="#Consistency">Consistency</a></li>
                   <li><a href="#Context-Mapping">Context Mapping</a></li>
+                  <li><a href="#Conway's-Law">Conway&#39;s Law</a></li>
                   <li><a href="#Correlation-ID">Correlation ID</a></li>
                   <li><a href="#CRM-(Customer-Relationship-Management)">CRM (Customer Relationship Management)</a></li>
+                  <li><a href="#Cynefin-Model">Cynefin Model</a></li>
                   <li><a href="#Databases">Databases</a></li>
+                  <li><a href="#DDD-(Domain-Driven-Design)">DDD (Domain Driven Design)</a></li>
                   <li><a href="#Defensive-Programming">Defensive Programming</a></li>
                   <li><a href="#Derivation">Derivation</a></li>
                   <li><a href="#Design-For-Failure">Design For Failure</a></li>
@@ -160,7 +168,9 @@
                   <li><a href="#Distributed-Tracing">Distributed Tracing</a></li>
                   <li><a href="#DORA-metrics">DORA metrics</a></li>
                   <li><a href="#Dreyfus-Model-of-Skill-Acquisition">Dreyfus Model of Skill Acquisition</a></li>
+                  <li><a href="#DRY-(Don't-Repeat-Yourself)">DRY (Don&#39;t Repeat Yourself)</a></li>
                   <li><a href="#DTO-(Data-Transfer-Object)">DTO (Data Transfer Object)</a></li>
+                  <li><a href="#Entity">Entity</a></li>
                   <li><a href="#ERP-(Enterprise-Resource-Planning)">ERP (Enterprise Resource Planning)</a></li>
                   <li><a href="#ESB-(Enterprise-Service-Bus)">ESB (Enterprise Service Bus)</a></li>
                   <li><a href="#Failover">Failover</a></li>
@@ -168,27 +178,42 @@
                   <li><a href="#Fault-Injection">Fault Injection</a></li>
                   <li><a href="#Fault-Tolerance">Fault Tolerance</a></li>
                   <li><a href="#Fitness-Functions">Fitness Functions</a></li>
+                  <li><a href="#Frontend">Frontend</a></li>
+                  <li><a href="#Gall's-Law">Gall&#39;s Law</a></li>
                   <li><a href="#God-Class">God Class</a></li>
+                  <li><a href="#Goodhart's-Law">Goodhart&#39;s Law</a></li>
                   <li><a href="#Heuristics">Heuristics</a></li>
+                  <li><a href="#Hofstadter's-Law">Hofstadter&#39;s Law</a></li>
                   <li><a href="#HTTP-(Hypertext-Transfer-Protocol)">HTTP (Hypertext Transfer Protocol)</a></li>
+                  <li><a href="#Infrastructure">Infrastructure</a></li>
+                  <li><a href="#Invariant">Invariant</a></li>
                   <li><a href="#Isolate-Failure">Isolate Failure</a></li>
                   <li><a href="#ITSM-(IT-Service-Management)">ITSM (IT Service Management)</a></li>
+                  <li><a href="#JAMstack">JAMstack</a></li>
+                  <li><a href="#KISS-(Keep-It-Simple%2C-Stupid)">KISS (Keep It Simple, Stupid)</a></li>
                   <li><a href="#Kolb's-Learning-Cycle">Kolb&#39;s Learning Cycle</a></li>
                   <li><a href="#Law-of-Triviality-(Bikeshedding)">Law of Triviality (Bikeshedding)</a></li>
                   <li><a href="#Lean-Startup">Lean Startup</a></li>
                   <li><a href="#Legacy-Code">Legacy Code</a></li>
                   <li><a href="#Monitoring">Monitoring</a></li>
+                  <li><a href="#Moore's-Law">Moore&#39;s Law</a></li>
                   <li><a href="#MVP-(Minimum-Viable-Product)">MVP (Minimum Viable Product)</a></li>
+                  <li><a href="#Ninety-Ninety-Rule">Ninety-Ninety Rule</a></li>
                   <li><a href="#Observability">Observability</a></li>
+                  <li><a href="#Occam's-Razor">Occam&#39;s Razor</a></li>
                   <li><a href="#Off-the-shelf-Software">Off-the-shelf Software</a></li>
                   <li><a href="#Overfetching">Overfetching</a></li>
+                  <li><a href="#P2P-(Peer-to-Peer)">P2P (Peer to Peer)</a></li>
+                  <li><a href="#Pareto-Principle">Pareto Principle</a></li>
                   <li><a href="#Parkinson's-Law">Parkinson&#39;s Law</a></li>
+                  <li><a href="#Principles">Principles</a></li>
                   <li><a href="#Protocol">Protocol</a></li>
                   <li><a href="#Rate-Limiting">Rate Limiting</a></li>
                   <li><a href="#Resilience">Resilience</a></li>
                   <li><a href="#RFC-(Request-For-Comments)">RFC (Request For Comments)</a></li>
                   <li><a href="#Robustness-Principle-(Postel's-Law)">Robustness Principle (Postel&#39;s Law)</a></li>
                   <li><a href="#SCM-(Supply-Chain-Management)">SCM (Supply Chain Management)</a></li>
+                  <li><a href="#SEO-(Search-Engine-Optimization)">SEO (Search Engine Optimization)</a></li>
                   <li><a href="#Single-Point-of-Failure">Single Point of Failure</a></li>
                   <li><a href="#SOAP-(Simple-Object-Access-Protocol)">SOAP (Simple Object Access Protocol)</a></li>
                   <li><a href="#Software-Architecture">Software Architecture</a></li>
@@ -198,7 +223,11 @@
                   <li><a href="#TTM-(Time-To-Market)">TTM (Time To Market)</a></li>
                   <li><a href="#Underfetching">Underfetching</a></li>
                   <li><a href="#Unknown-Unknowns">Unknown Unknowns</a></li>
+                  <li><a href="#Upstreams-and-Downstreams">Upstreams and Downstreams</a></li>
+                  <li><a href="#Value-Object">Value Object</a></li>
                   <li><a href="#Webhook">Webhook</a></li>
+                  <li><a href="#WET-(Write-Everything-Twice)">WET (Write Everything Twice)</a></li>
+                  <li><a href="#YAGNI-(You-Aren't-Gonna-Need-It)">YAGNI (You Aren&#39;t Gonna Need It)</a></li>
                 </ul>
               </li>
             </ul>
@@ -227,6 +256,15 @@
             </p>
             <p>See: <a href="#architecture-documentation">Architecture Documentation</a>, <a href="#c4-model">C4 Model</a>, <a href="#rfc-request-for-comments">RFC</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="aggregate">
+              <a href="#aggregate">
+                <span class="header-link"></span>
+                Aggregate
+              </a>
+            </h3>
+            <p>An Aggregate is a <strong>cluster of domain objects</strong> that can be treated as a single unit; the most important pattern in tactical DDD; it is a collection of related entities and value objects that are bound together by a root entity, which acts as a gateway to the aggregate, ensuring consistency and encapsulation of domain logic within the boundary of the aggregate</p>
+            <p>See: <a href="#ddd-domain-driven-design">DDD</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="amdahl-39-s-law">
               <a href="#amdahl-39-s-law">
                 <span class="header-link"></span>
@@ -234,7 +272,19 @@
               </a>
             </h3>
             <p>Amdahl&#39;s Law is a formula that illustrates the <strong>potential speedup</strong> of a task from <strong>parallel processing</strong>, stating that the maximum improvement is limited by the fraction of the task that cannot be parallelized; as such, <strong>improvements diminish as the non-parallelizable portion becomes more significant</strong>.</p>
-            <p>See: <a href="#parallelism">Parallelism</a>, <a href="#concurrency">Concurrency</a>, <a href="#performance">Performance</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#principles">Principles</a>, <a href="#parallelism">Parallelism</a>, <a href="#concurrency">Concurrency</a>, <a href="#performance">Performance</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="anemic-domain-model">
+              <a href="#anemic-domain-model">
+                <span class="header-link"></span>
+                Anemic Domain Model
+              </a>
+            </h3>
+            <p>
+              An Anemic Domain Model (or Anemic Entity) is an <strong>anti-pattern</strong> where the domain model classes have <strong>barely any behavior</strong> (only data properties) and are <strong>separated from the business logic</strong> (which is placed outside, e.g. in services); it allows important <strong>domain rules and behavior to <em>leak</em></strong> and be implemented in
+              different, often random places, hence <strong>lacking encapsulation</strong> and <strong>cohesion</strong>, eventually leading to being tough to maintain, test, and evolve**.
+            </p>
+            <p>See: <a href="#ddd-domain-driven-design">DDD</a>, <a href="#anti-patterns">Anti-patterns</a>, <a href="#encapsulation">Encapsulation</a>, <a href="#domain-model">Domain Model</a>, <a href="#abstraction-leak">Abstraction Leak</a>, <a href="#cohesion">Cohesion</a>, <a href="#entity">Entity</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="anti-patterns">
               <a href="#anti-patterns">
@@ -247,6 +297,18 @@
               <p>&#45; Andrew Koenig</p>
             </blockquote>
             <p>See: <a href="#god-class">God Class</a>, <a href="#abstraction-leak">Abstraction Leak</a>, <a href="#n1-problem">n+1 Problem</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="api-contract">
+              <a href="#api-contract">
+                <span class="header-link"></span>
+                API Contract
+              </a>
+            </h3>
+            <p>An API Contract <strong>defines how providers and consumers communicate</strong>; it&#39;s a specification including the expected behavior, inputs, outputs, and constraints of an API; either formalized in a contract file (e.g. OpenAPI/Swagger, Pact, RAML) or informally (un)documented.</p>
+            <p>
+              See: <a href="#api-application-programming-interface">API</a>, <a href="#web-services">Web Services</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#acl-anti-corruption-layer">ACL</a>, <a href="#consumer-driven-contracts">Consumer-Driven Contracts</a>, <a href="#versioning">Versioning</a>, <a href="#contract-testing">Contract Testing</a>. 👉
+              <a href="#table-of-contents">back to ToC</a>
+            </p>
 
             <h3 id="architecture-documentation">
               <a href="#architecture-documentation">
@@ -295,7 +357,7 @@
               <p>&#45; Fred Brooks</p>
             </blockquote>
             <p>Brooks&#39; Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.</p>
-            <p>See: <a href="#team-topologies">Team Topologies</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#principles">Principles</a>, <a href="#team-topologies">Team Topologies</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="c4-model">
               <a href="#c4-model">
@@ -329,6 +391,15 @@
             <p>The Circuit Breaker Pattern disallows to kick someone who&#39;s currently down; it&#39;s a a Fault Tolerance mechanism which detects failures and prevents further requests from being sent to the failing service, thus avoiding overload while recovering, and retrying e.g. after a timeout (then passing requests normally).</p>
             <p>See: <a href="#microservices">Microservices</a>, <a href="#rate-limiting">Rate Limiting</a>, <a href="#backpressure">Backpressure</a>, <a href="#backoff">Backoff</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="client-server-model">
+              <a href="#client-server-model">
+                <span class="header-link"></span>
+                Client-Server Model
+              </a>
+            </h3>
+            <p>The Client-Server Model is a computing architecture (or structure) where tasks and responsibilities are divided between clients and servers, with clients requesting services or resources from servers, which process and fulfill these requests.</p>
+            <p>See: <a href="#web-services">Web Services</a>, <a href="#frontend">Frontend</a>, <a href="#web-services">Web Services</a>, <a href="#http-hypertext-transfer-protocol">HTTP</a>, <a href="#rpc-remote-procedure-call">RPC</a>, <a href="#api-application-programming-interface">API</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="cms-content-management-system">
               <a href="#cms-content-management-system">
                 <span class="header-link"></span>
@@ -337,6 +408,15 @@
             </h3>
             <p>A Content Management System (CMS) is a software application that allows users to create, manage, and publish digital content, such as websites, blogs, or documentation, without requiring technical expertise, providing tools for content editing, collaboration, and version control.</p>
             <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="code-coverage">
+              <a href="#code-coverage">
+                <span class="header-link"></span>
+                Code Coverage
+              </a>
+            </h3>
+            <p>Code Coverage is a set of metrics measuring the <strong>percentage of code executed within automated tests</strong> (and <strong>percentage of code not taking part in any tests whatsoever</strong>), saying nothing about the tests <em>quality</em>, their goals, feature/business process coverage or the overall <em>effectiveness</em> of the tests.</p>
+            <p>See: <a href="#software-testing">Software Testing</a>, <a href="#goodharts-law">Goodhart&#39;s Law</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="consistency">
               <a href="#consistency">
@@ -362,6 +442,19 @@
             </p>
             <p>See: <a href="#ddd-domain-driven-design">DDD</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="conway-39-s-law">
+              <a href="#conway-39-s-law">
+                <span class="header-link"></span>
+                Conway&#39;s Law
+              </a>
+            </h3>
+            <p><em>[O]rganizations which design systems (in the broad sense used here) are constrained to produce designs which are copies of the communication structures of these organizations.</em></p>
+            <blockquote>
+              <p>&#45; Melvin E. Conway, <em>How Do Committees Invent?</em></p>
+            </blockquote>
+            <p>Conway&#39;s Law states that organizations design systems that mirror their own communication structures; it suggests that the architecture of a software system will reflect the social structure of the organization that produced it, and vice versa, highlighting the importance of aligning team structures with system architecture to improve collaboration and productivity.</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="correlation-id">
               <a href="#correlation-id">
                 <span class="header-link"></span>
@@ -380,6 +473,18 @@
             <p>Customer Relationship Management (CRM) is a technology for managing a company&#39;s relationships and interactions with current customers and potential customers, typically using data analysis to improve business relationships, customer satisfaction, retention, and sales growth, through personalized communication and targeted marketing</p>
             <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="cynefin-model">
+              <a href="#cynefin-model">
+                <span class="header-link"></span>
+                Cynefin Model
+              </a>
+            </h3>
+            <p>
+              The Cynefin Model helps to identify how difficult a problem is and which strategy to apply; it is a decision model which helps to understand the nature of a given problem or situation, categorizing it into one of five domains: <strong>Simple, Complicated, Complex, Chaotic, and Disorder</strong>, to guide decision-making and problem-solving approaches based on the characteristics of
+              the context.
+            </p>
+            <p>See: <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="databases">
               <a href="#databases">
                 <span class="header-link"></span>
@@ -393,6 +498,23 @@
             <p>
               See: <a href="#ha-high-availability">HA</a>, <a href="#clustering">Clustering</a>, <a href="#sharding">Sharding</a>, <a href="#replication">Replication</a>, <a href="#cap-theorem-consistency-availability-partition-tolerance">CAP Theorem</a>, <a href="#acid-transactions-atomicity-consistency-isolation-durability">ACID Transactions</a>,
               <a href="#base-transactions-basically-available-soft-state-eventually-consistent">BASE Transactions</a>. 👉 <a href="#table-of-contents">back to ToC</a>
+            </p>
+
+            <h3 id="ddd-domain-driven-design">
+              <a href="#ddd-domain-driven-design">
+                <span class="header-link"></span>
+                DDD (Domain Driven Design)
+              </a>
+            </h3>
+            <p>
+              Domain-Driven Design is about <strong>focusing on the business domain</strong> first and foremost, instead of technical details; it highly <strong>discourages using unified/universal models</strong> in favor of <strong>breaking the domain into multiple subdomains</strong>, each having their own <strong>specific model, language, and context</strong>, ensuring that each is highly
+              specialized, according to the business needs and knowledge gathered from <strong>domain experts</strong>.
+            </p>
+            <p>
+              See: <a href="#software-architecture">Software Architecture</a>, <a href="#strategic-ddd">Strategic DDD</a>, <a href="#tactical-ddd">Tactical DDD</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#heuristics">Heuristics</a>, <a href="#ubiquitous-language">Ubiquitous Language</a>, <a href="#context-mapping">Context Mapping</a>, <a href="#core-domain">Core Domain</a>,
+              <a href="#subdomain">Subdomain</a>, <a href="#generic-subdomain">Generic Subdomain</a>, <a href="#supporting-subdomain">Supporting Subdomain</a>, <a href="#entity">Entity</a>, <a href="#anemic-domain-model">Anemic Domain Model</a>, <a href="#value-object">Value Object</a>, <a href="#aggregate">Aggregate</a>, <a href="#aggregate-root">Aggregate Root</a>,
+              <a href="#domain-event">Domain Event</a>, <a href="#domain-service">Domain Service</a>, <a href="#repository">Repository</a>, <a href="#policy">Policy</a>, <a href="#acl-anti-corruption-layer">ACL</a>, <a href="#shared-kernel">Shared Kernel</a>, <a href="#business-archetype">Business Archetype</a>, <a href="#business-process">Business Process</a>,
+              <a href="#business-rule">Business Rule</a>, <a href="#invariant">Invariant</a>, <a href="#event-sourcing">Event Sourcing</a>, <a href="#event-storming">Event Storming</a>, <a href="#cqrs-command-query-responsibility-segregation">CQRS</a>. 👉 <a href="#table-of-contents">back to ToC</a>
             </p>
 
             <h3 id="defensive-programming">
@@ -483,7 +605,19 @@
               </a>
             </h3>
             <p>The Dreyfus Model of Skill Acquisition describes the five stages of learning a new skill: Novice, Advanced Beginner, Competent, Proficient, and Expert, highlighting the progression from following rules to intuitive decision-making, and the importance of experience, practice, and feedback in skill development.</p>
-            <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#unknown-unknowns">Unknown Unknowns</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#cynefin-model">Cynefin Model</a>, <a href="#unknown-unknowns">Unknown Unknowns</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="dry-don-39-t-repeat-yourself">
+              <a href="#dry-don-39-t-repeat-yourself">
+                <span class="header-link"></span>
+                DRY (Don&#39;t Repeat Yourself)
+              </a>
+            </h3>
+            <p>
+              DRY (Don&#39;t Repeat Yourself) is a software development principle that promotes <strong>reducing repetition and redundancy</strong> in code, by <strong>extracting common logic into reusable components</strong>, functions, or modules, to improve consistency and maintainability; however when <strong>misunderstood</strong> (or taken to extreme) it leads to
+              <strong>over-abstraction</strong>, making the codebase more complex and harder to understand
+            </p>
+            <p>See: <a href="#principles">Principles</a>, <a href="#wet-write-everything-twice">WET</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="dto-data-transfer-object">
               <a href="#dto-data-transfer-object">
@@ -492,7 +626,19 @@
               </a>
             </h3>
             <p>A Data Transfer Object (DTO) is an object with <strong>only the data, and no logic</strong> (methods); it carries data between processes or services, typically used to encapsulate and disallow leaking abstraction of one module to another.</p>
-            <p>See: <a href="#web-services">Web Services</a>, <a href="#ddd-domain-driven-design">DDD</a>, <a href="#entity">Entity</a>, <a href="#vo-value-object">VO</a>, <a href="#acl-anti-corruption-layer">ACL</a>, <a href="#encapsulation">Encapsulation</a>, <a href="#abstraction-leak">Abstraction Leak</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#web-services">Web Services</a>, <a href="#ddd-domain-driven-design">DDD</a>, <a href="#entity">Entity</a>, <a href="#value-object">Value Object</a>, <a href="#acl-anti-corruption-layer">ACL</a>, <a href="#encapsulation">Encapsulation</a>, <a href="#abstraction-leak">Abstraction Leak</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="entity">
+              <a href="#entity">
+                <span class="header-link"></span>
+                Entity
+              </a>
+            </h3>
+            <p>
+              An Entity is a <strong>distinct and identifiable object</strong> (which has an ID and changes within time, unlike a <em>Value Object</em>) in a domain model; it represents a real-world concept with a <strong>unique identity</strong>, properties, and behavior, and is typically used to model core business objects that have a long lifespan and require <strong>persistent</strong> state,
+              such as users, products, or orders.
+            </p>
+            <p>See: <a href="#ddd-domain-driven-design">DDD</a>, <a href="#anemic-domain-model">Anemic Domain Model</a>, <a href="#value-object">Value Object</a>, <a href="#aggregate">Aggregate</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#ubiquitous-language">Ubiquitous Language</a>, <a href="#acl-anti-corruption-layer">ACL</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="erp-enterprise-resource-planning">
               <a href="#erp-enterprise-resource-planning">
@@ -560,6 +706,31 @@
             <p>Fitness functions allow to measure how a given system achieves <strong>high-level goals</strong>; they are metrics used to evaluate how well an existing system&#39;s architecture meets specified requirements or goals, guiding design and development decisions by providing quantitative feedback on performance, reliability, and other critical attributes.</p>
             <p>See: <a href="#software-architecture">Software Architecture</a>, <a href="#dora-metrics">DORA metrics</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="frontend">
+              <a href="#frontend">
+                <span class="header-link"></span>
+                Frontend
+              </a>
+            </h3>
+            <p>The frontend is the part of a software application that users interact with directly, typically through a user interface, such as a web browser or mobile app, enabling users to view and interact with content, data, and services, and providing a way to input data, perform actions, and receive feedback.</p>
+            <p>
+              See: <a href="#client-server-model">Client-Server Model</a>, <a href="#csr-client-side-rendering">CSR</a>, <a href="#ssr-server-side-rendering">SSR</a>, <a href="#spa-single-page-application">SPA</a>, <a href="#pwa-progressive-web-app">PWA</a>, <a href="#ssg-static-site-generator">SSG</a>, <a href="#jamstack">JAMstack</a>, <a href="#seo-search-engine-optimization">SEO</a>. 👉
+              <a href="#table-of-contents">back to ToC</a>
+            </p>
+
+            <h3 id="gall-39-s-law">
+              <a href="#gall-39-s-law">
+                <span class="header-link"></span>
+                Gall&#39;s Law
+              </a>
+            </h3>
+            <p><em>A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system.</em></p>
+            <blockquote>
+              <p>&#45; John Gall</p>
+            </blockquote>
+            <p>Gall&#39;s Law suggests that successful complex systems are typically built from simpler, functioning prototypes, rather than attempting to design and implement complex systems from scratch</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="god-class">
               <a href="#god-class">
                 <span class="header-link"></span>
@@ -572,6 +743,19 @@
             </p>
             <p>See: <a href="#anti-patterns">Anti-patterns</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#domain-model">Domain Model</a>, <a href="#legacy-code">Legacy Code</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="goodhart-39-s-law">
+              <a href="#goodhart-39-s-law">
+                <span class="header-link"></span>
+                Goodhart&#39;s Law
+              </a>
+            </h3>
+            <p><em>When a measure becomes a target, it ceases to be a good measure.</em></p>
+            <blockquote>
+              <p>&#45; Charles Goodhart</p>
+            </blockquote>
+            <p>Goodhart&#39;s Law states that when a measure becomes a target, it loses its effectiveness as a measure, as people will optimize for the target rather than the underlying goal, leading to unintended consequences, distortions, and gaming of the system.</p>
+            <p>See: <a href="#principles">Principles</a>, <a href="#code-coverage">Code Coverage</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="heuristics">
               <a href="#heuristics">
                 <span class="header-link"></span>
@@ -580,6 +764,19 @@
             </h3>
             <p>Heuristics are <strong>rules of thumb</strong> that help in making decisions; they are practical guidelines or strategies that are not guaranteed to be optimal or perfect, but are useful in <strong>problem solving</strong> and decision-making under uncertainty or with limited information; usually multiple heuristics are combined to make a decision.</p>
             <p>See: <a href="#ddd-domain-driven-design">DDD</a>, <a href="#subdomain">Subdomain</a>, <a href="#bounded-context">Bounded Context</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="hofstadter-39-s-law">
+              <a href="#hofstadter-39-s-law">
+                <span class="header-link"></span>
+                Hofstadter&#39;s Law
+              </a>
+            </h3>
+            <p><em>It always takes longer than you expect, even when you take into account Hofstadter&#39;s Law.</em></p>
+            <blockquote>
+              <p>&#45; Douglas Hofstadter</p>
+            </blockquote>
+            <p>Hofstadter&#39;s Law highlighting the inherent difficulty in accurately estimating the time required to complete complex tasks, particularly in software development and project management.</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="http-hypertext-transfer-protocol">
               <a href="#http-hypertext-transfer-protocol">
@@ -592,6 +789,27 @@
               See: <a href="#network-protocols">Network Protocols</a>, <a href="#web-services">Web Services</a>, <a href="#client-server-model">Client-Server Model</a>, <a href="#rest-representational-state-transfer">REST</a>, <a href="#soap-simple-object-access-protocol">SOAP</a>, <a href="#rpc-remote-procedure-call">RPC</a>, <a href="#webhook">Webhook</a>. 👉
               <a href="#table-of-contents">back to ToC</a>
             </p>
+
+            <h3 id="infrastructure">
+              <a href="#infrastructure">
+                <span class="header-link"></span>
+                Infrastructure
+              </a>
+            </h3>
+            <p>Infrastructure is the foundational hardware, networking, and software environments that support and host applications, ensuring their availability, performance, and scalability.</p>
+            <p>
+              See: <a href="#devops">DevOps</a>, <a href="#cloud-native">Cloud-native</a>, <a href="#cloud-computing">Cloud Computing</a>, <a href="#edge-computing">Edge Computing</a>, <a href="#serverless">Serverless</a>, <a href="#cdn-content-delivery-network">CDN</a>, <a href="#on-premise">On-premise</a>, <a href="#iaas-infrastructure-as-a-service">IaaS (Infrastructure as a Service)</a>. 👉
+              <a href="#table-of-contents">back to ToC</a>
+            </p>
+
+            <h3 id="invariant">
+              <a href="#invariant">
+                <span class="header-link"></span>
+                Invariant
+              </a>
+            </h3>
+            <p>An <strong>Invariant is a condition that must always be true</strong>, regardless of the state of the system; it is a rule or constraint that should never be violated, ensuring the correctness and consistency of the system.</p>
+            <p>See: <a href="#reactivity">Reactivity</a>, <a href="#ddd-domain-driven-design">DDD</a>, <a href="#business-rule">Business Rule</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="isolate-failure">
               <a href="#isolate-failure">
@@ -610,6 +828,24 @@
             </h3>
             <p>IT Service Management (ITSM) is a set of practices and tools for managing IT services and aligning them with business needs, focusing on delivering value to customers, optimizing processes, and ensuring service quality, typically using ITIL (Information Technology Infrastructure Library) as a framework.</p>
             <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="jamstack">
+              <a href="#jamstack">
+                <span class="header-link"></span>
+                JAMstack
+              </a>
+            </h3>
+            <p>JavaScript, API and Markup, which means everything and nothing 🤨</p>
+            <p>See: <a href="#frontend">Frontend</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="kiss-keep-it-simple-stupid">
+              <a href="#kiss-keep-it-simple-stupid">
+                <span class="header-link"></span>
+                KISS (Keep It Simple, Stupid)
+              </a>
+            </h3>
+            <p>KISS (Keep It Simple, Stupid) is a design principle that suggests keeping systems, processes, or solutions <strong>as simple as possible</strong>, <strong>avoiding unnecessary complexity</strong>, features, or components, to improve clarity, maintainability, and usability, and reduce the risk of confusion or errors.</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="kolb-39-s-learning-cycle">
               <a href="#kolb-39-s-learning-cycle">
@@ -661,6 +897,15 @@
             </p>
             <p>See: <a href="#observability">Observability</a>, <a href="#devops">DevOps</a>, <a href="#distributed-tracing">Distributed Tracing</a>, <a href="#performance">Performance</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="moore-39-s-law">
+              <a href="#moore-39-s-law">
+                <span class="header-link"></span>
+                Moore&#39;s Law
+              </a>
+            </h3>
+            <p>Moore&#39;s Law is the observation that the number of transistors on a microchip doubles approximately every two years, leading to an exponential increase in computing power and a decrease in relative cost, which has significantly influenced the growth of technology and the capabilities of electronic devices over time.</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="mvp-minimum-viable-product">
               <a href="#mvp-minimum-viable-product">
                 <span class="header-link"></span>
@@ -670,6 +915,19 @@
             <p>A Minimum Viable Product (MVP) is a version of a new product that includes only the essential features, allowing to quickly validate the idea, gather feedback, and learn from real-world usage, while minimizing development costs and time-to-market.</p>
             <p>See: <a href="#lean-startup">Lean Startup</a>, <a href="#ttm-time-to-market">TTM</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="ninety-ninety-rule">
+              <a href="#ninety-ninety-rule">
+                <span class="header-link"></span>
+                Ninety-Ninety Rule
+              </a>
+            </h3>
+            <p><em>The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time.</em></p>
+            <blockquote>
+              <p>&#45; Tom Cargill</p>
+            </blockquote>
+            <p>Software development projects to take longer than initially estimated, due to unforeseen complexities, edge cases, and challenges that arise during the final stages of development.</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="observability">
               <a href="#observability">
                 <span class="header-link"></span>
@@ -678,6 +936,19 @@
             </h3>
             <p>Observability is about understanding <strong>what&#39;s happening inside a system</strong> by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.</p>
             <p>See: <a href="#devops">DevOps</a>, <a href="#monitoring">Monitoring</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="occam-39-s-razor">
+              <a href="#occam-39-s-razor">
+                <span class="header-link"></span>
+                Occam&#39;s Razor
+              </a>
+            </h3>
+            <p><em>Among competing hypotheses, the one with the fewest assumptions should be selected.</em></p>
+            <blockquote>
+              <p>&#45; William of Ockham</p>
+            </blockquote>
+            <p>Occam&#39;s Razor is a problem-solving principle that suggests selecting the simplest explanation or solution when faced with multiple competing hypotheses, emphasizing the importance of minimizing assumptions and complexity to improve clarity, understanding, and efficiency.</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="off-the-shelf-software">
               <a href="#off-the-shelf-software">
@@ -697,6 +968,31 @@
             <p>Overfetching occurs when an API returns more data than necessary for a client&#39;s request, leading to inefficiencies by providing extra information that the client doesn&#39;t need or use, often seen in traditional REST APIs when the response can&#39;t be precisely tailored to the client’s requirements.</p>
             <p>See: <a href="#web-services">Web Services</a>, <a href="#graphql">GraphQL</a>, <a href="#rest-representational-state-transfer">REST</a>, <a href="#underfetching">Underfetching</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="p2p-peer-to-peer">
+              <a href="#p2p-peer-to-peer">
+                <span class="header-link"></span>
+                P2P (Peer to Peer)
+              </a>
+            </h3>
+            <p>Peer-to-Peer (P2P) is when <strong>two parties communicate directly</strong>; it&#39;s a decentralized communication model where each participant can act as both a client and a server, enabling resource sharing between nodes <strong>without the need for a central server</strong>, often used in file sharing, messaging, and content distribution applications.</p>
+            <p>See: <a href="#web-services">Web Services</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="pareto-principle">
+              <a href="#pareto-principle">
+                <span class="header-link"></span>
+                Pareto Principle
+              </a>
+            </h3>
+            <p><em>For many events, roughly 80% of the effects come from 20% of the causes.</em></p>
+            <blockquote>
+              <p>&#45; Vilfredo Pareto</p>
+            </blockquote>
+            <p>
+              The Pareto Principle (also known as the <strong><em>80/20 rule</em></strong
+              >) states that roughly 80% of the effects come from 20% of the causes, suggesting that a minority of inputs or efforts often lead to the majority of results or outcomes, and can be applied to various areas, such as productivity, decision-making, and problem-solving.
+            </p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="parkinson-39-s-law">
               <a href="#parkinson-39-s-law">
                 <span class="header-link"></span>
@@ -708,7 +1004,19 @@
               <p>&#45; Cyril Northcote Parkinson</p>
             </blockquote>
             <p>Parkinson&#39;s Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.</p>
-            <p>See: <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#principles">Principles</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="principles">
+              <a href="#principles">
+                <span class="header-link"></span>
+                Principles
+              </a>
+            </h3>
+            <p>Principles are <strong>fundamental rules or guidelines</strong> that guide behavior, decisions, and actions, providing a foundation for understanding and solving problems</p>
+            <p>
+              See: <a href="#anti-patterns">Anti-patterns</a>, <a href="#conways-law">Conway&#39;s Law</a>, <a href="#goodharts-law">Goodhart&#39;s Law</a>, <a href="#robustness-principle-postels-law">Robustness Principle (Postel&#39;s Law)</a>, <a href="#brooks-law">Brooks&#39; Law</a>, <a href="#parkinsons-law">Parkinson&#39;s Law</a>, <a href="#hofstadters-law">Hofstadter&#39;s Law</a>,
+              <a href="#moores-law">Moore&#39;s Law</a>, <a href="#amdahls-law">Amdahl&#39;s Law</a>, <a href="#galls-law">Gall&#39;s Law</a>, <a href="#ninety-ninety-rule">Ninety-Ninety Rule</a>, <a href="#pareto-principle">Pareto Principle</a>, <a href="#occams-razor">Occam&#39;s Razor</a>. 👉 <a href="#table-of-contents">back to ToC</a>
+            </p>
 
             <h3 id="protocol">
               <a href="#protocol">
@@ -763,7 +1071,7 @@
               Postel&#39;s Law (also known as the Robustness Principle) is a design guideline for software development that encourages <strong>leniency and tolerance in handling input</strong> and <strong>strictness in generating output</strong>, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected
               data.
             </p>
-            <p>See: <a href="#defensive-programming">Defensive Programming</a>, <a href="#web-services">Web Services</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+            <p>See: <a href="#principles">Principles</a>, <a href="#defensive-programming">Defensive Programming</a>, <a href="#web-services">Web Services</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="scm-supply-chain-management">
               <a href="#scm-supply-chain-management">
@@ -773,6 +1081,15 @@
             </h3>
             <p>Supply Chain Management (SCM) is the management of the flow of goods and services, involving the movement and storage of raw materials, work-in-progress inventory, and finished products, from the point of origin to the point of consumption, optimizing processes, reducing costs, and improving collaboration between suppliers, manufacturers, and customers.</p>
             <p>See: <a href="#off-the-shelf-software">Off-the-shelf Software</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="seo-search-engine-optimization">
+              <a href="#seo-search-engine-optimization">
+                <span class="header-link"></span>
+                SEO (Search Engine Optimization)
+              </a>
+            </h3>
+            <p>SEO are practices aiming at optimizing websites to rank higher in search engine results (e.g. core web vitals, A11y etc), improving visibility, traffic, and user engagement, by following best practices, and ensuring technical compliance with search engine guidelines.</p>
+            <p>See: <a href="#frontend">Frontend</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <h3 id="single-point-of-failure">
               <a href="#single-point-of-failure">
@@ -869,6 +1186,27 @@
             </blockquote>
             <p>See: <a href="#kolbs-learning-cycle">Kolb&#39;s Learning Cycle</a>, <a href="#dreyfus-model-of-skill-acquisition">Dreyfus Model of Skill Acquisition</a>, <a href="#law-of-triviality-bikeshedding">Law of Triviality (Bikeshedding)</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
+            <h3 id="upstreams-and-downstreams">
+              <a href="#upstreams-and-downstreams">
+                <span class="header-link"></span>
+                Upstreams and Downstreams
+              </a>
+            </h3>
+            <p><strong>Upstream is the source</strong>/provider of data, events (or even git commits) etc, while **Downstream is the destination / consumer / subscriber etc; Downstream directly depends on the upstream, forming a unidirectional data flow</p>
+            <p>See: <a href="#reactivity">Reactivity</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="value-object">
+              <a href="#value-object">
+                <span class="header-link"></span>
+                Value Object
+              </a>
+            </h3>
+            <p>
+              A Value Object <strong>represents a domain-related value along with its logic without having any identity</strong>; having no identity (no ID property, <strong>unlike an <em>Entity</em></strong
+              >) means that Value Objects cannot change over time, have no lifecycle, hence are <strong>immutable</strong>, making them ideal to be reused in memory across different objects having the same value (as they cannot change); examples: a <code>skill</code> in a HR system, <code>money</code> in a financial system etc.
+            </p>
+            <p>See: <a href="#ddd-domain-driven-design">DDD</a>, <a href="#entity">Entity</a>, <a href="#aggregate">Aggregate</a>, <a href="#bounded-context">Bounded Context</a>, <a href="#ubiquitous-language">Ubiquitous Language</a>, <a href="#acl-anti-corruption-layer">ACL</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
             <h3 id="webhook">
               <a href="#webhook">
                 <span class="header-link"></span>
@@ -877,6 +1215,24 @@
             </h3>
             <p>A webhook is like a <em>callback over the network</em>; it&#39;s user-defined (usually HTTP POST) callback that automatically sends real-time data or notifications from one system to another when a specific event occurs, enabling event-driven communication and automation between systems, such as triggering notifications, updates, or data synchronization.</p>
             <p>See: <a href="#web-services">Web Services</a>, <a href="#http-hypertext-transfer-protocol">HTTP</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="wet-write-everything-twice">
+              <a href="#wet-write-everything-twice">
+                <span class="header-link"></span>
+                WET (Write Everything Twice)
+              </a>
+            </h3>
+            <p>WET (Write Everything Twice), an opposite of DRY, is a humorous response to the DRY principle, suggesting that <strong>duplication is sometimes preferable to the wrong abstraction</strong>, and that <strong>clarity and readability</strong> should be prioritized over premature optimization or over-engineering.</p>
+            <p>See: <a href="#principles">Principles</a>, <a href="#dry-dont-repeat-yourself">DRY</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
+
+            <h3 id="yagni-you-aren-39-t-gonna-need-it">
+              <a href="#yagni-you-aren-39-t-gonna-need-it">
+                <span class="header-link"></span>
+                YAGNI (You Aren&#39;t Gonna Need It)
+              </a>
+            </h3>
+            <p>YAGNI (You Aren&#39;t Gonna Need It) is a software development principle that advises against implementing features or functionality <strong>until they are absolutely necessary</strong>, promoting a focus on <strong>current requirements</strong> to reduce complexity, avoid wasted effort, and improve maintainability by <strong>preventing over-engineering</strong>.</p>
+            <p>See: <a href="#principles">Principles</a>. 👉 <a href="#table-of-contents">back to ToC</a></p>
 
             <hr />
             <div class="blog-footer">

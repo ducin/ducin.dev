@@ -30,7 +30,7 @@ const generateEntry = (entry) => {
     throw new Error(`Entry "${entry.name}" is missing a description`)
   }
 
-  const related = [...(entry.tags ?? []), ...(entry.seeAlso ?? [])]
+  const related = [...(entry.belongsTo ?? []), ...(entry.seeAlso ?? [])]
 
   if (related.length == 0) {
     throw new Error(`Entry "${entry.name}" has missing "see" related entries`)
@@ -54,16 +54,36 @@ ${seeAlso}
 }
 
 const generateMarkdown = (entries) => {
-  const resultEntries = entries
+  const doneEntries = entries
     .filter(entry => entry.description)
-    .filter(entry => entry.seeAlso || entry.tags)
+    .filter(entry => entry.seeAlso || entry.belongsTo)
     .sort((e1, e2) => {
       // remove all non-alphanumeric characters
       const name1 = e1.name.replace(/[^a-zA-Z0-9]/g, '')
       const name2 = e2.name.replace(/[^a-zA-Z0-9]/g, '')
       return name1.localeCompare(name2)
     })
+  const resultEntries = doneEntries
     .map(generateEntry)
+  
+  const allEntriesDict = entries.reduce((acc, entry) => {
+    if (!acc[entry]) {
+      acc[entry.name] = 0
+    }
+    acc[entry.name] += 1
+    return acc
+  }, {})
+
+  const repetitions = Object.entries(allEntriesDict).filter(([name, count]) => count > 1)
+  if (Object.keys(repetitions).length > 0){
+    console.log(chalk.red(`Repetitions (${Object.keys(repetitions).length}): ${repetitions.map(([name, count]) => `${name} (${count})`).join(', ')}`))
+  }
+
+  const doneEntriesSet = new Set(doneEntries.map(entry => entry.name))
+  const undoneEntries = entries.filter(entry => !doneEntriesSet.has(entry.name))
+  if (undoneEntries.length > 0) {
+    console.log(chalk.red(`\nUndone entries (${undoneEntries.length}): ${undoneEntries.map(entry => entry.name).join(' | ')}`))
+  }
 
   console.log(chalk.green(`Summary
 all entries: ${chalk.yellow(entries.length)}

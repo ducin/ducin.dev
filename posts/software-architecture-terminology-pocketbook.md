@@ -36,11 +36,23 @@ An Architecture Decision Record (ADR) allows to **make future developers underst
 
 See: [Architecture Documentation](#architecture-documentation), [C4 Model](#c4-model), [RFC](#rfc-request-for-comments). 👉 [back to ToC](#table-of-contents)
 
+### Aggregate
+
+An Aggregate is a **cluster of domain objects** that can be treated as a single unit; the most important pattern in tactical DDD; it is a collection of related entities and value objects that are bound together by a root entity, which acts as a gateway to the aggregate, ensuring consistency and encapsulation of domain logic within the boundary of the aggregate
+
+See: [DDD](#ddd-domain-driven-design). 👉 [back to ToC](#table-of-contents)
+
 ### Amdahl's Law
 
 Amdahl's Law is a formula that illustrates the **potential speedup** of a task from **parallel processing**, stating that the maximum improvement is limited by the fraction of the task that cannot be parallelized; as such, **improvements diminish as the non-parallelizable portion becomes more significant**.
 
-See: [Parallelism](#parallelism), [Concurrency](#concurrency), [Performance](#performance). 👉 [back to ToC](#table-of-contents)
+See: [Principles](#principles), [Parallelism](#parallelism), [Concurrency](#concurrency), [Performance](#performance). 👉 [back to ToC](#table-of-contents)
+
+### Anemic Domain Model
+
+An Anemic Domain Model (or Anemic Entity) is an **anti-pattern** where the domain model classes have **barely any behavior** (only data properties) and are **separated from the business logic** (which is placed outside, e.g. in services); it allows important **domain rules and behavior to _leak_** and be implemented in different, often random places, hence **lacking encapsulation** and **cohesion**, eventually leading to being tough to maintain, test, and evolve**.
+
+See: [DDD](#ddd-domain-driven-design), [Anti-patterns](#anti-patterns), [Encapsulation](#encapsulation), [Domain Model](#domain-model), [Abstraction Leak](#abstraction-leak), [Cohesion](#cohesion), [Entity](#entity). 👉 [back to ToC](#table-of-contents)
 
 ### Anti-patterns
 
@@ -49,6 +61,12 @@ _An antipattern is just like a pattern, except that instead of a solution it giv
 > &#45; Andrew Koenig
 
 See: [God Class](#god-class), [Abstraction Leak](#abstraction-leak), [n+1 Problem](#n1-problem), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding). 👉 [back to ToC](#table-of-contents)
+
+### API Contract
+
+An API Contract **defines how providers and consumers communicate**; it's a specification including the expected behavior, inputs, outputs, and constraints of an API; either formalized in a contract file (e.g. OpenAPI/Swagger, Pact, RAML) or informally (un)documented.
+
+See: [API](#api-application-programming-interface), [Web Services](#web-services), [Bounded Context](#bounded-context), [ACL](#acl-anti-corruption-layer), [Consumer-Driven Contracts](#consumer-driven-contracts), [Versioning](#versioning), [Contract Testing](#contract-testing). 👉 [back to ToC](#table-of-contents)
 
 ### Architecture Documentation
 
@@ -82,7 +100,7 @@ _Adding manpower to a late software project makes it later._
 
 Brooks' Law states that adding more people to a late software project will only make it later, due to the time required for new team members to learn the project, communicate effectively, and coordinate work, leading to diminishing returns and increased complexity, rather than accelerating progress.
 
-See: [Team Topologies](#team-topologies). 👉 [back to ToC](#table-of-contents)
+See: [Principles](#principles), [Team Topologies](#team-topologies). 👉 [back to ToC](#table-of-contents)
 
 ### C4 Model
 
@@ -102,11 +120,23 @@ The Circuit Breaker Pattern disallows to kick someone who's currently down; it's
 
 See: [Microservices](#microservices), [Rate Limiting](#rate-limiting), [Backpressure](#backpressure), [Backoff](#backoff). 👉 [back to ToC](#table-of-contents)
 
+### Client-Server Model
+
+The Client-Server Model is a computing architecture (or structure) where tasks and responsibilities are divided between clients and servers, with clients requesting services or resources from servers, which process and fulfill these requests.
+
+See: [Web Services](#web-services), [Frontend](#frontend), [Web Services](#web-services), [HTTP](#http-hypertext-transfer-protocol), [RPC](#rpc-remote-procedure-call), [API](#api-application-programming-interface). 👉 [back to ToC](#table-of-contents)
+
 ### CMS (Content Management System)
 
 A Content Management System (CMS) is a software application that allows users to create, manage, and publish digital content, such as websites, blogs, or documentation, without requiring technical expertise, providing tools for content editing, collaboration, and version control.
 
 See: [Off-the-shelf Software](#off-the-shelf-software). 👉 [back to ToC](#table-of-contents)
+
+### Code Coverage
+
+Code Coverage is a set of metrics measuring the **percentage of code executed within automated tests** (and **percentage of code not taking part in any tests whatsoever**), saying nothing about the tests _quality_, their goals, feature/business process coverage or the overall _effectiveness_ of the tests.
+
+See: [Software Testing](#software-testing), [Goodhart's Law](#goodharts-law). 👉 [back to ToC](#table-of-contents)
 
 ### Consistency
 
@@ -120,6 +150,16 @@ Context Mapping is about **integrating different Bounded Contexts**; it' i's a s
 
 See: [DDD](#ddd-domain-driven-design). 👉 [back to ToC](#table-of-contents)
 
+### Conway's Law
+
+_[O]rganizations which design systems (in the broad sense used here) are constrained to produce designs which are copies of the communication structures of these organizations._
+
+> &#45; Melvin E. Conway, _How Do Committees Invent?_
+
+Conway's Law states that organizations design systems that mirror their own communication structures; it suggests that the architecture of a software system will reflect the social structure of the organization that produced it, and vice versa, highlighting the importance of aligning team structures with system architecture to improve collaboration and productivity.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
+
 ### Correlation ID
 
 A Correlation ID is a **unique identifier** that gets **attached to each request** made to a distributed system, allowing for easier tracking and correlation of logs and events, and enabling the troubleshooting of issues across multiple services.
@@ -132,6 +172,12 @@ Customer Relationship Management (CRM) is a technology for managing a company's 
 
 See: [Off-the-shelf Software](#off-the-shelf-software). 👉 [back to ToC](#table-of-contents)
 
+### Cynefin Model
+
+The Cynefin Model helps to identify how difficult a problem is and which strategy to apply; it is a decision model which helps to understand the nature of a given problem or situation, categorizing it into one of five domains: **Simple, Complicated, Complex, Chaotic, and Disorder**, to guide decision-making and problem-solving approaches based on the characteristics of the context.
+
+See: [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition). 👉 [back to ToC](#table-of-contents)
+
 ### Databases
 
 _Data is a precious thing and will last longer than the systems themselves._
@@ -139,6 +185,12 @@ _Data is a precious thing and will last longer than the systems themselves._
 > &#45; Tim Berners-Lee
 
 See: [HA](#ha-high-availability), [Clustering](#clustering), [Sharding](#sharding), [Replication](#replication), [CAP Theorem](#cap-theorem-consistency-availability-partition-tolerance), [ACID Transactions](#acid-transactions-atomicity-consistency-isolation-durability), [BASE Transactions](#base-transactions-basically-available-soft-state-eventually-consistent). 👉 [back to ToC](#table-of-contents)
+
+### DDD (Domain Driven Design)
+
+Domain-Driven Design is about **focusing on the business domain** first and foremost, instead of technical details; it highly **discourages using unified/universal models** in favor of **breaking the domain into multiple subdomains**, each having their own **specific model, language, and context**, ensuring that each is highly specialized, according to the business needs and knowledge gathered from **domain experts**.
+
+See: [Software Architecture](#software-architecture), [Strategic DDD](#strategic-ddd), [Tactical DDD](#tactical-ddd), [Bounded Context](#bounded-context), [Heuristics](#heuristics), [Ubiquitous Language](#ubiquitous-language), [Context Mapping](#context-mapping), [Core Domain](#core-domain), [Subdomain](#subdomain), [Generic Subdomain](#generic-subdomain), [Supporting Subdomain](#supporting-subdomain), [Entity](#entity), [Anemic Domain Model](#anemic-domain-model), [Value Object](#value-object), [Aggregate](#aggregate), [Aggregate Root](#aggregate-root), [Domain Event](#domain-event), [Domain Service](#domain-service), [Repository](#repository), [Policy](#policy), [ACL](#acl-anti-corruption-layer), [Shared Kernel](#shared-kernel), [Business Archetype](#business-archetype), [Business Process](#business-process), [Business Rule](#business-rule), [Invariant](#invariant), [Event Sourcing](#event-sourcing), [Event Storming](#event-storming), [CQRS](#cqrs-command-query-responsibility-segregation). 👉 [back to ToC](#table-of-contents)
 
 ### Defensive Programming
 
@@ -186,13 +238,25 @@ See: [DevOps](#devops), [Fitness Functions](#fitness-functions). 👉 [back to T
 
 The Dreyfus Model of Skill Acquisition describes the five stages of learning a new skill: Novice, Advanced Beginner, Competent, Proficient, and Expert, highlighting the progression from following rules to intuitive decision-making, and the importance of experience, practice, and feedback in skill development.
 
-See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [Unknown Unknowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
+See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [Cynefin Model](#cynefin-model), [Unknown Unknowns](#unknown-unknowns). 👉 [back to ToC](#table-of-contents)
+
+### DRY (Don't Repeat Yourself)
+
+DRY (Don't Repeat Yourself) is a software development principle that promotes **reducing repetition and redundancy** in code, by **extracting common logic into reusable components**, functions, or modules, to improve consistency and maintainability; however when **misunderstood** (or taken to extreme) it leads to **over-abstraction**, making the codebase more complex and harder to understand
+
+See: [Principles](#principles), [WET](#wet-write-everything-twice). 👉 [back to ToC](#table-of-contents)
 
 ### DTO (Data Transfer Object)
 
 A Data Transfer Object (DTO) is an object with **only the data, and no logic** (methods); it carries data between processes or services, typically used to encapsulate and disallow leaking abstraction of one module to another.
 
-See: [Web Services](#web-services), [DDD](#ddd-domain-driven-design), [Entity](#entity), [VO](#vo-value-object), [ACL](#acl-anti-corruption-layer), [Encapsulation](#encapsulation), [Abstraction Leak](#abstraction-leak). 👉 [back to ToC](#table-of-contents)
+See: [Web Services](#web-services), [DDD](#ddd-domain-driven-design), [Entity](#entity), [Value Object](#value-object), [ACL](#acl-anti-corruption-layer), [Encapsulation](#encapsulation), [Abstraction Leak](#abstraction-leak). 👉 [back to ToC](#table-of-contents)
+
+### Entity
+
+An Entity is a **distinct and identifiable object** (which has an ID and changes within time, unlike a _Value Object_) in a domain model; it represents a real-world concept with a **unique identity**, properties, and behavior, and is typically used to model core business objects that have a long lifespan and require **persistent** state, such as users, products, or orders.
+
+See: [DDD](#ddd-domain-driven-design), [Anemic Domain Model](#anemic-domain-model), [Value Object](#value-object), [Aggregate](#aggregate), [Bounded Context](#bounded-context), [Ubiquitous Language](#ubiquitous-language), [ACL](#acl-anti-corruption-layer). 👉 [back to ToC](#table-of-contents)
 
 ### ERP (Enterprise Resource Planning)
 
@@ -236,11 +300,37 @@ Fitness functions allow to measure how a given system achieves **high-level goal
 
 See: [Software Architecture](#software-architecture), [DORA metrics](#dora-metrics). 👉 [back to ToC](#table-of-contents)
 
+### Frontend
+
+The frontend is the part of a software application that users interact with directly, typically through a user interface, such as a web browser or mobile app, enabling users to view and interact with content, data, and services, and providing a way to input data, perform actions, and receive feedback.
+
+See: [Client-Server Model](#client-server-model), [CSR](#csr-client-side-rendering), [SSR](#ssr-server-side-rendering), [SPA](#spa-single-page-application), [PWA](#pwa-progressive-web-app), [SSG](#ssg-static-site-generator), [JAMstack](#jamstack), [SEO](#seo-search-engine-optimization). 👉 [back to ToC](#table-of-contents)
+
+### Gall's Law
+
+_A complex system that works is invariably found to have evolved from a simple system that worked. A complex system designed from scratch never works and cannot be patched up to make it work. You have to start over with a working simple system._
+
+> &#45; John Gall
+
+Gall's Law suggests that successful complex systems are typically built from simpler, functioning prototypes, rather than attempting to design and implement complex systems from scratch
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
+
 ### God Class
 
 A God Class (also an object, component, interface etc) is a class that **knows too much or does too much**; it's an anti-pattern where a single class becomes overly complex, bloated, and takes on too many responsibilities (hence significantly strengthening **tight coupling**), violating the Single Responsibility Principle and making the codebase harder to maintain, test, and understand; e.g. a **User class being reused across various different modules**, yet supporting all of them, thus knowing a little bit about each module, eventually being unmanageable because of tight coupling.
 
 See: [Anti-patterns](#anti-patterns), [Bounded Context](#bounded-context), [Domain Model](#domain-model), [Legacy Code](#legacy-code). 👉 [back to ToC](#table-of-contents)
+
+### Goodhart's Law
+
+_When a measure becomes a target, it ceases to be a good measure._
+
+> &#45; Charles Goodhart
+
+Goodhart's Law states that when a measure becomes a target, it loses its effectiveness as a measure, as people will optimize for the target rather than the underlying goal, leading to unintended consequences, distortions, and gaming of the system.
+
+See: [Principles](#principles), [Code Coverage](#code-coverage). 👉 [back to ToC](#table-of-contents)
 
 ### Heuristics
 
@@ -248,11 +338,33 @@ Heuristics are **rules of thumb** that help in making decisions; they are practi
 
 See: [DDD](#ddd-domain-driven-design), [Subdomain](#subdomain), [Bounded Context](#bounded-context). 👉 [back to ToC](#table-of-contents)
 
+### Hofstadter's Law
+
+_It always takes longer than you expect, even when you take into account Hofstadter's Law._
+
+> &#45; Douglas Hofstadter
+
+Hofstadter's Law highlighting the inherent difficulty in accurately estimating the time required to complete complex tasks, particularly in software development and project management.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
+
 ### HTTP (Hypertext Transfer Protocol)
 
 HTTP (Hypertext Transfer Protocol) is the foundation of web communication, defining how clients (like browsers) and servers exchange information over the internet, using requests and responses to retrieve or send data, typically operating over TCP and supporting methods like GET, POST, PUT, and DELETE for interacting with resources.
 
 See: [Network Protocols](#network-protocols), [Web Services](#web-services), [Client-Server Model](#client-server-model), [REST](#rest-representational-state-transfer), [SOAP](#soap-simple-object-access-protocol), [RPC](#rpc-remote-procedure-call), [Webhook](#webhook). 👉 [back to ToC](#table-of-contents)
+
+### Infrastructure
+
+Infrastructure is the foundational hardware, networking, and software environments that support and host applications, ensuring their availability, performance, and scalability.
+
+See: [DevOps](#devops), [Cloud-native](#cloud-native), [Cloud Computing](#cloud-computing), [Edge Computing](#edge-computing), [Serverless](#serverless), [CDN](#cdn-content-delivery-network), [On-premise](#on-premise), [IaaS (Infrastructure as a Service)](#iaas-infrastructure-as-a-service). 👉 [back to ToC](#table-of-contents)
+
+### Invariant
+
+An **Invariant is a condition that must always be true**, regardless of the state of the system; it is a rule or constraint that should never be violated, ensuring the correctness and consistency of the system.
+
+See: [Reactivity](#reactivity), [DDD](#ddd-domain-driven-design), [Business Rule](#business-rule). 👉 [back to ToC](#table-of-contents)
 
 ### Isolate Failure
 
@@ -265,6 +377,18 @@ See: [Resilience](#resilience), [Defensive Programming](#defensive-programming),
 IT Service Management (ITSM) is a set of practices and tools for managing IT services and aligning them with business needs, focusing on delivering value to customers, optimizing processes, and ensuring service quality, typically using ITIL (Information Technology Infrastructure Library) as a framework.
 
 See: [Off-the-shelf Software](#off-the-shelf-software). 👉 [back to ToC](#table-of-contents)
+
+### JAMstack
+
+JavaScript, API and Markup, which means everything and nothing 🤨
+
+See: [Frontend](#frontend). 👉 [back to ToC](#table-of-contents)
+
+### KISS (Keep It Simple, Stupid)
+
+KISS (Keep It Simple, Stupid) is a design principle that suggests keeping systems, processes, or solutions **as simple as possible**, **avoiding unnecessary complexity**, features, or components, to improve clarity, maintainability, and usability, and reduce the risk of confusion or errors.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
 
 ### Kolb's Learning Cycle
 
@@ -296,17 +420,43 @@ Monitoring allows to **constantly check if "all is fine"**; it involves continuo
 
 See: [Observability](#observability), [DevOps](#devops), [Distributed Tracing](#distributed-tracing), [Performance](#performance). 👉 [back to ToC](#table-of-contents)
 
+### Moore's Law
+
+Moore's Law is the observation that the number of transistors on a microchip doubles approximately every two years, leading to an exponential increase in computing power and a decrease in relative cost, which has significantly influenced the growth of technology and the capabilities of electronic devices over time.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
+
 ### MVP (Minimum Viable Product)
 
 A Minimum Viable Product (MVP) is a version of a new product that includes only the essential features, allowing to quickly validate the idea, gather feedback, and learn from real-world usage, while minimizing development costs and time-to-market.
 
 See: [Lean Startup](#lean-startup), [TTM](#ttm-time-to-market). 👉 [back to ToC](#table-of-contents)
 
+### Ninety-Ninety Rule
+
+_The first 90 percent of the code accounts for the first 90 percent of the development time. The remaining 10 percent of the code accounts for the other 90 percent of the development time._
+
+> &#45; Tom Cargill
+
+Software development projects to take longer than initially estimated, due to unforeseen complexities, edge cases, and challenges that arise during the final stages of development.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
+
 ### Observability
 
 Observability is about understanding **what's happening inside a system** by looking at its outputs; it is the ability to measure and understand the internal state based on the data it generates, including logs, metrics, and traces, to gain insights into system behavior, diagnose issues, and improve performance, reliability, and maintainability.
 
 See: [DevOps](#devops), [Monitoring](#monitoring). 👉 [back to ToC](#table-of-contents)
+
+### Occam's Razor
+
+_Among competing hypotheses, the one with the fewest assumptions should be selected._
+
+> &#45; William of Ockham
+
+Occam's Razor is a problem-solving principle that suggests selecting the simplest explanation or solution when faced with multiple competing hypotheses, emphasizing the importance of minimizing assumptions and complexity to improve clarity, understanding, and efficiency.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
 
 ### Off-the-shelf Software
 
@@ -320,6 +470,22 @@ Overfetching occurs when an API returns more data than necessary for a client's 
 
 See: [Web Services](#web-services), [GraphQL](#graphql), [REST](#rest-representational-state-transfer), [Underfetching](#underfetching). 👉 [back to ToC](#table-of-contents)
 
+### P2P (Peer to Peer)
+
+Peer-to-Peer (P2P) is when **two parties communicate directly**; it's a decentralized communication model where each participant can act as both a client and a server, enabling resource sharing between nodes **without the need for a central server**, often used in file sharing, messaging, and content distribution applications.
+
+See: [Web Services](#web-services). 👉 [back to ToC](#table-of-contents)
+
+### Pareto Principle
+
+_For many events, roughly 80% of the effects come from 20% of the causes._
+
+> &#45; Vilfredo Pareto
+
+The Pareto Principle (also known as the **_80/20 rule_**) states that roughly 80% of the effects come from 20% of the causes, suggesting that a minority of inputs or efforts often lead to the majority of results or outcomes, and can be applied to various areas, such as productivity, decision-making, and problem-solving.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
+
 ### Parkinson's Law
 
 _Work expands so as to fill the time available for its completion._
@@ -328,7 +494,13 @@ _Work expands so as to fill the time available for its completion._
 
 Parkinson's Law suggests that work expands to fill the time available for its completion, meaning that tasks will often take longer to complete if more time is allocated, due to inefficiencies, procrastination, and lack of urgency, highlighting the importance of setting clear deadlines and time constraints to improve productivity and focus.
 
-See: [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition). 👉 [back to ToC](#table-of-contents)
+See: [Principles](#principles), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding), [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition). 👉 [back to ToC](#table-of-contents)
+
+### Principles
+
+Principles are **fundamental rules or guidelines** that guide behavior, decisions, and actions, providing a foundation for understanding and solving problems
+
+See: [Anti-patterns](#anti-patterns), [Conway's Law](#conways-law), [Goodhart's Law](#goodharts-law), [Robustness Principle (Postel's Law)](#robustness-principle-postels-law), [Brooks' Law](#brooks-law), [Parkinson's Law](#parkinsons-law), [Hofstadter's Law](#hofstadters-law), [Moore's Law](#moores-law), [Amdahl's Law](#amdahls-law), [Gall's Law](#galls-law), [Ninety-Ninety Rule](#ninety-ninety-rule), [Pareto Principle](#pareto-principle), [Occam's Razor](#occams-razor). 👉 [back to ToC](#table-of-contents)
 
 ### Protocol
 
@@ -362,13 +534,19 @@ _Be conservative in what you do, be liberal in what you accept from others._
 
 Postel's Law (also known as the Robustness Principle) is a design guideline for software development that encourages **leniency and tolerance in handling input** and **strictness in generating output**, aiming to improve interoperability and robustness by allowing systems to work with a wide range of inputs and gracefully handle errors or unexpected data.
 
-See: [Defensive Programming](#defensive-programming), [Web Services](#web-services). 👉 [back to ToC](#table-of-contents)
+See: [Principles](#principles), [Defensive Programming](#defensive-programming), [Web Services](#web-services). 👉 [back to ToC](#table-of-contents)
 
 ### SCM (Supply Chain Management)
 
 Supply Chain Management (SCM) is the management of the flow of goods and services, involving the movement and storage of raw materials, work-in-progress inventory, and finished products, from the point of origin to the point of consumption, optimizing processes, reducing costs, and improving collaboration between suppliers, manufacturers, and customers.
 
 See: [Off-the-shelf Software](#off-the-shelf-software). 👉 [back to ToC](#table-of-contents)
+
+### SEO (Search Engine Optimization)
+
+SEO are practices aiming at optimizing websites to rank higher in search engine results (e.g. core web vitals, A11y etc), improving visibility, traffic, and user engagement, by following best practices, and ensuring technical compliance with search engine guidelines.
+
+See: [Frontend](#frontend). 👉 [back to ToC](#table-of-contents)
 
 ### Single Point of Failure
 
@@ -430,9 +608,33 @@ _Reports that say that something hasn't happened are always interesting to me, b
 
 See: [Kolb's Learning Cycle](#kolbs-learning-cycle), [Dreyfus Model of Skill Acquisition](#dreyfus-model-of-skill-acquisition), [Law of Triviality (Bikeshedding)](#law-of-triviality-bikeshedding). 👉 [back to ToC](#table-of-contents)
 
+### Upstreams and Downstreams
+
+**Upstream is the source**/provider of data, events (or even git commits) etc, while **Downstream is the destination / consumer / subscriber etc; Downstream directly depends on the upstream, forming a unidirectional data flow
+
+See: [Reactivity](#reactivity). 👉 [back to ToC](#table-of-contents)
+
+### Value Object
+
+A Value Object **represents a domain-related value along with its logic without having any identity**; having no identity (no ID property, **unlike an _Entity_**) means that Value Objects cannot change over time, have no lifecycle, hence are **immutable**, making them ideal to be reused in memory across different objects having the same value (as they cannot change); examples: a `skill` in a HR system, `money` in a financial system etc.
+
+See: [DDD](#ddd-domain-driven-design), [Entity](#entity), [Aggregate](#aggregate), [Bounded Context](#bounded-context), [Ubiquitous Language](#ubiquitous-language), [ACL](#acl-anti-corruption-layer). 👉 [back to ToC](#table-of-contents)
+
 ### Webhook
 
 A webhook is like a _callback over the network_; it's user-defined (usually HTTP POST) callback that automatically sends real-time data or notifications from one system to another when a specific event occurs, enabling event-driven communication and automation between systems, such as triggering notifications, updates, or data synchronization.
 
 See: [Web Services](#web-services), [HTTP](#http-hypertext-transfer-protocol). 👉 [back to ToC](#table-of-contents)
+
+### WET (Write Everything Twice)
+
+WET (Write Everything Twice), an opposite of DRY, is a humorous response to the DRY principle, suggesting that **duplication is sometimes preferable to the wrong abstraction**, and that **clarity and readability** should be prioritized over premature optimization or over-engineering.
+
+See: [Principles](#principles), [DRY](#dry-dont-repeat-yourself). 👉 [back to ToC](#table-of-contents)
+
+### YAGNI (You Aren't Gonna Need It)
+
+YAGNI (You Aren't Gonna Need It) is a software development principle that advises against implementing features or functionality **until they are absolutely necessary**, promoting a focus on **current requirements** to reduce complexity, avoid wasted effort, and improve maintainability by **preventing over-engineering**.
+
+See: [Principles](#principles). 👉 [back to ToC](#table-of-contents)
 
