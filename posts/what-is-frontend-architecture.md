@@ -1,8 +1,14 @@
+> *When you think about your system, don't think about your technology choice. Make sure you think about it in the desirable properties you want your system to have. And then the technology choice is just the incarnation of that.*
+
+&dash; [Gregor Hohpe](https://youtu.be/w9a7eI6BlVc?t=1181)
+
+----
+
 **Disclaimer**: if you consider yourself a **coder**, close this page 😉
 
 **We've got a problem in Frontend communities 😉** We tend to focus on libraries, frameworks, bundlers, numbers of github stars... and many other areas of little relevance. We tend to love a tool ([Redux, I'm looking at you, back in 2015-2016](https://www.youtube.com/watch?v=xsSnOQynTHs)) and significantly overuse it.
 
-![Angular Query Client and Cache Hierarchy](images/blog/blog-it-javascript-frameworks.png)
+![JavaScript Frameworks](images/blog/blog-it-javascript-frameworks.png)
 
 Then, we turn back and totally hate the same tool for the very same reasons ([Redux, now](https://www.reddit.com/r/reactjs/comments/buzlqc/why_all_the_sudden_hate_for_redux/)). Both the love and the hate was unjustified... so what happened? 🤨
 

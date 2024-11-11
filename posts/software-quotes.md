@@ -28,6 +28,18 @@ Have a good read 🙂.
 
 ----
 
+> Great architects are like great chefs: it's not just about selecting ingredients; it's how you put them together.
+
+― Gregor Hohpe
+
+----
+
+> When you think about your system, don't think about your technology choice. Make sure you think about it in the desirable properties you want your system to have. And then the technology choice is just the incarnation of that.
+
+― Gregor Hohpe
+
+----
+
 > Data is a precious thing and will last longer than the systems themselves.
 
 ― Tim Berners-Lee
@@ -121,6 +133,12 @@ Have a good read 🙂.
 and one for the balance 😉
 
 > I don't know how many of you have ever met Dijkstra, but you probably know that arrogance in computer science is measured in nano-Dijkstras.
+
+― Alan Kay
+
+----
+
+> A change in perspective is worth 80 IQ points.
 
 ― Alan Kay
 
