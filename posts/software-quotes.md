@@ -4,6 +4,12 @@ Have a good read 🙂.
 
 ----
 
+> All my life I've had one dream, to achieve my many goals.
+
+― Homer Simpson
+
+----
+
 > Nothing is more dangerous than an idea when it is the only one you have.
 
 ― Emile Chartier Alain
