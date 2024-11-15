@@ -36,15 +36,19 @@
   - Aggregate
     - Aggregate Root
     - Business Rule
-      - Policy
+  - Policy
+  - Specification
   - Modules
   - Domain Event
+    - Internal Events
+    - External Events
   - Domain Service
   - Repository
   - Factory
 - Discovering Domain
   - Event Storming
     - Big Picture Event Storming
+    - Process Level Event Storming
     - Design-Level Event Storming
   - Event Modelling
   - Domain Storytelling
