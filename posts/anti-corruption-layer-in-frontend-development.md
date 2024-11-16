@@ -14,7 +14,7 @@ Let's understand the problem first.
 
 # The Problem Space: Model Leak
 
-Each deployable piece os software (a monolithic backend or frontend, a microservice, a microfrontend etc.) is using some models that it relies on. Frontend UI components, services, utility functions etc. - they're all using some **domain entities** (e.g. `Order`, `Product`, etc. depending on your business) in order to display their data or to allow some user interactions. These entities are defined using interfaces, types, classes etc.
+Each deployable piece of software (a monolithic backend or frontend, a microservice, a microfrontend etc.) is using some models that it relies on. Frontend UI components, services, utility functions etc. - they're all using some **domain entities** (e.g. `Order`, `Product`, etc. depending on your business) in order to display their data or to allow some user interactions, make decisions, perform activities etc. These entities are defined using interfaces, types, classes etc.
 
 In the long run, following critical questions arise:
 
@@ -30,7 +30,7 @@ Models shared across a system are parts of **a Contract**. Defining who is the o
 
 The bigger the organization (i.e. more development teams), **the more the whole topic matters**.
 
-According to **Conway's Law**, the codebase would reflect the organizational structure. And by strengthening coupling between each other's models, we introduce more troublesome frictions between teams 🫤.
+According to **Conway's Law**, the codebase would reflect the organizational structure (not only the codebase, of course). And by strengthening coupling between each other's models, we introduce more troublesome frictions between teams 🫤.
 
 On the other hand: the smaller the development dept., the less friction is expected. Especially, **within a single dev team** or a **relatively small project**, there's no need to introduce **artificial boundaries** that would reduce coupling. Make sure we **don't try to solve problems that don't exist** 😉.
 
@@ -40,7 +40,7 @@ The less stable the contract/model is, **the more the whole topic matters**. The
 
 > *So if I consider my API contract stable, shall I stop reading? 😜*
 
-Practice proves, that - *truism alert (!)* - we can't effectively foresee the future 😔 (*unless you do and you can prove it - then [contact me immediately](mailto:tomasz@ducin.dev!)*. And hence, if we're ignoring the fact that **our codebase is tightly coupled to an external model** that we don't own, then we limit the possibilities of improving the contract **in the future**. Or even *freeze* it in extreme cases (too much code to adapt, too expensive, case closed).
+Practice proves, that - *truism alert (!)* - we can't effectively foresee the future 😔 (*unless you do and you can prove it - then [contact me immediately](mailto:tomasz@ducin.dev)!*. And hence, if we're ignoring the fact that **our codebase is tightly coupled to an external model** that we don't own, then we limit the possibilities of improving the API contract **in the future**. Or even *freeze* it in extreme cases (too much code to adapt, too expensive, case closed).
 
 A significant shift in business requirements might require a change of the contract. Even if you consider your API Contract relatively stable, can you be sure that this will never happen?
 
@@ -56,7 +56,9 @@ Versioning is a must-have in **Distributed Systems**, in order to keep each elem
 - **old + new** contract provided, **new** contract consumed (**deploy**)
 - **new** contract provided (**deploy**), **new** contract consumed
 
-Of course, **this pattern introduces overhead** - it's broken into 3 steps, each finished in a separate deploy. But it's the price we have to pay for **team independence** - this way nobody enforces other parties to synchronize with each other. If anything happens, roadmap is changed, work is rescheduled etc. the process will just take longer. But **one team will NOT make another fail because of that**. And the bigger your system is, the more critical this aspect becomes.
+where potentially long time can pass in between the steps.
+
+Of course, **this pattern introduces overhead** - it's broken into 3 steps, each finished in a separate deploy. But it's the price we have to pay for **team independence** (esp. in terms of releases) - this way nobody enforces other parties to synchronize with each other. If anything happens, roadmap is changed, work is rescheduled etc. the process will just take longer. But **one team will NOT make another fail because of that**. And the bigger your system is, the more critical this aspect becomes.
 
 Nevertheless, can you see that this is *orthogonal* to whether your codebase is tightly coupled with a contract? **Effective versioning allows you to postpone adapting new versions**, but it doesn't guarantee reducing coupling, if you still tightly **depend on somebody else's model**.
 
@@ -66,15 +68,17 @@ At this point we know what problems we want to solve/reduce and we can proceed t
 
 Technically, ACL is a piece of code that **maps the model that you don't own into a model that you do own**. All in all, if the external contract changes, the only thing you shall change is this mapping code. Your local codebase is expected to use your own model - and this doesn't change no matter how many external contract changes take place
 
-Architecture-wise, it's a **thin layer put at the point where two independent elements integrate with each other**. The layer effectively reduces coupling across different pieces of the system and/or teams.
+Architecture-wise, it's a **thin layer placed at the point where two independent elements integrate with each other**. The layer effectively reduces coupling across different pieces of the system and/or teams.
 
 ![Anti-Corruption Layer](images/blog/blog-anti-corruption-layer.jpg)
+
+Technically speaking, ACL is implemented on the consumer side, as it's the consumer who integrated with the provider via **querying**, **sending commands** or **subscribing events**. The coupling is reduced in a way that only the ACL can see the external model - all internal implementation is using the local model (whereas without ACL all internal impl. would depend on the external model).
 
 This *pattern* originates from **Domain-Driven Design** and works extremely well with the **Ubiquitous Language** concept, but it's not limited to it - ACL makes sense in many different approaches and architecture styles.
 
 ## Avoiding "God Classes"
 
-A *God Class* is an anti-pattern, unfortunately still commonly used 😒. It's a class (could be an object, interface etc.) which is **used in too many places**, and hence **has too many responsibilities**, technically: **has too many methods and too much data**. It's a *monster* 👹 that has possessed control and knowledge about too many aspects of a system - and is already **too big** to be effectively broken into smaller, SRP-friendly pieces.
+A *God Class* is an anti-pattern, unfortunately still commonly used 😒. It's a class (could be an object, interface etc.) which is **used in too many places**, and hence **has too many responsibilities**, technically: **has too many methods and too much data**. It's a *monster* 👹 that has possessed control and knowledge about too many aspects of a system - and is already **too big** to be effectively broken into smaller, [SRP](https://en.wikipedia.org/wiki/Single-responsibility_principle)-friendly pieces.
 
 A typical example of a *God Class* is a *User* entity. How come 😵? A User entity could take part in lots of different features and/or business processes, e.g.:
 - a *User* can submit an *Order* and access their *Order History*
@@ -88,7 +92,7 @@ Now imagine you put **all this information into a single class/interface**. Let'
 
 (*BTW, do you have a 1k+ LoC component in your frontend codebase that does too much?* 🫠 *is that the one no one wants to touch?* 😛)
 
-The reason for introducing a *God Class* is **lack of clear module boundaries**. The model, the semantics, **the knowledge of one module leaks to another**, hence **strengthening coupling**.
+The reason for introducing a *God Class* is **lack of clear module boundaries**. The model, the semantics, **the knowledge from one module leaks to another**, hence **strengthening coupling**.
 
 ## Show me the code
 
@@ -201,6 +205,8 @@ src/
       PubSub.ts
 ```
 
+Let's say that this system allows to sell **products**, the company hires **employees** and therefore there are lots of **finances** to be taken care of.
+
 ### External contract
 
 First place where ACL is implemented is the server API response mapping to a local model:
@@ -214,7 +220,7 @@ Note: where is the external API's Contract? Depending on the situation, it could
 
 Hopefully, contract synchronization is automated 🙃 (e.g. using [Open API](https://petstore.swagger.io/), [`json-schema-to-typescript`](https://github.com/bcherny/json-schema-to-typescript) or similar software)
 
-### MicroFrontends Communication
+### MicroFrontends (MFEs) Communication
 
 Another place to implement ACL is where the MFEs interact with each other.
 
@@ -230,7 +236,7 @@ For exactly the same reasons as discussed above.
 
 The files are **organized by business subdomains**.
 
-One one hand, there might be (quite some) code repetition. We're dealing with *Employees* in potentially multiple places.
+On one hand, there might be (quite some) code repetition. We're dealing with *Employees* in potentially multiple places.
 
 ### Advantages
 
@@ -252,7 +258,7 @@ ACL is not a 0-1 approach, fortunately 🙂. If your codebase is full of DTOs di
 - visualize a graph of your dependencies, e.g. using [Nx graph](https://nx.dev/features/explore-graph) or [`madge`](https://www.npmjs.com/package/madge)
 - adapt automation ([Nx Module Boundaries](https://nx.dev/core-features/enforce-module-boundaries) and/or [`no-restricted-imports`](https://eslint.org/docs/latest/rules/no-restricted-imports)) gradually
 
-Adapting ACL into an existing codebase will very likely *pull the skeletons out from the closet*. Most probably, you have unwanted dependencies across your modules that you're not yet aware of.
+Adopting ACL into an existing codebase will very likely *pull the skeletons out from the closet*. Most probably, you have unwanted dependencies across your modules that you're not yet aware of.
 
 # Summary
 
