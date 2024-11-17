@@ -1,8 +1,28 @@
 # Modular Frontend Monolith: design decisions that shape modularity
 
-only outline as for now 😉
+only **outline** as for now 😉
+
+series of 4-5 posts:
+1. Modular Frontend Monolith: design decisions that shape modularity
+2. Modular Frontend Monolith: utils, core, shared and all the rest
+3. Modular Frontend Monolith: database-oriented modularity
+4. Modular Frontend Monolith: business functionalities oriented modularity
+5. (?) summary
+
+in order for each post to bring any value, it's broken down like the following:
+- POST 1
+  - I question that modularity is a subjective issue, because, as you wrote, it's an undeveloped topic on the front
+  - we include measurable factors in the analysis, such as shallow, deep, etc.
+- POST 2:
+  - it's crap, you can see that. But where does this crap come from? That there's reuse abuse
+- POST 3:
+  - I question the entity orientation. That it's too data-centric. You know what I mean
+- POST 4:
+  - I present it as a new, default recommended approach
 
 ---
+
+# POST 1
 
 > If you can't build a modular monolith, what makes you think microservices is the answer?
 
@@ -14,17 +34,28 @@ only outline as for now 😉
 
 ---
 
+disclaimer:
+- if you're passionate about new features of your favorite framework, stop reading ;)
+- you won't find the new stuff from react v19 or angular v18.2. If that's what you're excited about, you might want to see some recent tutorials instead :P
+- yes, a typical frontend dev might be more interested in topics like to tailwind or not to tailwind...
+- so this one is for you only if you care how is your application shaped from a higher-level perspective
+
+
+---
+
 - why modularity is important
   - modularity is an ambiguous term, different people assign it with different meaning, even the same individuals tend to attach different meanings to what "modularity" is, depending on what they want to prove at the moment
   - as a result, the vague term leads to high confidence of each codebase being highly modular. But in practice it turns out that, as applications grow, high coupling tends to prove that the codebase was often never really modular.
   - that's why I want to dive deeper into the topic. 
+- what's the whole point of modularity - why should you even care about such abstract topic
+  - adapt changes more easily
 
 ---
 
 - motivation
-  - my goal, as you'll be analyzing the 3 modularity styles in the second part of the article, is to make you recognize them from the projects you've worked in
-  - taking a huge zoom-out, I want you to focus on the challenges you've faced in the past - and **connect the dots**. I want you to realize that how you design your modules affects long-term maintenance crucially.
-  - eventually, my goal is to spark reflection.
+  - as you'll be analyzing the 3 modularity styles in the upcoming posts of the series, is to make you recognize them from the projects you've worked in, I want you to focus on the challenges you've faced in the past
+  - my goal is to make you take a huge zoom-out from the code perspective to the higher-level design perspective - and **connect the dots** between design decisions and the challenges you've been facing. I want you to realize that how you design your modules affects long-term maintenance crucially.
+  - eventually, my goal is to spark reflection and challenge how you modularize your applications
 
 ---
 
@@ -81,14 +112,14 @@ It's pretty much impossible to discuss modularity without bringing back these go
 
 ---
 
-(that's the main content)
-
 - modularity is bound to directory structure
 - below we discuss modularity styles which I see repeating regularly in the wild
 - the directory structures are obviously simplified, but hopefully are enough precise to give you a feeling on what were the design choices behind them
 - of course there might be more styles than I have outlined below. And there might be lots of mixed approaches. A single aspect in one of the styles could be cherry-picked to another style. I've decided to keep things simple and present only 3 styles, mostly, to emphasize different design decisions.
 
 TODO: in all examples below I'll prepare an example domain which illustrates directory names better, e.g. instead of "entity-A/entity-B" there'd be doctor, appointment, etc.
+TODO: (follow-up) examples in redux, react query etc would relate to the medical domain
+TODO: for each of 3 styles, "check the design" by simulating a hypothetical change/implementation - i.e. what will happen if you make the change X - how each approach "accepts" the change (the whole point of modularity)
 
 disclaimer:
 - if your application is rather smaller than bigger, then the design mistakes could not matter that much
@@ -101,6 +132,8 @@ I assume we're speaking about an application that meets at least one of the foll
 - it's being taken care by someone (you, dear Reader) who cares about quality...
 
 ---
+
+# POST 2
 
 - utils, core, shared and all the rest
   - 
@@ -151,6 +184,8 @@ I assume we're speaking about an application that meets at least one of the foll
     - all in all entire testing failed the expectations and probably the automated testing initiative is halted
 
 ---
+
+# POST 3
 
 - database-oriented modularity
   - 
@@ -220,8 +255,15 @@ I assume we're speaking about an application that meets at least one of the foll
       - UI Integration tests are grouped around business objects (entities)
       - however, shared state could be a challenge to properly create a robust setup for UI integration tests
     - unit and E2E tests could be added accordingly, but they are in no way favored in this modularity style
+- dirty points, not yet included:
+  - thesis: there's no modularity on FE in separation from BE/contract
+  - database is raping backend devs' minds
+  - front devs just carry on with the database-oriented approach since they don't care
+  - wszyscy mają encja na twarz i pchasz
 
 ---
+
+# POST 4
 
 - business functionalities oriented
   - 
@@ -289,6 +331,8 @@ I assume we're speaking about an application that meets at least one of the foll
     - unit and E2E tests can be used accordingly, but play a peripherial role
 
 ---
+
+# POST 5 (?)
 
 conclusion
 
