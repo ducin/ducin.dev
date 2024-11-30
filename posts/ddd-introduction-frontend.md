@@ -41,8 +41,8 @@ It doesn't mean technology is not important - certainly not. Technology is there
 ― [Eric Evans, Domain-Driven Design Europe Conf, 2016](https://www.youtube.com/watch?v=dnUFEg68ESM&start=976)
 
 We could say, very roughly, that DDD follows [Pareto Principle](https://en.wikipedia.org/wiki/Pareto_principle) in a way:
-- 80% of the focus is put on business aspects
-- only 20% is technology; system needs to be implemented after all
+- 80% of the **focus** is put on business aspects
+- only 20% focus is technology; system needs to be implemented after all
 
 Of course it's rough (that's the essence of Pareto Principle). Of course you could [nitpick](https://dictionary.cambridge.org/dictionary/english/nitpick) the above statement a lot - feel free 😉. But I hope you get the point: we're proficient in tech, so **we shift our focus to understanding business**. "*Understanding the domain*".
 
