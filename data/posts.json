@@ -117,6 +117,22 @@
     "status": "IGNORED"
   },
   {
+    "title": "Introduction to Domain-Driven Design",
+    "subtitle": "(for Frontend developers, but not only)",
+    "sourceFile": "ddd-introduction-frontend",
+    "keywords": [
+      "Domain-Driven Design",
+      "DDD",
+      "Strategic DDD",
+      "Tactical DDD",
+      "Eric Evans"
+    ],
+    "description": "",
+    "publishedDate": "2024-12-01",
+    "coverImageFilename": "cover-ddd-advent-calendar.png",
+    "status": "PUBLISHED"
+  },
+  {
     "title": "Zod: Runtime type checks (for JavaScript and TypeScript)",
     "sourceFile": "WIP-zod",
     "keywords": [

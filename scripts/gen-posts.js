@@ -52,7 +52,7 @@ const imageURL = (filepath, { absolute = true } = {}) =>
 
 const generatePostHTML = async (post) => {
   console.log(chalk.green(`processing: ${post.sourceFile}...`))
-  const { title, keywords, description, publishedDate, coverImage,
+  const { title, subtitle, keywords, description, publishedDate, coverImage,
     sourceFile, coverImageFilename, githubURL } = post
   const origMD = '' + fs.readFileSync(postSourceMarkdownFilepath(sourceFile))
   const TOCContent = '## Table of Contents\n\n' + toc(origMD, { slugify: githubSlug }).content
@@ -120,6 +120,7 @@ const generatePostHTML = async (post) => {
     body: {
       topLink: 'Ducin.dev',
       topTitle: title,
+      topSubtitle: subtitle,
       content: output,
       bottomContent: blogFooterTpl() + commentsTpl()
     }

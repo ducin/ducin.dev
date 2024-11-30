@@ -6,7 +6,7 @@ const { menuTpl } = require('./menu-tpl')
 const pageTpl = ({
   head: { title, author, keywords, description, thumbnailURL, backgroundImageURL, canonicalURL, shortcutIconURL },
   tags: { og, twitter },
-  body: { topLink, topTitle, content, bottomContent },
+  body: { topLink, topTitle, topSubtitle, content, bottomContent },
   files: { css = [], js = [] } = [],
 }) => {
   const jsFiles = new Set([
@@ -68,7 +68,10 @@ const pageTpl = ({
       </header>
       <article id="main">
         <header>
-          <h2 class="cover-title-alt">${topTitle}</h2>
+          <section class="cover-title-alt">
+            <h2>${topTitle}</h2>
+            ${ topSubtitle ? `<h3>${topSubtitle}</h3>` : '' }
+          </section>
         </header>
         <section class="wrapper style5">
           <div class="inner">

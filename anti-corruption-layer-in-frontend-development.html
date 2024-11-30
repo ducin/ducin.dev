@@ -82,13 +82,15 @@
       </header>
       <article id="main">
         <header>
-          <h2 class="cover-title-alt">Anti-Corruption Layer in Frontend Development</h2>
+          <section class="cover-title-alt">
+            <h2>Anti-Corruption Layer in Frontend Development</h2>
+          </section>
         </header>
         <section class="wrapper style5">
           <div class="inner">
             <p class="image-caption"><a href="https://unsplash.com/photos/a-black-and-white-photo-of-a-chain-link-fence-VgZYoHmewag">Chain like fence</a> by <a href="https://unsplash.com/@serenatyrrell">Serena Tyrrell</a></p>
             <p>
-              <em> Wednesday 9 October 2024 • 📚 11 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/anti-corruption-layer-in-frontend-development.md">edit on Github</a> </em>
+              <em> Wednesday 9 October 2024 • 📚 12 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/anti-corruption-layer-in-frontend-development.md">edit on Github</a> </em>
             </p>
             <p>
               As our frontend applications grow, more challenges arise that don&#39;t exist unless a certain scale and complexity is reached. One of them is: <strong>how much is your code tightly coupled with the objects you fetch from external sources?</strong> This includes <strong>server APIs</strong>, but also communication with other micro-apps within a
@@ -136,7 +138,7 @@
                     <a href="#Example-module-structure">Example module structure</a>
                     <ul>
                       <li><a href="#External-contract">External contract</a></li>
-                      <li><a href="#MicroFrontends-Communication">MicroFrontends Communication</a></li>
+                      <li><a href="#MicroFrontends-(MFEs)-Communication">MicroFrontends (MFEs) Communication</a></li>
                     </ul>
                   </li>
                   <li>
@@ -160,8 +162,8 @@
               </a>
             </h1>
             <p>
-              Each deployable piece os software (a monolithic backend or frontend, a microservice, a microfrontend etc.) is using some models that it relies on. Frontend UI components, services, utility functions etc. - they&#39;re all using some <strong>domain entities</strong> (e.g. <code>Order</code>, <code>Product</code>, etc. depending on your business) in order to display their data or to
-              allow some user interactions. These entities are defined using interfaces, types, classes etc.
+              Each deployable piece of software (a monolithic backend or frontend, a microservice, a microfrontend etc.) is using some models that it relies on. Frontend UI components, services, utility functions etc. - they&#39;re all using some <strong>domain entities</strong> (e.g. <code>Order</code>, <code>Product</code>, etc. depending on your business) in order to display their data or to
+              allow some user interactions, make decisions, perform activities etc. These entities are defined using interfaces, types, classes etc.
             </p>
             <p>In the long run, following critical questions arise:</p>
 
@@ -185,7 +187,7 @@
               </a>
             </h2>
             <p>The bigger the organization (i.e. more development teams), <strong>the more the whole topic matters</strong>.</p>
-            <p>According to <strong>Conway&#39;s Law</strong>, the codebase would reflect the organizational structure. And by strengthening coupling between each other&#39;s models, we introduce more troublesome frictions between teams 🫤.</p>
+            <p>According to <strong>Conway&#39;s Law</strong>, the codebase would reflect the organizational structure (not only the codebase, of course). And by strengthening coupling between each other&#39;s models, we introduce more troublesome frictions between teams 🫤.</p>
             <p>On the other hand: the smaller the development dept., the less friction is expected. Especially, <strong>within a single dev team</strong> or a <strong>relatively small project</strong>, there&#39;s no need to introduce <strong>artificial boundaries</strong> that would reduce coupling. Make sure we <strong>don&#39;t try to solve problems that don&#39;t exist</strong> 😉.</p>
 
             <h2 id="how-frequently-does-the-model-change">
@@ -199,8 +201,8 @@
               <p><em>So if I consider my API contract stable, shall I stop reading? 😜</em></p>
             </blockquote>
             <p>
-              Practice proves, that - <em>truism alert (!)</em> - we can&#39;t effectively foresee the future 😔 (<em>unless you do and you can prove it - then <a href="mailto:tomasz@ducin.dev!">contact me immediately</a></em
-              >. And hence, if we&#39;re ignoring the fact that <strong>our codebase is tightly coupled to an external model</strong> that we don&#39;t own, then we limit the possibilities of improving the contract <strong>in the future</strong>. Or even <em>freeze</em> it in extreme cases (too much code to adapt, too expensive, case closed).
+              Practice proves, that - <em>truism alert (!)</em> - we can&#39;t effectively foresee the future 😔 (<em>unless you do and you can prove it - then <a href="mailto:tomasz@ducin.dev">contact me immediately</a>!</em>. And hence, if we&#39;re ignoring the fact that <strong>our codebase is tightly coupled to an external model</strong> that we don&#39;t own, then we limit the possibilities
+              of improving the API contract <strong>in the future</strong>. Or even <em>freeze</em> it in extreme cases (too much code to adapt, too expensive, case closed).
             </p>
             <p>A significant shift in business requirements might require a change of the contract. Even if you consider your API Contract relatively stable, can you be sure that this will never happen?</p>
 
@@ -222,9 +224,10 @@
               <li><strong>old + new</strong> contract provided, <strong>new</strong> contract consumed (<strong>deploy</strong>)</li>
               <li><strong>new</strong> contract provided (<strong>deploy</strong>), <strong>new</strong> contract consumed</li>
             </ul>
+            <p>where potentially long time can pass in between the steps.</p>
             <p>
-              Of course, <strong>this pattern introduces overhead</strong> - it&#39;s broken into 3 steps, each finished in a separate deploy. But it&#39;s the price we have to pay for <strong>team independence</strong> - this way nobody enforces other parties to synchronize with each other. If anything happens, roadmap is changed, work is rescheduled etc. the process will just take longer. But
-              <strong>one team will NOT make another fail because of that</strong>. And the bigger your system is, the more critical this aspect becomes.
+              Of course, <strong>this pattern introduces overhead</strong> - it&#39;s broken into 3 steps, each finished in a separate deploy. But it&#39;s the price we have to pay for <strong>team independence</strong> (esp. in terms of releases) - this way nobody enforces other parties to synchronize with each other. If anything happens, roadmap is changed, work is rescheduled etc. the process
+              will just take longer. But <strong>one team will NOT make another fail because of that</strong>. And the bigger your system is, the more critical this aspect becomes.
             </p>
             <p>Nevertheless, can you see that this is <em>orthogonal</em> to whether your codebase is tightly coupled with a contract? <strong>Effective versioning allows you to postpone adapting new versions</strong>, but it doesn&#39;t guarantee reducing coupling, if you still tightly <strong>depend on somebody else&#39;s model</strong>.</p>
             <p>At this point we know what problems we want to solve/reduce and we can proceed to the solution.</p>
@@ -236,8 +239,12 @@
               </a>
             </h1>
             <p>Technically, ACL is a piece of code that <strong>maps the model that you don&#39;t own into a model that you do own</strong>. All in all, if the external contract changes, the only thing you shall change is this mapping code. Your local codebase is expected to use your own model - and this doesn&#39;t change no matter how many external contract changes take place</p>
-            <p>Architecture-wise, it&#39;s a <strong>thin layer put at the point where two independent elements integrate with each other</strong>. The layer effectively reduces coupling across different pieces of the system and/or teams.</p>
+            <p>Architecture-wise, it&#39;s a <strong>thin layer placed at the point where two independent elements integrate with each other</strong>. The layer effectively reduces coupling across different pieces of the system and/or teams.</p>
             <p><img src="images/blog/blog-anti-corruption-layer.jpg" alt="Anti-Corruption Layer" /></p>
+            <p>
+              Technically speaking, ACL is implemented on the consumer side, as it&#39;s the consumer who integrated with the provider via <strong>querying</strong>, <strong>sending commands</strong> or <strong>subscribing events</strong>. The coupling is reduced in a way that only the ACL can see the external model - all internal implementation is using the local model (whereas without ACL all
+              internal impl. would depend on the external model).
+            </p>
             <p>This <em>pattern</em> originates from <strong>Domain-Driven Design</strong> and works extremely well with the <strong>Ubiquitous Language</strong> concept, but it&#39;s not limited to it - ACL makes sense in many different approaches and architecture styles.</p>
 
             <h2 id="avoiding-quot-god-classes-quot">
@@ -248,7 +255,7 @@
             </h2>
             <p>
               A <em>God Class</em> is an anti-pattern, unfortunately still commonly used 😒. It&#39;s a class (could be an object, interface etc.) which is <strong>used in too many places</strong>, and hence <strong>has too many responsibilities</strong>, technically: <strong>has too many methods and too much data</strong>. It&#39;s a <em>monster</em> 👹 that has possessed control and knowledge
-              about too many aspects of a system - and is already <strong>too big</strong> to be effectively broken into smaller, SRP-friendly pieces.
+              about too many aspects of a system - and is already <strong>too big</strong> to be effectively broken into smaller, <a href="https://en.wikipedia.org/wiki/Single-responsibility_principle">SRP</a>-friendly pieces.
             </p>
             <p>A typical example of a <em>God Class</em> is a <em>User</em> entity. How come 😵? A User entity could take part in lots of different features and/or business processes, e.g.:</p>
             <ul>
@@ -260,7 +267,7 @@
             <p>etc.</p>
             <p>Now imagine you put <strong>all this information into a single class/interface</strong>. Let&#39;s assume that each <code>order</code>, <code>shipment</code>, <code>payment</code>, <code>catalogue</code> (and many more) modules are being maintained by separate teams. We can clearly see that <strong>a change made by one team can affect others</strong>.</p>
             <p>(<em>BTW, do you have a 1k+ LoC component in your frontend codebase that does too much?</em> 🫠 <em>is that the one no one wants to touch?</em> 😛)</p>
-            <p>The reason for introducing a <em>God Class</em> is <strong>lack of clear module boundaries</strong>. The model, the semantics, <strong>the knowledge of one module leaks to another</strong>, hence <strong>strengthening coupling</strong>.</p>
+            <p>The reason for introducing a <em>God Class</em> is <strong>lack of clear module boundaries</strong>. The model, the semantics, <strong>the knowledge from one module leaks to another</strong>, hence <strong>strengthening coupling</strong>.</p>
 
             <h2 id="show-me-the-code">
               <a href="#show-me-the-code">
@@ -381,6 +388,7 @@ export class EmployeesHTTPService {
     communication/
       PubSub.ts
 </code></pre>
+            <p>Let&#39;s say that this system allows to sell <strong>products</strong>, the company hires <strong>employees</strong> and therefore there are lots of <strong>finances</strong> to be taken care of.</p>
 
             <h3 id="external-contract">
               <a href="#external-contract">
@@ -403,10 +411,10 @@ export class EmployeesHTTPService {
               Hopefully, contract synchronization is automated 🙃 (e.g. using <a href="https://petstore.swagger.io/">Open API</a>, <a href="https://github.com/bcherny/json-schema-to-typescript"><code>json-schema-to-typescript</code></a> or similar software)
             </p>
 
-            <h3 id="microfrontends-communication">
-              <a href="#microfrontends-communication">
+            <h3 id="microfrontends-mfes-communication">
+              <a href="#microfrontends-mfes-communication">
                 <span class="header-link"></span>
-                MicroFrontends Communication
+                MicroFrontends (MFEs) Communication
               </a>
             </h3>
             <p>Another place to implement ACL is where the MFEs interact with each other.</p>
@@ -427,7 +435,7 @@ export class EmployeesHTTPService {
               </a>
             </h2>
             <p>The files are <strong>organized by business subdomains</strong>.</p>
-            <p>One one hand, there might be (quite some) code repetition. We&#39;re dealing with <em>Employees</em> in potentially multiple places.</p>
+            <p>On one hand, there might be (quite some) code repetition. We&#39;re dealing with <em>Employees</em> in potentially multiple places.</p>
 
             <h3 id="advantages">
               <a href="#advantages">
@@ -473,7 +481,7 @@ export class EmployeesHTTPService {
                 >) gradually
               </li>
             </ul>
-            <p>Adapting ACL into an existing codebase will very likely <em>pull the skeletons out from the closet</em>. Most probably, you have unwanted dependencies across your modules that you&#39;re not yet aware of.</p>
+            <p>Adopting ACL into an existing codebase will very likely <em>pull the skeletons out from the closet</em>. Most probably, you have unwanted dependencies across your modules that you&#39;re not yet aware of.</p>
 
             <h1 id="summary">
               <a href="#summary">
@@ -536,7 +544,7 @@ export class EmployeesHTTPService {
           </li>
         </ul>
         <ul class="copyright">
-          <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+          <li>&copy; Ducin.DEV Consulting <span id="year">2024</span></li>
           <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
         </ul>
       </footer>

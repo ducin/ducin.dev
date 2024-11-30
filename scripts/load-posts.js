@@ -3,6 +3,7 @@ const { z } = require("zod");
 const Post = z.object({
   sourceFile: z.string(),
   title: z.string(),
+  subtitle: z.string().optional(),
   keywords: z.array(z.string()),
   description: z.string(),
   publishedDate: z.string(),

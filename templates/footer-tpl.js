@@ -11,7 +11,7 @@ const footerTpl = () => `
     <li><a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a></li>
   </ul>
   <ul class="copyright">
-    <li>&copy; Ducin IT Consulting <span id="year">2024</span></li>
+    <li>&copy; Ducin.DEV Consulting <span id="year">2024</span></li>
     <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
   </ul>
 </footer>

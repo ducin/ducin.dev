@@ -1471,7 +1471,7 @@
 	}
 
 	p {
-		margin: 0 0 2em 0;
+		margin: 0 0 1em 0;
 	}
 
 	h1, h2, h3, h4, h5, h6 {
@@ -1994,7 +1994,7 @@
 
 	ul {
 		list-style: disc;
-		margin: 0.5em 0 2em 0;
+		margin: 0.5em 0 2em 2em;
 		padding-left: 1em;
 	}
 
@@ -3653,7 +3653,13 @@
 
 		#main > header h2 {
 			font-size: 2.5em;
-			margin: 0 0 0.5em 0;
+			margin: 0;
+			text-shadow: 4px 4px #000;
+		}
+
+		#main > header h3 {
+			font-size: 1.8em;
+			margin: 0;
 			text-shadow: 4px 4px #000;
 		}
 
@@ -3877,10 +3883,10 @@
 	font-style: italic;
 }
   
-.blogposts li {
-	list-style-type: none;
+.blogposts {
+	margin: .5em 1em 2em;
 }
-  
+
 .blogposts .blogpost-headline {
 	font-style: italic;
 }

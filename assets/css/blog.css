@@ -1,0 +1,12 @@
+.blogposts {
+	margin: .5em 1em 2em;
+}
+
+.series li {
+	list-style-type: disc;
+	margin-left: 1em;
+}
+
+a {
+	border-bottom-style: solid;
+}
