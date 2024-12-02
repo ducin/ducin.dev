@@ -42,7 +42,7 @@ The first person to talk to turns out to be the Head of the Inventory Department
 - The Head of the Department emphasizes the need for **accurate reports** on inventory levels and **notifications for low stock**.
 - The system should also be able to **generate historical reports** regarding inventory movements.
 
-At this point what we could think of is, basically, a **database** which includes all the relevant information. Perhaps a simple **CRUD on top of it** would do the job.
+At this point what we could think of it, basically, as a **database** which includes all the relevant information. Perhaps a simple **CRUD on top of it** would do the job.
 
 However, after some consideration, the Head of the dept. mentions that some **specific situations** take place from time to time. These include **goods being damaged**, or that they even **disappear** in unknown circumstances. It even happened once that, once considered lost, some goods were found within a totally unexpected area of the warehouse.
 
