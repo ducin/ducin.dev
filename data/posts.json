@@ -142,7 +142,7 @@
       "Tactical DDD",
       "Eric Evans"
     ],
-    "description": "",
+    "description": "DDD is first and foremost about understanding your business and your product. Practicing DDD means you're constantly exploring how your business works. It's mainly about collaboration and communication. If you think you're doing DDD by following a certain technology / framework / toolstack / pattern-based approach, you're doing it wrong.",
     "publishedDate": "2024-12-01",
     "coverImageFilename": "cover-ddd-advent-calendar.png",
     "status": "PUBLISHED"
@@ -158,7 +158,7 @@
       "Tactical DDD",
       "Domain Experts"
     ],
-    "description": "",
+    "description": "Gather domain knowledge from experts. Accept they have different perspectives and different priorities. That's what makes businesses thrive - but also makes them complex. Systems need to reflect that.",
     "publishedDate": "2024-12-02",
     "coverImageFilename": "cover-ddd-advent-calendar.png",
     "status": "PUBLISHED"
