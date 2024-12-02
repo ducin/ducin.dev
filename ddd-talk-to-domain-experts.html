@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Talk to Domain Experts - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Domain-Driven Design, DDD, Strategic DDD, Tactical DDD, Domain Experts" />
+    <meta name="description" content="" />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="" />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Talk to Domain Experts - Tomasz Ducin - blog" />
+    <meta property="og:description" content="" />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <link rel="canonical" href="https://ducin.dev/ddd-talk-to-domain-experts" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-ddd-advent-calendar.png") !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMG3MMTWGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MMG3MMTWGW");
+    </script>
+
+    <script>
+      (function (s, e, n, d, er) {
+        s["Sender"] = er;
+        (s[er] =
+          s[er] ||
+          function () {
+            (s[er].q = s[er].q || []).push(arguments);
+          }),
+          (s[er].l = 1 * new Date());
+        var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://cdn.sender.net/accounts_resources/universal.js", "sender");
+      sender("758ace613a8369");
+    </script>
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle" aria-label="Toggle site menu"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/newsletter">Newsletter</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <section class="cover-title-alt">
+            <h2>Talk to Domain Experts</h2>
+            <h3>(they understand the domain better than you)</h3>
+          </section>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p>
+              <em> Monday 2 December 2024 • 📚 8 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-talk-to-domain-experts.md">edit on Github</a> </em>
+            </p>
+            <p>The aDDDvent calendar 2024:</p>
+            <ul>
+              <li>day 1: <a href="/ddd-introduction-frontend">DDD is not about technology</a></li>
+              <li>
+                <strong>day 2: <a href="/talk-to-domain-experts">Talk to domain experts</a></strong>
+              </li>
+              <li>day 3: (tomorrow)</li>
+            </ul>
+
+            <h2 id="tl-dr">
+              <a href="#tl-dr">
+                <span class="header-link"></span>
+                TL;DR;
+              </a>
+            </h2>
+            <p><strong>💡 Gather domain knowledge from experts. Accept they have different perspectives and different priorities. That&#39;s what makes businesses thrive - but also makes them complex. Systems need to reflect that.</strong></p>
+
+            <h2 id="same-fact-different-perspectives">
+              <a href="#same-fact-different-perspectives">
+                <span class="header-link"></span>
+                Same fact, different perspectives
+              </a>
+            </h2>
+            <p><a href="/ddd-introduction-frontend">Yesterday</a> we have put a great emphasis that &quot;<em>understanding your business</em>&quot; is the most important activity in DDD whatsoever. In today&#39;s post we&#39;ll dive deeper into what does it actually mean. We&#39;ll see it throughout an extensive example.</p>
+            <p>The key aspect to realize is that <strong>in complex businesses there&#39;s no single truth</strong>.</p>
+            <p>Different people from different teams have different tasks to perform. They focus on different quality characteristics, also have different priorities. Truism, isn&#39;t it?</p>
+            <p>Yet, still so many developers try to provide a single concept that matches the whole complexity of a business. 😢</p>
+            <p>Creating <em>a single model that explains everything</em> is not only a simplification, but also guarantees that we&#39;re missing out some important aspects of our domain.</p>
+            <p>The key is to realize that there are <strong>multiple perspectives at looking at the same fact</strong>. Yesterday I brought a medical care domain example, in which the same fact is considered as follows:</p>
+            <ul>
+              <li><strong>doctor</strong>: <em>I&#39;m having an appointment now</em></li>
+              <li><strong>accountant</strong>: <em>we&#39;ve just made some income</em></li>
+              <li><strong>CEO</strong>: <em>we&#39;ve just utilized our resources effectively</em></li>
+              <li><strong>cleaning person</strong>: <em>I&#39;ve got another room to clean and disinfect now 🤨</em></li>
+              <li>and, actually, the <strong>patient</strong> is also there after all 😅: <em>I&#39;m being taken care of, money does wonders!</em></li>
+            </ul>
+            <p>Today we&#39;ll take a closer look at another domain...</p>
+
+            <h2 id="warehouse-management">
+              <a href="#warehouse-management">
+                <span class="header-link"></span>
+                Warehouse Management
+              </a>
+            </h2>
+            <p>
+              Imagine we&#39;re working for a huge logistics company. Our task is to design a new system for <strong>warehouse management</strong>. It includes everything related to storing massive amounts of different types of items, knowing their count, organizing them effectively, being able to ship ordered items, avoiding waste etc. Quite a lot of things, if we think about it 😅 but still,
+              everything is related to &quot;<em>storing things</em>&quot;.
+            </p>
+            <p>Depending on the situation, maybe there is <em>an Analyst</em> hired at the company, who have gathered functional requirements already. And maybe there is a huge 200 pages long PDF document which is awaiting our attention 😅. Still, sooner or later we&#39;ll need to discuss the document (if it exist) or gather the information on our own (otherwise).</p>
+
+            <h2 id="talk-to-a-domain-expert">
+              <a href="#talk-to-a-domain-expert">
+                <span class="header-link"></span>
+                Talk to a domain expert
+              </a>
+            </h2>
+            <p>The first person to talk to turns out to be the Head of the Inventory Department. We ask what should the system be capable to do, and so we gather the following information:</p>
+            <ul>
+              <li>The system must allow for <strong>recording changes</strong> in inventory levels.</li>
+              <li>It should support <strong>registering deliveries</strong>.</li>
+              <li>The Head of the Department emphasizes the need for <strong>accurate reports</strong> on inventory levels and <strong>notifications for low stock</strong>.</li>
+              <li>The system should also be able to <strong>generate historical reports</strong> regarding inventory movements.</li>
+            </ul>
+            <p>At this point what we could think of is, basically, a <strong>database</strong> which includes all the relevant information. Perhaps a simple <strong>CRUD on top of it</strong> would do the job.</p>
+            <p>
+              However, after some consideration, the Head of the dept. mentions that some <strong>specific situations</strong> take place from time to time. These include <strong>goods being damaged</strong>, or that they even <strong>disappear</strong> in unknown circumstances. It even happened once that, once considered lost, some goods were found within a totally unexpected area of the
+              warehouse.
+            </p>
+            <p>After a while he adds that depending on the value of the missing stock items, an appropriate manager has to (is obliged) to act and <strong>verify whether the stock items might have been stolen</strong>.</p>
+            <p>Also, as he mentions, deliveries are planned in advance and appropriate space is prepared to hold the received stock items. But it does happen, quite often, that a very <strong>important delivery needs to be taken immediately</strong> due to specific contracts with suppliers and unexpected situations on their end.</p>
+            <p>This doesn&#39;t look like a simple database-oriented system anymore...</p>
+            <p>
+              And if that was not enough, he adds one more point: <strong>it&#39;s very important to track real amounts of the stock items</strong>, and the inventory in general. Especially, the system shall prevent situations when the system claims there&#39;s more items in stock than in the real warehouse. He goes omn with a story of the previous head of the department which has been fired
+              because significant amounts of goods have been ordered and they were not in stock at all. He says that he doesn&#39;t want such situation to happen as long as he&#39;s the head.
+            </p>
+            <p>Okay. 🙂‍↕️</p>
+            <p>At this point we list down the capabilities of the system:</p>
+            <ul>
+              <li>register a delivery</li>
+              <li>prioritize delivery</li>
+              <li>report damage</li>
+              <li>report inventory shortage</li>
+              <li>report found items</li>
+              <li>check inventory level</li>
+              <li>look up inventory history of specific goods</li>
+            </ul>
+            <p>We&#39;re also considering whether verifying stolen goods fits into this system at all. But at the time being we&#39;re leaving it for later.</p>
+
+            <h2 id="talk-to-another-domain-expert">
+              <a href="#talk-to-another-domain-expert">
+                <span class="header-link"></span>
+                Talk to another domain expert
+              </a>
+            </h2>
+            <p>The Head of Inventory dept. suggested to talk to the Order Fulfillment Manager. She&#39;s responsible for making sure that all goods that have been ordered from our warehouse are processed quickly and without mistakes. The requirements she mentions are the following:</p>
+            <ul>
+              <li>The system must be able to <strong>reserve and cancel reservations</strong> of items <strong>immediately</strong> upon order placement.</li>
+              <li>She emphasizes the need for <strong>rapid order processing</strong>, which may lead to <strong>reserving items before they are actually available</strong> in stock. This happens when a delivery is expected, but the product has already been sold.</li>
+              <li>She also stresses the importance of <strong>minimizing delays in order fulfillment</strong> as all costs.</li>
+            </ul>
+            <p>During the conversation, new system functions are added:</p>
+            <ul>
+              <li>reserve stock item</li>
+              <li>cancel reservation</li>
+              <li>check given order</li>
+              <li>check stock item availability</li>
+            </ul>
+            <p>According to her, <strong>quick order fulfillment</strong> is absolutely critical in this business. Even at the cost of hypothetical mistakes in the inventory levels. She argues that nobody pays us for comprehensive inventory reports - but quick order fulfillment indeed brings income.</p>
+            <p>Clearly, the Head of the Inventory dept. and the Order Fulfillment Manager both have quite different priorities and expectations.</p>
+            <p>At the end she asks us if we&#39;ve gone to Returns and Claims Manager already or not yet.</p>
+
+            <h2 id="talk-to-yet-another-domain-expert">
+              <a href="#talk-to-yet-another-domain-expert">
+                <span class="header-link"></span>
+                Talk to yet another domain expert
+              </a>
+            </h2>
+            <p>Although Returns and Claims team has a Manager, fellow workers told us it&#39;s better to talk to the Supervisor, as he&#39;s easier to talk to. And so we&#39;ve gathered even more requirements:</p>
+            <ul>
+              <li>
+                The system needs to allow <strong>handling returns quickly and effectively</strong>. Accepting a return <strong>cannot wait for the system approving new stock amount</strong>. If a stock item is returned, then <em>it&#39;s returned!</em>, no matter what. Theoretically, he adds calmly, &quot;<em>quick return handling</em>&quot; may lead to outdated data about inventory levels... but
+                as he mentions, it doesn&#39;t happen often. Though we can&#39;t eliminate such situation 😅
+              </li>
+              <li>Eventually the system needs to allow for <strong>registering returns and updating inventory levels</strong> upon receiving returned goods.</li>
+              <li>Moreover, it&#39;s necessary to generate periodic reports on returns and analyzing their causes.</li>
+            </ul>
+            <p>New capabilities of the system noted:</p>
+            <ul>
+              <li>register returns</li>
+              <li>approve/disapprove return</li>
+              <li>check return details</li>
+              <li>check return history</li>
+            </ul>
+            <p>Phew, that was quite a lot of talking! But don&#39;t worry, no more domain experts today.</p>
+            <p>We&#39;re not going to design the system today. Not yet 😅</p>
+
+            <h2 id="domain-experts">
+              <a href="#domain-experts">
+                <span class="header-link"></span>
+                Domain Experts
+              </a>
+            </h2>
+            <p>We&#39;ve met three so called <em>domain experts</em>. Neither of them has a job title that is named literally this way. They have different positions in company&#39;s hierarchy. They all differ a lot.</p>
+            <p>But what matters is that <strong>they do possess the knowledge</strong> which is absolutely critical for <em>understanding the domain</em>.</p>
+
+            <h2 id="same-thing-yet-different-meaning">
+              <a href="#same-thing-yet-different-meaning">
+                <span class="header-link"></span>
+                Same thing, yet different meaning
+              </a>
+            </h2>
+            <p>We have quite a similar situation now, as we&#39;ve had yesterday with medical care domain: the same <em>thing</em> is being perceived in different ways by different people.</p>
+            <p>In the Warehouse that thing is the <em>stock item</em>:</p>
+            <ul>
+              <li>the Head of Inventory dept. sees a <em>stock item</em> as something that is <strong>available in stock</strong></li>
+              <li>the Order Fulfillment Manager sees a <em>stock item</em> as something that <strong>should be sent away to the customer as soon as possible</strong></li>
+              <li>the Returns and Claims Team Supervisor sees a stock item as something that could have been <strong>returned by a customer e.g. because of some damage</strong>.</li>
+            </ul>
+            <p>It seems that these three perspectives will overlap to some extent. We know that we&#39;ll have to provide some integration between <strong>Inventory</strong>, <strong>Orders</strong> and <strong>Returns</strong> in the system eventually designed. And, as a consequence, there would be <em>some coupling</em> between them.</p>
+            <p>But obviously we don&#39;t want that coupling to pop up unexpectedly (as it usually happens rather sooner than later 😅). We want to do our best to explore the domain and identify any potential points of integration across different areas.</p>
+            <p>Without detailed discussions with domain experts it&#39;s impossible to identify them.</p>
+
+            <h2 id="the-language">
+              <a href="#the-language">
+                <span class="header-link"></span>
+                The Language
+              </a>
+            </h2>
+            <p>Talking to different domain experts allow us to realize that they all might be <strong>using the same phrase</strong> or word: a <em>stock item</em>. But each of them <strong>use it in a slightly different context</strong>. Does it matter? Oh, YES!</p>
+            <p>But that&#39;s a whole new topic, one of the most important concepts in DDD (if not <em>the</em> most important one). A topic for tomorrow.</p>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves working with people. Ex-theatre actor. 4 espressos a
+                day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                Follow me on <a target="_blank" href="https://bsky.app/profile/ducin.dev">bluesky 🦋</a>, <a target="_blank" href="https://www.linkedin.com/in/tomasz-ducin-82234a4b/">LinkedIn</a>, or <a target="_blank" href="http://x.com/tomasz_ducin">the e𝕏 platform</a>
+                for tech-related updates.
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://slides.com/ducin" class="icon fa-slideshare" aria-label="slides link"><span class="label">Slides</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow" aria-label="stackoverflow link"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin.DEV Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

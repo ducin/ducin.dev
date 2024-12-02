@@ -90,125 +90,14 @@
         <section class="wrapper style5">
           <div class="inner">
             <p>
-              <em> Sunday 1 December 2024 • 📚 6 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-introduction-frontend.md">edit on Github</a> </em>
+              <em> Sunday 1 December 2024 • 📚 1 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-introduction-frontend.md">edit on Github</a> </em>
             </p>
             <p>The aDDDvent calendar 2024:</p>
             <ul>
               <li>day 1: <a href="/ddd-introduction-frontend">DDD is not about technology</a></li>
-              <li>day 2: DDD in practice (tomorrow)</li>
+              <li>day 2: <a href="/talk-to-domain-experts">Talk to domain experts</a></li>
+              <li>day 3: (tomorrow)</li>
             </ul>
-
-            <h2 id="tl-dr">
-              <a href="#tl-dr">
-                <span class="header-link"></span>
-                TL;DR;
-              </a>
-            </h2>
-            <p><strong>💡 DDD is first and foremost about understanding your business and your product. Practicing DDD means you&#39;re constantly exploring how your business works. It&#39;s mainly about collaboration and communication. If you think you&#39;re doing DDD by following a certain technology / framework / toolstack / pattern-based approach, you&#39;re doing it wrong.</strong></p>
-
-            <h2 id="ddd-is-not-about-technology">
-              <a href="#ddd-is-not-about-technology">
-                <span class="header-link"></span>
-                DDD is not about technology
-              </a>
-            </h2>
-            <p>Let&#39;s remind that we developers are there to solve business problems. And this means making customers&#39; and/or users&#39; lives easier. We&#39;re not there to do technology for the sake of doing it. Especially nowadays there&#39;s less and less room for &quot;coders&quot;. We should be problem solvers. <strong>Business problem solvers</strong>.</p>
-            <p>A question should arise: how can one solve business problems without understanding &quot;the anatomy&quot; of your business first? That&#39;s where DDD kicks in.</p>
-            <p>What does it mean to &quot;<em>understand your business</em>&quot;?</p>
-            <p>It&#39;s not what domain data is kept and how. It&#39;s not which patterns are used to implement business processes. It&#39;s not the user roles and credentials, not the pricing etc.</p>
-            <p>Understanding the business is understanding what value does your product bring to the customer. It&#39;s also what actually is your product.</p>
-
-            <h2 id="different-perspectives-about-the-same-fact">
-              <a href="#different-perspectives-about-the-same-fact">
-                <span class="header-link"></span>
-                Different perspectives about the same fact
-              </a>
-            </h2>
-            <p>Let&#39;s say we&#39;re working on a medical care system. We ask different people within the company: <em>what is the product that we sell</em>?</p>
-            <ul>
-              <li>
-                A doctor would answer: <em>We sell my <strong>appointments</strong></em
-                >.
-              </li>
-              <li>
-                An accountant would say: <em>We sell the things you can look up at <strong>each invoice</strong>, they vary a lot. It could be a specialized doctor <strong>appointment</strong>, it could be <strong>treating an illness</strong>, it could be <strong>medicine</strong> that we sold</em>
-              </li>
-              <li>
-                A marketer would say: <em>Ignore invoices... we sell the <strong>feeling of safety</strong>! If you are our patient, even if something bad happens to your health, you are is in good hands 😇.</em> Of course, obviously 😛
-              </li>
-              <li>
-                The CEO would say: <em>We sell availability of our <strong>resources</strong>.</em>
-              </li>
-            </ul>
-            <p>Understanding the business is understanding different perspectives of different specialists. Different, so called, <em>domain experts</em>.</p>
-
-            <h2 id="customer-39-s-journey">
-              <a href="#customer-39-s-journey">
-                <span class="header-link"></span>
-                Customer&#39;s journey
-              </a>
-            </h2>
-            <p>Understanding the business is eventually realizing, that, quite often, all above perspectives are strictly related (often in a linear sequence of events):</p>
-            <ul>
-              <li>first, there is customer&#39;s a need for safety so they sign up for the medical services</li>
-              <li>the need for safety results in a doctor&#39;s appointment</li>
-              <li>this means allocating resources</li>
-              <li>which eventually results in issuing an invoice.</li>
-            </ul>
-            <p>
-              An individual customer&#39;s journey often goes throughout the entire system. A desire for an appointment needs to check for a specific <strong>resource&#39;s availability</strong>. Run a query, let the user decide, then run a command. Eventually, the appointment <strong>becomes</strong> a position on an invoice. An object from one realm (appointment) becomes an object from another
-              realm (invoice). Coupling throughout the system is extremely carefully analyzed.
-            </p>
-            <p>At this point we&#39;re working with <strong>business concepts</strong>. We don&#39;t know if a concept would be a single object, or a graph of objects, or whatever else. We&#39;re <strong>not designing the implementation yet</strong>.</p>
-
-            <h2 id="domain-first-technology-later">
-              <a href="#domain-first-technology-later">
-                <span class="header-link"></span>
-                Domain first, Technology later
-              </a>
-            </h2>
-            <p>
-              DDD is about understanding the business you&#39;re working on. First and foremost. It &quot;<em><a href="https://www.amazon.com/Domain-Driven-Design-Tackling-Complexity-Software/dp/0321125215">tackles the complexity at the heart of software</a></em
-              >&quot; - at the <strong>domain</strong>.
-            </p>
-            <p>It doesn&#39;t mean technology is not important - certainly not. Technology is there to make the business concepts get implemented correctly.</p>
-            <blockquote>
-              <p>When you talk about Domain Driven Design it&#39;s almost as if we&#39;ve mastered the technology, so that <strong>now we can look at the real problem</strong> (👉 the domain 👈) and bring our tools to bear. So it&#39;s no kind of excuse to not be a master of technology and that means we have to keep up a breast of what&#39;s there and what&#39;s available.</p>
-            </blockquote>
-            <p>― <a href="https://www.youtube.com/watch?v=dnUFEg68ESM&start=976">Eric Evans, Domain-Driven Design Europe Conf, 2016</a></p>
-            <p>We could say, very roughly, that DDD follows <a href="https://en.wikipedia.org/wiki/Pareto_principle">Pareto Principle</a> in a way:</p>
-            <ul>
-              <li>80% of the focus is put on <strong>business aspects</strong></li>
-              <li>only 20% focus is <strong>technology</strong>; system needs to be implemented after all</li>
-            </ul>
-            <p>Of course it&#39;s rough (that&#39;s the essence of Pareto Principle). Of course it&#39;s not backed up by any research. Of course you could <a href="https://dictionary.cambridge.org/dictionary/english/nitpick">nitpick</a> the above statement a lot - feel free 😉. But it highlights <strong>where the focus should be: business</strong>.</p>
-            <p>We are proficient in tech, so <strong>we shift our focus to understanding business</strong>. &quot;<em>Understanding the domain</em>&quot;.</p>
-
-            <h2 id="strategy-and-tactics">
-              <a href="#strategy-and-tactics">
-                <span class="header-link"></span>
-                Strategy and Tactics
-              </a>
-            </h2>
-            <p>
-              Let me go through a different metaphor this time: there&#39;s an ongoing war (<a href="https://en.wikipedia.org/wiki/Russian_invasion_of_Ukraine">unfortunately we don&#39;t have to imagine that</a> 😢). There&#39;s a high-level goal of each side, e.g. to liberate the peaceful country from the invaders. This could be achieved using politics, but it could also be achieved using the
-              army and warfare. That&#39;s <strong>strategy</strong>.
-            </p>
-            <p>However, on a certain battlefield we need to use the troops somehow. For instance, we try to entirely avoid a typical battlefield where two armies meet to fight. We keep soldiers in very, very small groups. It&#39;s more difficult for drones and missiles to attack larger groups of both soldiers and equipment. That&#39;s <strong>tactics</strong>.</p>
-            <p>If there&#39;s no plan for how to win the war, even the best battlefield tactics is useless. More generally, <strong>even the best tactics doesn&#39;t bring much value if the strategy is poorly planned</strong>. Yes, you guessed correctly - the same applies to DDD.</p>
-            <p>One of the biggest issues with people applying DDD is failing to understand that: <strong>first strategy, then tactics</strong>. But that&#39;s gonna be covered later 🙂‍↕️.</p>
-            <p>
-              The value we want to bring to the customer... The business process that a customer would walk through... The good and bad experiences they would &quot;<em>collect</em>&quot; along the road... and finally how do we <a href="https://en.wikipedia.org/wiki/Divide-and-conquer_algorithm"><em>divide it</em> (into smaller modules) and <em>conquer</em></a> the <em>problem area</em> -
-              that&#39;s all strategy. And how all this would eventually get implemented - that&#39;s tactics.
-            </p>
-
-            <h2 id="wrap-up">
-              <a href="#wrap-up">
-                <span class="header-link"></span>
-                Wrap up
-              </a>
-            </h2>
-            <p><strong>DDD is not about technology itself</strong>. Technology (<strong>tactical DDD</strong>) is there <em>only</em> to implement and/or modularize the domain we are exploring (<strong>strategic DDD</strong>). And exploring the domain is what matter the most.</p>
 
             <hr />
             <div class="blog-footer">

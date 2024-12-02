@@ -64,6 +64,21 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://ducin.dev/ddd-introduction-frontend</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ducin.dev/ddd-is-not-about-technology</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ducin.dev/ddd-talk-to-domain-experts</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://ducin.dev/what-is-frontend-architecture</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>

@@ -133,6 +133,37 @@
     "status": "PUBLISHED"
   },
   {
+    "title": "DDD is not about technology",
+    "sourceFile": "ddd-is-not-about-technology",
+    "keywords": [
+      "Domain-Driven Design",
+      "DDD",
+      "Strategic DDD",
+      "Tactical DDD",
+      "Eric Evans"
+    ],
+    "description": "",
+    "publishedDate": "2024-12-01",
+    "coverImageFilename": "cover-ddd-advent-calendar.png",
+    "status": "PUBLISHED"
+  },
+  {
+    "title": "Talk to Domain Experts",
+    "subtitle": "(they understand the domain better than you)",
+    "sourceFile": "ddd-talk-to-domain-experts",
+    "keywords": [
+      "Domain-Driven Design",
+      "DDD",
+      "Strategic DDD",
+      "Tactical DDD",
+      "Domain Experts"
+    ],
+    "description": "",
+    "publishedDate": "2024-12-02",
+    "coverImageFilename": "cover-ddd-advent-calendar.png",
+    "status": "PUBLISHED"
+  },
+  {
     "title": "Zod: Runtime type checks (for JavaScript and TypeScript)",
     "sourceFile": "WIP-zod",
     "keywords": [
