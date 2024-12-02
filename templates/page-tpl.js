@@ -45,7 +45,9 @@ const pageTpl = ({
     ${[...cssFiles].map((file) => `<link rel="stylesheet" href="${file}" />`).join('\n')}
     <style>
       #main > header {
-        background-image: url("${backgroundImageURL}") !important;
+        background: url("${backgroundImageURL}") !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
       }
     </style>
   </head>
