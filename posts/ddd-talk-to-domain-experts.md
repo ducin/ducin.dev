@@ -1,6 +1,6 @@
 The aDDDvent calendar 2024:
 - day 1: [DDD is not about technology](/ddd-is-not-about-technology)
-- **day 2: [Talk to domain experts](/talk-to-domain-experts)**
+- **day 2: [Talk to domain experts](/ddd-talk-to-domain-experts)**
 - day 3: (tomorrow)
 
 ## TL;DR;
@@ -13,11 +13,11 @@ The aDDDvent calendar 2024:
 
 The key aspect to realize is that **in complex businesses there's no single truth**.
 
-Different people from different teams have different tasks to perform. They focus on different quality characteristics, also have different priorities. Truism, isn't it?
+Different people, from different teams, have different tasks to perform. They focus on different quality characteristics, also have different priorities. Truism, isn't it?
 
 Yet, still so many developers try to provide a single concept that matches the whole complexity of a business. 😢
 
-Creating _a single model that explains everything_ is not only a simplification, but also guarantees that we're missing out some important aspects of our domain.
+Creating _a single model that (only seems to) explain everything_ is not only a simplification, but also guarantees that we're missing out some important aspects of our domain.
 
 The key is to realize that there are **multiple perspectives at looking at the same fact**. Yesterday I brought a medical care domain example, in which the same fact is considered as follows:
 - **doctor**: *I'm having an appointment now*
