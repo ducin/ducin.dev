@@ -6,10 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Tomasz Ducin" />
-    <meta name="keywords" content="Domain-Driven Design, DDD, Strategic DDD, Tactical DDD, Domain Experts, Ubiquitous Language" />
+    <meta name="keywords" content="Domain-Driven Design, DDD, DDDesign, Strategic DDD, Domain Experts, Ubiquitous Language, Bounded Contexts" />
     <meta
       name="description"
-      content="Ubiquitous Language provides specific contextual meaning to domain terms within a team. It's neither the business language nor the industry standard terminology. Not even domain experts' language. It's a shared team language developed and used within a team of both devs and domain experts. The terms defined within that language will probably have different meaning outside of the team."
+      content="Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It's a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something different outside of it."
     />
     <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
     <meta name="twitter:card" content="summary_large_image" />
@@ -17,14 +17,14 @@
     <meta name="twitter:creator" content="@tomasz_ducin" />
     <meta
       name="twitter:description"
-      content="Ubiquitous Language provides specific contextual meaning to domain terms within a team. It's neither the business language nor the industry standard terminology. Not even domain experts' language. It's a shared team language developed and used within a team of both devs and domain experts. The terms defined within that language will probably have different meaning outside of the team."
+      content="Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It's a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something different outside of it."
     />
     <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
     <meta property="og:type" content="article" />
     <meta property="og:title" content="Speaking Ubiquitous Language - Tomasz Ducin - blog" />
     <meta
       property="og:description"
-      content="Ubiquitous Language provides specific contextual meaning to domain terms within a team. It's neither the business language nor the industry standard terminology. Not even domain experts' language. It's a shared team language developed and used within a team of both devs and domain experts. The terms defined within that language will probably have different meaning outside of the team."
+      content="Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It's a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something different outside of it."
     />
     <meta property="og:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
     <link rel="canonical" href="https://ducin.dev/ddd-speaking-ubiquitous-language" />
@@ -100,7 +100,7 @@
         <section class="wrapper style5">
           <div class="inner">
             <p>
-              <em> Tuesday 3 December 2024 • 📚 6 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-speaking-ubiquitous-language.md">edit on Github</a> </em>
+              <em> Tuesday 3 December 2024 • 📚 8 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-speaking-ubiquitous-language.md">edit on Github</a> </em>
             </p>
             <p>The aDDDvent calendar 2024:</p>
             <ul>
@@ -120,8 +120,8 @@
             </h2>
             <p>
               <strong
-                >💡 Ubiquitous Language provides specific contextual meaning to domain terms within a team. It&#39;s neither the business language nor the industry standard terminology. Not even domain experts&#39; language. It&#39;s a shared team language developed and used within a team of both devs and domain experts. The terms defined within that language will probably have different meaning
-                outside of the team.</strong
+                >💡 Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It&#39;s a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something
+                different outside of it.</strong
               >
             </p>
 
@@ -140,15 +140,15 @@
             </ul>
             <p>We must also realize all these three people probably work on different teams, maybe even departments, and certainly have different tasks and priorities.</p>
 
-            <h2 id="speaking-the-same-language-within-a-team">
-              <a href="#speaking-the-same-language-within-a-team">
+            <h2 id="speaking-the-same-language-within-a-given-business-context">
+              <a href="#speaking-the-same-language-within-a-given-business-context">
                 <span class="header-link"></span>
-                Speaking the same Language within a team
+                Speaking the same Language within a given business context
               </a>
             </h2>
-            <p>However, we&#39;re here to create a system which will help run our company. At some point certain development teams will have to start communicating with a certain domain expert. They will form a <strong>multi-disciplinary team: development and domain expert - together</strong>. Working on a specific piece of the business domain.</p>
-            <p>The domain expert will answer tens or hundreds of questions. The <strong>expert</strong> will be using his professional terminology: the <em>business language</em>. On the other hand, <strong>developers</strong> might also use their own professional dev terminology. As a consequence, a <strong>new language emerges</strong> naturally.</p>
-            <p>It is the domain expert who brings expertise into the team, so the <strong>expert heavily influences the common language</strong> of that team.</p>
+            <p>However, we&#39;re here to create a system which will help run our company. At some point certain development teams will have to start communicating with a certain domain experts. They will form a <strong>multi-disciplinary teams including: development and domain expert - together</strong>. Working on a specific part of the business.</p>
+            <p>The domain expert will answer tens or hundreds of questions related to . The <strong>expert</strong> will be using his professional terminology: the <em>business language</em>. On the other hand, <strong>developers</strong> might also use their own professional dev terminology. As a consequence, a <strong>new language emerges</strong> naturally.</p>
+            <p>The domain expert is the one who brings expertise. Most probably the <em>business language</em>, the <em>industry standards</em>, etc. would heavily influence this <strong>common language</strong>.</p>
             <p>It&#39;s called the <em>Ubiquitous Language</em> (<em>UL</em>).</p>
 
             <h2 id="what-39-s-the-point-of-that-new-lingo">
@@ -161,6 +161,40 @@
             <p>It does take quite significant time until the domain expert transfers domain knowledge to developers. Once a complex topic is explained, a <strong>new term</strong> gets coined (or a business term is simply reused). <strong>We use it to communicate faster</strong>.</p>
             <p>That&#39;s it - use 2-3 words without the need to explain the whole topic using 5 sentences. Without doing that <strong>again</strong>! We have already discussed that before, right? <strong>Using highly specialized terminology makes communication more effective</strong>.</p>
             <p>In DDD we call that domain-related meaning: <strong>semantics</strong>.</p>
+
+            <h2 id="bounded-context-and-ubiquitous-language">
+              <a href="#bounded-context-and-ubiquitous-language">
+                <span class="header-link"></span>
+                Bounded Context and Ubiquitous Language
+              </a>
+            </h2>
+            <p>We&#39;ve said that the team of both developers and domain experts are working on a <em>specific part of the business</em>. This work includes understanding the business, designing the solution and often implementing it eventually (however, not always).</p>
+            <p>
+              <strong>This &quot;<em>part of business</em>&quot; is extremely important and in DDD is called a <em>Bounded Context</em></strong
+              >.
+            </p>
+            <p>
+              For the sake of the moment (just a temporary simplification), you can think of a <em>Bounded Context</em> as something that might get eventually <strong>implemented as software <em>module</em>, but <em>bounded</em></strong
+              >. It&#39;s logically <strong>separated</strong> from the rest of the solution. <strong>The boundary is semantics.</strong>
+            </p>
+            <p>Again, we&#39;ve got totally different meanings (<strong>semantics</strong>) of what a <em>stock item</em> means in different <strong>contexts</strong>. <strong>Different Bounded Contexts</strong>.</p>
+            <p>The boundary is defined by the language used (<strong>Ubiquitous Language</strong>). If a given phrase carries the exact same meaning, it means it&#39;s within the same context:</p>
+            <blockquote>
+              <p>🔥🔥🔥 same meaning &lt;=&gt; same context 🔥🔥🔥</p>
+            </blockquote>
+            <p>And yet, if a given phrase could have different meanings, it means we&#39;re dealing with more than one Bounded Context:</p>
+            <blockquote>
+              <p>🔥🔥🔥 different meaning &lt;=&gt; different context 🔥🔥🔥</p>
+            </blockquote>
+            <p>The &quot;<em>Bounded</em>&quot; word denotes a boundary. Since all this is <strong>about meaning and language</strong>, the boundary is a <strong>semantic boundary</strong> or <strong>linguistic boundary</strong>.</p>
+            <p>You can think - and actually you should - that all these:</p>
+            <ul>
+              <li><strong>Ubiquitous Language</strong> - the language used</li>
+              <li><strong>Bounded Context</strong> - the part of the business being worked on</li>
+              <li><strong>semantic boundary / linguistic boundary</strong> - the boundary separating the bounded context from the rest of the solution they are all <strong>very closely connected</strong>.</li>
+            </ul>
+            <p><strong>This is absolutely the core of DDD</strong>. But don&#39;t worry if you haven&#39;t grasped it all at once. We will <a href="/ddd-designing-bounded-context">tackle Bounded Contexts in DDD more tomorrow</a>.</p>
+            <p>Anyway, let&#39;s get back to the hero of today - the Ubiquitous Language.</p>
 
             <h2 id="whether-you-want-it-or-not">
               <a href="#whether-you-want-it-or-not">
@@ -177,7 +211,7 @@
               <li>while coding frontend,</li>
               <li>while writing or executing tests and so on.</li>
             </ul>
-            <p>The language is used everywhere. But watch out: <strong>everywhere within the team only</strong>.</p>
+            <p>The language is used everywhere: code, docs, discussions, etc. But watch out: <strong>everywhere within the Bounded Context</strong>.</p>
 
             <h2 id="ubiquitous-language-is-local-not-global">
               <a href="#ubiquitous-language-is-local-not-global">
@@ -189,7 +223,7 @@
             <p>Introducing a globally spoken set of domain relevant phrases would require potentially crazy amounts of effort to unify the language. A question arises: how big your company is? How many people would have to align? How many people would have to get trained in order to speak a globally-acclaimed language?</p>
             <p>Imagine synchronizing terminology across codebases of different teams. Madness...</p>
             <p>I hope you can see that&#39;d be pure nonsense 😉.</p>
-            <p>UL - being spoken by the team, and only within the team - is something that happens naturally. You don&#39;t need to control the process. It will emerge anyway.</p>
+            <p>UL - being spoken within the Bounded Context, and only within that Bounded Context - is something that happens naturally. You don&#39;t need to control the process. It will emerge anyway.</p>
 
             <h2 id="specific-language-makes-the-team-more-autonomous">
               <a href="#specific-language-makes-the-team-more-autonomous">
@@ -197,9 +231,10 @@
                 Specific Language makes the team more Autonomous
               </a>
             </h2>
-            <p>Moreover, DDD makes sense especially when dealing with complex businesses. And scaling complex businesses is hard... That&#39;s also where a team-specific language helps.</p>
-            <p><strong>Using distinct Ubiquitous Languages, across different teams, makes them more autonomous</strong>.</p>
-            <p>Also, since the business is not set in stone (it will change), then the UL would evolve, within time. And that&#39;s great - the UL of one team depends in no way on UL of another team.</p>
+            <p>Moreover, DDD makes sense especially when dealing with complex businesses. And scaling complex businesses is hard... That&#39;s also where a context-specific language helps.</p>
+            <p><strong>Using different Ubiquitous Languages, each within different context, makes them more autonomous</strong>.</p>
+            <p>Also, since the business is not set in stone (it will change), then the UL would evolve, within time. And that&#39;s great - the changes made to UL of one context will affect another context in no way. 🥰</p>
+            <p><strong>That&#39;s the point.</strong></p>
 
             <h2 id="does-it-mean-we-39-d-have-3-different-code-stockitem-code-classes">
               <a href="#does-it-mean-we-39-d-have-3-different-code-stockitem-code-classes">

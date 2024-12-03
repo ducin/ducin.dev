@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Designing Bounded Contexts - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Domain-Driven Design, DDD, DDDesign, Strategic DDD, Ubiquitous Language, Bounded Contexts" />
+    <meta name="description" content="..." />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="..." />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Designing Bounded Contexts - Tomasz Ducin - blog" />
+    <meta property="og:description" content="..." />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <link rel="canonical" href="https://ducin.dev/ddd-designing-bounded-contexts" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-ddd-advent-calendar.png") !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMG3MMTWGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MMG3MMTWGW");
+    </script>
+
+    <script>
+      (function (s, e, n, d, er) {
+        s["Sender"] = er;
+        (s[er] =
+          s[er] ||
+          function () {
+            (s[er].q = s[er].q || []).push(arguments);
+          }),
+          (s[er].l = 1 * new Date());
+        var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://cdn.sender.net/accounts_resources/universal.js", "sender");
+      sender("758ace613a8369");
+    </script>
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle" aria-label="Toggle site menu"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/newsletter">Newsletter</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <section class="cover-title-alt">
+            <h2>Designing Bounded Contexts</h2>
+          </section>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p>
+              <em> Wednesday 4 December 2024 • 📚 0 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-designing-bounded-contexts.md">edit on Github</a> </em>
+            </p>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves working with people. Ex-theatre actor. 4 espressos a
+                day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                Follow me on <a target="_blank" href="https://bsky.app/profile/ducin.dev">bluesky 🦋</a>, <a target="_blank" href="https://www.linkedin.com/in/tomasz-ducin-82234a4b/">LinkedIn</a>, or <a target="_blank" href="http://x.com/tomasz_ducin">the e𝕏 platform</a>
+                for tech-related updates.
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://slides.com/ducin" class="icon fa-slideshare" aria-label="slides link"><span class="label">Slides</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow" aria-label="stackoverflow link"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin.DEV Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

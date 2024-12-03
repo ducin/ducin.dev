@@ -97,25 +97,7 @@
     "coverImageFilename": "cover-red-and-blue.png",
     "status": "PUBLISHED"
   },
-  {
-    "title": "Object.groupBy(collection, keySelector)",
-    "sourceFile": "WIP-descriptors",
-    "keywords": [
-      "Lorem",
-      "Ipsum",
-      "Dolor"
-    ],
-    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
-    "publishedDate": "1970-01-01",
-    "coverImage": {
-      "URL": "https://unsplash.com/photos/a-bunch-of-screws-and-screws-on-a-table-yCyPRNLnFMM",
-      "title": "Screws and washers",
-      "authorURL": "https://unsplash.com/@roberto_sorin",
-      "author": "Roberto Sorin"
-    },
-    "coverImageFilename": "test.avif",
-    "status": "IGNORED"
-  },
+
   {
     "title": "Introduction to Domain-Driven Design",
     "subtitle": "(for Frontend developers, but not only)",
@@ -138,6 +120,7 @@
     "keywords": [
       "Domain-Driven Design",
       "DDD",
+      "DDDesign",
       "Strategic DDD",
       "Tactical DDD",
       "Eric Evans"
@@ -154,6 +137,7 @@
     "keywords": [
       "Domain-Driven Design",
       "DDD",
+      "DDDesign",
       "Strategic DDD",
       "Tactical DDD",
       "Domain Experts"
@@ -169,35 +153,35 @@
     "keywords": [
       "Domain-Driven Design",
       "DDD",
+      "DDDesign",
       "Strategic DDD",
-      "Tactical DDD",
       "Domain Experts",
-      "Ubiquitous Language"
+      "Ubiquitous Language",
+      "Bounded Contexts"
     ],
-    "description": "Ubiquitous Language provides specific contextual meaning to domain terms within a team. It's neither the business language nor the industry standard terminology. Not even domain experts' language. It's a shared team language developed and used within a team of both devs and domain experts. The terms defined within that language will probably have different meaning outside of the team.",
+    "description": "Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It's a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something different outside of it.",
     "publishedDate": "2024-12-03",
     "coverImageFilename": "cover-ddd-advent-calendar.png",
     "status": "PUBLISHED"
   },
   {
-    "title": "Zod: Runtime type checks (for JavaScript and TypeScript)",
-    "sourceFile": "WIP-zod",
+    "title": "Designing Bounded Contexts",
+    "sourceFile": "ddd-designing-bounded-contexts",
     "keywords": [
-      "Lorem",
-      "Ipsum",
-      "Dolor"
+      "Domain-Driven Design",
+      "DDD",
+      "DDDesign",
+      "Strategic DDD",
+      "Ubiquitous Language",
+      "Bounded Contexts"
     ],
-    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
-    "publishedDate": "1970-01-01",
-    "coverImage": {
-      "URL": "https://unsplash.com/photos/seven-construction-workers-standing-on-white-field-x-ghf9LjrVgv",
-      "title": "Seven construction workers",
-      "authorURL": "https://unsplash.com/@sunburned_surveyor",
-      "author": "Scott Blake"
-    },
-    "coverImageFilename": "cover-seven-construction-workers.png",
-    "status": "IGNORED"
+    "description": "...",
+    "publishedDate": "2024-12-04",
+    "coverImageFilename": "cover-ddd-advent-calendar.png",
+    "status": "PUBLISHED"
   },
+
+
   {
     "title": "What is Frontend Architecture?",
     "sourceFile": "what-is-frontend-architecture",
@@ -313,6 +297,47 @@
     },
     "coverImageFilename": "cover-assorted-book-on-bookshelf.jpg",
     "status": "PUBLISHED"
+  },
+
+
+
+  {
+    "title": "Object.groupBy(collection, keySelector)",
+    "sourceFile": "WIP-descriptors",
+    "keywords": [
+      "Lorem",
+      "Ipsum",
+      "Dolor"
+    ],
+    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
+    "publishedDate": "1970-01-01",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/a-bunch-of-screws-and-screws-on-a-table-yCyPRNLnFMM",
+      "title": "Screws and washers",
+      "authorURL": "https://unsplash.com/@roberto_sorin",
+      "author": "Roberto Sorin"
+    },
+    "coverImageFilename": "test.avif",
+    "status": "IGNORED"
+  },
+  {
+    "title": "Zod: Runtime type checks (for JavaScript and TypeScript)",
+    "sourceFile": "WIP-zod",
+    "keywords": [
+      "Lorem",
+      "Ipsum",
+      "Dolor"
+    ],
+    "description": "Proin sit amet risus sollicitudin, efficitur nibh eu, finibus elit. Curabitur nibh ligula, finibus venenatis condimentum ac, fringilla euismod nisi.",
+    "publishedDate": "1970-01-01",
+    "coverImage": {
+      "URL": "https://unsplash.com/photos/seven-construction-workers-standing-on-white-field-x-ghf9LjrVgv",
+      "title": "Seven construction workers",
+      "authorURL": "https://unsplash.com/@sunburned_surveyor",
+      "author": "Scott Blake"
+    },
+    "coverImageFilename": "cover-seven-construction-workers.png",
+    "status": "IGNORED"
   },
   {
     "title": "Test",

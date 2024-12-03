@@ -17,6 +17,14 @@ Um, "*it depends*". It could be (to some extent at least), it could be not.
 
 # plan
 
+The aDDDvent calendar 2024:
+- [ ] day 1: DDD is not about technology
+- [ ] day 2: Talk to domain experts
+- [ ] day 3: Speaking ubiquitous language
+- [ ] day 4: Bounded Contexts
+- [ ] day 5: Context Maps - Cross-module relations
+- [ ] day 6: 
+
 - in practice: e.g. different semantic models
 - overview: strategic and tactical
 - exploring domains, heuristics
@@ -27,7 +35,7 @@ Um, "*it depends*". It could be (to some extent at least), it could be not.
   - canonical data models (ignoring different semantics)
   - database-driven development (reflect DB schema everywhere)
 - practices:
-  - event storming
+  - event storming: https://www.youtube.com/watch?v=mLXQIYEwK24
   - domain storytelling
   - domain story mapping
   - Wardley mapping
