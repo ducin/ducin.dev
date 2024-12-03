@@ -164,6 +164,22 @@
     "status": "PUBLISHED"
   },
   {
+    "title": "Talk to Domain Experts",
+    "sourceFile": "ddd-speaking-ubiquitous-language",
+    "keywords": [
+      "Domain-Driven Design",
+      "DDD",
+      "Strategic DDD",
+      "Tactical DDD",
+      "Domain Experts",
+      "Ubiquitous Language"
+    ],
+    "description": "Ubiquitous Language provides specific contextual meaning to domain terms within a team. It's neither the business language nor the industry standard terminology. Not even domain experts' language. It's a shared team language developed and used within a team of both devs and domain experts. The terms defined within that language will probably have different meaning outside of the team.",
+    "publishedDate": "2024-12-03",
+    "coverImageFilename": "cover-ddd-advent-calendar.png",
+    "status": "PUBLISHED"
+  },
+  {
     "title": "Zod: Runtime type checks (for JavaScript and TypeScript)",
     "sourceFile": "WIP-zod",
     "keywords": [
