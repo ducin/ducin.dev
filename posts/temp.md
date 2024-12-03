@@ -21,8 +21,8 @@ The aDDDvent calendar 2024:
 - [X] day 1: DDD is not about technology
 - [X] day 2: Talk to domain experts
 - [X] day 3: Speaking ubiquitous language
-- [ ] day 4: Exploring the Domain
-- [ ] day 5: Designing Bounded Contexts
+- [~] day 4: Designing Bounded Contexts
+- [ ] day 5: Exploring the Domain
 - [ ] day 6: Context Maps - Cross-module relations
 - [ ] day 7: 
 
@@ -69,6 +69,14 @@ The aDDDvent calendar 2024:
 #DOMAIN-EXPERTS #MODELLING
 > 3. The goal of modelling is not to reflect reality but to solve the specific problem. It's a bit arrogant to believe we can become domain experts in a few weeks. Still, we don't have to. We can understand the use case well enough to build a model to solve the problem through software.
 - Oskar
+
+#COLLABO
+> "When a man points at collaboration with tools, fools look at tools and not at collaboration"
+- Damian Płaza
+
+> "Each architecture starts in HR department - the way we set up teams, their members and interactions, already imply the modules that are going to be created. What's the best way of figuring out teams' organization?"
+- Damian Płaza
+
 
 
 
@@ -143,3 +151,11 @@ The aDDDvent calendar 2024:
 
 > One can say that software development in general is a highly sociotechnical enterprise; We are people working with people to create digital tools for people.
 - Trond Hjorteland
+
+
+
+## Bounded Contexts are agnostic to Deployment Architecture
+
+Bounded Contexts are being **designed way before any coding takes place**. Essentially, Strategic DDD precedes Tactical DDD.
+
+A concerns could arise: how can we design the contexts if we don't yet know whether we'll eventually go with Monolithic System or Distributed MicroServices/MicroFrontends architecture?

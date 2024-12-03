@@ -165,17 +165,18 @@
     "status": "PUBLISHED"
   },
   {
-    "title": "Designing Bounded Contexts",
-    "sourceFile": "ddd-designing-bounded-contexts",
+    "title": "Autonomous Models in Bounded Contexts",
+    "sourceFile": "ddd-autonomous-models-in-bounded-contexts",
     "keywords": [
       "Domain-Driven Design",
       "DDD",
       "DDDesign",
       "Strategic DDD",
       "Ubiquitous Language",
-      "Bounded Contexts"
+      "Bounded Contexts",
+      "Domain Model"
     ],
-    "description": "...",
+    "description": "A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. Each domain model within its context is autonomous and doesn't depend on models from different contexts, to reduce unnecessary coupling. Don't let DRY principle cheat you.",
     "publishedDate": "2024-12-04",
     "coverImageFilename": "cover-ddd-advent-calendar.png",
     "status": "PUBLISHED"

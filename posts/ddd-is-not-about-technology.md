@@ -2,12 +2,12 @@ The aDDDvent calendar 2024:
 - **day 1: [DDD is not about technology](/ddd-is-not-about-technology)**
 - day 2: [Talk to domain experts](/ddd-talk-to-domain-experts)
 - day 3: [Speaking ubiquitous language](/ddd-speaking-ubiquitous-language)
-- day 4: [Designing Bounded Contexts](/ddd-designing-bounded-contexts)
+- day 4: [Autonomous Models in Bounded Contexts](/ddd-autonomous-models-in-bounded-contexts)
 - day 5: (tomorrow)
 
-## TL;DR;
+**TL;DR; 💡 DDD is first and foremost about understanding your business and your product. Practicing DDD means you're constantly exploring how your business works. It's mainly about collaboration and communication. If you think you're doing DDD by following a certain technology / framework / toolstack / pattern-based approach, you're doing it wrong.**
 
-**💡 DDD is first and foremost about understanding your business and your product. Practicing DDD means you're constantly exploring how your business works. It's mainly about collaboration and communication. If you think you're doing DDD by following a certain technology / framework / toolstack / pattern-based approach, you're doing it wrong.**
+<% TOC %>
 
 ## DDD is not about technology
 
@@ -82,3 +82,5 @@ Here's a quote that sums it up perfectly and extracts the essence of what DDD is
 > Remember that all we do or use should nurture collaboration and building shared understanding - as long as we are able to catalyze collaboration and fill up each other minds with proper models - we do it correctly. DDD is first and foremost about working together.
 
 ― [Damian Płaza](https://www.linkedin.com/in/damian-plaza/), expert in DDD and a [great storyteller](https://talesfrom.dev/)
+
+[Tomorrow we'll start the collaboration](/ddd-talk-to-domain-experts) 😊.

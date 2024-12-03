@@ -2,12 +2,12 @@ The aDDDvent calendar 2024:
 - day 1: [DDD is not about technology](/ddd-is-not-about-technology)
 - day 2: [Talk to domain experts](/ddd-talk-to-domain-experts)
 - **day 3: [Speaking ubiquitous language](/ddd-speaking-ubiquitous-language)**
-- day 4: [Designing Bounded Contexts](/ddd-designing-bounded-contexts)
+- day 4: [Autonomous Models in Bounded Contexts](/ddd-autonomous-models-in-bounded-contexts)
 - day 5: (tomorrow)
 
-## TL;DR;
+**TL;DR; 💡 Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It's a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something different outside of it.**
 
-**💡 Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It's a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something different outside of it.**
+<% TOC %>
 
 ## Different Meaning of the same Phrase
 
@@ -32,7 +32,7 @@ It's called the *Ubiquitous Language* (*UL*).
 
 ## What's the point of that new Lingo?
 
-The point is that **each domain-relevant phrase, used within UL, carries important meaning**.
+The point is that **each domain-relevant phrase, used within Ubiquitous Language, carries important meaning**.
 
 It does take quite significant time until the domain expert transfers domain knowledge to developers. Once a complex topic is explained, a **new term** gets coined (or a business term is simply reused). **We use it to communicate faster**.
 
@@ -86,7 +86,7 @@ The language is used everywhere: code, docs, discussions, etc. But watch out: **
 
 ## Ubiquitous Language is local, not global
 
-A quite common **misconception** is treating UL as something that is global to the whole company. That's essentially **not the case with UL**.
+A quite common **misconception** is treating Ubiquitous Language as something that is global to the whole company. That's essentially **not the case with Ubiquitous Language**.
 
 Introducing a globally spoken set of domain relevant phrases would require potentially crazy amounts of effort to unify the language. A question arises: how big your company is? How many people would have to align? How many people would have to get trained in order to speak a globally-acclaimed language?
 
@@ -94,7 +94,11 @@ Imagine synchronizing terminology across codebases of different teams. Madness..
 
 I hope you can see that'd be pure nonsense 😉.
 
-UL - being spoken within the Bounded Context, and only within that Bounded Context - is something that happens naturally. You don't need to control the process. It will emerge anyway.
+> If you apply a single Ubiquitous Language to a whole enterprise or even multiple enterprises, you will fail.
+
+― Vaughn Vernon, author of "*Implementing Domain-Driven Design*" and "*Domain-Driven Design Distilled*"
+
+Ubiquitous Language - being spoken within the Bounded Context, and only within that Bounded Context - is something that happens naturally. You don't need to control the process. It will emerge anyway.
 
 ## Specific Language makes the team more Autonomous
 
@@ -102,7 +106,7 @@ Moreover, DDD makes sense especially when dealing with complex businesses. And s
 
 **Using different Ubiquitous Languages, each within different context, makes them more autonomous**.
 
-Also, since the business is not set in stone (it will change), then the UL would evolve, within time. And that's great - the changes made to UL of one context will affect another context in no way. 🥰
+Also, since the business is not set in stone (it will change), then the Ubiquitous Language would evolve, within time. And that's great - the changes made to Ubiquitous Language of one context will affect another context in no way. 🥰
 
 **That's the point.**
 
@@ -123,7 +127,7 @@ Finally, **if the *stock item* means three different things in three different c
 
 The only thing you should care is to **use it pragmatically**.
 
-One way to be pragmatic with UL is to use only one phrase for exactly one concept. **Don't introduce synonyms**. In UL, if two different phrases are used - it has to mean two **semantically different** concepts. And vice versa, one phrase should relate to a single concept. Just this.
+One way to be pragmatic with Ubiquitous Language is to use only one phrase for exactly one concept. **Don't introduce synonyms**. In Ubiquitous Language, if two different phrases are used - it has to mean two **semantically different** concepts. And vice versa, one phrase should relate to a single concept. Just this.
 
 Again - only within the team. We don't care about terminology outside.
 

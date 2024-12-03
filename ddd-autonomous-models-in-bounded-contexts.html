@@ -1,24 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Designing Bounded Contexts - Tomasz Ducin - blog</title>
+    <title>Autonomous Models in Bounded Contexts - Tomasz Ducin - blog</title>
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="author" content="Tomasz Ducin" />
-    <meta name="keywords" content="Domain-Driven Design, DDD, DDDesign, Strategic DDD, Ubiquitous Language, Bounded Contexts" />
-    <meta name="description" content="A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. A Bounded Context is rather small. And neither its size nor area depends on the target architecture you choose." />
+    <meta name="keywords" content="Domain-Driven Design, DDD, DDDesign, Strategic DDD, Ubiquitous Language, Bounded Contexts, Domain Model" />
+    <meta name="description" content="A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. Each domain model within its context is autonomous and doesn't depend on models from different contexts, to reduce unnecessary coupling. Don't let DRY principle cheat you." />
     <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:site" content="@tomasz_ducin" />
     <meta name="twitter:creator" content="@tomasz_ducin" />
-    <meta name="twitter:description" content="A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. A Bounded Context is rather small. And neither its size nor area depends on the target architecture you choose." />
+    <meta name="twitter:description" content="A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. Each domain model within its context is autonomous and doesn't depend on models from different contexts, to reduce unnecessary coupling. Don't let DRY principle cheat you." />
     <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
     <meta property="og:type" content="article" />
-    <meta property="og:title" content="Designing Bounded Contexts - Tomasz Ducin - blog" />
-    <meta property="og:description" content="A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. A Bounded Context is rather small. And neither its size nor area depends on the target architecture you choose." />
+    <meta property="og:title" content="Autonomous Models in Bounded Contexts - Tomasz Ducin - blog" />
+    <meta property="og:description" content="A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. Each domain model within its context is autonomous and doesn't depend on models from different contexts, to reduce unnecessary coupling. Don't let DRY principle cheat you." />
     <meta property="og:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
-    <link rel="canonical" href="https://ducin.dev/ddd-designing-bounded-contexts" />
+    <link rel="canonical" href="https://ducin.dev/ddd-autonomous-models-in-bounded-contexts" />
     <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
     <link rel="stylesheet" href="assets/css/main.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
@@ -85,13 +85,13 @@
       <article id="main">
         <header>
           <section class="cover-title-alt">
-            <h2>Designing Bounded Contexts</h2>
+            <h2>Autonomous Models in Bounded Contexts</h2>
           </section>
         </header>
         <section class="wrapper style5">
           <div class="inner">
             <p>
-              <em> Wednesday 4 December 2024 • 📚 4 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-designing-bounded-contexts.md">edit on Github</a> </em>
+              <em> Wednesday 4 December 2024 • 📚 8 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-autonomous-models-in-bounded-contexts.md">edit on Github</a> </em>
             </p>
             <p>The aDDDvent calendar 2024:</p>
             <ul>
@@ -99,15 +99,15 @@
               <li>day 2: <a href="/ddd-talk-to-domain-experts">Talk to Domain Experts</a></li>
               <li>day 3: <a href="/ddd-speaking-ubiquitous-language">Speaking Ubiquitous Language</a></li>
               <li>
-                <strong>day 4: <a href="/ddd-designing-bounded-contexts">Designing Bounded Contexts</a></strong>
+                <strong>day 4: <a href="/ddd-autonomous-models-in-bounded-contexts">Autonomous Models in Bounded Contexts</a></strong>
               </li>
               <li>day 5: (tomorrow)</li>
             </ul>
-            <p><strong>TL;DR; 💡 A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. A Bounded Context is rather small. And neither its size nor area depends on the target architecture you choose.</strong></p>
+            <p><strong>TL;DR; 💡 A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. Each domain model within its context is autonomous and doesn&#39;t depend on models from different contexts, to reduce unnecessary coupling. Don&#39;t let DRY principle cheat you.</strong></p>
             <blockquote>
               <p>
-                At the strategic level, you need autonomous models, i.e. models where changing <strong>one model does not entail the need for changes in others</strong> - I mean changing the model itself, not changing the data. Each of these models will be developed later at the tactical level using appropriate building blocks - appropriate to the class of the problem, because you do not always
-                need, for example, aggregates, when you do not have the risk of a concurrent change of state.
+                At the strategic level, you need <strong>autonomous models</strong>, i.e. models where changing <strong>one model does not entail the need for changes in others</strong> - I mean changing the model itself, not changing the data. Each of these models will be developed later at the tactical level using appropriate building blocks - appropriate to the class of the problem, because you
+                do not always need, for example, aggregates, when you do not have the risk of a concurrent change of state.
               </p>
               <p>But returning to the autonomy of models - how to verify it? Rectangles and arrows can trick you. <strong>You need to check what signals (commands and events) you send between models, because they can violate boundaries, and leak internal models</strong>.</p>
             </blockquote>
@@ -124,8 +124,15 @@
               <li><a href="#Ranking-request-sent-after-a-Purchase">Ranking request sent after a Purchase</a></li>
               <li><a href="#Different-Meanings-of-the-same-phrase%2C-AGAIN!">Different Meanings of the same phrase, AGAIN!</a></li>
               <li><a href="#Modules-bounded-by-entities">Modules bounded by entities</a></li>
-              <li><a href="#Bounded-Contexts-are-the-essence-of-DDD">Bounded Contexts are the essence of DDD</a></li>
-              <li><a href="#How-big-is-a-Bounded-Context%3F">How big is a Bounded Context?</a></li>
+              <li>
+                <a href="#Database-oriented-%60ratings%60-module">Database-oriented <code>ratings</code> module</a>
+              </li>
+              <li>
+                <a href="#Common-%60Rating%60-model">Common <code>Rating</code> model</a>
+              </li>
+              <li><a href="#Working-with-Shared-Models">Working with Shared Models</a></li>
+              <li><a href="#Autonomous-Models">Autonomous Models</a></li>
+              <li><a href="#Conclusion">Conclusion</a></li>
             </ul>
 
             <h2 id="bounded-context-as-a-semantic-linguistic-boundary">
@@ -135,7 +142,7 @@
               </a>
             </h2>
             <p><a href="ddd-speaking-ubiquitous-language">Yesterday we&#39;ve been speaking the Ubiquitous Language</a>. We&#39;ve mentioned that the language defines the boundary in which all domain concepts make sense. If this seems anyhow tangled, let&#39;s untangle it now. 🙂</p>
-            <p>First thing is that <strong>how we shape our (domain) models matter a lot</strong>.</p>
+            <p>Today we&#39;ll learn that <strong>how we shape our domain models matter a lot</strong>.</p>
 
             <h2 id="ranking-request-sent-after-a-purchase">
               <a href="#ranking-request-sent-after-a-purchase">
@@ -147,7 +154,7 @@
             <p>The first thing that some developers would think of is: <em>phew, create a ranking module, that&#39;s it!</em></p>
             <p>If we dive into the ranking lifecycle, we&#39;ll discover some interesting things:</p>
             <ol>
-              <li>When the customer enters a product page, they will see the <em>product ranking</em> which determines how people were happy with it, e.g. using star icons, a value from a 1-5 range, some text descriptions with images maybe.</li>
+              <li>When the customer enters a product offer page, they will see the <em>product ranking</em> which determines how people were happy with it, e.g. using star icons, a value from a 1-5 range, some text descriptions with images maybe.</li>
               <li>The customer hypothetically chooses a product, buys it, pays for it, awaits the delivery, collects it - and only then (many days later, probably) the email with the request is sent, asking the customer to rate the product.</li>
             </ol>
             <p>We might notice that from the customer&#39;s perspective, the product ranking&#39;s lifecycle is <em>somehow</em> inverted. The customer first uses (reads) the <em>product ranking</em>, only to create the <em>product ranking</em> themselves later.</p>
@@ -159,7 +166,7 @@
                 Different Meanings of the same phrase, AGAIN!
               </a>
             </h2>
-            <p>When the customer opens a product page, they see a preprocessed accumulation of all the evaluations of all customers who have bought this exact product before. That would probably include an average rate (number 1-5), a list of text descriptions, etc. This is a <em>product ranking</em>, right?</p>
+            <p>When the customer opens a product offer page, they see a preprocessed accumulation of all the evaluations of all customers who have bought this exact product before. That would probably include an average rate (number 1-5), a list of text descriptions, etc. This is a <em>product ranking</em>, right?</p>
             <p>However, after a successful purchase and delivery collecting, the customer might fill in the product ranking form. The customer creates (and sends) their evaluation. Also a <em>product ranking</em>, right?</p>
             <p>Yes, we have spot a <strong>semantic boundary</strong>. We&#39;re dealing with at least two different bounded contexts here.</p>
 
@@ -177,28 +184,94 @@
   ratings/
   ...
 </code></pre>
+            <p>
+              Essentially, this design is drawn with respect to your data model. From backend&#39;s perspective, that model reflects the database schema: tables and their relations. For instance, the <code>Category</code> entity with all its related features could be located within <code>Product</code> module, as Category related only to a <code>Product</code> (has a foreign key inside the DB).
+            </p>
+            <p>On Frontend level, the model would reflect the endpoints exposed from the server&#39;s API.</p>
+            <p>In both cases, the modularity is designed by the underlying data model, respective to each level. Quite often, if backend exposes a data model resembling the database structure through the API, then frontend would often do the same.</p>
+            <p>There are many things wrong with that. But I want to focus on two of them here. They might be non-obvious at first: <strong>module coupling</strong> and <strong>model coupling</strong>.</p>
 
-            <h2 id="bounded-contexts-are-the-essence-of-ddd">
-              <a href="#bounded-contexts-are-the-essence-of-ddd">
+            <h2 id="database-oriented-code-ratings-code-module">
+              <a href="#database-oriented-code-ratings-code-module">
                 <span class="header-link"></span>
-                Bounded Contexts are the essence of DDD
+                Database-oriented <code>ratings</code> module
+              </a>
+            </h2>
+            <p>If the <code>ratings</code> module is designed this way, then:</p>
+            <ul>
+              <li>Product <code>offer</code> module (the one that displays the product along with its details) would depend on the <code>rating</code>, as it requires to fetch existing <em>product rating</em> to a potential customer</li>
+              <li>However, the module which displays and handles the form which accepts customer&#39;s ranking also needs to depend on <code>rating</code></li>
+            </ul>
+            <p>
+              Now if we take into account that the <code>rating</code> feature is one of the least important features of the whole application - yet it&#39;s required in at least two places, then the product <code>offer</code> module might depend on tens of different modules. A <em>god module</em>, we could say. <strong>It requires everything and, probably, also orchestrates most of them.</strong>
+            </p>
+            <p>I can think of no <strong>faster way to effectively increase tight coupling</strong> between modules.</p>
+
+            <h2 id="common-code-rating-code-model">
+              <a href="#common-code-rating-code-model">
+                <span class="header-link"></span>
+                Common <code>Rating</code> model
+              </a>
+            </h2>
+            <p>
+              If we carry on with the database-oriented approach (continued further on frontend), then someone could also think of simply returning a list of <code>Report</code> objects straight to a JS client. The frontend layer would be responsible for calculating all the averages, total sums, etc. <strong>The model could be shared among all <code>rating</code> module usecases</strong>. It could
+              even end up having only a single model.
+            </p>
+            <p><em>(spoiler: is it a good idea? Hell no!)</em></p>
+            <p>Why would a developer think this is a good idea? Again, misunderstanding DRY has its place here: <em>why creating more than one model if I have only a single database table? Why would I create different models if one is enough?</em></p>
+
+            <h2 id="working-with-shared-models">
+              <a href="#working-with-shared-models">
+                <span class="header-link"></span>
+                Working with Shared Models
+              </a>
+            </h2>
+            <p>
+              We need to realize that there might be totally different priorities coming from stakeholders regarding the product offer page and the ranking form. Each has its UX nuances. Most probably A/B tests are being run in order to optimize conversion rate. What is certain: <strong>they would sooner or later diverge.</strong> It&#39;s not a question of &quot;<em>if</em>&quot;, but rather
+              &quot;<em>when</em>&quot;.
+            </p>
+            <p>Providing a <strong>single model</strong> that fuels totally different usecases <strong>increases coupling</strong>. And this, in the long run, increases project maintenance significantly. Or even tremendously.</p>
+            <p>
+              The coupling manifests itself when one party needs to change that model - and the other one doesn&#39;t have time for that. The other team might have different priorities. In such case we might have to wait... for undefined length of time... or it could even get rejected, e.g. &quot;<em
+                >we&#39;re happy with the model - why do you even need to change it? Can&#39;t you carry on with how it is right now?</em
+              >&quot;
+            </p>
+            <p>The shared model could suffer from various <em>modelling diseases</em>, such as:</p>
+            <ul>
+              <li><strong>getting too many properties</strong>. This could result in unnecessary data bing fetched from the DB and/or over the network to supply frontend. Example: the shared model includes rating images which are used only if the user walks into a specific tab on the UI.</li>
+              <li>
+                since too many properties are bad, let&#39;s <strong>make the unnecessary ones optional</strong> 🤡. In this case we are facing a situation where the above mentioned image property gets optional, so a component that needs the image might not get it (type-system wise it&#39;s okay for image not to be there). As a consequence, additional &quot;if&quot; statements (e.g. TypeScript
+                type guards) are required.
+              </li>
+            </ul>
+            <p>Not sure, to be honest, which approach is worse. 😛</p>
+
+            <h2 id="autonomous-models">
+              <a href="#autonomous-models">
+                <span class="header-link"></span>
+                Autonomous Models
               </a>
             </h2>
             <blockquote>
-              <p>At the strategic level, you need autonomous models, i.e. models where changing one model does not entail the need for changes in others - I mean changing the model itself, not changing the data.</p>
+              <p>At the strategic level, you need <strong>autonomous models</strong>, i.e. models where changing one model does not entail the need for changes in others - I mean changing the model itself, not changing the data.</p>
             </blockquote>
-            <p>The key</p>
+            <p>Here we&#39;ve got the essence of strategic DDD: <strong>autonomous models</strong>.</p>
+            <p>The alternative, as Sławek Sobótka suggests - are <strong>autonomous models</strong>: each model for a certain usecase. <strong>Each model within each Bounded Context</strong>.</p>
+            <p>We don&#39;t want to share the model across Bounded Contexts, as this would enforce unnecessary synchronization between the teams who work on those features. It could theoretically happen that both Bounded Contexts would eventually get implemented by the same team. But that&#39;s not a good idea to hope for it 😛.</p>
+            <p>Introducing separate, autonomous models is not only no rocket science, but it also doesn&#39;t require that much effort.</p>
+            <p>What is crucial here is a mindset shift: <strong>nobody said you can have only a single model which should be reused across the whole system.</strong> You really don&#39;t have to limit yourself.</p>
 
-            <h2 id="how-big-is-a-bounded-context">
-              <a href="#how-big-is-a-bounded-context">
+            <h2 id="conclusion">
+              <a href="#conclusion">
                 <span class="header-link"></span>
-                How big is a Bounded Context?
+                Conclusion
               </a>
             </h2>
-            <p>At some point a question arises, regarding the size of a Bounded COntext: how big should it be?</p>
-            <p>Similar questions have been asked about MicroServices. People used to give quite peculiar answers such as specific limit of LoC 😛. <strong>Measuring correctness of a system component never made sense in terms of its size</strong>. And probably never will.</p>
-            <p>The fact is that <strong>Bounded Contexts should be rather small</strong>. Most probably smaller than you initially think. Generally speaking: <strong>the wider you draw the boundary around domain concepts, the bigger risk that their meaning will remain concise</strong>.</p>
-            <p>The Context should be large enough to include all relevant concepts of a domain, formed into a Ubiquitous Language - but not larger than that.</p>
+            <p>Whenever you identify that <strong>the meaning of a certain phrase differs across contexts, most probably you need to provide multiple models for each context.</strong></p>
+            <p>Treat the above as a useful <a href="https://en.wikipedia.org/wiki/Heuristic">heuristic</a>.</p>
+            <p>And, as business requirements (within a context) change, the models will follow. We don&#39;t need any unnecessary friction across contexts/teams.</p>
+            <p>Remember, that the <a href="https://en.wikipedia.org/wiki/Don%27t_repeat_yourself">DRY principle</a> is about knowledge. Different meaning, within a different context, is a different knowledge. <strong>By providing multiple models for different contexts, you don&#39;t repeat the knowledge</strong>.</p>
+            <p>Amen. 😉</p>
 
             <hr />
             <div class="blog-footer">

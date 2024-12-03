@@ -2,12 +2,12 @@ The aDDDvent calendar 2024:
 - day 1: [DDD is not about technology](/ddd-is-not-about-technology)
 - **day 2: [Talk to domain experts](/ddd-talk-to-domain-experts)**
 - day 3: [Speaking ubiquitous language](/ddd-speaking-ubiquitous-language)
-- day 4: [Designing Bounded Contexts](/ddd-designing-bounded-contexts)
+- day 4: [Autonomous Models in Bounded Contexts](/ddd-autonomous-models-in-bounded-contexts)
 - day 5: (tomorrow)
 
-## TL;DR;
+**TL;DR; 💡 Gather domain knowledge from experts. Accept they have different perspectives and different priorities. That's what makes businesses thrive - but also makes them complex. Systems need to reflect that.**
 
-**💡 Gather domain knowledge from experts. Accept they have different perspectives and different priorities. That's what makes businesses thrive - but also makes them complex. Systems need to reflect that.**
+<% TOC %>
 
 ## Same fact, different perspectives
 
