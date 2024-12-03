@@ -35,7 +35,7 @@ The point is that **each domain-relevant phrase, used within UL, carries importa
 
 It does take quite significant time until the domain expert transfers domain knowledge to developers. Once a complex topic is explained, a **new term** gets coined (or a business term is simply reused). **We use it to communicate faster**.
 
-That's it - use 2-3 words without the need to explain the whole topic (again!) using 5 sentences. We have already discussed that before, right? **Using highly specialized terminology makes communication more effective**.
+That's it - use 2-3 words without the need to explain the whole topic using 5 sentences. Without doing that **again**! We have already discussed that before, right? **Using highly specialized terminology makes communication more effective**.
 
 In DDD we call that domain-related meaning: **semantics**.
 
