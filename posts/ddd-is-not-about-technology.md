@@ -76,3 +76,9 @@ The value we want to bring to the customer... The business process that a custom
 ## Wrap up
 
 **DDD is not about technology itself**. Technology (**tactical DDD**) is there *only* to implement and/or modularize the domain we are exploring (**strategic DDD**). And exploring the domain is what matter the most.
+
+Here's a quote that sums it up perfectly and extracts the essence of what DDD is about:
+
+> Remember that all we do or use should nurture collaboration and building shared understanding - as long as we are able to catalyze collaboration and fill up each other minds with proper models - we do it correctly. DDD is first and foremost about working together.
+
+― [Damian Płaza](https://www.linkedin.com/in/damian-plaza/), expert in DDD and a [great storyteller](https://talesfrom.dev/)
