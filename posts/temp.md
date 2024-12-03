@@ -18,12 +18,13 @@ Um, "*it depends*". It could be (to some extent at least), it could be not.
 # plan
 
 The aDDDvent calendar 2024:
-- [ ] day 1: DDD is not about technology
-- [ ] day 2: Talk to domain experts
-- [ ] day 3: Speaking ubiquitous language
-- [ ] day 4: Bounded Contexts
-- [ ] day 5: Context Maps - Cross-module relations
-- [ ] day 6: 
+- [X] day 1: DDD is not about technology
+- [X] day 2: Talk to domain experts
+- [X] day 3: Speaking ubiquitous language
+- [ ] day 4: Exploring the Domain
+- [ ] day 5: Designing Bounded Contexts
+- [ ] day 6: Context Maps - Cross-module relations
+- [ ] day 7: 
 
 - in practice: e.g. different semantic models
 - overview: strategic and tactical
