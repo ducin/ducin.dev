@@ -11,8 +11,8 @@ The aDDDvent calendar 2024:
 > At the strategic level, you need **autonomous models**, i.e. models where changing **one model does not entail the need for changes in others** - I mean changing the model itself, not changing the data. Each of these models will be developed later at the tactical level using appropriate building blocks - appropriate to the class of the problem, because you do not always need, for example, aggregates, when you do not have the risk of a concurrent change of state.
 >
 > But returning to the autonomy of models - how to verify it? Rectangles and arrows can trick you. **You need to check what signals (commands and events) you send between models, because they can violate boundaries, and leak internal models**.
-
-― [Sławek Sobótka](https://www.linkedin.com/in/ssobot), DDD & Architecture expert, founder of [Bottega IT Minds](https://bottega.com.pl/)
+> 
+> ― [Sławek Sobótka](https://www.linkedin.com/in/ssobot), DDD & Architecture expert, founder of [Bottega IT Minds](https://bottega.com.pl/)
 
 <% TOC %>
 

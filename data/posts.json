@@ -183,6 +183,7 @@
   },
   {
     "title": "Your Frontend itself is NOT a Bounded Context",
+    "subtitle": "(without the backend part)",
     "sourceFile": "ddd-your-frontend-is-not-a-bounded-context",
     "keywords": [
       "Domain-Driven Design",

@@ -9,8 +9,8 @@ The aDDDvent calendar 2024:
 > From my observations, development teams tend to become monolith-layered heavy structures consisting of subteams aligned by specializations. Much like tribes divided by geographical distance, culture, language, or dialect. They meet one time per two weeks on safe ground to market. They try to exchange their goods and not return to the cave with things they lugged there.
 > 
 > But the truth is that frontend and backend developers must go out of their caves, their comfort zones - and **collaboratively design a solution** because **frontend and backend constitute a value together**.
-
-― [Artur Wojnar](https://www.linkedin.com/in/artur-wojnar-a19349a6), Solutions Architect
+>
+> ― [Artur Wojnar](https://www.linkedin.com/in/artur-wojnar-a19349a6), Solutions Architect
 
 **TL;DR; 💡 Frontend and backend constitute a value together. They share some data that has the same semantics. Frontend cannot be treated as a separate Bounded Context in a typical app with FE and BE. Hence, applying DDD to Frontend only doesn't make sense.**
 
