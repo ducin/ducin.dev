@@ -10,7 +10,7 @@ The aDDDvent calendar 2024:
 > 
 > But the truth is that frontend and backend developers must go out of their caves, their comfort zones - and **collaboratively design a solution** because **frontend and backend constitute a value together**.
 
-- [Artur Wojnar](https://www.linkedin.com/in/artur-wojnar-a19349a6), Solutions Architect
+― [Artur Wojnar](https://www.linkedin.com/in/artur-wojnar-a19349a6), Solutions Architect
 
 **TL;DR; 💡 Frontend and backend constitute a value together. They share some data that has the same semantics. Frontend cannot be treated as a separate Bounded Context in a typical app with FE and BE. Hence, applying DDD to Frontend only doesn't make sense.**
 
@@ -30,7 +30,7 @@ There's one particularly dangerous misconception, as if *the frontend could impl
 
 And today we'll dive into the why.
 
-# Frontend and Backend constitute a value together
+## Frontend and Backend constitute a value together
 
 > Frontend and backend developers must [...] collaboratively design a solution** because **frontend and backend constitute a value together.
 
