@@ -3,7 +3,8 @@ The aDDDvent calendar 2024:
 - **day 2: [Talk to domain experts](/ddd-talk-to-domain-experts)**
 - day 3: [Speaking ubiquitous language](/ddd-speaking-ubiquitous-language)
 - day 4: [Autonomous Models in Bounded Contexts](/ddd-autonomous-models-in-bounded-contexts)
-- day 5: (tomorrow)
+- day 5: [Your Frontend itself is NOT a Bounded Context](/ddd-your-frontend-is-not-a-bounded-context)
+- day 6: (tomorrow)
 
 **TL;DR; 💡 Gather domain knowledge from experts. Accept they have different perspectives and different priorities. That's what makes businesses thrive - but also makes them complex. Systems need to reflect that.**
 
@@ -130,4 +131,4 @@ Without detailed discussions with domain experts it's impossible to identify the
 
 Talking to different domain experts allow us to realize that they all might be **using the same phrase** or word: a *stock item*. But each of them **use it in a slightly different context**. Does it matter? Oh, YES!
 
-But that's a whole new topic, one of the most important concepts in DDD (if not *the* most important one). A topic for tomorrow. 
+But that's a whole new topic, one of the most important concepts in DDD (if not *the* most important one). [A topic for tomorrow](/ddd-speaking-ubiquitous-language). 

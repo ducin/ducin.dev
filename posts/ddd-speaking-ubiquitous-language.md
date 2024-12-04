@@ -3,7 +3,8 @@ The aDDDvent calendar 2024:
 - day 2: [Talk to domain experts](/ddd-talk-to-domain-experts)
 - **day 3: [Speaking ubiquitous language](/ddd-speaking-ubiquitous-language)**
 - day 4: [Autonomous Models in Bounded Contexts](/ddd-autonomous-models-in-bounded-contexts)
-- day 5: (tomorrow)
+- day 5: [Your Frontend itself is NOT a Bounded Context](/ddd-your-frontend-is-not-a-bounded-context)
+- day 6: (tomorrow)
 
 **TL;DR; 💡 Ubiquitous Language is a shared language developed and used within a team of both devs and domain experts. It's a result of their collaboration on a certain part/context of the business - called a Bounded Context. The language provides specific meaning to some domain terms. These terms have a super precise meaning within the Bounded Context, yet they probably mean something different outside of it.**
 
@@ -164,4 +165,4 @@ There's no need to over complicate the world by enforcing `Product` to be rename
 
 ## Contexts
 
-We mentioned that the Ubiquitous Language provides some specific **meaning** within a specific team - but also within a specific **context**. And the context is what we're gonna read about tomorrow.
+We mentioned that the Ubiquitous Language provides some specific **meaning** within a specific team - but also within a specific **context**. And [the context is what we're gonna read about tomorrow](/ddd-autonomous-models-in-bounded-contexts).

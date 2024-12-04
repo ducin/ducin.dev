@@ -181,6 +181,24 @@
     "coverImageFilename": "cover-ddd-advent-calendar.png",
     "status": "PUBLISHED"
   },
+  {
+    "title": "Your Frontend itself is NOT a Bounded Context",
+    "sourceFile": "ddd-your-frontend-is-not-a-bounded-context",
+    "keywords": [
+      "Domain-Driven Design",
+      "DDD",
+      "DDDesign",
+      "Strategic DDD",
+      "Ubiquitous Language",
+      "Bounded Contexts",
+      "Domain Model",
+      "Frontend"
+    ],
+    "description": "Frontend and backend constitute a value together. They share some data that has the same semantics. Frontend cannot be treated as a separate Bounded Context in a typical app with FE and BE. Hence, applying DDD to Frontend only doesn't make sense.",
+    "publishedDate": "2024-12-05",
+    "coverImageFilename": "cover-ddd-advent-calendar.png",
+    "status": "PUBLISHED"
+  },
 
 
   {

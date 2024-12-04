@@ -159,3 +159,16 @@ The aDDDvent calendar 2024:
 Bounded Contexts are being **designed way before any coding takes place**. Essentially, Strategic DDD precedes Tactical DDD.
 
 A concerns could arise: how can we design the contexts if we don't yet know whether we'll eventually go with Monolithic System or Distributed MicroServices/MicroFrontends architecture?
+
+
+
+
+## How big is a Bounded Context?
+
+At some point a question arises, regarding the size of a Bounded Context: how big should it be?
+
+Similar questions have been asked about MicroServices. People used to give quite peculiar answers such as specific limit of LoC 😛. **Measuring correctness of a system component never made sense in terms of its size**. And probably never will.
+
+The fact is that **Bounded Contexts should be rather small**. Most probably smaller than you initially think. Generally speaking: **the wider you draw the boundary around domain concepts, the bigger risk that their meaning will remain concise**.
+
+The Context should be large enough to include all relevant concepts of a domain, formed into a Ubiquitous Language - but not larger than that.

@@ -79,6 +79,21 @@
   <priority>0.80</priority>
 </url>
 <url>
+  <loc>https://ducin.dev/ddd-speaking-ubiquitous-language</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ducin.dev/ddd-autonomous-models-in-bounded-contexts</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://ducin.dev/ddd-your-frontend-is-not-a-bounded-context</loc>
+  <changefreq>weekly</changefreq>
+  <priority>0.80</priority>
+</url>
+<url>
   <loc>https://ducin.dev/what-is-frontend-architecture</loc>
   <changefreq>weekly</changefreq>
   <priority>0.80</priority>

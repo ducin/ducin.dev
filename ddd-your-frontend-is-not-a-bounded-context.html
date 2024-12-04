@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <title>Your Frontend itself is NOT a Bounded Context - Tomasz Ducin - blog</title>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="author" content="Tomasz Ducin" />
+    <meta name="keywords" content="Domain-Driven Design, DDD, DDDesign, Strategic DDD, Ubiquitous Language, Bounded Contexts, Domain Model, Frontend" />
+    <meta name="description" content="Frontend and backend constitute a value together. They share some data that has the same semantics. Frontend cannot be treated as a separate Bounded Context in a typical app with FE and BE. Hence, applying DDD to Frontend only doesn't make sense." />
+    <meta name="thumbnail" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@tomasz_ducin" />
+    <meta name="twitter:creator" content="@tomasz_ducin" />
+    <meta name="twitter:description" content="Frontend and backend constitute a value together. They share some data that has the same semantics. Frontend cannot be treated as a separate Bounded Context in a typical app with FE and BE. Hence, applying DDD to Frontend only doesn't make sense." />
+    <meta name="twitter:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <meta property="og:type" content="article" />
+    <meta property="og:title" content="Your Frontend itself is NOT a Bounded Context - Tomasz Ducin - blog" />
+    <meta property="og:description" content="Frontend and backend constitute a value together. They share some data that has the same semantics. Frontend cannot be treated as a separate Bounded Context in a typical app with FE and BE. Hence, applying DDD to Frontend only doesn't make sense." />
+    <meta property="og:image" content="https://ducin.dev/images/blog/cover-ddd-advent-calendar.png" />
+    <link rel="canonical" href="https://ducin.dev/ddd-your-frontend-is-not-a-bounded-context" />
+    <link rel="shortcut icon" href="https://ducin.dev/images/min/td-logo-zolte-80.png" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github-dark.min.css" />
+    <style>
+      #main > header {
+        background: url("images/blog/cover-ddd-advent-calendar.png") !important;
+        background-repeat: no-repeat !important;
+        background-size: cover !important;
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-MMG3MMTWGW"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+      gtag("config", "G-MMG3MMTWGW");
+    </script>
+
+    <script>
+      (function (s, e, n, d, er) {
+        s["Sender"] = er;
+        (s[er] =
+          s[er] ||
+          function () {
+            (s[er].q = s[er].q || []).push(arguments);
+          }),
+          (s[er].l = 1 * new Date());
+        var a = e.createElement(n),
+          m = e.getElementsByTagName(n)[0];
+        a.async = 1;
+        a.src = d;
+        m.parentNode.insertBefore(a, m);
+      })(window, document, "script", "https://cdn.sender.net/accounts_resources/universal.js", "sender");
+      sender("758ace613a8369");
+    </script>
+
+    <div id="page-wrapper">
+      <header id="header">
+        <h1><a href="/">Ducin.dev</a></h1>
+        <nav id="nav">
+          <ul>
+            <li class="special">
+              <a href="#menu" class="menuToggle" aria-label="Toggle site menu"><span>Menu</span></a>
+              <div id="menu">
+                <ul>
+                  <li><a href="/">Home</a></li>
+                  <li><a href="/trainings">Trainings</a></li>
+                  <li><a href="/blog">Blog</a></li>
+                  <li><a href="/talks">Talks</a></li>
+                  <li><a href="/videos">Videos</a></li>
+                  <li><a href="/newsletter">Newsletter</a></li>
+                  <li><a href="https://architekturanafroncie.pl">ANF</a></li>
+                </ul>
+              </div>
+            </li>
+          </ul>
+        </nav>
+      </header>
+      <article id="main">
+        <header>
+          <section class="cover-title-alt">
+            <h2>Your Frontend itself is NOT a Bounded Context</h2>
+          </section>
+        </header>
+        <section class="wrapper style5">
+          <div class="inner">
+            <p>
+              <em> Thursday 5 December 2024 • 📚 6 min read • <a href="/blog">back to Blog</a> • <a href="https://github.com/ducin/ducin.dev/blob/gh-pages/posts/ddd-your-frontend-is-not-a-bounded-context.md">edit on Github</a> </em>
+            </p>
+            <p>The aDDDvent calendar 2024:</p>
+            <ul>
+              <li>day 1: <a href="/ddd-is-not-about-technology">DDD is not about technology</a></li>
+              <li>day 2: <a href="/ddd-talk-to-domain-experts">Talk to domain experts</a></li>
+              <li>day 3: <a href="/ddd-speaking-ubiquitous-language">Speaking ubiquitous language</a></li>
+              <li>day 4: <a href="/ddd-autonomous-models-in-bounded-contexts">Autonomous Models in Bounded Contexts</a></li>
+              <li>
+                <strong>day 5: <a href="/ddd-your-frontend-is-not-a-bounded-context">Your Frontend itself is NOT a Bounded Context</a></strong>
+              </li>
+              <li>day 6: (tomorrow)</li>
+            </ul>
+            <blockquote>
+              <p>From my observations, development teams tend to become monolith-layered heavy structures consisting of subteams aligned by specializations. Much like tribes divided by geographical distance, culture, language, or dialect. They meet one time per two weeks on safe ground to market. They try to exchange their goods and not return to the cave with things they lugged there.</p>
+              <p>But the truth is that frontend and backend developers must go out of their caves, their comfort zones - and <strong>collaboratively design a solution</strong> because <strong>frontend and backend constitute a value together</strong>.</p>
+            </blockquote>
+            <ul>
+              <li><a href="https://www.linkedin.com/in/artur-wojnar-a19349a6">Artur Wojnar</a>, Solutions Architect</li>
+            </ul>
+            <p><strong>TL;DR; 💡 Frontend and backend constitute a value together. They share some data that has the same semantics. Frontend cannot be treated as a separate Bounded Context in a typical app with FE and BE. Hence, applying DDD to Frontend only doesn&#39;t make sense.</strong></p>
+
+            <h2 id="table-of-contents">
+              <a href="#table-of-contents">
+                <span class="header-link"></span>
+                Table of Contents
+              </a>
+            </h2>
+            <ul>
+              <li><a href="#Bounded-Contexts-and-Backend%2FFrontend">Bounded Contexts and Backend/Frontend</a></li>
+            </ul>
+            <ul>
+              <li>
+                <a href="#Frontend-and-Backend-constitute-a-value-together">Frontend and Backend constitute a value together</a>
+                <ul>
+                  <li><a href="#Fullstack-Teams">Fullstack Teams</a></li>
+                  <li><a href="#Bounded-Context-is-tech-agnostic">Bounded Context is tech-agnostic</a></li>
+                  <li><a href="#Frontend-in-Isolation">Frontend in Isolation</a></li>
+                  <li><a href="#Rare-case-of-Frontend-only-Bounded-Context">Rare case of Frontend-only Bounded Context</a></li>
+                  <li><a href="#Wrap-up%3A-does-DDD-matter-in-frontend-then%3F">Wrap up: does DDD matter in frontend then?</a></li>
+                </ul>
+              </li>
+            </ul>
+
+            <h2 id="bounded-contexts-and-backend-frontend">
+              <a href="#bounded-contexts-and-backend-frontend">
+                <span class="header-link"></span>
+                Bounded Contexts and Backend/Frontend
+              </a>
+            </h2>
+            <p><a href="/ddd-autonomous-models-in-bounded-contexts">Yesterday we learned that each Bounded Context should have its own autonomous model</a>. That&#39;s a direct implication of what a Bounded Context is: <strong>it&#39;s a boundary where a specific domain model, defined using the Ubiquitous Language, exists and makes sense</strong>.</p>
+            <p>It&#39;s all nice speaking about semantic and/or linguistic boundaries... But how does that translate to your actual codebase and the technology stack?</p>
+            <p>In particular - how does the backend-frontend separation plays with Bounded Contexts?</p>
+            <p>There&#39;s one particularly dangerous misconception, as if <em>the frontend could implement DDD in separation from the rest of the system</em>. Just as if frontend itself was a separate Bounded Context.</p>
+            <p><strong>It&#39;s not.</strong> At least in roughly 99%, it&#39;s not.</p>
+            <p>And today we&#39;ll dive into the why.</p>
+
+            <h1 id="frontend-and-backend-constitute-a-value-together">
+              <a href="#frontend-and-backend-constitute-a-value-together">
+                <span class="header-link"></span>
+                Frontend and Backend constitute a value together
+              </a>
+            </h1>
+            <blockquote>
+              <p>Frontend and backend developers must [...] collaboratively design a solution** because **frontend and backend constitute a value together.</p>
+            </blockquote>
+            <p>
+              This quote from Artur Wojnar perfectly outlines the essence: in modern systems, <strong>most often we need both server-side and client-side code in order to provide the business value to the end user</strong>. The frontend is responsible for handling user&#39;s interactions - and the backend deals with topics such as persistence, data consistency, guarding business rules and so on.
+            </p>
+            <p><strong>They complement each other</strong>.</p>
+            <p>The question is, however, how to organize their work together efficiently.</p>
+
+            <h2 id="fullstack-teams">
+              <a href="#fullstack-teams">
+                <span class="header-link"></span>
+                Fullstack Teams
+              </a>
+            </h2>
+            <p>As an industry we&#39;ve gone through an era where frontend devs, backend devs, SysAdmins and so on - all formed separate teams. The idea behind this split was to allocate the best people to certain tasks.</p>
+            <p>
+              But it turned out that if a <em>feature</em> requires to be developed by people from various teams - then communication cost slow down the process drastically. That&#39;s because people cooperating on a certain <em>feature</em> don&#39;t share the same knowledge. They might be working not only on totally different stacks, but also different systems.
+              <strong>The cost of unifying the understanding and making the communication effective in really, really high</strong>.
+            </p>
+            <p>
+              As a consequence, many products have shifted towards <strong>Fullstack teams</strong>. That doesn&#39;t mean that each team member is a fullstack developer itself. No way - or at least that&#39;s not the point. The point is that the <strong>team as a whole has competence in all layers/parts/pieces of the system</strong> (let it be frontend, backend, cloud, QA, whatever it takes).
+            </p>
+            <p>
+              And the Fullstack teams prove to be way <strong>more effective</strong>. <strong>Even though sometimes, for instance, a backend developer has to tweak something on frontend</strong> (which is not the best resource allocation). Or vice versa. But they <strong>move forward as a team</strong>. And that&#39;s what matters.
+              <a href="https://en.wikipedia.org/wiki/Time_to_market">TTM</a> improves.
+            </p>
+            <p><strong>Fullstack teams are focused on a business goal, not a technical goal</strong>.</p>
+            <p>And that&#39;s where we can go back to Bounded Contexts...</p>
+
+            <h2 id="bounded-context-is-tech-agnostic">
+              <a href="#bounded-context-is-tech-agnostic">
+                <span class="header-link"></span>
+                Bounded Context is tech-agnostic
+              </a>
+            </h2>
+            <p>Bounded Context, as said before, is a boundary in which a domain model exists and makes sense. It&#39;s a linguistic/semantic boundary. <strong>Not a technical one</strong>.</p>
+            <p>Bounded Contexts are also formed around <strong>a business goal, not a technical one</strong>.</p>
+            <p>
+              Therefore, most often, a single Bounded Context would include solutions from any tech/layer that is needed in order to achieve the goal: some database, some infra, some server code, some client code, etc. Why? <a href="https://en.wikipedia.org/wiki/Captain_Planet_and_the_Planeteers">Because all these parts, <strong>combined together</strong>, bring value</a>.
+            </p>
+
+            <h2 id="frontend-in-isolation">
+              <a href="#frontend-in-isolation">
+                <span class="header-link"></span>
+                Frontend in Isolation
+              </a>
+            </h2>
+            <p>Again, there&#39;s this misconception that <em>DDD could be &quot;implemented&quot; on frontend, being unaligned with whatever the rest of the system is doing</em>.</p>
+            <p>Why is that wrong? Again - because of <strong>semantics</strong>.</p>
+            <p>Your frontend is - most probably - consuming some resources from the backend directly. <strong>Do you think that the semantics of this very same data is different on frontend and on backend</strong>? Especially that frontend and backend complement each other (UI and user interactions + data persistence and consistency)?</p>
+            <p><strong>Most probably, not</strong>. However, there&#39;s an edgecase...</p>
+
+            <h2 id="rare-case-of-frontend-only-bounded-context">
+              <a href="#rare-case-of-frontend-only-bounded-context">
+                <span class="header-link"></span>
+                Rare case of Frontend-only Bounded Context
+              </a>
+            </h2>
+            <p>There is an edgecase, where it&#39;s the frontend which is responsible not only for the UI/user interactions, but also for handling data persistence. For instance, <strong>you have no server code whatsoever</strong> - and instead, you&#39;re using some cloud JSON storage such as <a href="https://firebase.google.com/">firebase</a> or <a href="https://supabase.com/">supabase</a>.</p>
+            <p>If that&#39;s the case, then yes, <em>kind of</em>, a frontend without backend could be responsible for delivering the solution for a given Bounded Context.</p>
+            <p>However, from my observation this is extremely uncommon, especially in complex domain-rich products.</p>
+
+            <h2 id="wrap-up-does-ddd-matter-in-frontend-then">
+              <a href="#wrap-up-does-ddd-matter-in-frontend-then">
+                <span class="header-link"></span>
+                Wrap up: does DDD matter in frontend then?
+              </a>
+            </h2>
+            <p>YES! As long as the whole DDD approach makes sense in your system (e.g. it&#39;s not a <a href="https://en.wikipedia.org/wiki/Create,_read,_update_and_delete">CRUD</a>-everywhere application, it doesn&#39;t rely on <a href="https://learn.microsoft.com/en-us/azure/architecture/patterns/pipes-and-filters">Pipes and Filters architecture</a> etc - where DDD isn&#39;t really useful).</p>
+            <p><strong>It&#39;s important to modularize your app effectively.</strong> And DDD&#39;s Bounded Context - and their semantic boundaries - prove to be extremely effective in maintaining complex frontend apps in the long run.</p>
+            <p>Tomorrow we&#39;ll dive into making practical use of Bounded Contexts on frontend, stay tuned 🎅.</p>
+
+            <hr />
+            <div class="blog-footer">
+              <p>
+                I'm an Independent Consultant, Architect and a Developer. Speaker at European and Polish conferences. A trainer with passion to explain how things work and to avoid overcomplicated solutions. A critic of buzzwords and overexcitement around certain tools. Concentrated on solving organizational and technical project issues. Loves working with people. Ex-theatre actor. 4 espressos a
+                day.
+              </p>
+              <p><a href="mailto:tomasz@ducin.dev">Contact Tomasz</a> for information about <a href="/trainings">trainings on JavaScript, TypeScript, React, Angular and Architecture.</a></p>
+              <p>
+                Follow me on <a target="_blank" href="https://bsky.app/profile/ducin.dev">bluesky 🦋</a>, <a target="_blank" href="https://www.linkedin.com/in/tomasz-ducin-82234a4b/">LinkedIn</a>, or <a target="_blank" href="http://x.com/tomasz_ducin">the e𝕏 platform</a>
+                for tech-related updates.
+              </p>
+            </div>
+            <script src="https://utteranc.es/client.js" repo="ducin/ducin.dev" issue-term="pathname" label="comments" theme="github-light" crossorigin="anonymous" async></script>
+          </div>
+        </section>
+      </article>
+
+      <footer id="footer">
+        <ul class="icons">
+          <li>
+            <a target="_blank" href="/feed.xml" class="icon fa-rss" aria-label="RSS feed"><span class="label">RSS</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://twitter.com/tomasz_ducin" class="icon fa-twitter" aria-label="twitter link"><span class="label">Twitter</span></a>
+          </li>
+          <li>
+            <a target="_blank" href="https://www.youtube.com/@DucinDev" class="icon fa-youtube-play" aria-label="youtube channel link"><span class="label">Videos</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://slides.com/ducin" class="icon fa-slideshare" aria-label="slides link"><span class="label">Slides</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://github.com/ducin" class="icon fa-github" aria-label="github link"><span class="label">Github</span></a>
+          </li>
+          <!-- <li><a target="_blank" href="https://stackoverflow.com/users/769384/ducin" class="icon fa-stack-overflow" aria-label="stackoverflow link"><span class="label">Stack Overflow</span></a></li> -->
+          <li>
+            <a target="_blank" href="https://www.linkedin.com/pub/tomasz-ducin/4b/34a/822" class="icon fa-linkedin" aria-label="linkedin link"><span class="label">LinkedIn</span></a>
+          </li>
+          <li>
+            <a href="mailto:tomasz@ducin.dev" class="icon fa-envelope-o" aria-label="write me a message"><span class="label">Email</span></a>
+          </li>
+        </ul>
+        <ul class="copyright">
+          <li>&copy; Ducin.DEV Consulting <span id="year">2024</span></li>
+          <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+        </ul>
+      </footer>
+    </div>
+    <script src="assets/js/jquery.min.js"></script>
+    <script src="assets/js/jquery.scrollex.min.js"></script>
+    <script src="assets/js/jquery.scrolly.min.js"></script>
+    <script src="assets/js/jquery.translate.js"></script>
+    <script src="assets/js/skel.min.js"></script>
+    <script src="assets/js/util.js"></script>
+    <script src="assets/js/main.js"></script>
+    <script src="assets/js/page-blog.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/typescript.min.js"></script>
+  </body>
+</html>

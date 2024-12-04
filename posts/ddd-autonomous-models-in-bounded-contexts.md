@@ -3,7 +3,8 @@ The aDDDvent calendar 2024:
 - day 2: [Talk to Domain Experts](/ddd-talk-to-domain-experts)
 - day 3: [Speaking Ubiquitous Language](/ddd-speaking-ubiquitous-language)
 - **day 4: [Autonomous Models in Bounded Contexts](/ddd-autonomous-models-in-bounded-contexts)**
-- day 5: (tomorrow)
+- day 5: [Your Frontend itself is NOT a Bounded Context](/ddd-your-frontend-is-not-a-bounded-context)
+- day 6: (tomorrow)
 
 **TL;DR; 💡 A Bounded Context is a boundary where a specific domain model exists and makes sense. The Ubiquitous Language provides terms and phrases with very specific meaning. Each domain model within its context is autonomous and doesn't depend on models from different contexts, to reduce unnecessary coupling. Don't let DRY principle cheat you.**
 
@@ -122,3 +123,5 @@ And, as business requirements (within a context) change, the models will follow.
 Remember, that the [DRY principle](https://en.wikipedia.org/wiki/Don%27t_repeat_yourself) is about knowledge. Different meaning, within a different context, is a different knowledge. **By providing multiple models for different contexts, you don't repeat the knowledge**.
 
 Amen. 😉
+
+[Tomorrow we'll tackle a misconception around Bounded Contexts and Frontend](/ddd-your-frontend-is-not-a-bounded-context) 🔥.

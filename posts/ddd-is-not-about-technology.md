@@ -3,7 +3,8 @@ The aDDDvent calendar 2024:
 - day 2: [Talk to domain experts](/ddd-talk-to-domain-experts)
 - day 3: [Speaking ubiquitous language](/ddd-speaking-ubiquitous-language)
 - day 4: [Autonomous Models in Bounded Contexts](/ddd-autonomous-models-in-bounded-contexts)
-- day 5: (tomorrow)
+- day 5: [Your Frontend itself is NOT a Bounded Context](/ddd-your-frontend-is-not-a-bounded-context)
+- day 6: (tomorrow)
 
 **TL;DR; 💡 DDD is first and foremost about understanding your business and your product. Practicing DDD means you're constantly exploring how your business works. It's mainly about collaboration and communication. If you think you're doing DDD by following a certain technology / framework / toolstack / pattern-based approach, you're doing it wrong.**
 
