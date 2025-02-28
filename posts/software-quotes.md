@@ -16,6 +16,12 @@ Have a good read 🙂.
 
 ----
 
+> The greatest obstacle to discovery is not ignorance - it is the illusion of knowledge
+
+― Daniel J. Boorstin
+
+----
+
 > Defer the actual decision until a decision can be made more responsibly, based on actual knowledge, but not so late that it is not possible to take advantage of the knowledge.
 
 ― Richard Monson-Haefel
@@ -43,6 +49,18 @@ Have a good read 🙂.
 > When you think about your system, don't think about your technology choice. Make sure you think about it in the desirable properties you want your system to have. And then the technology choice is just the incarnation of that.
 
 ― Gregor Hohpe
+
+----
+
+> The quality of a system is defined by our ability to change it.
+
+― Dave Farley
+
+----
+
+> It is not the domain experts knowledge that goes to production, it is the assumption of the developers that goes to production.
+
+― Alberto Brandolini
 
 ----
 
@@ -321,3 +339,9 @@ or a more humorous variation 😉 (by unknown):
 > Insanity is doing the same thing over and over and expecting different results.
 
 ― Albert Einstein / Rita Mae Brown
+
+----
+
+> Expect garbage out, if you put garbage in.
+
+― myself 😉
